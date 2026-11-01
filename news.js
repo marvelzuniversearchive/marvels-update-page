@@ -109,7 +109,7 @@
       return String(article.category || "").toLowerCase().includes(filter);
     });
     const updated = window.marvelNewsGeneratedAt ? "Updated " + formatDate(window.marvelNewsGeneratedAt) : "Checking sources…";
-    content.innerHTML = '<section class="mnews-page">' +
+    content.innerHTML = '<section class="mnews-page" data-marvel-news-content>' +
       '<div class="mnews-heading"><div><div class="eyebrow">MARVEL UNIVERSE · NEWSROOM</div>' +
       '<h1 class="page-title">Marvel <span>News</span></h1><p class="subhead">The latest Marvel-only updates from official announcements and established publishers.</p></div>' +
       '<div class="mnews-live"><i></i><span>AUTO-REFRESH</span><small id="mnewsUpdated">' + escapeHtml(updated) + '</small></div></div>' +
