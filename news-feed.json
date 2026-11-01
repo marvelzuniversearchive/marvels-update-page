@@ -1,26 +1,22 @@
 {
-  "generated_at": "2026-11-01T19:17:45.590178+00:00",
+  "generated_at": "2026-11-01T22:56:27.495075+00:00",
   "source_count": 13,
   "article_count": 60,
   "articles": [
     {
-      "id": "6marvelstoriesthemcucouldusethatprovewedontneedanothersolohulkmovie",
-      "title": "6 Marvel Stories The MCU Could Use That Prove We Don't Need Another Solo Hulk Movie",
-      "summary": "6 Marvel Stories The MCU Could Use That Prove We Don't Need Another Solo Hulk Movie ScreenRant",
+      "id": "robertdowneyjrandpedropascalswitchplacesinthemcuforhalloweencostumeswap",
+      "title": "Robert Downey Jr. and Pedro Pascal switch places in the MCU for Halloween: ‘Costume swap!’",
+      "summary": "Robert Downey Jr. and Pedro Pascal switch places in the MCU for Halloween: ‘Costume swap!’ Entertainment Weekly",
       "image_url": "",
-      "article_url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE42dkp6dThZNHAwcXhSZjZBLXFEZ2lYSDhSN2I5Rjc4N2FORkFwdmRTQ2lCMFZMZGJFeXh6ZWVqN2dURG1TU281MVEycmxFWUJJWHBDZVpaZjBkYlNOaU5fNmU4cmQyV3hyZEJKNGJGSUFaTkRkbFE?oc=5",
-      "source": "Screen Rant",
-      "source_id": "screen_rant",
-      "category": "Movies",
-      "published_at": "2026-11-01T18:46:18+00:00",
+      "article_url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxQUHJ0OHF5cU5VQ2E4RFYwTTcxYTBTMmtKdVFycW5icVJIWTEyQ3IyUU51MHJIN3NYZDJyZzZJU25HN1FuTWI5aFlUeHZ2aDJuOUE0Q3h4MkdkdUVxV0J1bTd3aUJuSmZPTTJVMGZqMFFjWGRhZzNGTkNjUVJsb3ZqVTZSTGE?oc=5",
+      "source": "Entertainment Weekly",
+      "source_id": "entertainment_weekly",
+      "category": "Marvel",
+      "published_at": "2026-11-01T21:21:00+00:00",
       "status": "reported",
-      "tags": [
-        "Hulk"
-      ],
-      "related_characters": [
-        "Hulk"
-      ],
-      "external_id": "CBMidkFVX3lxTE42dkp6dThZNHAwcXhSZjZBLXFEZ2lYSDhSN2I5Rjc4N2FORkFwdmRTQ2lCMFZMZGJFeXh6ZWVqN2dURG1TU281MVEycmxFWUJJWHBDZVpaZjBkYlNOaU5fNmU4cmQyV3hyZEJKNGJGSUFaTkRkbFE"
+      "tags": [],
+      "related_characters": [],
+      "external_id": "CBMihAFBVV95cUxQUHJ0OHF5cU5VQ2E4RFYwTTcxYTBTMmtKdVFycW5icVJIWTEyQ3IyUU51MHJIN3NYZDJyZzZJU25HN1FuTWI5aFlUeHZ2aDJuOUE0Q3h4MkdkdUVxV0J1bTd3aUJuSmZPTTJVMGZqMFFjWGRhZzNGTkNjUVJsb3ZqVTZSTGE"
     },
     {
       "id": "robertdowneyjrtakesover3rdmcuroleinavengersdoomsdayhalloweenswapwithpedropascal",
@@ -31,7 +27,7 @@
       "source": "CBR",
       "source_id": "cbr",
       "category": "Marvel",
-      "published_at": "2026-11-01T17:15:13+00:00",
+      "published_at": "2026-11-01T20:50:31+00:00",
       "status": "reported",
       "tags": [
         "Avengers",
@@ -52,7 +48,7 @@
       "source": "CBR",
       "source_id": "cbr",
       "category": "Marvel",
-      "published_at": "2026-11-01T15:20:56+00:00",
+      "published_at": "2026-11-01T19:00:11+00:00",
       "status": "reported",
       "tags": [
         "Doom"
@@ -61,6 +57,25 @@
         "Doom"
       ],
       "external_id": "CBMib0FVX3lxTE1FS3piNXVWNkg0cE1HamJNYjQ5NFJwdFNXUXNqM0ZndlhMd0c4NDd5Yndkd1ZDZUpXRzBfNFdraGZQQUdveUljcDNQbXRVM2ZpdjlQTjE5OGxpdW13OXVNbThSRExkMm9HaDBILXUxQQ"
+    },
+    {
+      "id": "6marvelstoriesthemcucouldusethatprovewedontneedanothersolohulkmovie",
+      "title": "6 Marvel Stories The MCU Could Use That Prove We Don't Need Another Solo Hulk Movie",
+      "summary": "6 Marvel Stories The MCU Could Use That Prove We Don't Need Another Solo Hulk Movie ScreenRant",
+      "image_url": "",
+      "article_url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE42dkp6dThZNHAwcXhSZjZBLXFEZ2lYSDhSN2I5Rjc4N2FORkFwdmRTQ2lCMFZMZGJFeXh6ZWVqN2dURG1TU281MVEycmxFWUJJWHBDZVpaZjBkYlNOaU5fNmU4cmQyV3hyZEJKNGJGSUFaTkRkbFE?oc=5",
+      "source": "Screen Rant",
+      "source_id": "screen_rant",
+      "category": "Movies",
+      "published_at": "2026-11-01T18:46:18+00:00",
+      "status": "reported",
+      "tags": [
+        "Hulk"
+      ],
+      "related_characters": [
+        "Hulk"
+      ],
+      "external_id": "CBMidkFVX3lxTE42dkp6dThZNHAwcXhSZjZBLXFEZ2lYSDhSN2I5Rjc4N2FORkFwdmRTQ2lCMFZMZGJFeXh6ZWVqN2dURG1TU281MVEycmxFWUJJWHBDZVpaZjBkYlNOaU5fNmU4cmQyV3hyZEJKNGJGSUFaTkRkbFE"
     },
     {
       "id": "5essentialmcustorylinestorememberbeforeyouseeavengersdoomsday",
@@ -1080,25 +1095,6 @@
         "Vision"
       ],
       "external_id": "CBMioAFBVV95cUxNODFlVXd4ZGEzbldKcURGY3FudEkzQWRtSnlyOVYyVFhKWkRTOThPQzdxRlNicW5CVm5tUDN5c2plVklFQXQ2RURaOWZPc25Jc3hGdFl3enlOS3gwUGMtOW03VDNvOWJKT2ZXejRvV0NmVy1KNGpQRl9NVTljM2ktQkk2ZURmbXh3QlZQTXNRYkJV"
-    },
-    {
-      "id": "marvelsetsreleaseforanimatedzombiesspecialsyourfriendlyneighborhoodspidermanseas",
-      "title": "Marvel Sets Release For Animated 'Zombies' Specials & 'Your Friendly Neighborhood Spider-Man' Season 2",
-      "summary": "Marvel Sets Release For Animated 'Zombies' Specials & 'Your Friendly Neighborhood Spider-Man' Season 2 Deadline",
-      "image_url": "",
-      "article_url": "https://news.google.com/rss/articles/CBMingFBVV95cUxNSmJOTmFUUU9nYnFJY00xVUpvemFYeFFPd0dlVWtqMU0wNzZRblh1akQwNU51RFB6TWVuNno5cGpQQ0hzMUVNeUxGdVZzX2dkUlYzY25ETWl5UHJ0MWVQOHpobEF0YUstTk0zUmxMb3JuWUJBeUdfTzFvNWNSTmN5Y2N1SHh4Z2JWSVBCcGFWLU82WnFlSUVFQTE1Mm1Qdw?oc=5",
-      "source": "Deadline",
-      "source_id": "deadline",
-      "category": "TV",
-      "published_at": "2026-10-08T07:00:00+00:00",
-      "status": "reported",
-      "tags": [
-        "Spider-Man"
-      ],
-      "related_characters": [
-        "Spider-Man"
-      ],
-      "external_id": "CBMingFBVV95cUxNSmJOTmFUUU9nYnFJY00xVUpvemFYeFFPd0dlVWtqMU0wNzZRblh1akQwNU51RFB6TWVuNno5cGpQQ0hzMUVNeUxGdVZzX2dkUlYzY25ETWl5UHJ0MWVQOHpobEF0YUstTk0zUmxMb3JuWUJBeUdfTzFvNWNSTmN5Y2N1SHh4Z2JWSVBCcGFWLU82"
     }
   ]
 }
