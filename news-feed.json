@@ -1,5 +1,18 @@
 {
-  "generated_at": "2026-11-01T14:51:27.222Z",
-  "source_count": 6,
-  "articles": []
+  "generated_at": "2026-11-01T15:18:02.570Z",
+  "source_count": 13,
+  "articles": [
+    {
+      "id": "marvel-first-look-spider-man-daredevil-team-up-20261030",
+      "title": "Marvel Releases First Look At Spider-Man & Daredevil’s Team-Up Before Their Disney+ Return",
+      "summary": "Marvel Comics has previewed a Your Friendly Neighborhood Spider-Man Season 2 tie-in issue featuring Daredevil teaming up with Spider-Man. The issue is scheduled to arrive on December 9.",
+      "image_url": "",
+      "article_url": "https://thedirect.com/article/marvel-first-look-spider-man-daredevil-disney-plus-return",
+      "source": "The Direct",
+      "source_id": "the_direct",
+      "category": "Comics",
+      "published_at": "2026-10-30T12:00:00Z",
+      "status": "reported"
+    }
+  ]
 }
