@@ -3,28 +3,72 @@ on:
   schedule:
     - cron: "*/15 * * * *"
   workflow_dispatch:
+
 permissions:
   contents: write
+
 concurrency:
   group: marvel-live-news
   cancel-in-progress: false
+
 jobs:
   refresh:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 10
     steps:
       - name: Check out site
         uses: actions/checkout@v4
-      - name: Collect Marvel headlines
-        run: python scripts/collect_marvel_news.py
-      - name: Publish feed if changed
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Collect and enrich Marvel headlines
+        id: collect
+        shell: bash
         run: |
+          set -euo pipefail
+          for attempt in 1 2 3; do
+            if python scripts/collect_marvel_news.py; then
+              break
+            fi
+            if [ "$attempt" -eq 3 ]; then
+              echo "News collection failed after three attempts."
+              exit 1
+            fi
+            echo "Collection attempt $attempt failed; retrying in 20 seconds."
+            sleep 20
+          done
+
+      - name: Validate published feed
+        run: |
+          python -m json.tool news-feed.json > /dev/null
+          python - <<'PY'
+          import json
+          with open("news-feed.json", encoding="utf-8") as f:
+              feed = json.load(f)
+          assert isinstance(feed.get("articles"), list) and feed["articles"], "Feed must contain at least one story"
+          required = ("id", "title", "article_url", "source", "published_at")
+          for article in feed["articles"]:
+              missing = [key for key in required if not article.get(key)]
+              assert not missing, f"Story missing required fields: {missing}"
+          print(f"Validated {len(feed['articles'])} Marvel stories.")
+          PY
+
+      - name: Publish updated feed
+        shell: bash
+        run: |
+          set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add news-feed.json
           if git diff --cached --quiet; then
-            echo "No feed changes."
-          else
-            git commit -m "Refresh Marvel live news feed"
-            git push
+            echo "No feed changes to publish."
+            exit 0
           fi
+          git commit -m "Refresh Marvel live news feed"
+          git push origin HEAD:main
