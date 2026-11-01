@@ -179,11 +179,13 @@ def main():
     # Never replace a healthy feed with an empty response. Preserve existing
     # headlines when the upstream RSS provider returns no usable entries.
     old = {}
+    previous = {}
     if OUTPUT.exists():
         try:
             previous = json.loads(OUTPUT.read_text(encoding="utf-8"))
             old = {a.get("id"): a for a in previous.get("articles", []) if a.get("id")}
         except Exception:
+            previous = {}
             old = {}
     for article in articles:
         old[article["id"]] = article
@@ -191,8 +193,17 @@ def main():
     if not merged:
         raise RuntimeError("No valid Marvel stories returned; keeping the previous feed unchanged.")
 
+    # Keep the feed file unchanged between successful checks when no story data
+    # changed. This avoids creating a needless Git commit every 15 minutes.
+    previous_articles = previous.get("articles", [])
+    content_changed = merged != previous_articles
+    generated_at = (
+        datetime.now(timezone.utc).isoformat()
+        if content_changed or not previous.get("generated_at")
+        else previous["generated_at"]
+    )
     payload = {
-        "generated_at": datetime.now(timezone.utc).isoformat(),
+        "generated_at": generated_at,
         "source_count": len(ALLOWED),
         "article_count": len(merged),
         "articles": merged,
