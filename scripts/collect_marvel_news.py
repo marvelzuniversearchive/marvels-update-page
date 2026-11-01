@@ -6,6 +6,7 @@ import re
 import urllib.parse
 import urllib.request
 import xml.etree.ElementTree as ET
+from urllib.parse import urlparse
 from datetime import datetime, timezone
 from email.utils import parsedate_to_datetime
 from pathlib import Path
@@ -18,8 +19,17 @@ ALLOWED = {
     "variety.com": "Variety",
     "hollywoodreporter.com": "The Hollywood Reporter",
     "ign.com": "IGN",
+    "thedirect.com": "The Direct",
+    "comicbook.com": "ComicBook.com",
+    "screenrant.com": "Screen Rant",
+    "cbr.com": "CBR",
+    "gamesradar.com": "GamesRadar+",
+    "ew.com": "Entertainment Weekly",
+    "indianexpress.com": "The Indian Express",
 }
-QUERY = 'Marvel OR "Marvel Studios" OR MCU OR Avengers OR Spider-Man OR X-Men OR "Fantastic Four" (site:marvel.com OR site:timesofindia.indiatimes.com OR site:deadline.com OR site:variety.com OR site:hollywoodreporter.com OR site:ign.com)'
+# Keep the query broad enough for Google News RSS to return results. Publisher
+# validation and the Marvel relevance check below keep unrelated items out.
+QUERY = 'Marvel OR "Marvel Studios" OR MCU OR Avengers OR Spider-Man OR X-Men OR "Fantastic Four" when:30d'
 FEED_URL = "https://news.google.com/rss/search?" + urllib.parse.urlencode({
     "q": QUERY, "hl": "en-IN", "gl": "IN", "ceid": "IN:en"
 })
@@ -32,12 +42,22 @@ def source_for(item):
     node = item.find("source")
     if node is None:
         return None
-    source_url = (node.attrib.get("url") or "").lower()
-    source_title = clean(node.text)
+    source_url = (node.attrib.get("url") or "").strip().lower()
+    host = (urlparse(source_url).hostname or "").lower()
+    source_title = clean(node.text).lower()
     for domain, name in ALLOWED.items():
-        if domain in source_url or name.lower() == source_title.lower():
+        if host == domain or host.endswith("." + domain) or source_title == name.lower():
             return name
-    return None
+    # Google News sometimes varies publisher punctuation or suffixes.
+    aliases = {
+        "the direct": "The Direct",
+        "comicbook": "ComicBook.com",
+        "screen rant": "Screen Rant",
+        "the hollywood reporter": "The Hollywood Reporter",
+        "entertainment weekly": "Entertainment Weekly",
+        "the indian express": "The Indian Express",
+    }
+    return aliases.get(source_title)
 
 def category_for(title):
     text = title.lower()
