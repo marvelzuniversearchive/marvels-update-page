@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marvel Universe Archive — Character Database & Comic Wiki</title>
+  <meta name="description" content="Explore classified superhero and villain dossiers, 3D holographic models, official Marvel power grids, and comic debuts across the Marvel Universe.">
+
+  <!-- Favicon / Brand Symbol -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='15' fill='%23e23636'/><text x='50' y='68' font-size='50' font-family='sans-serif' font-weight='900' fill='white' text-anchor='middle'>M</text></svg>">
+
+  <!-- Google Fonts: Bebas Neue, Oswald, Montserrat, Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@500;600;700;800&family=Oswald:wght@500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+  <!-- Core Stylesheets -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/navbar.css">
+  <link rel="stylesheet" href="css/hero.css">
+  <link rel="stylesheet" href="css/roster.css">
+  <link rel="stylesheet" href="css/modal.css">
+  <link rel="stylesheet" href="css/news.css">
+
+  <!-- 3D Support: Three.js & Google Model-Viewer -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
+
+  <style>
+    /* Footer Styling */
+    .archive-footer {
+      background: var(--bg-secondary);
+      border-top: 1px solid var(--border-subtle);
+      padding: 3.5rem 0 2rem;
+      position: relative;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 2.5rem;
+      margin-bottom: 2.5rem;
+    }
+    .footer-brand {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+    .footer-desc {
+      font-size: 0.88rem;
+      color: var(--slate-400);
+      max-width: 440px;
+      line-height: 1.6;
+    }
+    .footer-col-title {
+      font-family: var(--font-heading);
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 1rem;
+    }
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      font-size: 0.85rem;
+      color: var(--slate-400);
+    }
+    .footer-links a:hover {
+      color: var(--marvel-red);
+    }
+    .footer-bottom {
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-size: 0.78rem;
+      color: var(--slate-500);
+    }
+    @media (max-width: 768px) {
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="navbar">
+    <div class="container navbar-container">
+      <a href="#home" class="brand-logo" aria-label="Marvel Universe Archive Home">
+        <span class="brand-badge">MARVEL</span>
+        <div class="brand-text">
+          <span class="brand-title">UNIVERSE ARCHIVE</span>
+          <span class="brand-sub">CLASSIFIED LORE & HERO DOSSIERS</span>
+        </div>
+      </a>
+
+      <!-- Dynamic Live Search Bar -->
+      <div class="search-wrapper">
+        <span class="search-icon" aria-hidden="true">🔍</span>
+        <input 
+          type="text" 
+          id="search-input" 
+          class="search-input" 
+          placeholder="Search heroes, powers, creators..." 
+          autocomplete="off"
+          aria-label="Search character archive"
+        />
+        <button id="search-clear" class="search-clear" aria-label="Clear search">✕</button>
+        <span class="search-hotkey">/</span>
+      </div>
+
+      <!-- Navigation Links -->
+      <nav class="nav-links" id="nav-links">
+        <a href="#home" class="nav-link active">Home</a>
+        <a href="#roster" class="nav-link">Character Roster</a>
+        <a href="#news" class="nav-link">Latest News</a>
+        <a href="#about" class="nav-link">Archive Info</a>
+      </nav>
+
+      <!-- Mobile Hamburger Toggle -->
+      <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle Navigation Menu">
+        ☰
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content Wrapper -->
+  <main>
+    <!-- Hero Showcase Section -->
+    <section class="hero-section" id="home">
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <div class="hero-pill">
+            <span class="hero-pill-dot"></span>
+            <span>SHIELD SECURE ACCESS // LEVEL 8</span>
+          </div>
+
+          <h1 class="hero-title">
+            EXPLORE THE <span class="accent-red">MARVEL UNIVERSE</span> CHRONICLES
+          </h1>
+
+          <p class="hero-description">
+            Access classified tactical dossiers, official comic debut registries, itemized power grids, and interactive 3D holographic energy cores for Earth's mightiest champions and cosmic conquerors.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#roster" class="btn-primary" id="hero-explore-btn">
+              <span>Inspect Character Roster</span>
+              <span aria-hidden="true">↓</span>
+            </a>
+            <a href="#news" class="btn-secondary">
+              <span>Read Latest Dispatches</span>
+            </a>
+          </div>
+
+          <!-- Quick Metrics Bar -->
+          <div class="hero-metrics">
+            <div class="metric-item">
+              <span class="metric-number">85+</span>
+              <span class="metric-label">Years of Lore</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-number">8,000+</span>
+              <span class="metric-label">Iconic Heroes</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-number">1-7</span>
+              <span class="metric-label">Power Rating Scale</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-number">1</span>
+              <span class="metric-label">Unified Multiverse</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Spotlight Featured Card -->
+        <div class="hero-spotlight" id="hero-spotlight-card" style="cursor: pointer;" title="Click to view Spider-Man dossier">
+          <div class="spotlight-banner">
+            <img 
+              class="spotlight-img" 
+              src="https://images.unsplash.com/photo-1604200213928-ba3cf4fc8436?auto=format&fit=crop&w=800&q=80" 
+              alt="Spider-Man Spotlight" 
+            />
+            <div class="spotlight-overlay"></div>
+            <div class="spotlight-badge-top">★ FEATURED DOSSIER OF THE DAY</div>
+          </div>
+
+          <div class="spotlight-body">
+            <h2 class="spotlight-name">SPIDER-MAN</h2>
+            <span class="spotlight-realname">Peter Parker • Avengers / Street Level</span>
+
+            <div class="spotlight-tags">
+              <span class="badge badge-avengers">Avengers</span>
+              <span class="badge">Debut: 1962</span>
+              <span class="badge">Omega Agility</span>
+            </div>
+
+            <div class="spotlight-footer">
+              <span class="spotlight-rating">Interactive 3D Core Available</span>
+              <span style="color: var(--marvel-red); font-family: var(--font-heading); font-size: 0.8rem; font-weight: 700;">
+                OPEN DOSSIER →
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Character Showcase Hub Section -->
+    <section class="roster-section" id="roster">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">ARCHIVE REPOSITORIES</span>
+          <h2 class="section-title">CHARACTER ROSTER DATABASE</h2>
+          <p class="section-desc">
+            Filter heroes and villains across major factions, examine official power metrics, and launch the 3D holo-viewer container to analyze kinetic signatures.
+          </p>
+        </div>
+
+        <!-- Filter Pills Bar -->
+        <div class="filter-container">
+          <div class="filter-pills" id="filter-pills">
+            <!-- Dynamic Category Pills Rendered by roster.js -->
+          </div>
+
+          <div class="roster-stats-summary" id="roster-stats-summary">
+            Loading archive records...
+          </div>
+        </div>
+
+        <!-- Character Cards Grid -->
+        <div class="character-grid" id="character-grid">
+          <!-- Dynamic Character Cards Rendered by roster.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Latest Marvel Newsfeed Section -->
+    <section class="news-section" id="news">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">DISPATCH TERMINAL</span>
+          <h2 class="section-title">LATEST MARVEL NEWS & COMIC RELEASES</h2>
+          <p class="section-desc">
+            Stay informed with fresh solicit breakdowns, cinematic universe expansions, and archival deep-dives into seminal comic story arcs.
+          </p>
+        </div>
+
+        <!-- News Category Filters -->
+        <div class="news-filters" id="news-filters">
+          <!-- Rendered by news.js -->
+        </div>
+
+        <!-- News Cards Grid -->
+        <div class="news-grid" id="news-grid">
+          <!-- Dynamic News Cards Rendered by news.js -->
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="archive-footer" id="about">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="brand-logo">
+            <span class="brand-badge">MARVEL</span>
+            <div class="brand-text">
+              <span class="brand-title">UNIVERSE ARCHIVE</span>
+              <span class="brand-sub">TACTICAL INTEL & DATABASE</span>
+            </div>
+          </div>
+          <p class="footer-desc">
+            A fan-crafted interactive wiki and digital codex dedicated to preserving 85+ years of Marvel Comics history, legendary comic debuts, official power ratings, and character legacies.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Archive Sectors</h4>
+          <ul class="footer-links">
+            <li><a href="#roster">The Avengers Roster</a></li>
+            <li><a href="#roster">Mutantkind & X-Men</a></li>
+            <li><a href="#roster">Cosmic Entities & Deities</a></li>
+            <li><a href="#roster">Villains & Conquerors</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Architecture</h4>
+          <ul class="footer-links">
+            <li><a href="data/characters.json" target="_blank">characters.json Schema</a></li>
+            <li><a href="data/news.json" target="_blank">news.json Records</a></li>
+            <li><a href="#roster">3D WebGL Holo-Viewer</a></li>
+            <li><a href="#news">News Feed API</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 Marvel Universe Archive. Character names, comic artwork, and likenesses are trademarks of Marvel Characters, Inc.</p>
+        <p>Built with Dark Superhero Theme • Standalone Vanilla Architecture</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Detailed Character Profile Modal / Dossier -->
+  <div class="modal-overlay" id="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="dossier-alias">
+    <div class="modal-container">
+      <!-- Modal Top Bar -->
+      <div class="modal-top-bar">
+        <div class="modal-top-meta">
+          <span class="badge badge-avengers">CLASSIFIED</span>
+          <span class="modal-dossier-id" id="modal-dossier-id">DOSSIER #SPIDER-MAN</span>
+        </div>
+        <button class="modal-close-btn" id="modal-close" aria-label="Close dossier modal">✕</button>
+      </div>
+
+      <!-- Modal Body Split Layout -->
+      <div class="modal-body">
+        <!-- Left Column: Visual Container (3D Model / 2D High-Res Art) -->
+        <div class="modal-visual-col">
+          <!-- View Mode Switcher -->
+          <div class="view-mode-tabs">
+            <button class="view-mode-tab active" id="tab-3d" type="button">
+              <span>✦ 3D Holo-Viewer</span>
+            </button>
+            <button class="view-mode-tab" id="tab-art" type="button">
+              <span>🖼 Comic Art</span>
+            </button>
+          </div>
+
+          <!-- 3D Interactive Container -->
+          <div class="viewer-3d-wrapper" id="viewer-3d-container">
+            <!-- Canvas inserted by viewer3d.js -->
+          </div>
+
+          <!-- 3D Controls Overlay -->
+          <div class="viewer-overlay-ui">
+            <div class="viewer-controls">
+              <button class="viewer-btn" id="viewer-wireframe-btn" type="button">Wireframe</button>
+              <button class="viewer-btn" id="viewer-rotate-btn" type="button">Rotate</button>
+              <button class="viewer-btn" id="viewer-reset-btn" type="button">Reset</button>
+            </div>
+            <span class="viewer-hint">Drag to rotate • Scroll to zoom</span>
+          </div>
+
+          <!-- 2D High-Res Comic Art Container -->
+          <div class="art-view-wrapper" id="art-view-container">
+            <img class="art-view-img" id="art-view-img" src="" alt="Official Comic Art" />
+            <div class="art-view-overlay">
+              <p class="art-view-quote" id="art-view-quote"></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Tactical Dossier Intel -->
+        <div class="modal-info-col">
+          <!-- Hero Identity -->
+          <div class="dossier-hero-header">
+            <h2 class="dossier-alias" id="dossier-alias">SPIDER-MAN</h2>
+            <div class="dossier-realname" id="dossier-realname">Peter Benjamin Parker</div>
+          </div>
+
+          <!-- Comic Debut Information Card -->
+          <div class="comic-debut-card">
+            <div class="debut-stat">
+              <span class="debut-label">First Comic Debut</span>
+              <span class="debut-value" id="debut-comic-title">Amazing Fantasy #15</span>
+            </div>
+            <div class="debut-stat">
+              <span class="debut-label">Cover Date</span>
+              <span class="debut-value" id="debut-date">August 1962</span>
+            </div>
+            <div class="debut-stat">
+              <span class="debut-label">Legendary Creators</span>
+              <span class="debut-value" id="debut-creators">Stan Lee & Steve Ditko</span>
+            </div>
+          </div>
+
+          <!-- Biography & History -->
+          <div>
+            <h3 class="dossier-section-title">BIOGRAPHY & BACKGROUND</h3>
+            <p class="dossier-bio-text" id="dossier-bio"></p>
+          </div>
+
+          <!-- Superhuman Capabilities -->
+          <div>
+            <h3 class="dossier-section-title">POWERS & TACTICAL ABILITIES</h3>
+            <div class="power-tags-list" id="dossier-powers"></div>
+          </div>
+
+          <!-- Official Marvel Itemized Power Grid (1-7 scale) -->
+          <div>
+            <h3 class="dossier-section-title">OFFICIAL MARVEL POWER GRID (SCALE 1–7)</h3>
+            <div class="power-grid-container" id="dossier-power-grid">
+              <!-- Animated meters populated by modal.js -->
+            </div>
+          </div>
+
+          <!-- Key Comic Book Storylines -->
+          <div>
+            <h3 class="dossier-section-title">KEY COMIC BOOK STORYLINES</h3>
+            <div class="storylines-container" id="dossier-storylines"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Application Modules -->
+  <script src="js/viewer3d.js"></script>
+  <script src="js/roster.js"></script>
+  <script src="js/modal.js"></script>
+  <script src="js/news.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
