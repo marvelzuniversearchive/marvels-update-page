@@ -458,7 +458,7 @@ document.addEventListener('click',e=>{
   if(!tg||!tg.closest)return;
   if(tg.closest('input,textarea,select,[contenteditable="true"]'))return;
   const el=tg.closest('button,a,[role="button"],[data-action],.entity-card,.spot-mini,.fav');
-  if(!el)return;
+  if(!el||el.closest('[data-marvel-news]'))return;
   e.preventDefault();e.stopImmediatePropagation();
   if(glBusy||performance.now()<glEnd+GL_COOL)return;   /* duplicate-click protection */
   glStart(tg,el);
