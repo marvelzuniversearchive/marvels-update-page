@@ -112,7 +112,7 @@
     content.innerHTML = '<section class="mnews-page">' +
       '<div class="mnews-heading"><div><div class="eyebrow">MARVEL UNIVERSE · NEWSROOM</div>' +
       '<h1 class="page-title">Marvel <span>News</span></h1><p class="subhead">The latest Marvel-only updates from official announcements and established publishers.</p></div>' +
-      '<div class="mnews-live"><i></i><span>LIVE FEED</span><small id="mnewsUpdated">' + escapeHtml(updated) + '</small></div></div>' +
+      '<div class="mnews-live"><i></i><span>AUTO-REFRESH</span><small id="mnewsUpdated">' + escapeHtml(updated) + '</small></div></div>' +
       '<div class="mnews-toolbar"><div class="mnews-filters" id="mnewsFilters">' +
       ['all','official','movies','comics','casting','games'].map(key =>
         '<button type="button" data-news-filter="' + key + '" class="' + (filter === key ? "active" : "") + '">' +
