@@ -17,7 +17,7 @@
     .mnews-filters button,.mnews-back{border:1px solid var(--line);background:rgba(255,255,255,.055);color:#bac4d4;border-radius:99px;padding:8px 12px;font-size:10px;cursor:pointer}
     .mnews-filters button.active{background:linear-gradient(110deg,var(--red,#e63946),#ad284b);border-color:transparent;color:white}
     .mnews-count,.mnews-footnote{font-size:10px;color:#96a2b6}
-    .mnews-card{min-width:0;overflow:hidden;border:1px solid var(--line);border-radius:18px;background:linear-gradient(145deg,rgba(255,255,255,.085),rgba(255,255,255,.025))}
+    .mnews-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}\n    .mnews-card{min-width:0;overflow:hidden;border:1px solid var(--line);border-radius:18px;background:linear-gradient(145deg,rgba(255,255,255,.085),rgba(255,255,255,.025))}
     .mnews-card.featured{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);margin-bottom:15px}
     .mnews-image{height:170px;display:grid;place-items:center;position:relative;overflow:hidden;background:radial-gradient(circle at 75% 25%,rgba(230,57,70,.38),transparent 35%),linear-gradient(135deg,#171d34,#351c39 60%,#151d2b);text-decoration:none}
     .featured .mnews-image{height:100%;min-height:270px}
@@ -47,9 +47,9 @@
     .mnews-detail-actions a{display:inline-flex;align-items:center;padding:11px 15px;border-radius:9px;background:#e63946;color:white;text-decoration:none;font-size:10px;font-weight:800;letter-spacing:1px}
     .mnews-detail-actions button{border:1px solid var(--line);background:#ffffff0b;color:#eee;border-radius:9px;padding:11px 15px;font-size:10px;cursor:pointer}
     .mnews-state{padding:12px 14px;border:1px solid #ffc85744;border-radius:10px;background:#ffc8570b;color:#e6d2a4;font-size:10px;margin:14px 0}
-    @media(max-width:900px){.mnews-card.featured{grid-template-columns:1fr}.featured .mnews-image{min-height:190px}}
+    @media(max-width:900px){.mnews-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.mnews-card.featured{grid-template-columns:1fr}.featured .mnews-image{min-height:190px}}
     @media(max-width:650px){.mnews-toolbar{grid-template-columns:1fr 1fr}.mnews-toolbar input{grid-column:1/-1}.mnews-heading{align-items:flex-start}}
-    @media(max-width:560px){.mnews-filters button{padding:7px 9px}.mnews-card.featured{display:block}}
+    @media(max-width:560px){.mnews-grid{grid-template-columns:1fr}.mnews-filters button{padding:7px 9px}.mnews-card.featured{display:block}}
   `;
   document.head.appendChild(style);
 
