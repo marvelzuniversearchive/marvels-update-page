@@ -1,5 +1,46 @@
 (() => {
   "use strict";
+  const newsStyles = document.createElement("style");
+  newsStyles.textContent = `
+    [data-marvel-news]{margin-top:4px}
+    .mnews-page{padding:24px 0 45px;color:var(--paper,#f4f1ec)}
+    .mnews-heading{display:flex;justify-content:space-between;align-items:flex-end;gap:22px;flex-wrap:wrap;margin-bottom:24px}
+    .mnews-live{display:grid;grid-template-columns:10px auto;align-items:center;column-gap:8px;padding:10px 13px;border:1px solid rgba(123,224,179,.25);border-radius:13px;background:rgba(123,224,179,.07);font-size:10px;letter-spacing:1.4px}
+    .mnews-live i{width:7px;height:7px;border-radius:50%;background:#7be0b3;box-shadow:0 0 12px #7be0b3}
+    .mnews-live small{grid-column:2;color:#9da8bb;font-size:9px;letter-spacing:0;margin-top:3px}
+    .mnews-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:22px 0 16px}
+    .mnews-filters{display:flex;gap:7px;flex-wrap:wrap}
+    .mnews-filters button{border:1px solid var(--line);background:rgba(255,255,255,.055);color:#bac4d4;border-radius:99px;padding:8px 12px;font-size:10px}
+    .mnews-filters button.active{background:linear-gradient(110deg,var(--red),#ad284b);border-color:transparent;color:white}
+    .mnews-count,.mnews-footnote{font-size:10px;color:#96a2b6}
+    .mnews-feature{margin-bottom:16px}
+    .mnews-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+    .mnews-card{min-width:0;overflow:hidden;border:1px solid var(--line);border-radius:18px;background:linear-gradient(145deg,rgba(255,255,255,.085),rgba(255,255,255,.025));}
+    .mnews-card.featured{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr)}
+    .mnews-image{height:165px;display:grid;place-items:center;position:relative;overflow:hidden;background:radial-gradient(circle at 75% 25%,rgba(230,57,70,.38),transparent 35%),linear-gradient(135deg,#171d34,#351c39 60%,#151d2b);text-decoration:none}
+    .featured .mnews-image{height:100%;min-height:270px}
+    .mnews-image img{width:100%;height:100%;object-fit:cover}
+    .mnews-art-fallback{display:flex;flex-direction:column;align-items:center;gap:2px;color:#ffffff25;font:900 42px 'Barlow Condensed',sans-serif;letter-spacing:2px}
+    .mnews-art-fallback b{font-size:14px;letter-spacing:5px;color:#e6394680}
+    .mnews-status{position:absolute;left:12px;top:12px;padding:6px 8px;border-radius:7px;background:#101522d9;border:1px solid #ffffff2b;color:#f2f4f8;font-size:8px;font-weight:800;letter-spacing:1px}
+    .mnews-status.official{color:#a9f5cf;border-color:#7be0b366}.mnews-status.rumour{color:#ffd99a;border-color:#ffc85766}
+    .mnews-card-body{padding:16px;display:flex;flex-direction:column;min-width:0}
+    .mnews-meta{display:flex;justify-content:space-between;gap:8px;color:#91a0b8;font-size:9px}
+    .mnews-card h2{font:700 21px/1.12 'Barlow Condensed',sans-serif;margin:13px 0 8px}
+    .featured h2{font-size:clamp(25px,3vw,36px)}
+    .mnews-card h2 a{color:#f4f1ec;text-decoration:none}.mnews-card h2 a:hover{color:#ff9ca4}
+    .mnews-card p{font-size:11px;line-height:1.65;color:#aeb8c8;margin:0 0 18px}
+    .mnews-card-bottom{margin-top:auto;display:flex;justify-content:space-between;gap:8px;align-items:center;color:#8e9bb0;font-size:9px}
+    .mnews-card-bottom a{color:#ff9da5;text-decoration:none;font-weight:800;letter-spacing:.7px}
+    .mnews-empty,.mnews-feature-placeholder{padding:30px;border:1px dashed var(--line);border-radius:16px;text-align:center;color:#aab4c6}
+    .mnews-feature-placeholder{font:900 22px 'Barlow Condensed';letter-spacing:4px;color:#ffffff30}
+    .mnews-empty strong{color:#f4f1ec;font:700 22px 'Barlow Condensed'}
+    .mnews-empty p{font-size:11px}
+    .mnews-footnote{margin-top:22px;line-height:1.6}
+    @media(max-width:900px){.mnews-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.mnews-card.featured{grid-template-columns:1fr}.featured .mnews-image{min-height:190px}}
+    @media(max-width:560px){.mnews-grid{grid-template-columns:1fr}.mnews-card.featured{display:block}.mnews-heading{align-items:flex-start}.mnews-filters button{padding:7px 9px}}
+  `;
+  document.head.appendChild(newsStyles);
   const FEED_URL = "news-feed.json";
   let articles = [];
   let filter = "all";
