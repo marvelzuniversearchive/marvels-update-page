@@ -120,7 +120,9 @@
           '<div class="mnews-detail"><div class="eyebrow">' + esc(item.category || "MARVEL") + ' · ' + esc(status(item)) + '</div>' +
           '<h2>' + esc(item.title) + '</h2><div class="mnews-meta"><span>' + esc(item.source || "Publisher") + '</span><time>' + esc(date(item.published_at)) + '</time></div>' +
           (item.image_url ? '<img src="' + safeUrl(item.image_url) + '" alt="" referrerpolicy="no-referrer">' : '') +
-          '<p class="summary">' + esc(item.summary || "The publisher has not supplied a description for this story. Visit the original report for full details.") + '</p>' +
+          '<div class="eyebrow" style="margin-top:18px">STORY SYNOPSIS</div>' +
+          '<p class="summary">' + esc(item.summary && item.summary.trim() ? item.summary : "A full synopsis has not been supplied by the publisher yet. This page keeps the story preview here so visitors can browse without leaving your Marvel website.") + '</p>' +
+          (Array.isArray(item.related_characters) && item.related_characters.length ? '<div class="mnews-meta" style="justify-content:flex-start;flex-wrap:wrap;margin-top:12px"><strong>RELATED:</strong> ' + item.related_characters.map(esc).join(' · ') + '</div>' : '') +
           '<div class="mnews-detail-actions"><a href="' + safeUrl(item.article_url) + '" target="_blank" rel="noopener noreferrer">OPEN ORIGINAL STORY ↗</a><button type="button" data-news-back>BACK TO NEWS</button></div>' +
           '<p class="mnews-footnote">This archive displays a short factual preview and links to the original publisher. The publisher retains ownership of its reporting and media.</p></div></section>';
         return;
@@ -157,6 +159,7 @@
     }
     if (event.target.closest("[data-view]")) setActive(false);
     if (!active) return;
+    if (event.target.closest("[data-marvel-news-content]")) event.stopImmediatePropagation();
     const filterButton = event.target.closest("[data-news-filter]");
     if (filterButton) { filter = filterButton.dataset.newsFilter; render(); return; }
     const open = event.target.closest("[data-news-open]");
