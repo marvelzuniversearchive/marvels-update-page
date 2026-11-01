@@ -107,7 +107,7 @@
     const content = document.getElementById("content");
     if (!content || !active) return;
     const rows = filtered();
-    const updated = window.marvelNewsGeneratedAt ? "Feed checked " + date(window.marvelNewsGeneratedAt) : "Waiting for first sync";
+    const updated = window.marvelNewsGeneratedAt ? "Feed last updated " + date(window.marvelNewsGeneratedAt) : "Waiting for first sync";
     const controls = '<div class="mnews-toolbar"><input id="mnewsSearch" type="search" placeholder="Search Marvel headlines, characters or publishers…" value="' + esc(query) + '" aria-label="Search Marvel news">' +
       '<select id="mnewsSort" aria-label="Sort news"><option value="newest"' + (order === "newest" ? " selected" : "") + '>Newest first</option><option value="oldest"' + (order === "oldest" ? " selected" : "") + '>Oldest first</option></select>' +
       '<span class="mnews-count">' + rows.length + ' of ' + articles.length + ' stories</span></div>';
