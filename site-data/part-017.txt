@@ -207,6 +207,36 @@ function buildLayer(d){
     if(Math.random()<.35){const sbw=bw*rnd(.45,.7);toonBlock(x,cx+(bw-sbw)/2,top-rnd(12,30),sbw,40,pick(d.pal),o)}
     if(Math.random()<.12){x.strokeStyle=o.ink;x.lineWidth=d.lw;x.beginPath();x.moveTo(cx+bw/2,top);x.lineTo(cx+bw/2,top-rnd(40,80));x.stroke()}
     toonWindows(x,cx,top,bw,sw,bh,d,o,wins);
+    /* Distinctive rooftop silhouettes: water tanks, slanted crowns, antennae and signboards. */
+    if(Math.random()<.34){
+      const rx=cx+bw*rnd(.12,.62), rw=bw*rnd(.18,.48), rh=rnd(9,22);
+      x.fillStyle=pick(d.pal);x.strokeStyle=o.ink;x.lineWidth=d.lw;
+      x.beginPath();x.moveTo(rx,top);x.lineTo(rx+rw*.12,top-rh);x.lineTo(rx+rw,top-rh*.72);x.lineTo(rx+rw,top);x.closePath();x.fill();x.stroke();
+      x.strokeStyle='rgba(255,255,255,.5)';x.lineWidth=1.2;x.beginPath();x.moveTo(rx+rw*.18,top-rh+3);x.lineTo(rx+rw*.8,top-rh*.65);x.stroke();
+    }
+    if(Math.random()<.2){
+      const ax=cx+bw*rnd(.2,.8), ay=top-rnd(28,58);
+      x.strokeStyle=o.ink;x.lineWidth=Math.max(1,d.lw*.8);x.beginPath();x.moveTo(ax,top);x.lineTo(ax,ay);x.stroke();
+      x.strokeStyle=pick([C.gold,C.cyan,C.pink]);x.lineWidth=2;x.beginPath();x.moveTo(ax-7,ay+5);x.lineTo(ax,ay-5);x.lineTo(ax+7,ay+5);x.stroke();
+    }
+    if(Math.random()<.16 && bw>65){
+      const sx=cx+bw*rnd(.15,.65), sy=top+rnd(34,Math.max(35,bh*.55));
+      const sw2=Math.min(bw*.38,rnd(22,42)), sh2=rnd(18,32);
+      x.save();x.translate(sx,sy);x.rotate(rnd(-.08,.08));
+      x.fillStyle=pick([C.pink,C.gold,C.cyan]);x.fillRect(0,0,sw2,sh2);
+      x.strokeStyle=o.ink;x.lineWidth=2;x.strokeRect(0,0,sw2,sh2);
+      x.fillStyle=o.ink;x.fillRect(4,5,sw2-8,2);
+      x.fillRect(4,11,sw2*rnd(.35,.75),2);
+      x.restore();
+    }
+    /* Inked corner hatching and uneven facade seams add a drawn, layered comic finish. */
+    if(Math.random()<.42){
+      x.save();x.strokeStyle=o.ink;x.globalAlpha=.55;x.lineWidth=1;
+      for(let hy=top+8;hy<Math.min(top+bh-8,top+72);hy+=8){
+        x.beginPath();x.moveTo(cx+bw-sw+3,hy);x.lineTo(cx+bw-3,hy+5);x.stroke();
+      }
+      x.restore();
+    }
     cx+=bw+rnd(d.gap[0],d.gap[1]);
   }
   return {c,tw,hh,wins};
