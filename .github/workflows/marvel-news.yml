@@ -1,5 +1,10 @@
 name: Refresh Marvel live news
 on:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/collect_marvel_news.py"
+      - ".github/workflows/marvel-news.yml"
   schedule:
     - cron: "*/15 * * * *"
   workflow_dispatch:
@@ -28,7 +33,6 @@ jobs:
           python-version: "3.12"
 
       - name: Collect and enrich Marvel headlines
-        id: collect
         shell: bash
         run: |
           set -euo pipefail
