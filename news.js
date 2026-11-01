@@ -22,8 +22,10 @@
     .mnews-image{height:170px;display:grid;place-items:center;position:relative;overflow:hidden;background:radial-gradient(circle at 75% 25%,rgba(230,57,70,.38),transparent 35%),linear-gradient(135deg,#171d34,#351c39 60%,#151d2b);text-decoration:none}
     .featured .mnews-image{height:100%;min-height:270px}
     .mnews-image img{width:100%;height:100%;object-fit:cover}
-    .mnews-art-fallback{display:flex;flex-direction:column;align-items:center;gap:2px;color:#ffffff35;font:900 42px 'Barlow Condensed',sans-serif;letter-spacing:2px}
-    .mnews-art-fallback b{font-size:14px;letter-spacing:5px;color:#e6394680}
+    .mnews-comic-poster{width:100%;height:100%;min-height:170px;display:block;position:relative;overflow:hidden;background:#15152a}
+    .mnews-comic-poster svg{display:block;width:100%;height:100%;min-height:170px}
+    .mnews-comic-poster:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(115deg,transparent 42%,rgba(255,255,255,.13) 42.3%,transparent 43%),radial-gradient(circle at 18% 15%,rgba(255,255,255,.2),transparent 28%);mix-blend-mode:screen}
+    .mnews-art-caption{position:absolute;left:13px;bottom:12px;padding:5px 8px;background:#101522df;border:1px solid #ffffff55;color:#fff;font:800 9px 'Barlow Condensed',sans-serif;letter-spacing:1.7px;transform:rotate(-2deg)}
     .mnews-status{position:absolute;left:12px;top:12px;padding:6px 8px;border-radius:7px;background:#101522e8;border:1px solid #ffffff2b;color:#f2f4f8;font-size:8px;font-weight:800;letter-spacing:1px}
     .mnews-status.official{color:#a9f5cf;border-color:#7be0b366}.mnews-status.rumour{color:#ffd99a;border-color:#ffc85766}
     .mnews-card-body{padding:16px;display:flex;flex-direction:column;min-width:0}
@@ -39,10 +41,17 @@
     .mnews-empty strong{color:#f4f1ec;font:700 22px 'Barlow Condensed'}
     .mnews-empty p{font-size:11px}
     .mnews-footnote{margin-top:22px;line-height:1.6}
-    .mnews-detail{border:1px solid var(--line);border-radius:18px;padding:clamp(18px,3vw,32px);background:linear-gradient(145deg,rgba(255,255,255,.08),rgba(255,255,255,.02))}
-    .mnews-detail h2{font:800 clamp(28px,4vw,46px)/1.05 'Barlow Condensed',sans-serif;margin:15px 0}
-    .mnews-detail .summary{font-size:14px;line-height:1.85;color:#c1cad7;max-width:850px}
-    .mnews-detail img{width:100%;max-height:430px;object-fit:cover;border-radius:12px;margin:18px 0}
+    .mnews-detail{color:#f5f7ff;border:1px solid #35415b;border-radius:18px;padding:clamp(18px,3vw,32px);background:radial-gradient(circle at 92% 0%,rgba(55,91,234,.13),transparent 34%),linear-gradient(145deg,#0b1220,#080d17 72%);box-shadow:0 24px 70px rgba(0,0,0,.28)}
+    .mnews-detail h2{color:#fff;font:800 clamp(28px,4vw,46px)/1.05 'Barlow Condensed',sans-serif;margin:15px 0}
+    .mnews-detail .summary{font-size:14px;line-height:1.9;color:#e1e8f5;max-width:850px}
+    .mnews-detail .eyebrow{color:#ff9ca4}
+    .mnews-detail .mnews-meta{color:#b8c4d8}
+    .mnews-detail img,.mnews-detail .mnews-comic-poster{width:100%;max-height:430px;object-fit:cover;border-radius:12px;margin:18px 0;overflow:hidden}
+    .mnews-detail .mnews-comic-poster{height:300px}
+    .mnews-detail .mnews-comic-poster svg{height:300px}
+    .mnews-detail .mnews-footnote{color:#aebbd0}
+    .mnews-detail .mnews-detail-actions a{background:#d83245}
+    .mnews-detail .mnews-detail-actions button{background:#172235;color:#f5f7ff;border-color:#46536b}
     .mnews-detail-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
     .mnews-detail-actions a{display:inline-flex;align-items:center;padding:11px 15px;border-radius:9px;background:#e63946;color:white;text-decoration:none;font-size:10px;font-weight:800;letter-spacing:1px}
     .mnews-detail-actions button{border:1px solid var(--line);background:#ffffff0b;color:#eee;border-radius:9px;padding:11px 15px;font-size:10px;cursor:pointer}
@@ -93,14 +102,54 @@
     rows.sort((a,b) => (new Date(a.published_at)-new Date(b.published_at)) * (order === "oldest" ? 1 : -1));
     return rows;
   }
+  function comicArt(item) {
+    const title = String(item.title || "Marvel News");
+    let hash = 0;
+    for (let i=0;i<title.length;i++) hash = (hash*31 + title.charCodeAt(i)) >>> 0;
+    const palettes = [
+      ["#ffb33f","#ef3e68","#552b91"],["#36d5d0","#2765bd","#f05b8d"],
+      ["#f6cf4a","#ed5b35","#51318d"],["#9e72ef","#ed477d","#243e83"]
+    ];
+    const p = palettes[hash % palettes.length];
+    const label = esc(title.length > 48 ? title.slice(0,45) + "…" : title);
+    return '<div class="mnews-comic-poster" role="img" aria-label="Illustrated comic-book news artwork">' +
+      '<svg viewBox="0 0 720 380" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">' +
+      '<defs><linearGradient id="cg'+hash+'" x1="0" y1="0" x2="1" y2="1"><stop stop-color="'+p[0]+'"/><stop offset=".52" stop-color="'+p[1]+'"/><stop offset="1" stop-color="'+p[2]+'"/></linearGradient>' +
+      '<pattern id="dots'+hash+'" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.7" fill="#120d28" opacity=".65"/></pattern>' +
+      '<filter id="shadow'+hash+'" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="9" dy="10" stdDeviation="0" flood-color="#100b22" flood-opacity=".85"/></filter></defs>' +
+      '<path fill="url(#cg'+hash+')" d="M0 0H720V380H0Z"/><path fill="url(#dots'+hash+')" d="M0 0H720V380H0Z"/>' +
+      '<path d="M-20 300L130 190 195 245 300 120 390 218 500 145 750 305V400H-20Z" fill="#17152e" stroke="#09091a" stroke-width="9"/>' +
+      '<path d="M25 285V210H82V270M110 260V170H158V235M470 240V150H520V220M555 265V105H615V250M640 270V185H690V285" fill="#27335c" stroke="#09091a" stroke-width="8"/>' +
+      '<path d="M34 228h38m-38 18h38m-38 18h38M565 130h38m-38 18h38m-38 18h38m-38 18h38" stroke="'+p[0]+'" stroke-width="5"/>' +
+      '<g filter="url(#shadow'+hash+')"><path d="M282 380l22-96-32-43 25-52 63-24 66 34 21 58-37 42 22 81Z" fill="#17152e" stroke="#09091a" stroke-width="12"/>' +
+      '<path d="M320 188q38-47 78-4l18 39-35 29-54-8-24-26Z" fill="'+p[0]+'" stroke="#09091a" stroke-width="10"/>' +
+      '<path d="M323 222l24 8m37-9l23-9" stroke="#fff" stroke-width="10" stroke-linecap="round"/>' +
+      '<path d="M295 284l-78 42m204-44l75 33" stroke="#17152e" stroke-width="24" stroke-linecap="round"/>' +
+      '<path d="M290 280l-78 42m210-40l75 31" stroke="#09091a" stroke-width="10" stroke-linecap="round"/></g>' +
+      '<path d="M30 45L185 18M8 78L158 52M525 35L690 8M540 68L710 42" stroke="#fff" stroke-width="8" opacity=".65"/>' +
+      '<path d="M0 0H720V380H0Z" fill="none" stroke="#09091a" stroke-width="14"/>' +
+      '<text x="28" y="350" fill="#fff" font-family="Arial Black,sans-serif" font-size="22" font-weight="900" stroke="#09091a" stroke-width="4" paint-order="stroke">'+label+'</text></svg>' +
+      '<span class="mnews-art-caption">COMIC-BOOK ART · EDITORIAL ILLUSTRATION</span></div>';
+  }
+  function synopsis(item) {
+    const raw = String(item.summary || "").trim();
+    const title = String(item.title || "").trim();
+    const compact = raw.toLowerCase().replace(/[^a-z0-9]/g,"");
+    const titleKey = title.toLowerCase().replace(/[^a-z0-9]/g,"");
+    if (!raw || compact === titleKey || compact.startsWith(titleKey)) {
+      return "The headline reports: " + title + ". The feed does not yet contain enough publisher-provided detail to write a reliable fuller synopsis. Open the credited source for the complete context.";
+    }
+    return raw;
+  }
+
   function card(item, featured) {
-    const img = item.image_url ? '<img src="' + safeUrl(item.image_url) + '" alt="" loading="lazy" referrerpolicy="no-referrer">' : '<div class="mnews-art-fallback"><span>MARVEL</span><b>NEWSWIRE</b></div>';
+    const img = item.image_url ? '<img src="' + safeUrl(item.image_url) + '" alt="" loading="lazy" referrerpolicy="no-referrer">' : comicArt(item);
     return '<article class="mnews-card ' + (featured ? "featured" : "") + '">' +
       '<button class="mnews-image" type="button" data-news-open="' + esc(item.id) + '">' + img +
       '<span class="mnews-status ' + esc(status(item).toLowerCase()) + '">' + status(item) + '</span></button>' +
       '<div class="mnews-card-body"><div class="mnews-meta"><span>' + esc(item.category || "Marvel") + '</span><span>' + esc(item.source || "Publisher") + '</span></div>' +
       '<h2><button type="button" data-news-open="' + esc(item.id) + '">' + esc(item.title) + '</button></h2>' +
-      '<p>' + esc(item.summary || "Open the original publisher for the complete report.") + '</p>' +
+      '<p>' + esc(synopsis(item)) + '</p>' +
       '<div class="mnews-card-bottom"><time>' + esc(date(item.published_at)) + '</time><button type="button" data-news-open="' + esc(item.id) + '">READ STORY ↗</button></div></div></article>';
   }
   function render() {
@@ -119,9 +168,9 @@
         content.innerHTML = '<section class="mnews-page" data-marvel-news-content><button type="button" class="mnews-back" data-news-back>← BACK TO NEWS</button>' +
           '<div class="mnews-detail"><div class="eyebrow">' + esc(item.category || "MARVEL") + ' · ' + esc(status(item)) + '</div>' +
           '<h2>' + esc(item.title) + '</h2><div class="mnews-meta"><span>' + esc(item.source || "Publisher") + '</span><time>' + esc(date(item.published_at)) + '</time></div>' +
-          (item.image_url ? '<img src="' + safeUrl(item.image_url) + '" alt="" referrerpolicy="no-referrer">' : '') +
+          (item.image_url ? '<img src="' + safeUrl(item.image_url) + '" alt="" referrerpolicy="no-referrer">' : comicArt(item)) +
           '<div class="eyebrow" style="margin-top:18px">STORY SYNOPSIS</div>' +
-          '<p class="summary">' + esc(item.summary && item.summary.trim() ? item.summary : "A full synopsis has not been supplied by the publisher yet. This page keeps the story preview here so visitors can browse without leaving your Marvel website.") + '</p>' +
+          '<p class="summary">' + esc(synopsis(item)) + '</p>' +
           (Array.isArray(item.related_characters) && item.related_characters.length ? '<div class="mnews-meta" style="justify-content:flex-start;flex-wrap:wrap;margin-top:12px"><strong>RELATED:</strong> ' + item.related_characters.map(esc).join(' · ') + '</div>' : '') +
           '<div class="mnews-detail-actions"><a href="' + safeUrl(item.article_url) + '" target="_blank" rel="noopener noreferrer">OPEN ORIGINAL STORY ↗</a><button type="button" data-news-back>BACK TO NEWS</button></div>' +
           '<p class="mnews-footnote">This archive displays a short factual preview and links to the original publisher. The publisher retains ownership of its reporting and media.</p></div></section>';
