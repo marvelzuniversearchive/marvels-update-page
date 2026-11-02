@@ -545,30 +545,50 @@ function drawParts(){
   ctx.globalAlpha=1;
 }
 
+function drawNearShoreCity(){
+  /* Side-framing buildings sit closer than the far skyline, but stay well back from the camera.
+     The open centre is deliberately reserved for the lake. */
+  if(layers.length<3)return;
+  const L=layers[2], S=layers[3]||L;
+  const scroll=Math.min(H*.34,scr.y*.19);
+  const idle=Math.sin(t*.21)*2.4;
+  const y=H*.39+scroll+idle;
+  const h=H*.43;
+  ctx.save();
+  ctx.globalAlpha=.72;
+  const leftW=W*.27,rightW=W*.25;
+  const srcW=Math.max(1,L.tw*.26);
+  ctx.drawImage(L.c,0,0,srcW,L.hh,-W*.025,y,leftW,h);
+  ctx.globalAlpha=.68;
+  const srcX=Math.max(0,S.tw-srcW);
+  ctx.drawImage(S.c,srcX,0,srcW,S.hh,W-rightW+W*.025,y+H*.012,rightW,h*.96);
+  ctx.restore();
+}
 function render(e){
   ctx.setTransform(dpr,0,0,dpr,0,0);
   ctx.globalAlpha=1;ctx.globalCompositeOperation='source-over';
   if(sky)ctx.drawImage(sky,0,0,W,H);
   drawClouds();
-  drawLake();
-  /* Distant far-shore skyline: the reduced scale leaves the lake clearly visible in front. */
-  const dive=1+.012*(.5+.5*Math.sin(t*.22))+e*.003;
-  const drift=3+4*Math.sin(t*.035)+e*5+ptr.y*3;
-  const cityScale=(H*.56)/(H+EXTRA);
+  /* Far-side Manhattan skyline is smaller and softened by distance. */
+  const dive=1+.009*(.5+.5*Math.sin(t*.22))+e*.002;
+  const drift=2.5+3*Math.sin(t*.035)+e*3+ptr.y*2;
+  const cityScale=(H*.52)/(H+EXTRA);
   ctx.save();ctx.translate(W*.5,H*.60);ctx.scale(dive,dive);ctx.translate(-W*.5,-H*.60);
   layers.forEach((L,i)=>{
-    const scrollShift=Math.min(H*.24,scr.y*L.pf*.52);
-    const idleDrift=Math.sin(t*.34+i*.82)*(1.8+i*1.35);
-    const shift=scrollShift+drift*L.depth*.32+idleDrift;
-    const dy=H*.015+shift,x0=-L.off+ptr.x*L.depth*8;
-    ctx.globalAlpha=L.alpha;
+    const scrollShift=Math.min(H*.30,scr.y*L.pf*.72);
+    const idleDrift=Math.sin(t*.29+i*.82)*(1.6+i*1.1);
+    const shift=scrollShift+drift*L.depth*.26+idleDrift;
+    const dy=H*.075+shift,x0=-L.off+ptr.x*L.depth*6;
+    ctx.globalAlpha=L.alpha*.92;
     for(let xx=x0-L.tw;xx<W+L.tw;xx+=L.tw)ctx.drawImage(L.c,xx,dy,L.tw,L.hh*cityScale);
     if(i===0&&!reduced)drawFlicker(L,dy,x0,cityScale);
   });
-  /* A slow moving anime light pass keeps the distant glass alive. */
   drawAnimeSunSweep(e);
   ctx.restore();ctx.globalAlpha=1;
-  /* City remains clean and architectural; no floating particle confetti. */
+  /* The broad lake sits in front of the far shore, clearly separating both city layers. */
+  drawLake();
+  /* Distant foreground blocks frame the lake only at the extreme edges. */
+  drawNearShoreCity();
   ctx.globalAlpha=1;ctx.globalCompositeOperation='source-over';
 }
 
