@@ -82,12 +82,12 @@ const C={cyan:'#24D6FF',pink:'#F13D9B',gold:'#FFD45C',mint:'#B8F7EA',ink:'#1d0e4
   o1:'#FF9C45',o2:'#FF684F',o3:'#F04D91',o4:'#9255D8',o5:'#375BEA',peach:'#FFE2B8'};
 const EXTRA=300, LEAP_DUR=2.8;
 /* city band = lower 45% of the screen: tallest tops near 50% height */
-const TOON_PAL=['#243B59','#355C78','#477C83','#526B91','#6B628D','#6E8190','#9A7891','#34485F','#58718A'];
+const TOON_PAL=['#6F8FA6','#789EAD','#8DA9B7','#A8A6A0','#B9A18E','#718A9A','#8799A6','#9C8E83','#6D8497'];
 const LAYER_DEFS=[
- {minH:.26,maxH:.38,fill:'#8a5566',pal:TOON_PAL,haze:.42,lw:1.2,dotA:.12,ink:'#2a1a40',alpha:.85,depth:.5,speed:6,boost:.6,pf:.12,lit:.16,litC:[C.gold,C.pink],wMin:36,wMax:82,gap:[4,16],wx:9,wy:13,ws:3},
- {dense:true,pal:TOON_PAL,haze:.22,lw:1.15,dotA:.18,ink:'#1a0c24',depth:1.1,alpha:.92,speed:22,boost:1.6,pf:.2,lit:.13,litC:[C.gold,C.peach,'#ffd6a0'],wMin:34,wMax:68,gap:[3,11],wx:8,wy:12,ws:2.5,minH:.3,maxH:.48,fill:''},
- {minH:.31,maxH:.44,fill:'#4a2535',pal:TOON_PAL,haze:.18,lw:1.8,dotA:.3,ink:'#1a0c24',alpha:.9,depth:1,speed:16,boost:1.2,pf:.22,lit:.2,litC:[C.gold,C.mint,C.pink],wMin:48,wMax:110,gap:[6,24],wx:10,wy:15,ws:3.4},
- {minH:.36,maxH:.5,fill:'#26171E',pal:TOON_PAL,haze:0,lw:2.4,dotA:.4,ink:'#140a1e',alpha:.96,depth:1.6,speed:36,boost:2.4,pf:.38,lit:.14,litC:[C.gold,C.o3,C.cyan],wMin:76,wMax:160,gap:[10,38],wx:13,wy:18,ws:4.4}
+ {minH:.26,maxH:.38,fill:'#8a5566',pal:TOON_PAL,haze:.42,lw:1.2,dotA:.12,ink:'#2a1a40',alpha:.85,depth:.5,speed:13,boost:.8,pf:.12,lit:.16,litC:[C.gold,C.pink],wMin:36,wMax:82,gap:[4,16],wx:9,wy:13,ws:3},
+ {dense:true,pal:TOON_PAL,haze:.22,lw:1.15,dotA:.18,ink:'#1a0c24',depth:1.1,alpha:.92,speed:32,boost:1.8,pf:.2,lit:.13,litC:[C.gold,C.peach,'#ffd6a0'],wMin:34,wMax:68,gap:[3,11],wx:8,wy:12,ws:2.5,minH:.3,maxH:.48,fill:''},
+ {minH:.31,maxH:.44,fill:'#4a2535',pal:TOON_PAL,haze:.18,lw:1.8,dotA:.3,ink:'#1a0c24',alpha:.9,depth:1,speed:48,boost:1.4,pf:.22,lit:.2,litC:[C.gold,C.mint,C.pink],wMin:48,wMax:110,gap:[6,24],wx:10,wy:15,ws:3.4},
+ {minH:.36,maxH:.5,fill:'#26171E',pal:TOON_PAL,haze:0,lw:2.4,dotA:.4,ink:'#140a1e',alpha:.96,depth:1.6,speed:68,boost:2.2,pf:.38,lit:.14,litC:[C.gold,C.o3,C.cyan],wMin:76,wMax:160,gap:[10,38],wx:13,wy:18,ws:4.4}
 ];
 let dotTile=null,W=1,H=1,dpr=1,Q=1,sky=null,glows=[],halftone=null,grainTile=null,layers=[],trails=[],parts=[],clouds=[];
 let t=0,leapClock=0,nextLeap=6,leapT=-1,spawnAcc=0,raf=0,last=0;
@@ -101,20 +101,20 @@ function buildSky(){
   sky=mk(W*Q,H*Q);
   const x=sky.getContext('2d');x.setTransform(Q,0,0,Q,0,0);
   const g=x.createLinearGradient(0,0,0,H);
-  [[0,'#142B4A'],[.27,'#315476'],[.48,'#806A91'],[.68,'#D18B83'],[.82,'#E6A477'],[1,'#172B49']].forEach(([p,c])=>g.addColorStop(p,c));
+  [[0,'#70B5E8'],[.22,'#8CC9F0'],[.44,'#B9DDF1'],[.63,'#E6E5D7'],[.82,'#F1C99D'],[1,'#A9C6D6']].forEach(([p,c])=>g.addColorStop(p,c));
   x.fillStyle=g;x.fillRect(0,0,W,H);
-  const sun=x.createRadialGradient(W*.72,H*.48,2,W*.72,H*.48,Math.max(W,H)*.55);
-  sun.addColorStop(0,'rgba(255,201,151,.78)');sun.addColorStop(.28,'rgba(231,135,142,.3)');sun.addColorStop(1,'rgba(65,73,120,0)');
+  const sun=x.createRadialGradient(W*.72,H*.34,2,W*.72,H*.34,Math.max(W,H)*.48);
+  sun.addColorStop(0,'rgba(255,246,211,.78)');sun.addColorStop(.3,'rgba(255,225,173,.26)');sun.addColorStop(1,'rgba(255,255,255,0)');
   x.fillStyle=sun;x.fillRect(0,0,W,H);
   /* Broad illustrated cloud strokes add depth without turning the sky into a flat gradient. */
   for(let i=0;i<22;i++){
     const px=rnd(-W*.1,W*1.05),py=rnd(H*.12,H*.64),rw=rnd(W*.08,W*.32),rh=rnd(5,22);
     const cg=x.createLinearGradient(px,py,px+rw,py+rh);
-    cg.addColorStop(0,'rgba(208,199,221,0)');cg.addColorStop(.45,'rgba(215,166,177,.15)');cg.addColorStop(1,'rgba(91,121,157,0)');
+    cg.addColorStop(0,'rgba(255,255,255,0)');cg.addColorStop(.45,'rgba(255,255,255,.34)');cg.addColorStop(1,'rgba(224,239,248,0)');
     x.fillStyle=cg;x.beginPath();x.ellipse(px,py,rw,rh,rnd(-.08,.08),0,Math.PI*2);x.fill();
   }
   const shade=x.createLinearGradient(0,H*.35,0,H);
-  shade.addColorStop(0,'rgba(7,18,37,0)');shade.addColorStop(1,'rgba(7,18,37,.46)');
+  shade.addColorStop(0,'rgba(38,67,91,0)');shade.addColorStop(1,'rgba(38,67,91,.16)');
   x.fillStyle=shade;x.fillRect(0,0,W,H);
 }
 function buildGlows(){
@@ -213,7 +213,7 @@ function toonWindows(x,cx,top,w,sw,h,d,o,wins){
   }
 }
 function toonOpts(d,x){
-  return {ink:d.ink,lw:.7,dotA:d.dotA*.12,dots:x.createPattern(dotTile,'repeat'),hazeC:'#7d5fc4',haze:d.haze};
+  return {ink:d.ink,lw:.7,dotA:d.dotA*.12,dots:x.createPattern(dotTile,'repeat'),hazeC:'#D7E5EC',haze:d.haze*.42};
 }
 function buildLayer(d){
   const tw=Math.ceil(Math.max(W*1.15,760)), hh=H+EXTRA;
@@ -376,10 +376,10 @@ function render(e){
   drawClouds();drawGlows();drawPerspective(e);
   /* Layered illustrated skyline: gentle camera drift and parallax. */
   const dive=1+.008*(.5+.5*Math.sin(t*.11))+e*.018;
-  const drift=7+7*Math.sin(t*.055)+e*18;
+  const drift=20+18*Math.sin(t*.055)+e*24;
   ctx.save();ctx.translate(W*.5,H);ctx.scale(dive,dive);ctx.translate(-W*.5,-H);
   layers.forEach((L,i)=>{
-    const shift=Math.min(EXTRA-30,scr.y*L.pf+drift*L.depth*.5);
+    const shift=Math.min(EXTRA-18,scr.y*L.pf*1.28+drift*L.depth*.72);
     const dy=-shift,x0=-L.off+ptr.x*L.depth*12;
     ctx.globalAlpha=L.alpha;
     for(let xx=x0-L.tw;xx<W+L.tw;xx+=L.tw)ctx.drawImage(L.c,xx,dy,L.tw,L.hh);
