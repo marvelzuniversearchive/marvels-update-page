@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-01T22:56:27.495075+00:00",
+  "generated_at": "2026-11-02T02:03:07.812794+00:00",
   "source_count": 13,
   "article_count": 60,
   "articles": [
@@ -7,6 +7,21 @@
       "id": "robertdowneyjrandpedropascalswitchplacesinthemcuforhalloweencostumeswap",
       "title": "Robert Downey Jr. and Pedro Pascal switch places in the MCU for Halloween: ‘Costume swap!’",
       "summary": "Robert Downey Jr. and Pedro Pascal switch places in the MCU for Halloween: ‘Costume swap!’ Entertainment Weekly",
+      "image_url": "",
+      "article_url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxQUHJ0OHF5cU5VQ2E4RFYwTTcxYTBTMmtKdVFycW5icVJIWTEyQ3IyUU51MHJIN3NYZDJyZzZJU25HN1FuTWI5aFlUeHZ2aDJuOUE0Q3h4MkdkdUVxV0J1bTd3aUJuSmZPTTJVMGZqMFFjWGRhZzNGTkNjUVJsb3ZqVTZSTGE?oc=5",
+      "source": "Entertainment Weekly",
+      "source_id": "entertainment_weekly",
+      "category": "Marvel",
+      "published_at": "2026-11-01T21:21:00+00:00",
+      "status": "reported",
+      "tags": [],
+      "related_characters": [],
+      "external_id": "CBMihAFBVV95cUxQUHJ0OHF5cU5VQ2E4RFYwTTcxYTBTMmtKdVFycW5icVJIWTEyQ3IyUU51MHJIN3NYZDJyZzZJU25HN1FuTWI5aFlUeHZ2aDJuOUE0Q3h4MkdkdUVxV0J1bTd3aUJuSmZPTTJVMGZqMFFjWGRhZzNGTkNjUVJsb3ZqVTZSTGE"
+    },
+    {
+      "id": "marvelstarsrobertdowneyjrandpedropascalswitchrolesforhalloweencostumeswap",
+      "title": "Marvel stars Robert Downey Jr. and Pedro Pascal switch roles for Halloween: ‘Costume swap!’",
+      "summary": "Marvel stars Robert Downey Jr. and Pedro Pascal switch roles for Halloween: ‘Costume swap!’ Entertainment Weekly",
       "image_url": "",
       "article_url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxQUHJ0OHF5cU5VQ2E4RFYwTTcxYTBTMmtKdVFycW5icVJIWTEyQ3IyUU51MHJIN3NYZDJyZzZJU25HN1FuTWI5aFlUeHZ2aDJuOUE0Q3h4MkdkdUVxV0J1bTd3aUJuSmZPTTJVMGZqMFFjWGRhZzNGTkNjUVJsb3ZqVTZSTGE?oc=5",
       "source": "Entertainment Weekly",
@@ -1076,25 +1091,6 @@
         "Vision"
       ],
       "external_id": "CBMirwFBVV95cUxQYk11WmIxOXhGOC1lNWlOTFk3eHhkcG9felFLYmd3LWxEZ1NleG9lOGhlazQ0dVlGWDc4WkVJWFhwWHBNNGtaOFF5T0lES3g3Wnk0NHVoY2Q2N2FfUkpEZEVWNC1SWnpxVDJFQUVXRVVHWndsZGlEWjAzTmpiMm1PZWNkOEFxQWJqYVk4Y0ExLXdE"
-    },
-    {
-      "id": "marveltelevisionannouncesnewzodiacseriesatnycc2026",
-      "title": "Marvel Television Announces New ‘Zodiac’ Series at NYCC 2026",
-      "summary": "Marvel Television Announces New ‘Zodiac’ Series at NYCC 2026 Marvel.com",
-      "image_url": "",
-      "article_url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxNODFlVXd4ZGEzbldKcURGY3FudEkzQWRtSnlyOVYyVFhKWkRTOThPQzdxRlNicW5CVm5tUDN5c2plVklFQXQ2RURaOWZPc25Jc3hGdFl3enlOS3gwUGMtOW03VDNvOWJKT2ZXejRvV0NmVy1KNGpQRl9NVTljM2ktQkk2ZURmbXh3QlZQTXNRYkJVSWtxQnlOUHR1WTNGV1Fs?oc=5",
-      "source": "Marvel",
-      "source_id": "marvel",
-      "category": "TV",
-      "published_at": "2026-10-08T07:00:00+00:00",
-      "status": "official",
-      "tags": [
-        "Vision"
-      ],
-      "related_characters": [
-        "Vision"
-      ],
-      "external_id": "CBMioAFBVV95cUxNODFlVXd4ZGEzbldKcURGY3FudEkzQWRtSnlyOVYyVFhKWkRTOThPQzdxRlNicW5CVm5tUDN5c2plVklFQXQ2RURaOWZPc25Jc3hGdFl3enlOS3gwUGMtOW03VDNvOWJKT2ZXejRvV0NmVy1KNGpQRl9NVTljM2ktQkk2ZURmbXh3QlZQTXNRYkJV"
     }
   ]
 }
