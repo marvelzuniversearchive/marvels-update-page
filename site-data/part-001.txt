@@ -25,11 +25,7 @@
 html{scroll-behavior:smooth;scroll-padding-top:95px}
 body{
   color:var(--paper);
-  background:
-    radial-gradient(ellipse at 9% 3%,rgba(91,75,255,.21),transparent 30%),
-    radial-gradient(ellipse at 98% 18%,rgba(255,54,95,.16),transparent 27%),
-    radial-gradient(ellipse at 48% 105%,rgba(36,194,226,.10),transparent 38%),
-    linear-gradient(138deg,#080b14 0%,#111526 48%,#0a0e19 100%);
+  background:transparent!important;
   font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif;
   letter-spacing:-.012em;
 }
