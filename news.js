@@ -55,6 +55,11 @@
     .mnews-detail-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
     .mnews-detail-actions a{display:inline-flex;align-items:center;padding:11px 15px;border-radius:9px;background:#e63946;color:white;text-decoration:none;font-size:10px;font-weight:800;letter-spacing:1px}
     .mnews-detail-actions button{border:1px solid var(--line);background:#ffffff0b;color:#eee;border-radius:9px;padding:11px 15px;font-size:10px;cursor:pointer}
+    .mnews-series-spotlight{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;margin:18px 0;padding:20px 22px;border:1px solid #e6394655;border-radius:16px;background:linear-gradient(115deg,#191c30,#111827)}
+    .mnews-series-spotlight .eyebrow{color:#ff9ca4;font-size:9px;letter-spacing:1.8px;font-weight:900}
+    .mnews-series-spotlight h2{margin:7px 0 5px;color:#fff;font-size:clamp(23px,3vw,34px);font-weight:900}
+    .mnews-series-spotlight p{margin:0;color:#b8c4d6;font-size:11px;line-height:1.6;max-width:650px}
+    .mnews-series-spotlight button{border:1px solid #ff7b89;background:#e63946;color:#fff;border-radius:9px;padding:11px 14px;font-size:9px;font-weight:900;letter-spacing:1px;cursor:pointer}
     .mnews-state{padding:12px 14px;border:1px solid #ffc85744;border-radius:10px;background:#ffc8570b;color:#e6d2a4;font-size:10px;margin:14px 0}
     @media(max-width:900px){.mnews-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.mnews-card.featured{grid-template-columns:1fr}.featured .mnews-image{min-height:190px}}
     @media(max-width:650px){.mnews-toolbar{grid-template-columns:1fr 1fr}.mnews-toolbar input{grid-column:1/-1}.mnews-heading{align-items:flex-start}}
@@ -63,9 +68,9 @@
   document.head.appendChild(style);
 
   const FEED_URL = "news-feed.json";
-  const categories = ["all","vision_quest","ratings","official","movies","tv","comics","trailers","casting","games","events","announcements"];
-  const labels = {all:"All news",vision_quest:"Vision Quest",ratings:"IMDb & Rotten Tomatoes",official:"Official",movies:"Movies",tv:"TV",comics:"Comics",trailers:"Trailers",casting:"Casting",games:"Games",events:"Events",announcements:"Announcements"};
-  let articles = [], filter = "all", query = "", order = "newest", active = false, selected = null, timer = null, lastError = false;
+  const categories = ["all","series_spotlight","ratings","official","movies","tv","comics","trailers","casting","games","events","announcements"];
+  const labels = {all:"All news",series_spotlight:"Series Spotlight",ratings:"IMDb & Rotten Tomatoes",official:"Official",movies:"Movies",tv:"TV",comics:"Comics",trailers:"Trailers",casting:"Casting",games:"Games",events:"Events",announcements:"Announcements"};
+  let articles = [], filter = "all", query = "", order = "newest", active = false, selected = null, timer = null, lastError = false, featuredSeries = null;
 
   const esc = value => String(value ?? "").replace(/[&<>"']/g, ch => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch]));
   const safeUrl = value => { try { const u = new URL(value, location.href); return /^https?:$/.test(u.protocol) ? esc(u.href) : "#"; } catch { return "#"; } };
@@ -97,7 +102,7 @@
       const hay = [a.title,a.summary,a.source,a.category,...(a.tags || []),...(a.coverage_tags || [])].join(" ").toLowerCase();
       const matchesQuery = !query || hay.includes(query.toLowerCase());
       const coverage = (a.coverage_tags || []).map(tag => String(tag).toLowerCase());
-      const matchesFilter = filter === "all" || (filter === "official" ? a.status === "official" : filter === "vision_quest" ? coverage.includes("vision quest") : filter === "ratings" ? coverage.includes("ratings & reviews") || coverage.includes("imdb") || coverage.includes("rotten tomatoes") : String(a.category || "").toLowerCase() === filter);
+      const matchesFilter = filter === "all" || (filter === "official" ? a.status === "official" : filter === "series_spotlight" ? !!featuredSeries && coverage.includes(("series: " + featuredSeries.name).toLowerCase()) : filter === "ratings" ? coverage.includes("ratings & reviews") || coverage.includes("imdb") || coverage.includes("rotten tomatoes") : String(a.category || "").toLowerCase() === filter);
       return matchesQuery && matchesFilter;
     });
     rows.sort((a,b) => (new Date(a.published_at)-new Date(b.published_at)) * (order === "oldest" ? 1 : -1));
@@ -161,7 +166,7 @@
     const controls = '<div class="mnews-toolbar"><input id="mnewsSearch" type="search" placeholder="Search Marvel headlines, characters or publishers…" value="' + esc(query) + '" aria-label="Search Marvel news">' +
       '<select id="mnewsSort" aria-label="Sort news"><option value="newest"' + (order === "newest" ? " selected" : "") + '>Newest first</option><option value="oldest"' + (order === "oldest" ? " selected" : "") + '>Oldest first</option></select>' +
       '<span class="mnews-count">' + rows.length + ' of ' + articles.length + ' stories</span></div>';
-    const filters = '<div class="mnews-filters">' + categories.map(c => '<button type="button" data-news-filter="' + c + '" class="' + (filter === c ? "active" : "") + '">' + labels[c] + '</button>').join("") + '</div>';
+    const filters = '<div class="mnews-filters">' + categories.map(c => '<button type="button" data-news-filter="' + c + '" class="' + (filter === c ? "active" : "") + '">' + (c === "series_spotlight" && featuredSeries ? (featuredSeries.status === "airing" ? "Now Airing: " : "Next Series: ") + featuredSeries.name : labels[c]) + '</button>').join("") + '</div>';
     const banner = lastError ? '<div class="mnews-state">The latest source check failed. Showing the last successfully saved headlines; automatic retries continue.</div>' : '';
     if (selected) {
       const item = articles.find(a => a.id === selected);
@@ -182,6 +187,7 @@
     content.innerHTML = '<section class="mnews-page" data-marvel-news-content>' +
       '<div class="mnews-heading"><div><div class="eyebrow">MARVEL UNIVERSE · NEWSROOM</div><h1>Marvel <span>News</span></h1><p>Marvel headlines, official announcements and coverage from established publishers — collected, organised and refreshed automatically.</p></div>' +
       '<div class="mnews-live"><i></i><span>LIVE NEWS SYSTEM</span><small id="mnewsUpdated">' + esc(updated) + '</small></div></div>' + banner + controls + filters +
+      (featuredSeries ? '<section class="mnews-series-spotlight"><div><div class="eyebrow">' + (featuredSeries.status === "airing" ? "CURRENTLY AIRING · SERIES SPOTLIGHT" : "UP NEXT · SERIES SPOTLIGHT") + '</div><h2>' + esc(featuredSeries.name) + '</h2><p>' + esc(featuredSeries.description || "Latest news, episode coverage and updates for this Marvel series.") + (featuredSeries.status === "airing" ? " · Finale: " + esc(featuredSeries.finale || "Date to be announced") : " · Premiere: " + esc(featuredSeries.premiere)) + '</p></div><button type="button" data-news-filter="series_spotlight">EXPLORE SERIES COVERAGE ↗</button></section>' : '') +
       (rows.length ? card(rows[0], true) + '<div class="mnews-grid">' + rows.slice(1).map(a => card(a,false)).join("") + '</div>' :
       '<div class="mnews-empty"><strong>' + (articles.length ? "No stories match those filters." : "No Marvel stories are available yet.") + '</strong><p>Try another category or check again shortly.</p></div>') +
       '<div class="mnews-footnote">The feed checks sources every 15 minutes. This page also refreshes its displayed feed while open. Official announcements, reported coverage and rumours are labelled separately.</div></section>';
@@ -193,6 +199,8 @@
       const data = await response.json();
       if (!data || !Array.isArray(data.articles)) throw new Error("Invalid feed format");
       articles = data.articles;
+      featuredSeries = data.featured_series || null;
+      window.marvelNewsFeaturedSeries = featuredSeries;
       window.marvelNewsGeneratedAt = data.generated_at || "";
       lastError = false;
       render();
