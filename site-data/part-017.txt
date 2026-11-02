@@ -510,6 +510,29 @@ if(motionQ.addEventListener)motionQ.addEventListener('change',()=>{
   if(reduced){cancelAnimationFrame(raf);raf=0;render(0)}else start();
 });
 
+function playIntroGlitch(){
+  if(!glFx||!glBadge||!glText)return;
+  glFx.classList.remove('gl-run','gl-fade');
+  void glFx.offsetWidth;
+  glFx.classList.add('gl-run');
+  glText.textContent='INITIALIZING MARVEL ARCHIVE...';
+  glBadge.classList.add('on');
+  if(reduced){
+    glFx.classList.add('gl-fade');
+    setTimeout(()=>{glFx.classList.remove('gl-run','gl-fade');glBadge.classList.remove('on')},1150);
+    return;
+  }
+  root.classList.add('glitching');
+  burstFx();
+  setTimeout(()=>{
+    glFx.classList.remove('gl-run','gl-fade');
+    root.classList.remove('glitching');
+    glBadge.classList.remove('on');
+    glEnd=performance.now();
+  },1250);
+}
+
 build();
+playIntroGlitch();
 })();
 </script></body></html>
