@@ -554,7 +554,7 @@ function render(e){
   /* Distant far-shore skyline: the reduced scale leaves the lake clearly visible in front. */
   const dive=1+.012*(.5+.5*Math.sin(t*.22))+e*.003;
   const drift=3+4*Math.sin(t*.035)+e*5+ptr.y*3;
-  const cityScale=(H*.60)/(H+EXTRA);
+  const cityScale=(H*.56)/(H+EXTRA);
   ctx.save();ctx.translate(W*.5,H*.60);ctx.scale(dive,dive);ctx.translate(-W*.5,-H*.60);
   layers.forEach((L,i)=>{
     const scrollShift=Math.min(H*.24,scr.y*L.pf*.52);
