@@ -1,0 +1,578 @@
+{
+  "version": "1.0",
+  "artDirection": "Original afternoon comic-city: graphic architectural silhouettes, hand-inked contours, painted color planes, restrained print texture. Avoid photorealism and toy-like geometry.",
+  "motion": {
+    "backgroundDrift": 1,
+    "scrollParallax": 1.35,
+    "layerSpeed": [
+      0.7,
+      1.15,
+      1.65,
+      2.1
+    ],
+    "pointerParallax": 1
+  },
+  "rendering": {
+    "outline": "inked-variable",
+    "halftone": "subtle-screen-tone",
+    "hatching": "shadow-facets",
+    "colorRegistration": "restrained-offset",
+    "avoid": [
+      "photographic-textures",
+      "uniform-rectangles",
+      "toy-like-primary-shapes",
+      "neon-everywhere"
+    ]
+  },
+  "palette": {
+    "sky": [
+      "#70B5E8",
+      "#8CC9F0",
+      "#B9DDF1",
+      "#E6E5D7",
+      "#F1C99D"
+    ],
+    "facades": [
+      "#7895A8",
+      "#9BAEAE",
+      "#C3A994",
+      "#718C9E",
+      "#A58D83",
+      "#8D9BA5",
+      "#B8B2A4",
+      "#6D8193"
+    ],
+    "ink": "#25384B",
+    "sun": "#FFF0C9"
+  },
+  "archetypes": [
+    {
+      "id": "art-deco-spire",
+      "weight": 12,
+      "width": [
+        76,
+        142
+      ],
+      "height": [
+        0.42,
+        0.68
+      ],
+      "profile": [
+        [
+          0,
+          0.12
+        ],
+        [
+          0.12,
+          0.12
+        ],
+        [
+          0.12,
+          0.07
+        ],
+        [
+          0.27,
+          0.07
+        ],
+        [
+          0.27,
+          0.03
+        ],
+        [
+          0.43,
+          0.03
+        ],
+        [
+          0.43,
+          0
+        ],
+        [
+          0.57,
+          0
+        ],
+        [
+          0.57,
+          0.03
+        ],
+        [
+          0.73,
+          0.03
+        ],
+        [
+          0.73,
+          0.07
+        ],
+        [
+          0.88,
+          0.07
+        ],
+        [
+          0.88,
+          0.12
+        ],
+        [
+          1,
+          0.12
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "facade": "vertical-bays",
+      "roof": "spire"
+    },
+    {
+      "id": "glass-setback-tower",
+      "weight": 15,
+      "width": [
+        74,
+        150
+      ],
+      "height": [
+        0.48,
+        0.82
+      ],
+      "profile": [
+        [
+          0,
+          0.22
+        ],
+        [
+          0.16,
+          0.22
+        ],
+        [
+          0.16,
+          0.13
+        ],
+        [
+          0.31,
+          0.13
+        ],
+        [
+          0.31,
+          0.06
+        ],
+        [
+          0.49,
+          0.06
+        ],
+        [
+          0.49,
+          0
+        ],
+        [
+          0.68,
+          0
+        ],
+        [
+          0.68,
+          0.1
+        ],
+        [
+          0.84,
+          0.1
+        ],
+        [
+          0.84,
+          0.2
+        ],
+        [
+          1,
+          0.2
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "facade": "glass-bands",
+      "roof": "crown"
+    },
+    {
+      "id": "curved-corner-office",
+      "weight": 9,
+      "width": [
+        70,
+        132
+      ],
+      "height": [
+        0.35,
+        0.62
+      ],
+      "profile": [
+        [
+          0,
+          0.16
+        ],
+        [
+          0.12,
+          0.08
+        ],
+        [
+          0.34,
+          0.02
+        ],
+        [
+          0.67,
+          0
+        ],
+        [
+          0.88,
+          0.08
+        ],
+        [
+          1,
+          0.18
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "facade": "curtain-wall",
+      "roof": "flat"
+    },
+    {
+      "id": "brick-loft",
+      "weight": 17,
+      "width": [
+        48,
+        105
+      ],
+      "height": [
+        0.2,
+        0.43
+      ],
+      "profile": [
+        [
+          0,
+          0.08
+        ],
+        [
+          0.08,
+          0.04
+        ],
+        [
+          0.92,
+          0.04
+        ],
+        [
+          1,
+          0.08
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "facade": "loft-bays",
+      "roof": "water-tank"
+    },
+    {
+      "id": "limestone-cornice",
+      "weight": 12,
+      "width": [
+        55,
+        112
+      ],
+      "height": [
+        0.24,
+        0.46
+      ],
+      "profile": [
+        [
+          0,
+          0.12
+        ],
+        [
+          0.08,
+          0.12
+        ],
+        [
+          0.08,
+          0.05
+        ],
+        [
+          0.92,
+          0.05
+        ],
+        [
+          0.92,
+          0.12
+        ],
+        [
+          1,
+          0.12
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "facade": "masonry-bands",
+      "roof": "cornice"
+    },
+    {
+      "id": "residential-stepped",
+      "weight": 13,
+      "width": [
+        44,
+        92
+      ],
+      "height": [
+        0.18,
+        0.39
+      ],
+      "profile": [
+        [
+          0,
+          0.18
+        ],
+        [
+          0.28,
+          0.18
+        ],
+        [
+          0.28,
+          0.08
+        ],
+        [
+          0.66,
+          0.08
+        ],
+        [
+          0.66,
+          0
+        ],
+        [
+          0.84,
+          0
+        ],
+        [
+          0.84,
+          0.18
+        ],
+        [
+          1,
+          0.18
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "facade": "balconies",
+      "roof": "water-tank"
+    },
+    {
+      "id": "campus-atrium",
+      "weight": 8,
+      "width": [
+        92,
+        170
+      ],
+      "height": [
+        0.26,
+        0.48
+      ],
+      "profile": [
+        [
+          0,
+          0.18
+        ],
+        [
+          0.12,
+          0.08
+        ],
+        [
+          0.26,
+          0.08
+        ],
+        [
+          0.26,
+          0.16
+        ],
+        [
+          0.74,
+          0.16
+        ],
+        [
+          0.74,
+          0.08
+        ],
+        [
+          0.88,
+          0.08
+        ],
+        [
+          1,
+          0.18
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "facade": "atrium-grid",
+      "roof": "mechanical"
+    },
+    {
+      "id": "industrial-waterfront",
+      "weight": 7,
+      "width": [
+        64,
+        138
+      ],
+      "height": [
+        0.2,
+        0.38
+      ],
+      "profile": [
+        [
+          0,
+          0.16
+        ],
+        [
+          0.18,
+          0.16
+        ],
+        [
+          0.18,
+          0.04
+        ],
+        [
+          0.34,
+          0.04
+        ],
+        [
+          0.34,
+          0.14
+        ],
+        [
+          0.62,
+          0.14
+        ],
+        [
+          0.62,
+          0
+        ],
+        [
+          0.8,
+          0
+        ],
+        [
+          0.8,
+          0.12
+        ],
+        [
+          1,
+          0.12
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "facade": "industrial",
+      "roof": "vents"
+    },
+    {
+      "id": "needle-tower",
+      "weight": 7,
+      "width": [
+        52,
+        104
+      ],
+      "height": [
+        0.58,
+        0.92
+      ],
+      "profile": [
+        [
+          0,
+          0.25
+        ],
+        [
+          0.22,
+          0.25
+        ],
+        [
+          0.22,
+          0.14
+        ],
+        [
+          0.38,
+          0.14
+        ],
+        [
+          0.44,
+          0
+        ],
+        [
+          0.56,
+          0
+        ],
+        [
+          0.62,
+          0.14
+        ],
+        [
+          0.78,
+          0.14
+        ],
+        [
+          0.78,
+          0.25
+        ],
+        [
+          1,
+          0.25
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "facade": "vertical-bays",
+      "roof": "antenna"
+    }
+  ]
+}
