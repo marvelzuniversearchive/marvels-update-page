@@ -167,16 +167,20 @@ function shadeOf(h,f){
   if(!v){v='rgb('+hexToRgb(h).map(q=>Math.round(q*f)).join(',')+')';colCache.set(k,v)}
   return v;
 }
-/* cel-shaded block: flat lit face, darker shadow face with halftone, rim light, bold ink outline */
+/* Perspective-drawn architecture: uneven roofline, front plane, deep side plane and inked edges. */
 function toonBlock(x,cx,top,w,h,col,o){
-  const base=mixHex(col,o.hazeC,o.haze), dark=mixHex(shadeOf(col,.6),o.hazeC,o.haze);
-  x.fillStyle=base;x.fillRect(cx,top,w,h);
-  const sw=w*.34;
-  x.fillStyle=dark;x.fillRect(cx+w-sw,top,sw,h);
-  x.save();x.globalAlpha=o.dotA;x.fillStyle=o.dots;x.fillRect(cx+w-sw,top,sw,h);x.restore();
-  x.fillStyle='rgba(255,255,255,.3)';x.fillRect(cx,top,Math.min(2,w),h);
-  x.strokeStyle=o.ink;x.lineWidth=o.lw;x.strokeRect(cx,top,w,h);
-  return sw;
+  const base=mixHex(col,o.hazeC,o.haze), dark=mixHex(shadeOf(col,.48),o.hazeC,o.haze);
+  const bevel=Math.max(2,Math.min(w*.12,8)), roofDip=Math.min(8,h*.025);
+  const side=w*.24, front=w-side;
+  const face=x.createLinearGradient(cx,top,cx+w,top+h);
+  face.addColorStop(0,base);face.addColorStop(.68,shadeOf(col,.88));face.addColorStop(1,dark);
+  x.fillStyle=face;x.beginPath();x.moveTo(cx,top+roofDip);x.lineTo(cx+front,top);x.lineTo(cx+w,top+bevel);x.lineTo(cx+w,h+top);x.lineTo(cx,h+top);x.closePath();x.fill();
+  x.fillStyle=dark;x.beginPath();x.moveTo(cx+front,top);x.lineTo(cx+w,top+bevel);x.lineTo(cx+w,top+h);x.lineTo(cx+front,top+h);x.closePath();x.fill();
+  x.save();x.globalAlpha=o.dotA;x.fillStyle=o.dots;x.beginPath();x.moveTo(cx+front,top);x.lineTo(cx+w,top+bevel);x.lineTo(cx+w,top+h);x.lineTo(cx+front,top+h);x.closePath();x.fill();x.restore();
+  x.strokeStyle=o.ink;x.lineWidth=o.lw;x.beginPath();x.moveTo(cx,top+roofDip);x.lineTo(cx+front,top);x.lineTo(cx+w,top+bevel);x.lineTo(cx+w,top+h);x.lineTo(cx,top+h);x.closePath();x.stroke();
+  x.strokeStyle='rgba(255,255,255,.32)';x.lineWidth=Math.max(1,o.lw*.65);x.beginPath();x.moveTo(cx+2,top+roofDip+3);x.lineTo(cx+front-2,top+3);x.stroke();
+  x.strokeStyle='rgba(8,10,28,.38)';x.lineWidth=1;x.beginPath();x.moveTo(cx+front+2,top+bevel+8);x.lineTo(cx+front+2,top+h-3);x.stroke();
+  return side;
 }
 function toonWindows(x,cx,top,w,sw,h,d,o,wins){
   const ww=d.ws*2.2, wh=d.ws*2.8;
