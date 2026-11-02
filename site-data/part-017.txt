@@ -184,16 +184,23 @@ function toonBlock(x,cx,top,w,h,col,o){
 }
 function toonWindows(x,cx,top,w,sw,h,d,o,wins){
   const ww=d.ws*2.2, wh=d.ws*2.8;
-  for(let wy=top+8;wy<top+h-wh-6;wy+=d.wy){
-    for(let wx=cx+5;wx<cx+w-sw-ww-3;wx+=d.wx){
-      if(Math.random()<d.lit){
-        x.fillStyle=pick(d.litC);x.fillRect(wx,wy,ww,wh);
-        x.fillStyle='rgba(255,255,255,.75)';x.fillRect(wx,wy,ww*.4,1.2);
+  for(let row=0,wy=top+9;wy<top+h-wh-7;row++,wy+=d.wy){
+    for(let col=0,wx=cx+5;wx<cx+w-sw-ww-4;col++,wx+=d.wx){
+      const lit=Math.random()<d.lit, warm=pick(d.litC);
+      x.fillStyle='rgba(8,12,29,.68)';x.fillRect(wx-1.5,wy-1.5,ww+3,wh+3);
+      if(lit){
+        const glass=x.createLinearGradient(wx,wy,wx+ww,wy+wh);
+        glass.addColorStop(0,warm);glass.addColorStop(.58,shadeOf(warm,.72));glass.addColorStop(1,'rgba(20,24,48,.9)');
+        x.fillStyle=glass;x.fillRect(wx,wy,ww,wh);
+        x.fillStyle='rgba(255,255,255,.62)';x.beginPath();x.moveTo(wx+1,wy+1);x.lineTo(wx+ww*.48,wy+1);x.lineTo(wx+ww*.3,wy+wh*.32);x.lineTo(wx+1,wy+wh*.32);x.closePath();x.fill();
         if(wins&&wins.length<60&&Math.random()<.08)wins.push({x:wx,y:wy});
       }else{
-        x.fillStyle='rgba(20,10,30,.45)';x.fillRect(wx,wy,ww,wh);
+        x.fillStyle='rgba(14,19,39,.86)';x.fillRect(wx,wy,ww,wh);
+        x.strokeStyle='rgba(255,255,255,.12)';x.lineWidth=.6;x.beginPath();x.moveTo(wx+2,wy+2);x.lineTo(wx+ww-2,wy+wh-2);x.stroke();
       }
-      x.strokeStyle=o.ink;x.lineWidth=.7;x.strokeRect(wx,wy,ww,wh);
+      x.strokeStyle=o.ink;x.lineWidth=.85;x.strokeRect(wx-.5,wy-.5,ww+1,wh+1);
+      x.strokeStyle='rgba(255,255,255,.22)';x.lineWidth=.6;x.beginPath();x.moveTo(wx+ww*.5,wy);x.lineTo(wx+ww*.5,wy+wh);x.stroke();
+      if(row%3===2){x.fillStyle='rgba(255,255,255,.16)';x.fillRect(wx-2,wy+wh+1,ww+4,1.4)}
     }
   }
 }
