@@ -3,15 +3,15 @@
   const style = document.createElement("style");
   style.textContent = `
     [data-marvel-news]{margin-top:4px}
-    body.marvel-news-night{background-color:#050711}
-    body.marvel-news-night #cityCanvas{filter:brightness(.24) saturate(.72) contrast(1.12);transition:filter .55s ease}
+    body.marvel-news-night{background-color:#071020}
+    body.marvel-news-night #cityCanvas{filter:brightness(.38) saturate(.9) hue-rotate(14deg) contrast(1.08);transition:filter .55s ease}
     body:not(.marvel-news-night) #cityCanvas{filter:none;transition:filter .55s ease}
     body.marvel-news-night #content,body.marvel-news-night .sidebar{position:relative;z-index:1}
     body.marvel-news-night .mnews-page{color:#d1d5df}
     body.marvel-news-night .mnews-heading p,body.marvel-news-night .mnews-card p{color:#b7bdca}
     body.marvel-news-night .mnews-card h2 button{color:#e0e3eb}
     body.marvel-news-night .mnews-meta,body.marvel-news-night .mnews-count,body.marvel-news-night .mnews-footnote{color:#9da6b7}
-    body.marvel-news-night .mnews-detail{color:#d1d5df;border:1px solid rgba(220,230,255,.2);background:linear-gradient(145deg,rgba(28,35,53,.56),rgba(12,17,29,.44));backdrop-filter:blur(22px) saturate(125%);-webkit-backdrop-filter:blur(22px) saturate(125%)}
+    body.marvel-news-night .mnews-detail{color:#d9deea;border:1px solid rgba(225,235,255,.24);background:linear-gradient(145deg,rgba(145,165,195,.2),rgba(65,85,120,.13));backdrop-filter:blur(24px) saturate(150%);-webkit-backdrop-filter:blur(24px) saturate(150%)}
     body.marvel-news-night .mnews-detail h2{color:#e3e6ee}
     body.marvel-news-night .mnews-detail .summary{color:#c5cad5}
     .mnews-page{padding:24px 0 48px;color:var(--paper,#f4f1ec)}
@@ -28,7 +28,7 @@
     .mnews-filters button,.mnews-back{border:1px solid var(--line);background:rgba(255,255,255,.055);color:#bac4d4;border-radius:99px;padding:8px 12px;font-size:10px;cursor:pointer}
     .mnews-filters button.active{background:linear-gradient(110deg,var(--red,#e63946),#ad284b);border-color:transparent;color:white}
     .mnews-count,.mnews-footnote{font-size:10px;color:#96a2b6}
-    .mnews-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}\n    .mnews-card{min-width:0;overflow:hidden;border:1px solid var(--line);border-radius:18px;background:linear-gradient(145deg,rgba(255,255,255,.085),rgba(255,255,255,.025))}
+    .mnews-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}\n    .mnews-card{min-width:0;overflow:hidden;border:1px solid rgba(230,238,255,.2);border-radius:18px;background:linear-gradient(145deg,rgba(205,220,245,.14),rgba(105,130,170,.065));backdrop-filter:blur(18px) saturate(145%);-webkit-backdrop-filter:blur(18px) saturate(145%)}
     .mnews-card.featured{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);margin-bottom:15px}
     .mnews-image{height:170px;display:grid;place-items:center;position:relative;overflow:hidden;background:radial-gradient(circle at 75% 25%,rgba(230,57,70,.38),transparent 35%),linear-gradient(135deg,#171d34,#351c39 60%,#151d2b);text-decoration:none}
     .featured .mnews-image{height:100%;min-height:270px}
@@ -66,7 +66,7 @@
     .mnews-detail-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
     .mnews-detail-actions a{display:inline-flex;align-items:center;padding:11px 15px;border-radius:9px;background:#e63946;color:white;text-decoration:none;font-size:10px;font-weight:800;letter-spacing:1px}
     .mnews-detail-actions button{border:1px solid var(--line);background:#ffffff0b;color:#eee;border-radius:9px;padding:11px 15px;font-size:10px;cursor:pointer}
-    .mnews-series-spotlight{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;margin:18px 0;padding:20px 22px;border:1px solid #e6394655;border-radius:16px;background:linear-gradient(115deg,#191c30,#111827)}
+    .mnews-series-spotlight{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;margin:18px 0;padding:20px 22px;border:1px solid rgba(230,238,255,.22);border-radius:16px;background:linear-gradient(115deg,rgba(160,175,205,.17),rgba(70,90,125,.1));backdrop-filter:blur(20px) saturate(145%);-webkit-backdrop-filter:blur(20px) saturate(145%)}
     .mnews-series-spotlight .eyebrow{color:#ff9ca4;font-size:9px;letter-spacing:1.8px;font-weight:900}
     .mnews-series-spotlight h2{margin:7px 0 5px;color:#fff;font-size:clamp(23px,3vw,34px);font-weight:900}
     .mnews-series-spotlight p{margin:0;color:#b8c4d6;font-size:11px;line-height:1.6;max-width:650px}
