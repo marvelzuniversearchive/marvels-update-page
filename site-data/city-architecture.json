@@ -1104,17 +1104,15 @@
   "archetypes": [
     {
       "id": "manhattan-glass-super-tower",
-      "weight": 14,
+      "weight": 16,
       "width": [
-        52,
-        112
+        118,
+        198
       ],
       "height": [
-        0.56,
-        0.94
+        0.58,
+        0.98
       ],
-      "facade": "glass-bands",
-      "roof": "crown",
       "profile": [
         [
           0,
@@ -1126,22 +1124,22 @@
         ],
         [
           0.12,
-          0.1
+          0.12
         ],
         [
           0.3,
-          0.1
+          0.12
         ],
         [
           0.3,
-          0.035
+          0.06
         ],
         [
-          0.68,
-          0.035
+          0.7,
+          0.06
         ],
         [
-          0.68,
+          0.7,
           0
         ],
         [
@@ -1150,11 +1148,11 @@
         ],
         [
           0.88,
-          0.1
+          0.12
         ],
         [
           1,
-          0.1
+          0.12
         ],
         [
           1,
@@ -1165,33 +1163,33 @@
           1
         ]
       ],
+      "facade": "glass-bands",
+      "roof": "crown",
       "source_building_id": "NYC-ARCH-01"
     },
     {
       "id": "slender-tapered-skyscraper",
-      "weight": 9,
+      "weight": 11,
       "width": [
-        42,
-        86
+        76,
+        132
       ],
       "height": [
-        0.62,
+        0.68,
         1.02
       ],
-      "facade": "vertical-bays",
-      "roof": "spire",
       "profile": [
         [
           0,
-          0.22
+          0.18
         ],
         [
-          0.16,
-          0.16
+          0.18,
+          0.12
         ],
         [
           0.28,
-          0.08
+          0.04
         ],
         [
           0.42,
@@ -1203,15 +1201,15 @@
         ],
         [
           0.72,
-          0.08
+          0.04
         ],
         [
-          0.84,
-          0.16
+          0.82,
+          0.12
         ],
         [
           1,
-          0.22
+          0.18
         ],
         [
           1,
@@ -1222,45 +1220,98 @@
           1
         ]
       ],
+      "facade": "vertical-bays",
+      "roof": "spire",
       "source_building_id": "NYC-ARCH-02"
+    },
+    {
+      "id": "curved-corner-curtain-wall",
+      "weight": 12,
+      "width": [
+        102,
+        178
+      ],
+      "height": [
+        0.48,
+        0.84
+      ],
+      "profile": [
+        [
+          0,
+          0.18
+        ],
+        [
+          0.08,
+          0.1
+        ],
+        [
+          0.22,
+          0.035
+        ],
+        [
+          0.5,
+          0
+        ],
+        [
+          0.78,
+          0.035
+        ],
+        [
+          0.92,
+          0.1
+        ],
+        [
+          1,
+          0.18
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "facade": "vertical-bays",
+      "roof": "crown",
+      "source_building_id": "NYC-ARCH-03"
     },
     {
       "id": "art-deco-setback-tower",
       "weight": 10,
       "width": [
-        48,
-        100
+        82,
+        148
       ],
       "height": [
-        0.5,
-        0.88
+        0.54,
+        0.92
       ],
-      "facade": "masonry-bands",
-      "roof": "spire",
       "profile": [
         [
           0,
-          0.25
+          0.2
         ],
         [
-          0.16,
-          0.25
+          0.18,
+          0.2
         ],
         [
-          0.16,
-          0.16
-        ],
-        [
-          0.3,
-          0.16
+          0.18,
+          0.12
         ],
         [
           0.3,
-          0.08
+          0.12
+        ],
+        [
+          0.3,
+          0.05
         ],
         [
           0.42,
-          0.08
+          0.05
         ],
         [
           0.5,
@@ -1268,76 +1319,23 @@
         ],
         [
           0.58,
-          0.08
+          0.05
         ],
         [
           0.7,
-          0.08
+          0.05
         ],
         [
           0.7,
-          0.16
-        ],
-        [
-          0.84,
-          0.16
-        ],
-        [
-          0.84,
-          0.25
-        ],
-        [
-          1,
-          0.25
-        ],
-        [
-          1,
-          1
-        ],
-        [
-          0,
-          1
-        ]
-      ],
-      "source_building_id": "NYC-ARCH-03"
-    },
-    {
-      "id": "curved-corner-curtain-wall",
-      "weight": 8,
-      "width": [
-        48,
-        104
-      ],
-      "height": [
-        0.46,
-        0.82
-      ],
-      "facade": "glass-bands",
-      "roof": "mechanical",
-      "profile": [
-        [
-          0,
-          0.2
-        ],
-        [
-          0.06,
-          0.11
-        ],
-        [
-          0.18,
-          0.04
-        ],
-        [
-          0.5,
-          0
+          0.12
         ],
         [
           0.82,
-          0.04
+          0.12
         ],
         [
-          0.94,
-          0.11
+          0.82,
+          0.2
         ],
         [
           1,
@@ -1352,366 +1350,127 @@
           1
         ]
       ],
+      "facade": "curtain-wall",
+      "roof": "flat",
       "source_building_id": "NYC-ARCH-04"
     },
     {
-      "id": "twisted-glass-tower",
-      "weight": 5,
+      "id": "prewar-limestone-apartment",
+      "weight": 12,
       "width": [
-        46,
-        92
+        70,
+        128
       ],
       "height": [
-        0.54,
-        0.9
+        0.3,
+        0.62
       ],
-      "facade": "vertical-bays",
-      "roof": "crown",
       "profile": [
         [
           0,
           0.12
         ],
         [
-          0.24,
-          0.05
+          0.08,
+          0.08
         ],
         [
-          0.48,
-          0
-        ],
-        [
-          0.72,
+          0.92,
           0.08
         ],
         [
           1,
-          0.2
-        ],
-        [
-          0.9,
-          0.34
-        ],
-        [
-          0.68,
-          0.3
-        ],
-        [
-          0.46,
-          0.22
-        ],
-        [
-          0.22,
-          0.28
-        ],
-        [
-          0,
-          0.38
-        ],
-        [
-          0,
-          1
+          0.12
         ],
         [
           1,
           1
+        ],
+        [
+          0,
+          1
         ]
       ],
+      "facade": "glass-bands",
+      "roof": "crown",
       "source_building_id": "NYC-ARCH-05"
     },
     {
-      "id": "terraced-residential-highrise",
-      "weight": 7,
+      "id": "brownstone-residential-block",
+      "weight": 9,
       "width": [
-        48,
-        104
+        62,
+        112
       ],
       "height": [
-        0.34,
-        0.68
+        0.2,
+        0.42
+      ],
+      "profile": [
+        [
+          0,
+          0.08
+        ],
+        [
+          0.08,
+          0
+        ],
+        [
+          0.92,
+          0
+        ],
+        [
+          1,
+          0.08
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          0,
+          1
+        ]
       ],
       "facade": "balconies",
       "roof": "garden",
-      "profile": [
-        [
-          0,
-          0.3
-        ],
-        [
-          0.18,
-          0.3
-        ],
-        [
-          0.18,
-          0.2
-        ],
-        [
-          0.36,
-          0.2
-        ],
-        [
-          0.36,
-          0.1
-        ],
-        [
-          0.62,
-          0.1
-        ],
-        [
-          0.62,
-          0
-        ],
-        [
-          0.82,
-          0
-        ],
-        [
-          0.82,
-          0.18
-        ],
-        [
-          1,
-          0.18
-        ],
-        [
-          1,
-          1
-        ],
-        [
-          0,
-          1
-        ]
-      ],
       "source_building_id": "NYC-ARCH-06"
     },
     {
-      "id": "classic-limestone-building",
-      "weight": 8,
+      "id": "terraced-residential-highrise",
+      "weight": 9,
       "width": [
-        48,
-        96
+        88,
+        154
       ],
       "height": [
-        0.25,
-        0.48
+        0.34,
+        0.66
       ],
-      "facade": "masonry-bands",
-      "roof": "cornice",
       "profile": [
         [
           0,
+          0.24
+        ],
+        [
+          0.18,
+          0.24
+        ],
+        [
+          0.18,
           0.14
         ],
         [
-          0.08,
-          0.1
-        ],
-        [
-          0.08,
-          0.04
-        ],
-        [
-          0.2,
-          0.04
-        ],
-        [
-          0.2,
-          0
-        ],
-        [
-          0.8,
-          0
-        ],
-        [
-          0.8,
-          0.04
-        ],
-        [
-          0.92,
-          0.04
-        ],
-        [
-          0.92,
-          0.1
-        ],
-        [
-          1,
+          0.36,
           0.14
         ],
         [
-          1,
-          1
-        ],
-        [
-          0,
-          1
-        ]
-      ],
-      "source_building_id": "NYC-ARCH-07"
-    },
-    {
-      "id": "prewar-limestone-apartment",
-      "weight": 8,
-      "width": [
-        46,
-        92
-      ],
-      "height": [
-        0.3,
-        0.58
-      ],
-      "facade": "balconies",
-      "roof": "water-tank",
-      "profile": [
-        [
-          0,
-          0.14
-        ],
-        [
-          0.08,
-          0.1
-        ],
-        [
-          0.08,
-          0.04
-        ],
-        [
-          0.2,
-          0.04
-        ],
-        [
-          0.2,
-          0
-        ],
-        [
-          0.8,
-          0
-        ],
-        [
-          0.8,
-          0.04
-        ],
-        [
-          0.92,
-          0.04
-        ],
-        [
-          0.92,
-          0.1
-        ],
-        [
-          1,
-          0.14
-        ],
-        [
-          1,
-          1
-        ],
-        [
-          0,
-          1
-        ]
-      ],
-      "source_building_id": "NYC-ARCH-08"
-    },
-    {
-      "id": "brownstone-residential-block",
-      "weight": 6,
-      "width": [
-        38,
-        74
-      ],
-      "height": [
-        0.18,
-        0.4
-      ],
-      "facade": "masonry-bands",
-      "roof": "cornice",
-      "profile": [
-        [
-          0,
-          0.15
-        ],
-        [
-          0.1,
-          0.08
-        ],
-        [
-          0.22,
-          0.08
-        ],
-        [
-          0.22,
-          0
-        ],
-        [
-          0.78,
-          0
-        ],
-        [
-          0.78,
-          0.08
-        ],
-        [
-          0.9,
-          0.08
-        ],
-        [
-          1,
-          0.15
-        ],
-        [
-          1,
-          1
-        ],
-        [
-          0,
-          1
-        ]
-      ],
-      "source_building_id": "NYC-ARCH-09"
-    },
-    {
-      "id": "industrial-loft-building",
-      "weight": 5,
-      "width": [
-        54,
-        110
-      ],
-      "height": [
-        0.22,
-        0.46
-      ],
-      "facade": "industrial",
-      "roof": "water-tank",
-      "profile": [
-        [
-          0,
-          0.22
-        ],
-        [
-          0.12,
-          0.1
-        ],
-        [
-          0.28,
-          0.1
-        ],
-        [
-          0.28,
-          0.02
-        ],
-        [
-          0.44,
-          0.02
-        ],
-        [
-          0.44,
-          0.14
+          0.36,
+          0.06
         ],
         [
           0.64,
-          0.14
+          0.06
         ],
         [
           0.64,
@@ -1722,8 +1481,12 @@
           0
         ],
         [
+          0.84,
+          0.16
+        ],
+        [
           1,
-          0.22
+          0.16
         ],
         [
           1,
@@ -1734,110 +1497,49 @@
           1
         ]
       ],
-      "source_building_id": "NYC-ARCH-10"
+      "facade": "masonry-bands",
+      "roof": "cornice",
+      "source_building_id": "NYC-ARCH-07"
     },
     {
-      "id": "waterfront-warehouse",
-      "weight": 4,
+      "id": "industrial-loft-building",
+      "weight": 7,
       "width": [
-        58,
-        126
+        72,
+        142
       ],
       "height": [
-        0.16,
-        0.34
+        0.2,
+        0.43
       ],
-      "facade": "industrial",
-      "roof": "vents",
       "profile": [
         [
           0,
-          0.22
+          0.16
         ],
         [
-          0.12,
-          0.03
-        ],
-        [
-          0.3,
-          0.03
-        ],
-        [
-          0.3,
-          0.14
-        ],
-        [
-          0.48,
-          0.14
-        ],
-        [
-          0.48,
-          0
-        ],
-        [
-          0.74,
-          0
-        ],
-        [
-          0.9,
+          0.14,
           0.04
         ],
         [
-          1,
-          0.22
+          0.32,
+          0.04
         ],
         [
-          1,
-          1
+          0.32,
+          0.14
         ],
         [
-          0,
-          1
-        ]
-      ],
-      "source_building_id": "NYC-ARCH-11"
-    },
-    {
-      "id": "modern-office-midrise",
-      "weight": 7,
-      "width": [
-        48,
-        100
-      ],
-      "height": [
-        0.3,
-        0.58
-      ],
-      "facade": "glass-bands",
-      "roof": "mechanical",
-      "profile": [
-        [
-          0,
-          0.16
+          0.68,
+          0.14
         ],
         [
-          0.1,
-          0.07
-        ],
-        [
-          0.24,
-          0.07
-        ],
-        [
-          0.24,
+          0.68,
           0
         ],
         [
-          0.76,
+          0.86,
           0
-        ],
-        [
-          0.76,
-          0.07
-        ],
-        [
-          0.9,
-          0.07
         ],
         [
           1,
@@ -1852,191 +1554,102 @@
           1
         ]
       ],
-      "source_building_id": "NYC-ARCH-12"
+      "facade": "balconies",
+      "roof": "water-tank",
+      "source_building_id": "NYC-ARCH-08"
     },
     {
-      "id": "rooftop-garden-tower",
+      "id": "civic-cultural-complex",
       "weight": 5,
       "width": [
-        44,
-        90
+        142,
+        224
       ],
       "height": [
         0.28,
         0.56
       ],
+      "profile": [
+        [
+          0,
+          0.22
+        ],
+        [
+          0.16,
+          0.22
+        ],
+        [
+          0.16,
+          0.08
+        ],
+        [
+          0.32,
+          0.08
+        ],
+        [
+          0.32,
+          0.16
+        ],
+        [
+          0.68,
+          0.16
+        ],
+        [
+          0.68,
+          0
+        ],
+        [
+          0.88,
+          0
+        ],
+        [
+          0.88,
+          0.2
+        ],
+        [
+          1,
+          0.2
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
       "facade": "balconies",
-      "roof": "garden",
-      "profile": [
-        [
-          0,
-          0.22
-        ],
-        [
-          0.12,
-          0.22
-        ],
-        [
-          0.12,
-          0.14
-        ],
-        [
-          0.3,
-          0.14
-        ],
-        [
-          0.3,
-          0.06
-        ],
-        [
-          0.7,
-          0.06
-        ],
-        [
-          0.7,
-          0
-        ],
-        [
-          0.88,
-          0
-        ],
-        [
-          0.88,
-          0.14
-        ],
-        [
-          1,
-          0.14
-        ],
-        [
-          1,
-          1
-        ],
-        [
-          0,
-          1
-        ]
-      ],
-      "source_building_id": "NYC-ARCH-13"
+      "roof": "cornice",
+      "source_building_id": "NYC-ARCH-09"
     },
     {
-      "id": "historic-civic-building",
-      "weight": 4,
-      "width": [
-        64,
-        132
-      ],
-      "height": [
-        0.24,
-        0.5
-      ],
-      "facade": "masonry-bands",
-      "roof": "crown",
-      "profile": [
-        [
-          0,
-          0.26
-        ],
-        [
-          0.16,
-          0.26
-        ],
-        [
-          0.16,
-          0.1
-        ],
-        [
-          0.32,
-          0.1
-        ],
-        [
-          0.32,
-          0.2
-        ],
-        [
-          0.56,
-          0.2
-        ],
-        [
-          0.56,
-          0.02
-        ],
-        [
-          0.84,
-          0.02
-        ],
-        [
-          0.84,
-          0.16
-        ],
-        [
-          1,
-          0.16
-        ],
-        [
-          1,
-          1
-        ],
-        [
-          0,
-          1
-        ]
-      ],
-      "source_building_id": "NYC-ARCH-14"
-    },
-    {
-      "id": "mixed-height-commercial-complex",
+      "id": "modern-office-midrise",
       "weight": 6,
       "width": [
-        58,
-        122
+        84,
+        148
       ],
       "height": [
         0.28,
-        0.62
+        0.55
       ],
-      "facade": "loft-bays",
-      "roof": "mechanical",
       "profile": [
         [
           0,
-          0.18
+          0.1
         ],
         [
-          0.18,
-          0.18
-        ],
-        [
-          0.18,
-          0.08
-        ],
-        [
-          0.38,
-          0.08
-        ],
-        [
-          0.38,
-          0.24
-        ],
-        [
-          0.58,
-          0.24
-        ],
-        [
-          0.58,
+          0.08,
           0
         ],
         [
-          0.8,
+          0.92,
           0
-        ],
-        [
-          0.8,
-          0.12
         ],
         [
           1,
-          0.12
+          0.1
         ],
         [
           1,
@@ -2047,29 +1660,50 @@
           1
         ]
       ],
-      "source_building_id": "NYC-ARCH-15"
+      "facade": "loft-bays",
+      "roof": "vents",
+      "source_building_id": "NYC-ARCH-10"
+    },
+    {
+      "id": "waterfront-warehouse",
+      "weight": 3,
+      "width": [
+        92,
+        168
+      ],
+      "height": [
+        0.18,
+        0.36
+      ],
+      "profile": [
+        [
+          0,
+          0.18
+        ],
+        [
+          0.12,
+          0.02
+        ],
+        [
+          0.88,
+          0.02
+        ],
+        [
+          1,
+          0.18
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "facade": "industrial",
+      "roof": "water-tank",
+      "source_building_id": "NYC-ARCH-11"
     }
-  ],
-  "palette": {
-    "glass": [
-      "#75B5D1",
-      "#9CC6D6",
-      "#C1DCE7",
-      "#5E9DBE"
-    ],
-    "warmInterior": [
-      "#F1D9A9",
-      "#E6C995",
-      "#D9B88D"
-    ],
-    "stone": [
-      "#E8DCC8",
-      "#D9C8A9",
-      "#B8B4AC"
-    ],
-    "brick": [
-      "#9A5A40",
-      "#8C4A34"
-    ]
-  }
+  ]
 }
