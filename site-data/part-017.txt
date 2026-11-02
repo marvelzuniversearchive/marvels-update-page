@@ -550,7 +550,7 @@ function drawNearShoreCity(){
      The open centre is deliberately reserved for the lake. */
   if(layers.length<3)return;
   const L=layers[2], S=layers[3]||L;
-  const scroll=Math.min(H*.34,scr.y*.19);
+  const scroll=Math.min(H*.44,scr.y*.30);
   const idle=Math.sin(t*.21)*2.4;
   const y=H*.39+scroll+idle;
   const h=H*.43;
@@ -575,10 +575,13 @@ function render(e){
   const cityScale=(H*.52)/(H+EXTRA);
   ctx.save();ctx.translate(W*.5,H*.60);ctx.scale(dive,dive);ctx.translate(-W*.5,-H*.60);
   layers.forEach((L,i)=>{
-    const scrollShift=Math.min(H*.30,scr.y*L.pf*.72);
+    /* Scrolling down moves each building layer DOWN at a different depth rate. */
+    const scrollShift=Math.min(H*.42,scr.y*L.pf*1.05);
     const idleDrift=Math.sin(t*.29+i*.82)*(1.6+i*1.1);
     const shift=scrollShift+drift*L.depth*.26+idleDrift;
-    const dy=H*.075+shift,x0=-L.off+ptr.x*L.depth*6;
+    /* Horizontal pointer parallax: near layers travel farther than distant layers. */
+    const sideParallax=ptr.x*L.depth*W*(isSmall()?.026:.042);
+    const dy=H*.075+shift,x0=-L.off+sideParallax;
     ctx.globalAlpha=L.alpha*.92;
     for(let xx=x0-L.tw;xx<W+L.tw;xx+=L.tw)ctx.drawImage(L.c,xx,dy,L.tw,L.hh*cityScale);
     if(i===0&&!reduced)drawFlicker(L,dy,x0,cityScale);
