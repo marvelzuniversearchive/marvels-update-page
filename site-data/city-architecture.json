@@ -1,121 +1,1105 @@
 {
-  "version": "3.0",
-  "artDirection": "A premium New York metropolitan skyline rendered as mature cinematic 2.5D animation: contemporary glass towers, Art Deco crowns, prewar masonry, loft buildings, residential balconies and industrial rooftops. Strong architectural variety, believable proportions, atmospheric perspective and restrained Spider-Verse-inspired ink and color treatment. Never childish, toy-like, or made from repeated blocks.",
-  "motion": {
-    "backgroundDrift": 0.8,
-    "scrollParallax": 1.55,
-    "layerSpeed": [
-      0.65,
-      1.05,
-      1.5,
-      2
-    ],
-    "pointerParallax": 0.8,
-    "reflectionSweep": "slow diagonal sunlight reflections travel across glass facades",
-    "cloudMotion": "slow layered atmospheric drift",
-    "note": "Preserve independent depth layers and existing scroll response. Buildings remain anchored as a coherent city; only camera drift, parallax, cloud movement and reflected light animate."
+  "city": {
+    "name": "New York City",
+    "region": "Manhattan Core and Adjacent Waterfront Districts",
+    "scene_type": "Cinematic afternoon skyline environment",
+    "viewpoint": {
+      "type": "elevated three-quarter skyline view",
+      "camera_height_meters": 180,
+      "focal_length_mm": 35,
+      "horizon_position_percent": 68
+    },
+    "composition": {
+      "foreground": "Waterfront edge with low warehouses and piers",
+      "midground": "Dense Midtown and Financial District towers",
+      "background": "Distant supertall spires fading into atmospheric haze",
+      "skyline_rhythm": "Alternating tall spires, stepped crowns and low historic blocks"
+    },
+    "time_of_day": "Bright blue afternoon",
+    "weather": "Clear sky with light cumulus at high altitude"
   },
-  "rendering": {
-    "style": "cinematic hand-painted urban environment with subtle graphic-novel edge treatment",
-    "outline": "fine variable architectural edges; no thick cartoon outlines",
-    "facadeDepth": "recessed glazing, real floor plates, deep window reveals, side planes, overhang shadows and varied roof silhouettes",
-    "materials": [
-      "blue-grey curtain glass",
-      "limestone",
-      "warm concrete",
-      "weathered steel",
-      "red-brown brick",
-      "pale stone",
-      "dark reflective glass"
+  "visual_style": {
+    "overall_style": "Premium Japanese anime environmental artwork",
+    "influences": [
+      "Jujutsu Kaisen environmental detail",
+      "Demon Slayer atmospheric cinematography",
+      "Sophisticated architectural illustration"
     ],
-    "avoid": [
-      "toy-like rectangular blocks",
-      "oversized cartoon bevels",
-      "uniform square window grids",
-      "floating bridge pieces",
-      "random neon outlines",
-      "checkerboard lights",
-      "thick black outlines",
-      "excessive halftone",
-      "repeating identical towers"
-    ]
+    "rendering_approach": "Cel-informed shading with soft painterly gradients",
+    "line_work": {
+      "outline_weight": "Medium, thinner on distant buildings",
+      "edge_treatment": "Crisp rooflines, softened distant edges",
+      "detail_density": "High near foreground, reduced with distance"
+    },
+    "color_philosophy": "Saturated blue sky with restrained, realistic building tones",
+    "atmospheric_depth": {
+      "aerial_perspective": true,
+      "haze_color": "#B9D7EA",
+      "haze_density_near": 0.02,
+      "haze_density_far": 0.18
+    },
+    "realism_level": "Stylized realism with accurate architectural proportions"
   },
-  "palette": {
-    "sky": [
-      "#70B5E8",
-      "#8CC9F0",
-      "#B9DDF1",
-      "#E6E5D7",
-      "#F1C99D"
-    ],
-    "facades": [
-      "#7894A5",
-      "#91A5AD",
-      "#B7AA98",
-      "#687F91",
-      "#A99B8B",
-      "#8299A8",
-      "#C0B5A4",
-      "#647C8D",
-      "#9CAEB2"
-    ],
-    "glass": [
-      "#9FC8D3",
-      "#B8D3D4",
-      "#789EAF",
-      "#D3D9CF",
-      "#A7BEC5",
-      "#D7C5AA"
-    ],
-    "shadow": [
-      "#344B60",
-      "#43586A",
-      "#596B78"
-    ],
-    "warmInterior": [
-      "#F4D8A4",
-      "#EBC28A",
-      "#D8A77A"
-    ],
-    "ink": "#263F50",
-    "sun": "#FFF0C9"
+  "lighting": {
+    "primary_light": {
+      "type": "directional sunlight",
+      "direction_degrees": {
+        "azimuth": 235,
+        "elevation": 42
+      },
+      "color_temperature_kelvin": 5600,
+      "intensity": 1
+    },
+    "sky_light": {
+      "type": "ambient hemispheric",
+      "zenith_color": "#2F7FD8",
+      "horizon_color": "#A9D8F5",
+      "intensity": 0.55
+    },
+    "bounce_light": {
+      "source": "Street and glass reflections",
+      "color": "#D9E8F2",
+      "intensity": 0.12
+    },
+    "shadow_behavior": {
+      "shadow_softness": "Medium with soft edges at distance",
+      "shadow_color": "#243B5A",
+      "contact_shadow_strength": 0.6
+    },
+    "daylight_gradient": {
+      "top_to_bottom": [
+        "#3A8FE6",
+        "#7DBDF0",
+        "#D6EEFA"
+      ],
+      "vertical_falloff": "Brighter at sky, slightly deeper at street level"
+    }
   },
-  "facadeArt": {
-    "windowPhilosophy": "Windows are individually legible architectural openings, grouped by real facade systems. Mix tall office glazing, horizontal ribbon windows, recessed apartment windows, corner glass and occasional warm interior rooms. Preserve visible window frames and floor divisions.",
-    "windowRhythm": [
-      "vertical curtain-wall mullions",
-      "irregular apartment openings",
-      "horizontal ribbon glazing",
-      "deep balcony doors",
-      "corner wrap glass",
-      "double-height lobby glazing"
-    ],
-    "windowVariation": {
-      "widthJitter": 0.38,
-      "heightJitter": 0.3,
-      "rowOffset": 0.24,
-      "groupSize": [
-        2,
+  "materials": {
+    "glass": {
+      "types": [
+        "Reflective curtain wall",
+        "Tinted blue-green glass",
+        "Clear low-iron glass"
+      ],
+      "reflectivity": 0.65,
+      "tint_options": [
+        "#6FA8C7",
+        "#8FB8C9",
+        "#A7C7D6"
+      ],
+      "fresnel_strength": 0.7
+    },
+    "limestone": {
+      "color_range": [
+        "#E8DCC8",
+        "#D9C8A9",
+        "#CDBB99"
+      ],
+      "texture_scale": "Fine grain",
+      "weathering": "Light soiling near cornices"
+    },
+    "brick": {
+      "color_range": [
+        "#8C4A34",
+        "#9A5A40",
+        "#7A3F2D"
+      ],
+      "mortar_color": "#C9BBA5",
+      "texture_scale": "Medium coursing"
+    },
+    "concrete": {
+      "color_range": [
+        "#B8B4AC",
+        "#A5A199",
+        "#C4C0B8"
+      ],
+      "finish": "Board-formed or smooth precast"
+    },
+    "steel": {
+      "color_range": [
+        "#7D8791",
+        "#5E6770",
+        "#9AA3AB"
+      ],
+      "finish": "Brushed or painted metal",
+      "reflectivity": 0.4
+    },
+    "terracotta": {
+      "color_range": [
+        "#C27C5A",
+        "#B06A4C"
+      ],
+      "usage": "Accent cladding on Art Deco crowns"
+    },
+    "copper_patina": {
+      "color_range": [
+        "#4E9A8A",
+        "#6CB3A0"
+      ],
+      "usage": "Roof domes and spires"
+    },
+    "roof_surfaces": {
+      "color_range": [
+        "#4A4F55",
+        "#5C6168",
+        "#3E4348"
+      ],
+      "finish": "Tar and gravel or membrane"
+    }
+  },
+  "architecture_settings": {
+    "scale_reference": {
+      "floor_height_meters": 3.6,
+      "street_width_meters": 18,
+      "block_depth_meters": 60
+    },
+    "height_tiers": {
+      "low": {
+        "range_meters": [
+          12,
+          30
+        ],
+        "floors": "3-8"
+      },
+      "mid": {
+        "range_meters": [
+          30,
+          120
+        ],
+        "floors": "8-30"
+      },
+      "high": {
+        "range_meters": [
+          120,
+          250
+        ],
+        "floors": "30-65"
+      },
+      "supertall": {
+        "range_meters": [
+          250,
+          400
+        ],
+        "floors": "65-100"
+      }
+    },
+    "setback_rules": {
+      "minimum_setback_interval_floors": 8,
+      "maximum_setback_depth_meters": 12
+    },
+    "proportion_rules": {
+      "height_to_width_ratio": {
+        "min": 2.5,
+        "max": 9
+      },
+      "base_to_shaft_ratio": 0.18
+    },
+    "density": {
+      "building_count_target": 140,
+      "density_gradient": "Dense in center, sparse at edges"
+    },
+    "spacing": {
+      "min_gap_meters": 0,
+      "max_gap_meters": 14
+    }
+  },
+  "building_archetypes": [
+    {
+      "id": "NYC-ARCH-01",
+      "category": "Manhattan glass supertall skyscraper",
+      "style": "Contemporary supertall with setback crown",
+      "height_m": [
+        280,
+        400
+      ],
+      "width_m": [
+        45,
+        70
+      ],
+      "silhouette": "Tall tapered shaft with stepped setbacks narrowing to a slender crown",
+      "roof": "Stepped pyramidal crown with spire",
+      "facade": "Flat glass curtain wall with vertical mullion grid",
+      "windows": "Continuous ribbon glazing with 1.5m bay modules",
+      "materials": [
+        "Reflective glass",
+        "Steel mullions",
+        "Concrete base"
+      ],
+      "reflections": "High reflectivity with sky-blue gradient reflections",
+      "shading": "Strong sunlit face and deep shadow face",
+      "details": "Recessed vertical fins at corners",
+      "rooftop": [
+        "Antenna spire",
+        "Mechanical screen"
+      ],
+      "palette": [
+        "#6FA8C7",
+        "#8FB8C9",
+        "#4E5A66"
+      ],
+      "variation": {
+        "height_jitter_percent": 8,
+        "setback_count": [
+          3,
+          5
+        ],
+        "glass_tint_variant": 3
+      }
+    },
+    {
+      "id": "NYC-ARCH-02",
+      "category": "Slender tapered skyscraper",
+      "style": "Needle tower with tapered profile",
+      "height_m": [
+        220,
+        320
+      ],
+      "width_m": [
+        22,
+        35
+      ],
+      "silhouette": "Very narrow shaft tapering continuously toward the top",
+      "roof": "Pointed crown with tapering spire",
+      "facade": "Diagonally chamfered corners with flat faces",
+      "windows": "Narrow vertical strip windows",
+      "materials": [
+        "Clear glass",
+        "Steel frame"
+      ],
+      "reflections": "Bright vertical reflections on shaded side",
+      "shading": "Sharp contrast between lit and shaded faces",
+      "details": "Thin vertical ribs at corners",
+      "rooftop": [
+        "Lightning rod spire"
+      ],
+      "palette": [
+        "#8FB8C9",
+        "#A7C7D6",
+        "#5E6770"
+      ],
+      "variation": {
+        "taper_ratio": [
+          0.45,
+          0.65
+        ],
+        "spire_height_percent": [
+          8,
+          14
+        ]
+      }
+    },
+    {
+      "id": "NYC-ARCH-03",
+      "category": "Art Deco stepped skyscraper",
+      "style": "Art Deco ziggurat",
+      "height_m": [
+        180,
+        280
+      ],
+      "width_m": [
+        40,
+        60
+      ],
+      "silhouette": "Series of stepped setbacks forming a pyramidal crown",
+      "roof": "Ornamental stepped crown with finial",
+      "facade": "Vertical piers with recessed spandrels",
+      "windows": "Paired vertical windows between piers",
+      "materials": [
+        "Limestone",
+        "Terracotta",
+        "Steel"
+      ],
+      "reflections": "Subtle warm reflections in windows",
+      "shading": "Deep shadows in setbacks",
+      "details": "Chevron motifs and geometric crown ornament",
+      "rooftop": [
+        "Crown finial",
+        "Lantern tower"
+      ],
+      "palette": [
+        "#D9C8A9",
+        "#C27C5A",
+        "#7D8791"
+      ],
+      "variation": {
+        "setback_count": [
+          4,
+          7
+        ],
+        "pier_spacing_m": [
+          4,
+          6
+        ]
+      }
+    },
+    {
+      "id": "NYC-ARCH-04",
+      "category": "Curved-corner glass tower",
+      "style": "Modern curved-corner high-rise",
+      "height_m": [
+        150,
+        240
+      ],
+      "width_m": [
+        35,
+        50
+      ],
+      "silhouette": "Rectangular plan with rounded vertical corners",
+      "roof": "Flat roof with parapet ring",
+      "facade": "Continuous curved glass corners",
+      "windows": "Horizontal bands wrapping corners",
+      "materials": [
+        "Curved glass",
+        "Aluminum mullions"
+      ],
+      "reflections": "Smooth gradient reflections along curves",
+      "shading": "Soft gradients across curved surfaces",
+      "details": "Thin horizontal spandrel lines",
+      "rooftop": [
+        "Mechanical penthouse"
+      ],
+      "palette": [
+        "#A7C7D6",
+        "#6FA8C7",
+        "#D6EEFA"
+      ],
+      "variation": {
+        "corner_radius_m": [
+          4,
+          9
+        ],
+        "band_spacing_m": [
+          3.6,
+          4.2
+        ]
+      }
+    },
+    {
+      "id": "NYC-ARCH-05",
+      "category": "Twisted architectural tower",
+      "style": "Sculptural twisted tower",
+      "height_m": [
+        200,
+        300
+      ],
+      "width_m": [
+        30,
+        45
+      ],
+      "silhouette": "Floor plates rotated progressively, creating a spiral profile",
+      "roof": "Rotated crown plate",
+      "facade": "Segmented faces twisting upward",
+      "windows": "Window bays aligned to rotated planes",
+      "materials": [
+        "Glass",
+        "Steel",
+        "Concrete core"
+      ],
+      "reflections": "Shifting reflections across rotated faces",
+      "shading": "Diagonal shadow bands across facets",
+      "details": "Exposed structural diagonals",
+      "rooftop": [
+        "Rotated crown",
+        "Antenna mast"
+      ],
+      "palette": [
+        "#8FB8C9",
+        "#5E6770",
+        "#D6EEFA"
+      ],
+      "variation": {
+        "twist_degrees_total": [
+          30,
+          75
+        ],
+        "facet_count": [
+          4,
+          8
+        ]
+      }
+    },
+    {
+      "id": "NYC-ARCH-06",
+      "category": "Terraced skyscraper",
+      "style": "Terraced modern tower",
+      "height_m": [
+        120,
+        200
+      ],
+      "width_m": [
+        40,
+        65
+      ],
+      "silhouette": "Series of open terraces stepping back at regular intervals",
+      "roof": "Top terrace with planting",
+      "facade": "Stacked volumes with cantilevered slabs",
+      "windows": "Recessed window walls behind terraces",
+      "materials": [
+        "Glass",
+        "Concrete slabs",
+        "Steel railings"
+      ],
+      "reflections": "Layered reflections in recessed glass",
+      "shading": "Deep shadow beneath cantilevers",
+      "details": "Thin concrete slab edges",
+      "rooftop": [
+        "Garden terrace",
+        "Pergola"
+      ],
+      "palette": [
+        "#B8B4AC",
+        "#6FA8C7",
+        "#4E8A5A"
+      ],
+      "variation": {
+        "terrace_count": [
+          4,
+          8
+        ],
+        "cantilever_depth_m": [
+          2,
+          5
+        ]
+      }
+    },
+    {
+      "id": "NYC-ARCH-07",
+      "category": "Classic limestone New York building",
+      "style": "Beaux-Arts limestone block",
+      "height_m": [
+        30,
+        60
+      ],
+      "width_m": [
+        25,
+        40
+      ],
+      "silhouette": "Rectangular mass with ornamented cornice",
+      "roof": "Mansard or flat roof with cornice",
+      "facade": "Flat limestone face with projecting cornice",
+      "windows": "Tall arched and rectangular windows in rhythm",
+      "materials": [
+        "Limestone",
+        "Cast iron details"
+      ],
+      "reflections": "Minimal reflection, soft sheen",
+      "shading": "Warm lit face with cornice shadows",
+      "details": "Carved cornice brackets and balustrades",
+      "rooftop": [
+        "Cornice parapet",
+        "Chimney stacks"
+      ],
+      "palette": [
+        "#E8DCC8",
+        "#D9C8A9",
+        "#9AA3AB"
+      ],
+      "variation": {
+        "cornice_projection_m": [
+          0.6,
+          1.4
+        ],
+        "window_bay_count": [
+          3,
+          6
+        ]
+      }
+    },
+    {
+      "id": "NYC-ARCH-08",
+      "category": "Pre-war residential building",
+      "style": "Pre-war apartment block",
+      "height_m": [
+        40,
+        80
+      ],
+      "width_m": [
+        30,
+        50
+      ],
+      "silhouette": "Setback stepped mass with ornamental top",
+      "roof": "Flat roof with water tower",
+      "facade": "Brick and stone facade with recessed balconies",
+      "windows": "Regular grid of double-hung windows",
+      "materials": [
+        "Brick",
+        "Limestone trim",
+        "Iron railings"
+      ],
+      "reflections": "Low reflectivity, matte windows",
+      "shading": "Balcony shadows on lower floors",
+      "details": "Limestone string courses and cornice",
+      "rooftop": [
+        "Water tower",
+        "Setback terrace"
+      ],
+      "palette": [
+        "#9A5A40",
+        "#C9BBA5",
+        "#5E6770"
+      ],
+      "variation": {
+        "balcony_density": [
+          0.2,
+          0.6
+        ],
+        "setback_levels": [
+          1,
+          3
+        ]
+      }
+    },
+    {
+      "id": "NYC-ARCH-09",
+      "category": "Brownstone apartment block",
+      "style": "Brownstone row building",
+      "height_m": [
+        14,
+        24
+      ],
+      "width_m": [
+        6,
+        9
+      ],
+      "silhouette": "Narrow low-rise with stoop and flat top",
+      "roof": "Flat roof with parapet",
+      "facade": "Flat stone front with stoop projection",
+      "windows": "Tall narrow windows aligned in columns",
+      "materials": [
+        "Brownstone",
+        "Wood trim",
+        "Iron railings"
+      ],
+      "reflections": "Minimal, soft window sheen",
+      "shading": "Stoop shadow on entry",
+      "details": "Stone lintels and iron stoop railings",
+      "rooftop": [
+        "Cornice parapet",
+        "Rooftop access"
+      ],
+      "palette": [
+        "#8C5A44",
+        "#A56E55",
+        "#C9BBA5"
+      ],
+      "variation": {
+        "stoop_height_m": [
+          0.8,
+          1.6
+        ],
+        "facade_color_variant": 4
+      }
+    },
+    {
+      "id": "NYC-ARCH-10",
+      "category": "Industrial loft building",
+      "style": "Cast-iron loft conversion",
+      "height_m": [
+        25,
+        45
+      ],
+      "width_m": [
+        30,
+        60
+      ],
+      "silhouette": "Long horizontal mass with rooftop bulkhead",
+      "roof": "Flat roof with bulkhead",
+      "facade": "Large window openings in iron frame",
+      "windows": "Tall industrial windows with iron mullions",
+      "materials": [
+        "Brick",
+        "Cast iron",
+        "Steel"
+      ],
+      "reflections": "Moderate reflection on large panes",
+      "shading": "Strong horizontal shadow under cornice",
+      "details": "Exposed iron columns and rivets",
+      "rooftop": [
+        "Bulkhead",
+        "Water tank"
+      ],
+      "palette": [
+        "#7A3F2D",
+        "#5E6770",
+        "#B8B4AC"
+      ],
+      "variation": {
+        "window_module_m": [
+          2.5,
+          3.5
+        ],
+        "bulkhead_size_percent": [
+          10,
+          25
+        ]
+      }
+    },
+    {
+      "id": "NYC-ARCH-11",
+      "category": "Waterfront warehouse",
+      "style": "Pier-side warehouse",
+      "height_m": [
+        12,
+        28
+      ],
+      "width_m": [
+        50,
+        90
+      ],
+      "silhouette": "Low wide mass with pitched or flat roof",
+      "roof": "Gabled or flat roof with clerestory",
+      "facade": "Long flat walls with loading bays",
+      "windows": "Regular clerestory and loading openings",
+      "materials": [
+        "Brick",
+        "Corrugated steel",
+        "Concrete"
+      ],
+      "reflections": "Minimal reflections",
+      "shading": "Strong horizontal shadows along base",
+      "details": "Loading doors and steel canopies",
+      "rooftop": [
+        "Clerestory monitor",
+        "Vents"
+      ],
+      "palette": [
+        "#8C4A34",
+        "#7D8791",
+        "#B8B4AC"
+      ],
+      "variation": {
+        "roof_pitch_degrees": [
+          0,
+          22
+        ],
+        "bay_count": [
+          4,
+          10
+        ]
+      }
+    },
+    {
+      "id": "NYC-ARCH-12",
+      "category": "Modern office building",
+      "style": "Contemporary corporate office",
+      "height_m": [
+        90,
+        160
+      ],
+      "width_m": [
+        40,
+        60
+      ],
+      "silhouette": "Rectangular slab with cantilevered upper volume",
+      "roof": "Flat roof with mechanical screen",
+      "facade": "Glass and stone panel grid",
+      "windows": "Regular curtain wall bays",
+      "materials": [
+        "Glass",
+        "Stone panels",
+        "Aluminum"
+      ],
+      "reflections": "Moderate reflections with sky tint",
+      "shading": "Cantilever shadow on lower floors",
+      "details": "Thin projecting fins",
+      "rooftop": [
+        "Mechanical screen",
+        "Antenna"
+      ],
+      "palette": [
+        "#A7C7D6",
+        "#D9C8A9",
+        "#5E6770"
+      ],
+      "variation": {
+        "cantilever_m": [
+          4,
+          10
+        ],
+        "fin_spacing_m": [
+          1.5,
+          2.5
+        ]
+      }
+    },
+    {
+      "id": "NYC-ARCH-13",
+      "category": "Rooftop garden tower",
+      "style": "Green-roofed mid-rise",
+      "height_m": [
+        60,
+        110
+      ],
+      "width_m": [
+        30,
+        45
+      ],
+      "silhouette": "Tower with planted terraced crown",
+      "roof": "Planted roof with pergolas and trees",
+      "facade": "Glass and planter-lined balconies",
+      "windows": "Balcony-framed glazing",
+      "materials": [
+        "Glass",
+        "Steel",
+        "Planting"
+      ],
+      "reflections": "Soft reflections with green tint",
+      "shading": "Canopy shadows at roofline",
+      "details": "Planter boxes and trellis details",
+      "rooftop": [
+        "Garden",
+        "Pergola",
+        "Tree canopy"
+      ],
+      "palette": [
+        "#4E8A5A",
+        "#6FA8C7",
+        "#B8B4AC"
+      ],
+      "variation": {
+        "garden_coverage_percent": [
+          30,
+          70
+        ],
+        "planter_depth_m": [
+          0.8,
+          1.6
+        ]
+      }
+    },
+    {
+      "id": "NYC-ARCH-14",
+      "category": "Historic civic building",
+      "style": "Neoclassical civic hall",
+      "height_m": [
+        40,
+        90
+      ],
+      "width_m": [
+        50,
+        90
+      ],
+      "silhouette": "Wide monumental mass with central dome or drum",
+      "roof": "Central dome with balustrade",
+      "facade": "Columned portico with symmetrical wings",
+      "windows": "Symmetrical arched windows",
+      "materials": [
+        "Limestone",
+        "Marble",
+        "Copper roof"
+      ],
+      "reflections": "Minimal, warm stone sheen",
+      "shading": "Deep portico shadow",
+      "details": "Columns, pediments and balustrades",
+      "rooftop": [
+        "Dome",
+        "Lantern",
+        "Statue plinths"
+      ],
+      "palette": [
+        "#E8DCC8",
+        "#CDBB99",
+        "#4E9A8A"
+      ],
+      "variation": {
+        "dome_diameter_percent": [
+          20,
+          40
+        ],
+        "column_count": [
+          6,
+          12
+        ]
+      }
+    },
+    {
+      "id": "NYC-ARCH-15",
+      "category": "Mixed-height commercial complex",
+      "style": "Composite commercial block",
+      "height_m": [
+        50,
+        140
+      ],
+      "width_m": [
+        60,
+        110
+      ],
+      "silhouette": "Several connected masses at varied heights",
+      "roof": "Mixed flat roofs and stepped volumes",
+      "facade": "Varied facade planes per mass",
+      "windows": "Mixed glazing and masonry bays",
+      "materials": [
+        "Glass",
+        "Brick",
+        "Concrete"
+      ],
+      "reflections": "Varied reflection per mass",
+      "shading": "Staggered shadows between masses",
+      "details": "Varied cornices and canopies",
+      "rooftop": [
+        "Mechanical units",
+        "Signage bases"
+      ],
+      "palette": [
+        "#8FB8C9",
+        "#9A5A40",
+        "#B8B4AC"
+      ],
+      "variation": {
+        "mass_count": [
+          2,
+          4
+        ],
+        "height_offset_m": [
+          10,
+          40
+        ]
+      }
+    }
+  ],
+  "facade_systems": [
+    {
+      "id": "FAC-01",
+      "name": "Reflective glass curtain wall",
+      "applies_to": [
+        "NYC-ARCH-01",
+        "NYC-ARCH-02",
+        "NYC-ARCH-04"
+      ],
+      "structure": "Aluminum mullion grid with spandrel panels",
+      "bay_width_m": 1.5,
+      "floor_height_m": 3.6,
+      "reflectivity": 0.65,
+      "vertical_divisions": 4,
+      "recess_depth_m": 0.3
+    },
+    {
+      "id": "FAC-02",
+      "name": "Stone-clad Deco piers",
+      "applies_to": [
+        "NYC-ARCH-03"
+      ],
+      "structure": "Limestone piers with recessed spandrels",
+      "pier_spacing_m": 5,
+      "recess_depth_m": 0.6,
+      "ornament": "Chevron and geometric reliefs"
+    },
+    {
+      "id": "FAC-03",
+      "name": "Brick and limestone masonry",
+      "applies_to": [
+        "NYC-ARCH-07",
+        "NYC-ARCH-08",
+        "NYC-ARCH-09"
+      ],
+      "structure": "Load-bearing brick with stone trim",
+      "course_height_mm": 75,
+      "trim_projection_m": 0.15,
+      "window_recess_m": 0.2
+    },
+    {
+      "id": "FAC-04",
+      "name": "Mixed curtain and masonry",
+      "applies_to": [
+        "NYC-ARCH-12",
+        "NYC-ARCH-15"
+      ],
+      "structure": "Glass panels framed by stone or brick bays",
+      "panel_ratio_glass_to_solid": [
+        0.55,
+        0.75
+      ],
+      "recess_depth_m": 0.25
+    },
+    {
+      "id": "FAC-05",
+      "name": "Industrial iron-frame facade",
+      "applies_to": [
+        "NYC-ARCH-10",
+        "NYC-ARCH-11"
+      ],
+      "structure": "Iron frame with large openings and brick infill",
+      "window_module_m": 3,
+      "frame_color": "#5E6770"
+    }
+  ],
+  "roof_systems": [
+    {
+      "id": "ROOF-01",
+      "name": "Stepped pyramidal crown",
+      "applies_to": [
+        "NYC-ARCH-01",
+        "NYC-ARCH-03"
+      ],
+      "step_count": [
+        3,
         6
       ],
-      "blankWallChance": 0.2,
-      "litWindowChance": 0.17,
-      "reflectionChance": 0.34,
-      "darkRecessChance": 0.3
+      "step_height_m": [
+        4,
+        8
+      ]
     },
-    "detailLanguage": [
-      "projecting balcony slabs",
-      "vertical sun-shading fins",
-      "horizontal concrete floor bands",
-      "corner mullions",
-      "recessed roof terraces",
-      "mechanical penthouses",
-      "water towers",
-      "steel rooftop frames",
-      "Art Deco crown setbacks",
-      "podium storefront glazing"
+    {
+      "id": "ROOF-02",
+      "name": "Tapered spire",
+      "applies_to": [
+        "NYC-ARCH-02"
+      ],
+      "spire_height_percent": [
+        8,
+        14
+      ],
+      "taper_profile": "Linear"
+    },
+    {
+      "id": "ROOF-03",
+      "name": "Rotated plate crown",
+      "applies_to": [
+        "NYC-ARCH-05"
+      ],
+      "rotation_increment_degrees": [
+        4,
+        8
+      ]
+    },
+    {
+      "id": "ROOF-04",
+      "name": "Planted terrace roof",
+      "applies_to": [
+        "NYC-ARCH-06",
+        "NYC-ARCH-13"
+      ],
+      "garden_coverage_percent": [
+        30,
+        70
+      ],
+      "pergola_count": [
+        1,
+        3
+      ]
+    },
+    {
+      "id": "ROOF-05",
+      "name": "Mansard and cornice roof",
+      "applies_to": [
+        "NYC-ARCH-07"
+      ],
+      "mansard_pitch_degrees": [
+        55,
+        70
+      ]
+    },
+    {
+      "id": "ROOF-06",
+      "name": "Flat roof with bulkhead",
+      "applies_to": [
+        "NYC-ARCH-08",
+        "NYC-ARCH-10",
+        "NYC-ARCH-12",
+        "NYC-ARCH-04"
+      ],
+      "bulkhead_size_percent": [
+        10,
+        25
+      ],
+      "parapet_height_m": [
+        0.9,
+        1.2
+      ]
+    },
+    {
+      "id": "ROOF-07",
+      "name": "Dome and lantern",
+      "applies_to": [
+        "NYC-ARCH-14"
+      ],
+      "dome_diameter_percent": [
+        20,
+        40
+      ],
+      "drum_height_m": [
+        6,
+        12
+      ],
+      "material": "Copper patina"
+    }
+  ],
+  "reflection_systems": {
+    "glass_reflection_model": "Fresnel-weighted sky reflection",
+    "reflected_sky_gradient": [
+      "#A9D8F5",
+      "#6FA8C7",
+      "#2F7FD8"
     ],
-    "lighting": "cool sky reflections across glass with selective warm rooms; no uniform glowing checkerboard"
+    "reflection_intensity": {
+      "curtain_wall": 0.65,
+      "tinted_glass": 0.5,
+      "masonry_windows": 0.15
+    },
+    "cross_building_reflections": {
+      "enabled": true,
+      "strength": 0.08,
+      "falloff_meters": 60
+    },
+    "water_reflections": {
+      "enabled": true,
+      "waterfront_strength": 0.35
+    }
+  },
+  "variation_rules": {
+    "random_seed_policy": "Deterministic per building ID",
+    "global_variation": {
+      "height_jitter_percent": 8,
+      "width_jitter_percent": 6,
+      "color_shift_range": 0.04
+    },
+    "adjacency_rules": {
+      "avoid_identical_neighbors": true,
+      "max_consecutive_same_archetype": 1,
+      "tall_next_to_low_preferred": true
+    },
+    "silhouette_diversity": {
+      "minimum_distinct_profiles_per_block": 4,
+      "minimum_roofline_variations": 5
+    },
+    "density_zones": {
+      "midtown_core": {
+        "archetype_weights": {
+          "NYC-ARCH-01": 0.2,
+          "NYC-ARCH-02": 0.15,
+          "NYC-ARCH-03": 0.1,
+          "NYC-ARCH-12": 0.15
+        }
+      },
+      "waterfront": {
+        "archetype_weights": {
+          "NYC-ARCH-11": 0.25,
+          "NYC-ARCH-10": 0.15,
+          "NYC-ARCH-09": 0.1
+        }
+      },
+      "historic_district": {
+        "archetype_weights": {
+          "NYC-ARCH-07": 0.2,
+          "NYC-ARCH-08": 0.2,
+          "NYC-ARCH-09": 0.15,
+          "NYC-ARCH-14": 0.05
+        }
+      }
+    }
+  },
+  "quality_settings": {
+    "detail_level": "High",
+    "edge_antialiasing": "Enabled",
+    "reflection_quality": "High",
+    "atmospheric_perspective": "Enabled",
+    "max_building_count": 140,
+    "min_building_count": 110,
+    "lod_levels": 3,
+    "color_space": "sRGB",
+    "output_resolution": "3840x2160"
   },
   "archetypes": [
     {
@@ -180,7 +1164,8 @@
         ]
       ],
       "facade": "glass-bands",
-      "roof": "crown"
+      "roof": "crown",
+      "source_building_id": "NYC-ARCH-01"
     },
     {
       "id": "slender-tapered-skyscraper",
@@ -236,7 +1221,8 @@
         ]
       ],
       "facade": "vertical-bays",
-      "roof": "spire"
+      "roof": "spire",
+      "source_building_id": "NYC-ARCH-02"
     },
     {
       "id": "curved-corner-curtain-wall",
@@ -287,8 +1273,9 @@
           1
         ]
       ],
-      "facade": "curtain-wall",
-      "roof": "flat"
+      "facade": "vertical-bays",
+      "roof": "crown",
+      "source_building_id": "NYC-ARCH-03"
     },
     {
       "id": "art-deco-setback-tower",
@@ -363,8 +1350,9 @@
           1
         ]
       ],
-      "facade": "vertical-bays",
-      "roof": "crown"
+      "facade": "curtain-wall",
+      "roof": "flat",
+      "source_building_id": "NYC-ARCH-04"
     },
     {
       "id": "prewar-limestone-apartment",
@@ -403,8 +1391,9 @@
           1
         ]
       ],
-      "facade": "masonry-bands",
-      "roof": "cornice"
+      "facade": "glass-bands",
+      "roof": "crown",
+      "source_building_id": "NYC-ARCH-05"
     },
     {
       "id": "brownstone-residential-block",
@@ -444,7 +1433,8 @@
         ]
       ],
       "facade": "balconies",
-      "roof": "water-tank"
+      "roof": "garden",
+      "source_building_id": "NYC-ARCH-06"
     },
     {
       "id": "terraced-residential-highrise",
@@ -507,8 +1497,9 @@
           1
         ]
       ],
-      "facade": "balconies",
-      "roof": "garden"
+      "facade": "masonry-bands",
+      "roof": "cornice",
+      "source_building_id": "NYC-ARCH-07"
     },
     {
       "id": "industrial-loft-building",
@@ -563,8 +1554,9 @@
           1
         ]
       ],
-      "facade": "loft-bays",
-      "roof": "vents"
+      "facade": "balconies",
+      "roof": "water-tank",
+      "source_building_id": "NYC-ARCH-08"
     },
     {
       "id": "civic-cultural-complex",
@@ -627,8 +1619,9 @@
           1
         ]
       ],
-      "facade": "atrium-grid",
-      "roof": "mechanical"
+      "facade": "balconies",
+      "roof": "cornice",
+      "source_building_id": "NYC-ARCH-09"
     },
     {
       "id": "modern-office-midrise",
@@ -667,8 +1660,9 @@
           1
         ]
       ],
-      "facade": "glass-bands",
-      "roof": "terrace"
+      "facade": "loft-bays",
+      "roof": "vents",
+      "source_building_id": "NYC-ARCH-10"
     },
     {
       "id": "waterfront-warehouse",
@@ -708,7 +1702,8 @@
         ]
       ],
       "facade": "industrial",
-      "roof": "water-tank"
+      "roof": "water-tank",
+      "source_building_id": "NYC-ARCH-11"
     }
   ]
 }
