@@ -27,15 +27,22 @@ ALLOWED = {
     "ew.com": "Entertainment Weekly",
     "indianexpress.com": "The Indian Express",
     "timesofindia.indiatimes.com": "Times of India",
+    "rottentomatoes.com": "Rotten Tomatoes",
+    "imdb.com": "IMDb",
 }
-QUERY = 'Marvel OR "Marvel Studios" OR MCU OR Avengers OR Spider-Man OR X-Men OR "Fantastic Four" OR Daredevil OR Deadpool when:30d'
-FEED_URL = "https://news.google.com/rss/search?" + urllib.parse.urlencode({
-    "q": QUERY, "hl": "en-IN", "gl": "IN", "ceid": "IN:en"
-})
+QUERIES = [
+    'Marvel OR "Marvel Studios" OR MCU OR Avengers OR Spider-Man OR X-Men OR "Fantastic Four" OR Daredevil OR Deadpool when:30d',
+    '"Vision Quest" Marvel when:365d',
+    'Marvel "Rotten Tomatoes" score review movie series when:30d',
+    'Marvel IMDb rating movie series cast release when:30d',
+    'site:rottentomatoes.com Marvel movie series review score when:30d',
+    'site:imdb.com Marvel movie series rating cast release when:30d',
+    'Marvel animation comics games Sony Spider-Man television news when:30d',
+]
 UA = "Mozilla/5.0 (compatible; MarvelUniverseArchiveNews/2.0)"
 MAX_ARTICLES = 60
 ENRICH_LIMIT = 18
-MARVEL_TERMS = re.compile(r"\b(marvel|mcu|avengers|spider[ -]?man|x[ -]?men|fantastic four|deadpool|daredevil|wolverine|thunderbolts|blade|black panther|captain america|iron man|thor|guardians of the galaxy)\b", re.I)
+MARVEL_TERMS = re.compile(r"\b(marvel|mcu|avengers|spider[ -]?man|x[ -]?men|fantastic four|deadpool|daredevil|wolverine|thunderbolts|blade|black panther|captain america|iron man|thor|guardians of the galaxy|vision quest)\b", re.I)
 
 def clean(value):
     value = re.sub(r"<[^>]+>", " ", value or "")
@@ -66,6 +73,8 @@ def allowed_source(item):
 
 def category_for(title):
     text = title.lower()
+    if "vision quest" in text: return "Vision Quest"
+    if re.search(r"\b(rotten tomatoes|imdb|tomatometer|audience score|rating|ratings|review|reviews|score)\b", text): return "Ratings"
     if re.search(r"\b(trailer|teaser|first look|clip)\b", text): return "Trailers"
     if re.search(r"\b(game|gaming|playstation|xbox|marvel rivals|snap)\b", text): return "Games"
     if re.search(r"\b(casting|cast|joins|star as|to play|actor|actress)\b", text): return "Casting"
@@ -139,34 +148,51 @@ def related_characters(text):
     return [name for name in known if name.lower() in low][:8]
 
 def main():
-    req = urllib.request.Request(FEED_URL, headers={"User-Agent": UA, "Accept": "application/rss+xml, application/xml"})
-    with urllib.request.urlopen(req, timeout=25) as response:
-        root = ET.fromstring(response.read())
-
     articles, seen = [], set()
-    for item in root.findall("./channel/item"):
-        source = allowed_source(item)
-        if not source: continue
-        raw_title = get_xml_text(item, "title")
-        title = re.sub(r"\s+-\s+[^-]{2,45}$", "", raw_title).strip()
-        if not title or not MARVEL_TERMS.search(title): continue
-        link = safe_http_url(get_xml_text(item, "link"))
-        if not link: continue
-        key = re.sub(r"[^a-z0-9]", "", title.lower())
-        if key in seen: continue
-        seen.add(key)
-        guid = get_xml_text(item, "guid") or link
-        summary = get_xml_text(item, "description")[:420]
-        articles.append({
-            "id": key[:80], "title": title, "summary": summary,
-            "image_url": rss_image(item), "article_url": link,
-            "source": source, "source_id": re.sub(r"[^a-z0-9]+", "_", source.lower()).strip("_"),
-            "category": category_for(title), "published_at": parse_date(get_xml_text(item, "pubDate")),
-            "status": status_for(source, title), "tags": related_characters(title + " " + summary),
-            "related_characters": related_characters(title + " " + summary),
-            "external_id": guid[:200],
+    # Query separate topic feeds so a niche project like Vision Quest or a
+    # ratings story is not buried by the broad Marvel search.
+    for query in QUERIES:
+        feed_url = "https://news.google.com/rss/search?" + urllib.parse.urlencode({
+            "q": query, "hl": "en-IN", "gl": "IN", "ceid": "IN:en"
         })
-
+        req = urllib.request.Request(feed_url, headers={"User-Agent": UA, "Accept": "application/rss+xml, application/xml"})
+        try:
+            with urllib.request.urlopen(req, timeout=25) as response:
+                root = ET.fromstring(response.read())
+        except Exception as exc:
+            print("Search feed failed:", query, str(exc)[:180])
+            continue
+        for item in root.findall("./channel/item"):
+            source = allowed_source(item)
+            if not source: continue
+            raw_title = get_xml_text(item, "title")
+            title = re.sub(r"\s+-\s+[^-]{2,45}$", "", raw_title).strip()
+            if not title or not MARVEL_TERMS.search(title): continue
+            link = safe_http_url(get_xml_text(item, "link"))
+            if not link: continue
+            key = re.sub(r"[^a-z0-9]", "", title.lower())
+            if key in seen: continue
+            seen.add(key)
+            guid = get_xml_text(item, "guid") or link
+            summary = get_xml_text(item, "description")[:420]
+            coverage_tags = []
+            low_text = (title + " " + summary + " " + source).lower()
+            if "vision quest" in low_text: coverage_tags.append("Vision Quest")
+            if any(term in low_text for term in ("imdb", "rotten tomatoes", "tomatometer", "audience score")):
+                coverage_tags.append("Ratings & Reviews")
+            if "imdb" in low_text or source == "IMDb": coverage_tags.append("IMDb")
+            if "rotten tomatoes" in low_text or source == "Rotten Tomatoes": coverage_tags.append("Rotten Tomatoes")
+            articles.append({
+                "id": key[:80], "title": title, "summary": summary,
+                "coverage_tags": coverage_tags,
+                "image_url": rss_image(item), "article_url": link,
+                "source": source, "source_id": re.sub(r"[^a-z0-9]+", "_", source.lower()).strip("_"),
+                "category": category_for(title), "published_at": parse_date(get_xml_text(item, "pubDate")),
+                "status": status_for(source, title), "tags": related_characters(title + " " + summary),
+                "related_characters": related_characters(title + " " + summary),
+                "external_id": guid[:200],
+            })
+    
     articles.sort(key=lambda a: a["published_at"], reverse=True)
     # Enrich a small newest-first batch with publisher metadata; feed collection
     # still succeeds when an individual publisher blocks automated requests.
@@ -189,7 +215,7 @@ def main():
             old = {}
     for article in articles:
         old[article["id"]] = article
-    merged = sorted(old.values(), key=lambda a: a.get("published_at", ""), reverse=True)[:MAX_ARTICLES]
+    merged = sorted(old.values(), key=lambda a: a.get("published_at", ""), reverse=True)[:150]
     if not merged:
         raise RuntimeError("No valid Marvel stories returned; keeping the previous feed unchanged.")
 
@@ -205,6 +231,7 @@ def main():
     payload = {
         "generated_at": generated_at,
         "source_count": len(ALLOWED),
+        "search_topics": ["Marvel Universe", "Vision Quest", "IMDb", "Rotten Tomatoes", "Movies & TV", "Comics", "Animation", "Games"],
         "article_count": len(merged),
         "articles": merged,
     }
