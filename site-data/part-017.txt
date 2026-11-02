@@ -103,10 +103,10 @@ function buildSky(){
   sky=mk(W*Q,H*Q);
   const x=sky.getContext('2d');x.setTransform(Q,0,0,Q,0,0);
   const g=x.createLinearGradient(0,0,0,H);
-  [[0,'#70B5E8'],[.22,'#8CC9F0'],[.44,'#B9DDF1'],[.63,'#E6E5D7'],[.82,'#F1C99D'],[1,'#A9C6D6']].forEach(([p,c])=>g.addColorStop(p,c));
+  [[0,'#4C9FE8'],[.28,'#78BCEB'],[.58,'#B6DDF2'],[1,'#E4F1F5']].forEach(([p,c])=>g.addColorStop(p,c));
   x.fillStyle=g;x.fillRect(0,0,W,H);
-  const sun=x.createRadialGradient(W*.72,H*.34,2,W*.72,H*.34,Math.max(W,H)*.48);
-  sun.addColorStop(0,'rgba(255,246,211,.78)');sun.addColorStop(.3,'rgba(255,225,173,.26)');sun.addColorStop(1,'rgba(255,255,255,0)');
+  const sun=x.createRadialGradient(W*.76,H*.25,2,W*.76,H*.25,Math.max(W,H)*.42);
+  sun.addColorStop(0,'rgba(255,250,225,.48)');sun.addColorStop(.32,'rgba(255,246,220,.16)');sun.addColorStop(1,'rgba(255,255,255,0)');
   x.fillStyle=sun;x.fillRect(0,0,W,H);
   /* Broad illustrated cloud strokes add depth without turning the sky into a flat gradient. */
   for(let i=0;i<22;i++){
@@ -443,6 +443,46 @@ function drawClouds(){
   for(const c of clouds){ctx.globalAlpha=c.a;ctx.drawImage(c.img,c.x,c.y,c.w,c.w*.375)}
   ctx.globalAlpha=1;
 }
+/* Wide anime lake: a visible body of water between the viewer and the far-shore skyline. */
+function drawLake(){
+  const shore=H*.575;
+  ctx.save();
+  ctx.beginPath();
+  ctx.moveTo(0,shore+H*.018);
+  ctx.quadraticCurveTo(W*.5,shore-H*.025,W,shore+H*.018);
+  ctx.lineTo(W,H);ctx.lineTo(0,H);ctx.closePath();ctx.clip();
+  const water=ctx.createLinearGradient(0,shore,0,H);
+  water.addColorStop(0,'#86C4E4');
+  water.addColorStop(.22,'#69ACD2');
+  water.addColorStop(.62,'#4E91BD');
+  water.addColorStop(1,'#376F9D');
+  ctx.fillStyle=water;ctx.fillRect(0,shore,W,H-shore);
+  /* Distant shoreline glow and a soft anime-painted reflection field. */
+  const glow=ctx.createLinearGradient(0,shore,0,shore+H*.16);
+  glow.addColorStop(0,'rgba(239,250,250,.34)');
+  glow.addColorStop(1,'rgba(239,250,250,0)');
+  ctx.fillStyle=glow;ctx.fillRect(0,shore,W,H*.16);
+  for(let i=0;i<34;i++){
+    const y=shore+H*(.035+i*.012);
+    const width=W*(.035+((i*17)%13)*.012);
+    const x=((i*97+t*8)%(W+width))-width*.5;
+    const alpha=.07+.07*(.5+.5*Math.sin(t*.55+i*1.7));
+    ctx.strokeStyle=`rgba(235,249,255,${alpha})`;
+    ctx.lineWidth=i<8?1.4:1;
+    ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x+width,y);ctx.stroke();
+  }
+  /* Broken vertical glints, not a mirrored or photo-real reflection. */
+  for(let i=0;i<17;i++){
+    const x=(i/16)*W+Math.sin(t*.18+i)*W*.008;
+    const y=shore+H*.05+((i*23)%9)*H*.018;
+    ctx.strokeStyle='rgba(226,246,255,.12)';
+    ctx.lineWidth=1.2;
+    ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x+Math.sin(i+t*.25)*5,y+H*.11);ctx.stroke();
+  }
+  ctx.restore();
+  ctx.strokeStyle='rgba(238,250,255,.42)';ctx.lineWidth=1.5;
+  ctx.beginPath();ctx.moveTo(0,shore+H*.018);ctx.quadraticCurveTo(W*.5,shore-H*.025,W,shore+H*.018);ctx.stroke();
+}
 function drawGlows(){
   const P=[[.68+.04*Math.sin(t*.05),.5],[.2+.1*Math.cos(t*.042),.2+.06*Math.sin(t*.07)],[.9+.05*Math.sin(t*.031+1),.22]];
   ctx.save();ctx.globalCompositeOperation='screen';
@@ -467,14 +507,14 @@ function drawPerspective(e){
   }
   ctx.restore();
 }
-function drawFlicker(L,dy,x0){
+function drawFlicker(L,dy,x0,scale=1){
   if(!L.wins.length)return;
   ctx.fillStyle=C.gold;
   for(let x=x0-L.tw;x<W+L.tw;x+=L.tw){
     for(let i=0;i<L.wins.length;i+=2){
       const w=L.wins[i];const a=.5+.5*Math.sin(t*(.6+i*.13)+i);
       if(a<.55)continue;
-      ctx.globalAlpha=.8*a;ctx.fillRect(x+w.x,dy+w.y,3.2,4.6);
+      ctx.globalAlpha=.8*a;ctx.fillRect(x+w.x*scale,dy+w.y*scale,3.2*scale,4.6*scale);
     }
   }
   ctx.globalAlpha=1;
@@ -510,18 +550,22 @@ function render(e){
   ctx.globalAlpha=1;ctx.globalCompositeOperation='source-over';
   if(sky)ctx.drawImage(sky,0,0,W,H);
   drawClouds();
-  /* Layered illustrated skyline: gentle camera drift and parallax. */
-  const dive=1+.018*(.5+.5*Math.sin(t*.22))+e*.004;
-  const drift=7+8*Math.sin(t*.035)+e*8+ptr.y*5;
-  ctx.save();ctx.translate(W*.5,H);ctx.scale(dive,dive);ctx.translate(-W*.5,-H);
+  drawLake();
+  /* Distant far-shore skyline: the reduced scale leaves the lake clearly visible in front. */
+  const dive=1+.012*(.5+.5*Math.sin(t*.22))+e*.003;
+  const drift=3+4*Math.sin(t*.035)+e*5+ptr.y*3;
+  const cityScale=(H*.60)/(H+EXTRA);
+  ctx.save();ctx.translate(W*.5,H*.60);ctx.scale(dive,dive);ctx.translate(-W*.5,-H*.60);
   layers.forEach((L,i)=>{
-    const shift=Math.min(EXTRA-18,scr.y*L.pf*1.28+drift*L.depth*.72);
-    const dy=-shift,x0=-L.off+ptr.x*L.depth*12;
+    const scrollShift=Math.min(H*.24,scr.y*L.pf*.52);
+    const idleDrift=Math.sin(t*.34+i*.82)*(1.8+i*1.35);
+    const shift=scrollShift+drift*L.depth*.32+idleDrift;
+    const dy=H*.015+shift,x0=-L.off+ptr.x*L.depth*8;
     ctx.globalAlpha=L.alpha;
-    for(let xx=x0-L.tw;xx<W+L.tw;xx+=L.tw)ctx.drawImage(L.c,xx,dy,L.tw,L.hh);
-    if(i===0&&!reduced)drawFlicker(L,dy,x0);
+    for(let xx=x0-L.tw;xx<W+L.tw;xx+=L.tw)ctx.drawImage(L.c,xx,dy,L.tw,L.hh*cityScale);
+    if(i===0&&!reduced)drawFlicker(L,dy,x0,cityScale);
   });
-  /* Moving anime sunlight: a soft, diagonal reflection sweep travels across the glass skyline. */
+  /* A slow moving anime light pass keeps the distant glass alive. */
   drawAnimeSunSweep(e);
   ctx.restore();ctx.globalAlpha=1;
   /* City remains clean and architectural; no floating particle confetti. */
