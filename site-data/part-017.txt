@@ -206,6 +206,33 @@ function toonBlock(x,cx,top,w,h,col,o,arch){
   x.save();x.globalAlpha=o.dotA*.42;x.fillStyle=o.dots;x.fillRect(cx+front,top,w-front,h);x.restore();
   return side;
 }
+
+function drawAnimeBuildingComposition(x,cx,top,w,h,d,o){
+  const tone=pick(d.pal), ink=o.ink;
+  const wings=[
+    {x:cx-w*.035,y:top+h*.30,w:w*.34,h:h*.70},
+    {x:cx+w*.66,y:top+h*.43,w:w*.37,h:h*.57}
+  ];
+  for(const b of wings){
+    toonBlock(x,b.x,b.y,b.w,b.h,tone,o,null);
+    const glass=x.createLinearGradient(b.x,b.y,b.x+b.w,b.y+b.h);
+    glass.addColorStop(0,'rgba(202,231,247,.22)');glass.addColorStop(.55,'rgba(28,63,94,.12)');glass.addColorStop(1,'rgba(9,23,42,.32)');
+    x.fillStyle=glass;x.fillRect(b.x+4,b.y+8,b.w*.72,b.h-10);
+    x.save();x.globalAlpha=.5;x.strokeStyle=ink;x.lineWidth=.8;
+    for(let xx=b.x+b.w*.13;xx<b.x+b.w*.7;xx+=Math.max(9,b.w*.16)){x.beginPath();x.moveTo(xx,b.y+10);x.lineTo(xx,b.y+b.h-3);x.stroke()}
+    for(let yy=b.y+22;yy<b.y+b.h-4;yy+=Math.max(18,b.h*.16)){x.beginPath();x.moveTo(b.x+3,yy);x.lineTo(b.x+b.w*.72,yy);x.stroke()}
+    x.restore();
+    x.fillStyle=shadeOf(tone,1.28);x.fillRect(b.x-3,b.y+b.h*.12,b.w*.78,3);
+    x.strokeStyle='rgba(255,255,255,.32)';x.lineWidth=1;x.beginPath();x.moveTo(b.x,b.y+b.h*.12);x.lineTo(b.x+b.w*.76,b.y+b.h*.12);x.stroke();
+  }
+  if(w>78&&h>H*.25){
+    const bx=cx+w*.24, by=top+h*.47, bw=w*.48, bh=Math.max(12,h*.095);
+    x.fillStyle=shadeOf(tone,.72);x.fillRect(bx,by,bw,bh);
+    x.fillStyle=shadeOf(tone,1.35);x.fillRect(bx,by,bw,3);
+    x.fillStyle='rgba(160,218,245,.3)';x.fillRect(bx+4,by+5,bw-8,bh*.45);
+    x.strokeStyle=ink;x.globalAlpha=.48;x.lineWidth=.8;x.strokeRect(bx,by,bw,bh);x.globalAlpha=1;
+  }
+}
 function chooseCityArchetype(){
   const list=CITY_ARCH_CONFIG&&CITY_ARCH_CONFIG.archetypes;
   if(!list||!list.length)return null;
@@ -283,6 +310,7 @@ function buildLayer(d){
     if(Math.random()<.07){x.strokeStyle=o.ink;x.lineWidth=d.lw;x.beginPath();x.moveTo(cx+bw/2,top);x.lineTo(cx+bw/2,top-rnd(40,80));x.stroke()}
     toonWindows(x,cx,top,bw,sw,hh-top,d,o,wins,arch);
     drawArchitecturalDetails(x,cx,top,bw,bh,d,o,arch);
+    if(Math.random()<.62)drawAnimeBuildingComposition(x,cx,top,bw,bh,d,o);
     /* Distinctive rooftop silhouettes: water tanks, slanted crowns, antennae and signboards. */
     if(Math.random()<.16){
       const rx=cx+bw*rnd(.12,.62), rw=bw*rnd(.18,.48), rh=rnd(9,22);
@@ -327,6 +355,7 @@ function buildDense(d){
     const sw=toonBlock(x,cx,top,bw,hh-top,pick(d.pal),o,arch);
     toonWindows(x,cx,top,bw,sw,hh-top,d,o,wins,arch);
     drawArchitecturalDetails(x,cx,top,bw,bh,d,o,arch);
+    if(Math.random()<.62)drawAnimeBuildingComposition(x,cx,top,bw,bh,d,o);
     if(Math.random()<.22){
       const rx=cx+bw*rnd(.18,.62), rw=bw*rnd(.18,.42), rh=rnd(7,15);
       x.fillStyle=shadeOf(pick(d.pal),.92);x.fillRect(rx,top-rh,rw,rh);
