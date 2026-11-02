@@ -14,7 +14,14 @@
   document.head.appendChild(style);
 
   const boot = async () => {
-    const THREE = await import("https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.module.js");
+    let THREE;
+    const moduleSources = ["https://esm.sh/three@0.160.1","https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.module.js","https://unpkg.com/three@0.160.1/build/three.module.js"];
+    let importError;
+    for (const source of moduleSources) {
+      try { THREE = await import(source); break; }
+      catch (error) { importError = error; console.warn("3D engine source unavailable:", source, error); }
+    }
+    if (!THREE) throw importError || new Error("Unable to load the 3D engine");
     const scene = new THREE.Scene();
     scene.background = new THREE.Color(0x91c9ed);
     scene.fog = new THREE.Fog(0x9fcde8, 75, 190);
@@ -174,13 +181,13 @@
     function animate(){
       const t=clock.getElapsedTime();
       waterMat.uniforms.uTime.value=t;
-      cloudGroups.forEach(g=>{g.position.x+=g.userData.speed*.0035;if(g.position.x>95)g.position.x=-95;});
+      cloudGroups.forEach(g=>{g.position.x+=g.userData.speed*.012;if(g.position.x>95)g.position.x=-95;});
       aimX+=(pointerX-aimX)*.025; aimY+=(pointerY-aimY)*.025;
       const mobile=innerWidth<700;
-      const target=new THREE.Vector3(aimX*(mobile?5:9)+sideDrift*8,7.5-aimY*2.2,-24-travel*9);
-      camera.position.x+=(Math.sin(t*.11)*1.7+target.x-camera.position.x)*.012;
-      camera.position.y+=(10+Math.sin(t*.16)*.38-aimY*.9-camera.position.y)*.012;
-      camera.position.z+=(34-travel*5-camera.position.z)*.012;
+      const cruise=Math.sin(t*.075)*2.4+Math.sin(t*.031)*1.2; const target=new THREE.Vector3(aimX*(mobile?5:9)+sideDrift*8+cruise,7.5-aimY*2.2+Math.sin(t*.12)*.28,-24-travel*9);
+      camera.position.x+=(Math.sin(t*.11)*2.5+target.x-camera.position.x)*.018;
+      camera.position.y+=(10+Math.sin(t*.16)*.62-aimY*.9-camera.position.y)*.018;
+      camera.position.z+=(34-travel*5+Math.sin(t*.055)*1.1-camera.position.z)*.014;
       camera.lookAt(target);
       renderer.render(scene,camera);
       requestAnimationFrame(animate);
@@ -191,11 +198,11 @@
       camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();
       renderer.setPixelRatio(Math.min(devicePixelRatio||1,1.7));renderer.setSize(innerWidth,innerHeight);
     },{passive:true});
-    root.dataset.world3d="ready";
+    root.dataset.world3d="ready"; root.dataset.world3dEngine="three-0.160.1"; const fallback=root.querySelector("img"); if(fallback) fallback.style.display="none";
   };
 
   boot().catch(err=>{
-    root.dataset.world3d="failed";
+    root.dataset.world3d="failed"; root.dataset.world3dError=String(err && err.message || err);
     console.error("3D city scene failed to load; retaining original city image.",err);
     const fallback=root.querySelector("img"); if(fallback) fallback.style.display="block";
   });
