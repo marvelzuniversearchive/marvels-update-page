@@ -207,31 +207,32 @@ function toonBlock(x,cx,top,w,h,col,o,arch){
   return side;
 }
 
+/* Attached podium/bridge details are architectural extensions, not repeated toy boxes. */
 function drawAnimeBuildingComposition(x,cx,top,w,h,d,o){
-  const tone=pick(d.pal), ink=o.ink;
-  const wings=[
-    {x:cx-w*.035,y:top+h*.30,w:w*.34,h:h*.70},
-    {x:cx+w*.66,y:top+h*.43,w:w*.37,h:h*.57}
-  ];
-  for(const b of wings){
-    toonBlock(x,b.x,b.y,b.w,b.h,tone,o,null);
-    const glass=x.createLinearGradient(b.x,b.y,b.x+b.w,b.y+b.h);
-    glass.addColorStop(0,'rgba(202,231,247,.22)');glass.addColorStop(.55,'rgba(28,63,94,.12)');glass.addColorStop(1,'rgba(9,23,42,.32)');
-    x.fillStyle=glass;x.fillRect(b.x+4,b.y+8,b.w*.72,b.h-10);
-    x.save();x.globalAlpha=.5;x.strokeStyle=ink;x.lineWidth=.8;
-    for(let xx=b.x+b.w*.13;xx<b.x+b.w*.7;xx+=Math.max(9,b.w*.16)){x.beginPath();x.moveTo(xx,b.y+10);x.lineTo(xx,b.y+b.h-3);x.stroke()}
-    for(let yy=b.y+22;yy<b.y+b.h-4;yy+=Math.max(18,b.h*.16)){x.beginPath();x.moveTo(b.x+3,yy);x.lineTo(b.x+b.w*.72,yy);x.stroke()}
-    x.restore();
-    x.fillStyle=shadeOf(tone,1.28);x.fillRect(b.x-3,b.y+b.h*.12,b.w*.78,3);
-    x.strokeStyle='rgba(255,255,255,.32)';x.lineWidth=1;x.beginPath();x.moveTo(b.x,b.y+b.h*.12);x.lineTo(b.x+b.w*.76,b.y+b.h*.12);x.stroke();
+  if(w<95||h<85)return;
+  const front=w*.87, tone=pick(d.pal), ink=o.ink;
+  x.save();
+  /* Podium: a long shadowed base with a continuous glazed public lobby. */
+  const py=top+h*.72, ph=Math.max(16,h*.19);
+  x.fillStyle=shadeOf(tone,.76);x.fillRect(cx-w*.035,py,w*.94,ph);
+  const lobby=x.createLinearGradient(cx,py,cx+front,py+ph);
+  lobby.addColorStop(0,'rgba(187,225,235,.68)');lobby.addColorStop(.48,'rgba(47,91,117,.62)');lobby.addColorStop(1,'rgba(14,35,54,.78)');
+  x.fillStyle=lobby;x.fillRect(cx+4,py+4,front-8,ph*.72);
+  x.fillStyle='rgba(242,226,191,.4)';x.fillRect(cx+4,py+3,front-8,1.5);
+  /* A single elevated connector creates a believable city-scale silhouette. */
+  if(w>140&&Math.random()<.72){
+    const by=top+h*rand(.43,.58), bx=cx+w*.18, bw=w*.62, bh=Math.max(6,h*.035);
+    x.fillStyle='rgba(18,39,57,.72)';x.fillRect(bx,by,bw,bh);
+    x.fillStyle='rgba(165,211,226,.46)';x.fillRect(bx+2,by+1,bw-4,bh*.35);
+    x.strokeStyle=ink;x.globalAlpha=.55;x.lineWidth=.8;x.strokeRect(bx,by,bw,bh);
   }
-  if(w>78&&h>H*.25){
-    const bx=cx+w*.24, by=top+h*.47, bw=w*.48, bh=Math.max(12,h*.095);
-    x.fillStyle=shadeOf(tone,.72);x.fillRect(bx,by,bw,bh);
-    x.fillStyle=shadeOf(tone,1.35);x.fillRect(bx,by,bw,3);
-    x.fillStyle='rgba(160,218,245,.3)';x.fillRect(bx+4,by+5,bw-8,bh*.45);
-    x.strokeStyle=ink;x.globalAlpha=.48;x.lineWidth=.8;x.strokeRect(bx,by,bw,bh);x.globalAlpha=1;
+  /* Roof terraces: layered overhangs and thin railings. */
+  for(let i=0;i<2;i++){
+    const yy=top+h*(.27+i*.13), xx=cx+w*(.08+i*.12), ww=w*(.34+i*.12);
+    x.fillStyle=shadeOf(tone,1.18);x.fillRect(xx,yy,ww,2.2);
+    x.fillStyle='rgba(22,45,62,.26)';x.fillRect(xx+3,yy+2,ww-6,5);
   }
+  x.restore();
 }
 function chooseCityArchetype(){
   const list=CITY_ARCH_CONFIG&&CITY_ARCH_CONFIG.archetypes;
@@ -273,27 +274,85 @@ function drawArchitecturalDetails(x,cx,top,w,h,d,o,arch){
   x.restore();
 }
 /* Recessed glazing, fine mullions and restrained reflections on every facade. */
+/* Feature-animation facade pass: irregular architectural glazing, deep reveals,
+   reflective ribbons and balconies. Never stamp a repeated grid of tiny squares. */
 function toonWindows(x,cx,top,w,sw,h,d,o,wins,arch){
-  const facade=arch&&arch.facade;
-  const ww=Math.max(3,d.ws*(facade==='glass-bands'?3.4:facade==='loft-bays'?2.8:2.25)), wh=Math.max(4,d.ws*(facade==='masonry-bands'?3.3:2.85));
-  const stepX=Math.max(7,d.wx*(facade==='glass-bands'?1.65:facade==='vertical-bays'?1.35:1)), stepY=Math.max(10,d.wy*(facade==='masonry-bands'?1.25:1));
-  for(let row=0,wy=top+10;wy<top+h-wh-7;row++,wy+=stepY){
-    for(let col=0,wx=cx+5;wx<cx+w-sw-ww-5;col++,wx+=stepX){
-      const lit=Math.random()<d.lit, warm=pick(d.litC);
-      x.fillStyle='rgba(5,10,24,.82)';x.fillRect(wx-1.2,wy-1.2,ww+2.4,wh+2.4);
-      const glass=x.createLinearGradient(wx,wy,wx+ww,wy+wh);
-      if(lit){glass.addColorStop(0,shadeOf(warm,1.08));glass.addColorStop(.55,warm);glass.addColorStop(1,shadeOf(warm,.58))}
-      else{glass.addColorStop(0,'rgba(90,126,158,.72)');glass.addColorStop(.48,'rgba(31,53,82,.9)');glass.addColorStop(1,'rgba(9,20,39,.98)')}
-      x.fillStyle=glass;x.fillRect(wx,wy,ww,wh);
-      x.fillStyle=lit?'rgba(255,246,218,.28)':'rgba(185,218,245,.2)';
-      x.beginPath();x.moveTo(wx+1,wy+1);x.lineTo(wx+ww*.68,wy+1);x.lineTo(wx+ww*.42,wy+wh*.22);x.lineTo(wx+1,wy+wh*.22);x.closePath();x.fill();
-      x.strokeStyle='rgba(5,11,24,.72)';x.lineWidth=.7;x.strokeRect(wx,wy,ww,wh);
-      x.strokeStyle='rgba(190,215,238,.28)';x.lineWidth=.55;
-      x.beginPath();x.moveTo(wx+ww*.5,wy+1);x.lineTo(wx+ww*.5,wy+wh-1);x.moveTo(wx+1,wy+wh*.55);x.lineTo(wx+ww-1,wy+wh*.55);x.stroke();
-      x.fillStyle='rgba(190,210,232,.16)';x.fillRect(wx-1.5,wy+wh,ww+3,.8);
-      if(wins&&wins.length<60&&lit&&Math.random()<.08)wins.push({x:wx,y:wy});
+  const front=Math.max(12,w-sw-9), facade=arch&&arch.facade||'curtain-wall';
+  const right=cx+front, bottom=top+h-5;
+  const palette=(CITY_ARCH_CONFIG&&CITY_ARCH_CONFIG.palette)||{};
+  const glassColors=palette.glass||['#8FC6D8','#B5D8D8','#6F9EAF','#D0D9CE'];
+  const warmColors=palette.warmInterior||['#F5D9A6','#EFC58D','#DFAE79'];
+  const rand=(a,b)=>a+Math.random()*(b-a);
+  const stroke=o.ink||'#25384B';
+  x.save();
+  /* A few strong structural bays establish the building's scale. */
+  const bays=facade==='glass-bands'?rand(2,5):facade==='atrium-grid'?rand(3,6):rand(3,7);
+  const bayW=front/bays;
+  for(let i=0;i<bays;i++){
+    const bx=cx+i*bayW+rand(1,4), bw=bayW-rand(3,8);
+    const inset=rand(3,8), y0=top+rand(8,17), y1=bottom-rand(0,8);
+    if(bw<7||y1-y0<12)continue;
+    /* Deep shadowed bay, then one large glass composition. */
+    x.fillStyle='rgba(10,22,37,.36)';x.fillRect(bx,y0,bw,y1-y0);
+    const grad=x.createLinearGradient(bx,y0,bx+bw,y1);
+    const gc=pick(glassColors);
+    grad.addColorStop(0,shadeOf(gc,1.24));
+    grad.addColorStop(.26,mixHex(gc,'#D9E8E8',.36));
+    grad.addColorStop(.7,shadeOf(gc,.82));
+    grad.addColorStop(1,'rgba(17,39,58,.82)');
+    x.fillStyle=grad;x.fillRect(bx+inset,y0+inset,bw-inset*2,y1-y0-inset*2);
+    /* Broad reflected sky strokes, intentionally non-uniform. */
+    x.save();x.beginPath();x.rect(bx+inset,y0+inset,bw-inset*2,y1-y0-inset*2);x.clip();
+    x.globalAlpha=rand(.12,.27);x.fillStyle='#F3F7E9';
+    x.beginPath();x.moveTo(bx+bw*.12,y0);x.lineTo(bx+bw*.42,y0);x.lineTo(bx+bw*.22,y1);x.lineTo(bx+bw*.04,y1);x.closePath();x.fill();
+    if(Math.random()<.5){x.globalAlpha=.16;x.fillStyle='#E6B98F';x.fillRect(bx+bw*rand(.48,.7),y0,bw*rand(.08,.2),y1-y0)}
+    x.restore();
+    /* A few large, irregularly placed openings or lit rooms. */
+    const openings=Math.floor(rand(1,4));
+    for(let k=0;k<openings;k++){
+      const ow=Math.max(4,bw*rand(.16,.34)), oh=Math.max(6,(y1-y0)*rand(.08,.2));
+      const ox=bx+rand(inset+1,Math.max(inset+1,bw-inset-ow-1));
+      const oy=y0+rand(inset+1,Math.max(inset+1,y1-y0-inset-oh-1));
+      if(Math.random()<.34){
+        x.fillStyle='rgba(8,17,28,.66)';x.fillRect(ox,oy,ow,oh);
+        x.fillStyle=pick(warmColors);x.globalAlpha=rand(.45,.82);x.fillRect(ox+1,oy+1,ow-2,oh-2);x.globalAlpha=1;
+        if(wins&&wins.length<60&&Math.random()<.12)wins.push({x:ox,y:oy,w:ow,h:oh});
+      }
+    }
+    /* Mullions are sparse and architectural, not a checkerboard. */
+    x.strokeStyle='rgba(20,43,61,.58)';x.lineWidth=Math.max(.7,front*.003);
+    if(Math.random()<.8){const mx=bx+bw*rand(.35,.68);x.beginPath();x.moveTo(mx,y0);x.lineTo(mx,y1);x.stroke()}
+    if(Math.random()<.42){const my=y0+(y1-y0)*rand(.35,.72);x.beginPath();x.moveTo(bx,my);x.lineTo(bx+bw,my);x.stroke()}
+  }
+  /* Horizontal ribbon glazing on selected office floors. */
+  if(['glass-bands','curtain-wall','atrium-grid'].includes(facade)){
+    for(let j=0;j<Math.floor(rand(1,4));j++){
+      const yy=top+h*rand(.22,.82), hh=Math.max(3,h*rand(.018,.045));
+      const gg=x.createLinearGradient(cx,yy,right,yy+hh);
+      gg.addColorStop(0,'rgba(204,231,239,.5)');gg.addColorStop(.5,'rgba(62,111,139,.34)');gg.addColorStop(1,'rgba(235,220,190,.42)');
+      x.fillStyle=gg;x.fillRect(cx+2,yy,front-4,hh);
+      x.fillStyle='rgba(18,42,60,.35)';x.fillRect(cx+2,yy+hh,front-4,1.2);
     }
   }
+  /* Deep projecting balcony slabs and occasional railings on residential facades. */
+  if(['balconies','loft-bays','masonry-bands'].includes(facade)){
+    const floors=Math.max(2,Math.floor(h/54));
+    for(let n=1;n<floors;n++){
+      if(Math.random()<.3)continue;
+      const yy=top+h*n/floors, bx=cx+rand(2,front*.12), bw=front*rand(.34,.76);
+      x.fillStyle='rgba(29,48,62,.48)';x.fillRect(bx,yy,bw,3.5);
+      x.fillStyle='rgba(224,235,231,.55)';x.fillRect(bx,yy-1,bw,1.1);
+      if(Math.random()<.58){
+        x.strokeStyle='rgba(28,50,67,.68)';x.lineWidth=.8;x.beginPath();x.moveTo(bx+2,yy-1);x.lineTo(bx+2,yy-7);x.lineTo(bx+bw-2,yy-7);x.lineTo(bx+bw-2,yy-1);x.stroke();
+      }
+    }
+  }
+  /* Fine silhouette ink and a few vertical sun-shading fins. */
+  x.globalAlpha=.38;x.strokeStyle=stroke;x.lineWidth=.8;
+  for(let i=1;i<Math.min(5,bays);i++){
+    const xx=cx+i*bayW+rand(-2,2);x.beginPath();x.moveTo(xx,top+12);x.lineTo(xx,bottom);x.stroke();
+  }
+  x.restore();
 }
 function toonOpts(d,x){
   return {ink:d.ink,lw:.7,dotA:d.dotA*.12,dots:x.createPattern(dotTile,'repeat'),hazeC:'#D7E5EC',haze:d.haze*.42};
