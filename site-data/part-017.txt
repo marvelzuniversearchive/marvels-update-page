@@ -180,15 +180,15 @@ function toonBlock(x,cx,top,w,h,col,o,arch){
   const base=mixHex(col,o.hazeC,o.haze), side=Math.max(w*.16,9), front=w-side;
   const profile=arch&&arch.profile?arch.profile:[[0,.06],[.08,0],[.92,0],[1,.06],[1,1],[0,1]];
   const face=x.createLinearGradient(cx,top,cx+front,top+h);
-  face.addColorStop(0,shadeOf(base,1.16));face.addColorStop(.22,shadeOf(base,1.08));face.addColorStop(.72,base);face.addColorStop(1,shadeOf(base,.84));
+  face.addColorStop(0,mixHex(shadeOf(col,1.16),o.hazeC,o.haze));face.addColorStop(.22,mixHex(shadeOf(col,1.08),o.hazeC,o.haze));face.addColorStop(.72,base);face.addColorStop(1,mixHex(shadeOf(col,.84),o.hazeC,o.haze));
   x.fillStyle=face;x.beginPath();
   profile.forEach((p,i)=>{const px=cx+p[0]*front,py=top+p[1]*h;i?x.lineTo(px,py):x.moveTo(px,py)});
   x.closePath();x.fill();
   const sideG=x.createLinearGradient(cx+front,top,cx+w,top+h);
-  sideG.addColorStop(0,shadeOf(base,.72));sideG.addColorStop(.55,shadeOf(base,.58));sideG.addColorStop(1,shadeOf(base,.46));
+  sideG.addColorStop(0,mixHex(shadeOf(col,.72),o.hazeC,o.haze));sideG.addColorStop(.55,mixHex(shadeOf(col,.58),o.hazeC,o.haze));sideG.addColorStop(1,mixHex(shadeOf(col,.46),o.hazeC,o.haze));
   x.fillStyle=sideG;x.beginPath();x.moveTo(cx+front,top+2);x.lineTo(cx+w,top+Math.max(3,h*.035));x.lineTo(cx+w,top+h);x.lineTo(cx+front,top+h);x.closePath();x.fill();
   /* Thin roof fascia and a soft shadow line establish scale without cartoon ink. */
-  x.fillStyle=shadeOf(base,1.22);x.beginPath();x.moveTo(cx+front*.04,top+profile[0][1]*h);x.lineTo(cx+front*.96,top+profile[Math.min(2,profile.length-1)][1]*h);x.lineTo(cx+w,top+Math.max(3,h*.035));x.lineTo(cx+front,top+2);x.closePath();x.fill();
+  x.fillStyle=mixHex(shadeOf(col,1.22),o.hazeC,o.haze);x.beginPath();x.moveTo(cx+front*.04,top+profile[0][1]*h);x.lineTo(cx+front*.96,top+profile[Math.min(2,profile.length-1)][1]*h);x.lineTo(cx+w,top+Math.max(3,h*.035));x.lineTo(cx+front,top+2);x.closePath();x.fill();
   x.save();x.globalAlpha=.22;x.strokeStyle='#F4F4EA';x.lineWidth=1;
   x.beginPath();x.moveTo(cx+3,top+h*.12);x.lineTo(cx+front-3,top+h*.12);x.stroke();
   x.globalAlpha=.28;x.strokeStyle=o.ink;x.lineWidth=.8;
@@ -483,7 +483,7 @@ function render(e){
   /* Moving anime sunlight: a soft, diagonal reflection sweep travels across the glass skyline. */
   drawAnimeSunSweep(e);
   ctx.restore();ctx.globalAlpha=1;
-  drawParts();
+  /* City remains clean and architectural; no floating particle confetti. */
   ctx.globalAlpha=1;ctx.globalCompositeOperation='source-over';
 }
 
