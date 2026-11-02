@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-02T03:35:50.283759+00:00",
+  "generated_at": "2026-11-02T09:25:46.865660+00:00",
   "source_count": 15,
   "search_topics": [
     "Marvel Universe",
@@ -25,6 +25,29 @@
   },
   "article_count": 150,
   "articles": [
+    {
+      "id": "xmen",
+      "title": "X-Men",
+      "summary": "X-Men Rotten Tomatoes",
+      "coverage_tags": [
+        "Ratings & Reviews",
+        "Rotten Tomatoes"
+      ],
+      "image_url": "",
+      "article_url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE1BUFU2Q3UwQWpLY3Fiem5lcm5DaEhka1VET0ZCWmhKTXJ4cGpGTFJTX2ZBdXBwcHlXVFBZR2gyM0wwcGpKa1hxUGt6Mm9MQQ?oc=5",
+      "source": "Rotten Tomatoes",
+      "source_id": "rotten_tomatoes",
+      "category": "Marvel",
+      "published_at": "2026-11-02T02:24:11+00:00",
+      "status": "reported",
+      "tags": [
+        "X-Men"
+      ],
+      "related_characters": [
+        "X-Men"
+      ],
+      "external_id": "CBMiTkFVX3lxTE1BUFU2Q3UwQWpLY3Fiem5lcm5DaEhka1VET0ZCWmhKTXJ4cGpGTFJTX2ZBdXBwcHlXVFBZR2gyM0wwcGpKa1hxUGt6Mm9MQQ"
+    },
     {
       "id": "marvelisreportedlyworkingonthemcucrossoverwevebeenlongingfor",
       "title": "Marvel is reportedly working on the MCU crossover we've been longing for",
@@ -176,6 +199,31 @@
       "external_id": "CBMia0FVX3lxTE53ejVXTXZkX3c5X1JSRXh3ZE8yMmNYU05UMXlZanNOSHhOSWpyUWZqTHc3b2l0V2FZTVFFcnRuQjFFdlZxdF9lcFR6eHJFOVZVZnZZQVdRMkl0NktFWVVrRnZuaENoVkhxNEVz"
     },
     {
+      "id": "avengersdoomsdayofficiallybeatssupergirlboxofficenearly2monthsbeforerelease",
+      "title": "Avengers: Doomsday Officially Beats Supergirl Box Office Nearly 2 Months Before Release",
+      "summary": "Avengers: Doomsday Officially Beats Supergirl Box Office Nearly 2 Months Before Release IMDb",
+      "coverage_tags": [
+        "Ratings & Reviews",
+        "IMDb"
+      ],
+      "image_url": "",
+      "article_url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE0xX3p4ZTBpNzBlcnRzWWJ5eVhCeGxiNjMySkE3RTVwNDVQQVhjVDBFRS1Ld0hYY21jNVh5eU5VbUYzamZJSjlfUjhkckZjcUVLZzAtekFuWmZrcWctdm5uZ1F5cF9jalk?oc=5",
+      "source": "IMDb",
+      "source_id": "imdb",
+      "category": "Movies",
+      "published_at": "2026-11-01T13:25:54+00:00",
+      "status": "reported",
+      "tags": [
+        "Avengers",
+        "Doom"
+      ],
+      "related_characters": [
+        "Avengers",
+        "Doom"
+      ],
+      "external_id": "CBMiZ0FVX3lxTE0xX3p4ZTBpNzBlcnRzWWJ5eVhCeGxiNjMySkE3RTVwNDVQQVhjVDBFRS1Ld0hYY21jNVh5eU5VbUYzamZJSjlfUjhkckZjcUVLZzAtekFuWmZrcWctdm5uZ1F5cF9jalk"
+    },
+    {
       "id": "5essentialmcustorylinestorememberbeforeyouseeavengersdoomsday",
       "title": "5 Essential MCU Storylines to Remember Before You See Avengers: Doomsday",
       "summary": "5 Essential MCU Storylines to Remember Before You See Avengers: Doomsday ComicBook.com",
@@ -209,7 +257,7 @@
       "source": "Rotten Tomatoes",
       "source_id": "rotten_tomatoes",
       "category": "Marvel",
-      "published_at": "2026-11-01T11:33:02+00:00",
+      "published_at": "2026-11-01T11:31:56+00:00",
       "status": "reported",
       "tags": [
         "Blade"
@@ -335,29 +383,6 @@
       "tags": [],
       "related_characters": [],
       "external_id": "CBMinwFBVV95cUxNOExXTU9MaTlpUGI0MHIxUnpnX0UwbFdFOTRhMDAyZ0R1ZjQ5SkRveXZNQ2pabGw5WmZwUWREVUh0MnI3bkx6cDFmTUZRU2R6ZFFKRl9BRUNSbVNDS2Q1azVDQUgxUmZTa29jdnBEdFdGblhGd3BFYzF4alFpWFo1cFR0bmREb2NRSDdYcnZxV1Z4"
-    },
-    {
-      "id": "spidermanbrandnewday",
-      "title": "Spider-Man: Brand New Day",
-      "summary": "Spider-Man: Brand New Day Rotten Tomatoes",
-      "coverage_tags": [
-        "Ratings & Reviews",
-        "Rotten Tomatoes"
-      ],
-      "image_url": "",
-      "article_url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE9QckV3U2xCWE12QTcxNXM4U1dKaEtiY2w4OGM4RHYxc0xDOHVnRDkzSl9DT2ZVQlA3Q1lhRHJBSVVmbHRXcU5zS190WVE3cjFxU2dmTlFMTk5hb3pjNGxINDhKMFJpUnRQ?oc=5",
-      "source": "Rotten Tomatoes",
-      "source_id": "rotten_tomatoes",
-      "category": "Marvel",
-      "published_at": "2026-11-01T02:38:47+00:00",
-      "status": "reported",
-      "tags": [
-        "Spider-Man"
-      ],
-      "related_characters": [
-        "Spider-Man"
-      ],
-      "external_id": "CBMiaEFVX3lxTE9QckV3U2xCWE12QTcxNXM4U1dKaEtiY2w4OGM4RHYxc0xDOHVnRDkzSl9DT2ZVQlA3Q1lhRHJBSVVmbHRXcU5zS190WVE3cjFxU2dmTlFMTk5hb3pjNGxINDhKMFJpUnRQ"
     },
     {
       "id": "avengersdoomsdayposterdetailhasfansconvincedscarletwitchishidingbehinddoomsmasks",
@@ -537,6 +562,29 @@
       "external_id": "CBMidEFVX3lxTE02aEZvdE5QMXRsX1NVejYxaDh6dW1ETXZSNjlkUng2dmc4cFJreWVZa2pFb3N4aWlRSHd5Z1pCVGpMZDVhd3FHV2JRVEtrSzVfb3BldHluT3FxTUtGS1VGTkotQ2ZTRGkzaWl2YVItUDJhZ25a"
     },
     {
+      "id": "spidermanbrandnewday",
+      "title": "Spider-Man: Brand New Day",
+      "summary": "Spider-Man: Brand New Day Rotten Tomatoes",
+      "coverage_tags": [
+        "Ratings & Reviews",
+        "Rotten Tomatoes"
+      ],
+      "image_url": "",
+      "article_url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE9QckV3U2xCWE12QTcxNXM4U1dKaEtiY2w4OGM4RHYxc0xDOHVnRDkzSl9DT2ZVQlA3Q1lhRHJBSVVmbHRXcU5zS190WVE3cjFxU2dmTlFMTk5hb3pjNGxINDhKMFJpUnRQ?oc=5",
+      "source": "Rotten Tomatoes",
+      "source_id": "rotten_tomatoes",
+      "category": "Marvel",
+      "published_at": "2026-10-31T08:41:29+00:00",
+      "status": "reported",
+      "tags": [
+        "Spider-Man"
+      ],
+      "related_characters": [
+        "Spider-Man"
+      ],
+      "external_id": "CBMiaEFVX3lxTE9QckV3U2xCWE12QTcxNXM4U1dKaEtiY2w4OGM4RHYxc0xDOHVnRDkzSl9DT2ZVQlA3Q1lhRHJBSVVmbHRXcU5zS190WVE3cjFxU2dmTlFMTk5hb3pjNGxINDhKMFJpUnRQ"
+    },
+    {
       "id": "avengersdoomsdaypromoartlinesupdoomthefantasticfourthenewavengersandthexmenforam",
       "title": "‘Avengers: Doomsday’ Promo Art Lines Up Doom, the Fantastic Four, the New Avengers and the X-Men for a Mega Showdown",
       "summary": "‘Avengers: Doomsday’ Promo Art Lines Up Doom, the Fantastic Four, the New Avengers and the X-Men for a Mega Showdown IMDb",
@@ -669,6 +717,25 @@
         "Doom"
       ],
       "external_id": "CBMiZ0FVX3lxTE9uTUZ0U05vSkxsaGFZX1A0OW5vbm9CWXdJdHVGVkFYX0ZEeXd2NkZZakZKalFxNXFRTzgyMHNHcDJIYWYyeGxJUnV3SWxVbWJwVmI0UUJ0VVhXM0QtcFc0dzJRaXNpTm8"
+    },
+    {
+      "id": "marvelshit3partseriesofficiallyreturnsin2monthswithnewrelease",
+      "title": "Marvel’s Hit 3-Part Series Officially Returns In 2 Months With New Release",
+      "summary": "Marvel’s Hit 3-Part Series Officially Returns In 2 Months With New Release IMDb",
+      "coverage_tags": [
+        "Ratings & Reviews",
+        "IMDb"
+      ],
+      "image_url": "",
+      "article_url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE95bjhNYVA5MVA5MjY4NHg5Z25GTGhySk9Oa0ZHSE9YUmpXUUxhRkJNQWtxN0FnQzdKeTB5VDdrV0syZldsdXhVRWhSQURJMmRXdFJNSjZkNjVHVHBEQUppVElDQmw?oc=5",
+      "source": "IMDb",
+      "source_id": "imdb",
+      "category": "TV",
+      "published_at": "2026-10-30T20:59:28+00:00",
+      "status": "reported",
+      "tags": [],
+      "related_characters": [],
+      "external_id": "CBMiZEFVX3lxTE95bjhNYVA5MVA5MjY4NHg5Z25GTGhySk9Oa0ZHSE9YUmpXUUxhRkJNQWtxN0FnQzdKeTB5VDdrV0syZldsdXhVRWhSQURJMmRXdFJNSjZkNjVHVHBEQUppVElDQmw"
     },
     {
       "id": "ironmancinematographermatthewlibatiquesaysaicouldreplacemarvelvfxbuttheyllneveru",
@@ -1177,6 +1244,7 @@
       "id": "marveltimelinethemcumoviesandtvshowsinchronologicalorder",
       "title": "Marvel timeline: The MCU movies and TV shows in chronological order",
       "summary": "Marvel timeline: The MCU movies and TV shows in chronological order GamesRadar+",
+      "coverage_tags": [],
       "image_url": "",
       "article_url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFB5bXMyMkZCQ3JkVHp4Zy12dmFJaUZmVEVNUDRlR0VFNnU1ZmVfTDM0OVlhMXI0bTNaa0tIeVR3UGljRlEzLUxPNDRIRnktT3BSSkhqVGhtM3o0S3ZNbENycmlsNWVSRlhzQkVLS1AwSXI?oc=5",
       "source": "GamesRadar+",
@@ -1230,6 +1298,29 @@
       "tags": [],
       "related_characters": [],
       "external_id": "CBMipgFBVV95cUxOMVVmV1dOWnJMaE81SDVlMy1kUFdVTTdaeHJlYW8wUno0aHVSZlVOSTBvVWw3SHd1S3VxRllFd0txYWdsV09TeE9aTjJBUDBsQ0JWdEZpNHg2Uzk0YjNWQmVhb0MyS0xaUjVBNjdUczE4NFR2VnVzSWZwckJ6dl9rbFMxcks2UFpuUHdCYmk5cE5E"
+    },
+    {
+      "id": "xmenrumorbeasthasbeencastaknightofthe7kingdomsstarpeterclaffeywillplaymcushankmc",
+      "title": "X-Men Rumor: Beast Has Been Cast - A Knight Of The 7 Kingdoms Star Peter Claffey Will Play McU's Hank McCoy",
+      "summary": "X-Men Rumor: Beast Has Been Cast - A Knight Of The 7 Kingdoms Star Peter Claffey Will Play McU's Hank McCoy IMDb",
+      "coverage_tags": [
+        "Ratings & Reviews",
+        "IMDb"
+      ],
+      "image_url": "",
+      "article_url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFBSR3JPQXdOcC1sWWoyM1NtRHJmSFQ0NTBCcHB3Y19tTk1TM2tPNlVacmppdlFDWFZuN0F3R05JQjFQUE1jR2JmSmFackNrQUlHUXFkRTRQdnQyTi1uWmhaZm5YTVExMzFX?oc=5",
+      "source": "IMDb",
+      "source_id": "imdb",
+      "category": "Casting",
+      "published_at": "2026-10-25T18:35:34+00:00",
+      "status": "rumour",
+      "tags": [
+        "X-Men"
+      ],
+      "related_characters": [
+        "X-Men"
+      ],
+      "external_id": "CBMiaEFVX3lxTFBSR3JPQXdOcC1sWWoyM1NtRHJmSFQ0NTBCcHB3Y19tTk1TM2tPNlVacmppdlFDWFZuN0F3R05JQjFQUE1jR2JmSmFackNrQUlHUXFkRTRQdnQyTi1uWmhaZm5YTVExMzFX"
     },
     {
       "id": "marvelstudiosxmenrebootcastisreportedlyalmostcomplete",
@@ -1307,11 +1398,11 @@
         "IMDb"
       ],
       "image_url": "",
-      "article_url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE10YTE2OGZwMENlaHoyb2VJMzdrMFBxSjhJbURMSy0wR0FuVm1acFMyR2MxTUFvVHk3eEpnNXRZdXo0U19SNk1BQnNvWXhRSDVIM0ZOanhBenB4ZDdpM1FKcEJyUUI?oc=5",
+      "article_url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE1UaHlDaHlBX1pfQ0hOOW5UUUgxMF90SHJNRURHNUtqOEVlQVRFMXpwM09VOFpNcVF0cmx3allDaXRrSkhGNmlGUm82eDdWanZ6TXpGbkg4NFp0elNGRzc1Ry1tRDk?oc=5",
       "source": "IMDb",
       "source_id": "imdb",
       "category": "Casting",
-      "published_at": "2026-10-23T20:40:02+00:00",
+      "published_at": "2026-10-23T19:40:29+00:00",
       "status": "rumour",
       "tags": [
         "X-Men"
@@ -1319,7 +1410,7 @@
       "related_characters": [
         "X-Men"
       ],
-      "external_id": "CBMiZEFVX3lxTE10YTE2OGZwMENlaHoyb2VJMzdrMFBxSjhJbURMSy0wR0FuVm1acFMyR2MxTUFvVHk3eEpnNXRZdXo0U19SNk1BQnNvWXhRSDVIM0ZOanhBenB4ZDdpM1FKcEJyUUI"
+      "external_id": "CBMiZEFVX3lxTE1UaHlDaHlBX1pfQ0hOOW5UUUgxMF90SHJNRURHNUtqOEVlQVRFMXpwM09VOFpNcVF0cmx3allDaXRrSkhGNmlGUm82eDdWanZ6TXpGbkg4NFp0elNGRzc1Ry1tRDk"
     },
     {
       "id": "marvelstudiosreleasesofficialavengersdoomsdayteampromosforthexmenavengersfantast",
@@ -1471,6 +1562,41 @@
       "external_id": "CBMifEFVX3lxTE93aDI3TGNpRkxCb1hfc3JSWWV6cXVYMlh6ZlJOeHhwNndscmdDMDFwX2dNOGlfbEgwaEltdFZYb1RuRWg0cTBMa1F1M2RFdlhSVk1wVjYxZGNXWTdIQ1lOZERRUVlMallNczRhMXF6V29hMWN4ZHdaWDZraXc"
     },
     {
+      "id": "upcomingsuperheromovieseverymarveldcandcomicbookmoviein2026andbeyond",
+      "title": "Upcoming superhero movies: every Marvel, DC, and comic book movie in 2026 and beyond",
+      "summary": "Upcoming superhero movies: every Marvel, DC, and comic book movie in 2026 and beyond GamesRadar+",
+      "coverage_tags": [],
+      "image_url": "",
+      "article_url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTFB6SFlQTWYySjU3Z1RjX0dhdzZOVHhTVkVKQ2NaTlNVY0FaVy0yclpXdkluYlFFcDliNmVVUzJKNzFwNFU0QndkVURXOVhHUk9zTy02ckZtTm9STEZ3YTFhc3NaMA?oc=5",
+      "source": "GamesRadar+",
+      "source_id": "gamesradar",
+      "category": "Comics",
+      "published_at": "2026-10-23T07:00:00+00:00",
+      "status": "reported",
+      "tags": [],
+      "related_characters": [],
+      "external_id": "CBMiY0FVX3lxTFB6SFlQTWYySjU3Z1RjX0dhdzZOVHhTVkVKQ2NaTlNVY0FaVy0yclpXdkluYlFFcDliNmVVUzJKNzFwNFU0QndkVURXOVhHUk9zTy02ckZtTm9STEZ3YTFhc3NaMA"
+    },
+    {
+      "id": "sachabaroncohenrevealsmarvelsdevildilemmaoverhisjewishheritageasheadmitsfeelingf",
+      "title": "Sacha Baron Cohen reveals Marvel’s ‘devil’ dilemma over his Jewish heritage as he admits feeling finally understood",
+      "summary": "Sacha Baron Cohen reveals Marvel’s ‘devil’ dilemma over his Jewish heritage as he admits feeling finally understood IMDb",
+      "coverage_tags": [
+        "Ratings & Reviews",
+        "IMDb"
+      ],
+      "image_url": "",
+      "article_url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE1SckhHandaMjdVTHBaV1RlTU96bjhYS09CY3VWbFY1V21uZzhIakZfYzZOSkJWTmJBc2M5M180N3NBcUNDSGhOaGR2b25FLWVDZW1WbUIwNXFaSHdyMXotOQ?oc=5",
+      "source": "IMDb",
+      "source_id": "imdb",
+      "category": "Announcements",
+      "published_at": "2026-10-23T06:19:26+00:00",
+      "status": "reported",
+      "tags": [],
+      "related_characters": [],
+      "external_id": "CBMiYEFVX3lxTE1SckhHandaMjdVTHBaV1RlTU96bjhYS09CY3VWbFY1V21uZzhIakZfYzZOSkJWTmJBc2M5M180N3NBcUNDSGhOaGR2b25FLWVDZW1WbUIwNXFaSHdyMXotOQ"
+    },
+    {
       "id": "sachabaroncohensaysmarvelworriedcastingajewishactorasthedevilinironheartwouldbea",
       "title": "Sacha Baron Cohen Says Marvel Worried Casting a Jewish Actor as the Devil in ‘Ironheart’ Would Be Antisemitic",
       "summary": "Sacha Baron Cohen Says Marvel Worried Casting a Jewish Actor as the Devil in ‘Ironheart’ Would Be Antisemitic IMDb",
@@ -1479,15 +1605,38 @@
         "IMDb"
       ],
       "image_url": "",
-      "article_url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE1faE5NM0JLT3lZY0RqcEhUNFlfSEdoUVcwd29wSzdiZzNBbnFvRlExdEdrbTlGRE0xRnR4dEU2WG1KV0hlRjRIMzlPS1JOMFVDd2lBRFo0eUxGeXk2YXBQcVl1bEpOOVZFT2c?oc=5",
+      "article_url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE9WWUFjdFFZdmRTWEMtVlNlQnpfWlpQVWc4MG4zSTVXRUhGRHRuSW1qc0d5b0dYVVVqMjdRR1BlbElPTXZsbnhxOU12TlVwcUhXSWdhSnh3SmdtQzBMZEhEUlUtMnBQak0?oc=5",
       "source": "IMDb",
       "source_id": "imdb",
       "category": "Casting",
-      "published_at": "2026-10-22T22:19:20+00:00",
+      "published_at": "2026-10-22T22:19:10+00:00",
       "status": "reported",
       "tags": [],
       "related_characters": [],
-      "external_id": "CBMiakFVX3lxTE1faE5NM0JLT3lZY0RqcEhUNFlfSEdoUVcwd29wSzdiZzNBbnFvRlExdEdrbTlGRE0xRnR4dEU2WG1KV0hlRjRIMzlPS1JOMFVDd2lBRFo0eUxGeXk2YXBQcVl1bEpOOVZFT2c"
+      "external_id": "CBMiZ0FVX3lxTE9WWUFjdFFZdmRTWEMtVlNlQnpfWlpQVWc4MG4zSTVXRUhGRHRuSW1qc0d5b0dYVVVqMjdRR1BlbElPTXZsbnhxOU12TlVwcUhXSWdhSnh3SmdtQzBMZEhEUlUtMnBQak0"
+    },
+    {
+      "id": "xmenstarindenavarretteonmystiquemisdirectioniwasnotlyingiwasdroppinghints",
+      "title": "X-Men Star Inde Navarrette On Mystique Misdirection: \"I Was Not Lying... I Was Dropping Hints\"",
+      "summary": "X-Men Star Inde Navarrette On Mystique Misdirection: \"I Was Not Lying... I Was Dropping Hints\" IMDb",
+      "coverage_tags": [
+        "Ratings & Reviews",
+        "IMDb"
+      ],
+      "image_url": "",
+      "article_url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE9qcVJjM1FXTmhpTklUb2pORy1JaGtnMFRPWkpsTFo0ZXAzeHdodkFkQWdGNFEyb25QaElrSEdUV3JFNGxlN0JNaEY5VTdVV0VUVmJIcGZtTm43S1I3VEhkTzlQTWQwZkE?oc=5",
+      "source": "IMDb",
+      "source_id": "imdb",
+      "category": "Marvel",
+      "published_at": "2026-10-22T12:56:13+00:00",
+      "status": "reported",
+      "tags": [
+        "X-Men"
+      ],
+      "related_characters": [
+        "X-Men"
+      ],
+      "external_id": "CBMiZ0FVX3lxTE9qcVJjM1FXTmhpTklUb2pORy1JaGtnMFRPWkpsTFo0ZXAzeHdodkFkQWdGNFEyb25QaElrSEdUV3JFNGxlN0JNaEY5VTdVV0VUVmJIcGZtTm43S1I3VEhkTzlQTWQwZkE"
     },
     {
       "id": "seethecompletemcutimelineondisney",
@@ -1539,6 +1688,30 @@
         "X-Men"
       ],
       "external_id": "CBMiuAFBVV95cUxPdFNOMVgteG1iT2VIYk5XSUwxTWJfLXVLWjVIeFZrSl9kYndtY2lMU3ZJc0picTFOR2xRRkdwZGJpbGtIQVF5YkR0RmJDektYX0ZxV0ZjVExmcjJaU2xXX3pOOGVsN0I3NmhEaXRHdVZkejB5WUxXdjByY05ubHVPSjdSR21TN0dCd0MwYVpkQjRa"
+    },
+    {
+      "id": "visionquestssyntheticmantwistconnectstoaforgottenmarvelmoviedetail",
+      "title": "VisionQuest's Synthetic Man Twist Connects To A Forgotten Marvel Movie Detail",
+      "summary": "VisionQuest's Synthetic Man Twist Connects To A Forgotten Marvel Movie Detail IMDb",
+      "coverage_tags": [
+        "Series: VisionQuest",
+        "Ratings & Reviews",
+        "IMDb"
+      ],
+      "image_url": "",
+      "article_url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFBGZE5TYWllUmFnbjlhLTJMdDJ2M1pYd3ZCMHVSU3hkdzNTaWRHR3BzRVVabUlHbmx4dlgwQTJXWkJYVnJRYk5SUldRN3pvZUp4MkY1VWtDWktDWlRDV0J2Ty1WMEdsSG8?oc=5",
+      "source": "IMDb",
+      "source_id": "imdb",
+      "category": "Movies",
+      "published_at": "2026-10-21T17:37:50+00:00",
+      "status": "reported",
+      "tags": [
+        "Vision"
+      ],
+      "related_characters": [
+        "Vision"
+      ],
+      "external_id": "CBMiZ0FVX3lxTFBGZE5TYWllUmFnbjlhLTJMdDJ2M1pYd3ZCMHVSU3hkdzNTaWRHR3BzRVVabUlHbmx4dlgwQTJXWkJYVnJRYk5SUldRN3pvZUp4MkY1VWtDWktDWlRDV0J2Ty1WMEdsSG8"
     },
     {
       "id": "marvelsironmanandhisawesomefriendsseason1episode36",
@@ -1715,6 +1888,26 @@
       "external_id": "CBMikAFBVV95cUxNVVRXZllqbWNQTU9mV0tKYjRISE1MeUF1MXItOEpfS2NjN2ZvR2JIXzZsT0VBcV9QTkJYSHRpTjRNaVd1OEVsUEpIT3hPdW9zQjF6Y0kzUDFzdjZEQVE4Sm1zOUVXNGJBaWlGaUtidjhhMFNnWkFqSWV1Vzhod0RtdEtjS3cxTkROYklkZC1jNTY"
     },
     {
+      "id": "spidermansdisneyseriesofficiallybringsbacksandmanwithanewlook",
+      "title": "Spider-Man’s Disney+ Series Officially Brings Back Sandman With a New Look",
+      "summary": "Spider-Man’s Disney+ Series Officially Brings Back Sandman With a New Look The Direct",
+      "coverage_tags": [],
+      "image_url": "",
+      "article_url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE1sMGdVQ1kzUHRONHVUMVc0Ul9OdFFieXlBRWRMODdWaFNpcHFiSVV1UWlMVTZudTBBb1o2WHZJSmpweVBadjk1d08zeDhocnJ5YURWMXl6dTNXTFJ6M0NXVHFjMF9ZWTRjMG41bEJ3aWhTVWRJUkFWQQ?oc=5",
+      "source": "The Direct",
+      "source_id": "the_direct",
+      "category": "TV",
+      "published_at": "2026-10-20T07:00:00+00:00",
+      "status": "reported",
+      "tags": [
+        "Spider-Man"
+      ],
+      "related_characters": [
+        "Spider-Man"
+      ],
+      "external_id": "CBMieEFVX3lxTE1sMGdVQ1kzUHRONHVUMVc0Ul9OdFFieXlBRWRMODdWaFNpcHFiSVV1UWlMVTZudTBBb1o2WHZJSmpweVBadjk1d08zeDhocnJ5YURWMXl6dTNXTFJ6M0NXVHFjMF9ZWTRjMG41bEJ3aWhTVWRJUkFWQQ"
+    },
+    {
       "id": "visionquestrottentomatoesscorerevealedasfirstreviewsforlatestmcuseriesland",
       "title": "VisionQuest Rotten Tomatoes Score Revealed As First Reviews For Latest MCU Series Land",
       "summary": "VisionQuest Rotten Tomatoes Score Revealed As First Reviews For Latest MCU Series Land IMDb",
@@ -1738,6 +1931,29 @@
         "Vision"
       ],
       "external_id": "CBMiTkFVX3lxTE1FZmpjZi1JZ1lHLV9pVmJKeGVhZm1DMHEwNWZad25IVElkN2d5Wm9aNjdpaTZsM2ZuYmJraXMyUV9ySUFydE1tbWpNcVQ3dw"
+    },
+    {
+      "id": "newspidermantvseriesbasedonmarvelsclonesaganearsgreenlightatprimevideo",
+      "title": "New ‘Spider-Man’ TV Series Based on Marvel’s ‘Clone Saga’ Nears Green Light at Prime Video",
+      "summary": "New ‘Spider-Man’ TV Series Based on Marvel’s ‘Clone Saga’ Nears Green Light at Prime Video IMDb",
+      "coverage_tags": [
+        "Ratings & Reviews",
+        "IMDb"
+      ],
+      "image_url": "",
+      "article_url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE1KVEtMNGV0d3JwQ043SXhkOXRFcmQyamF0cmFYVC1ZWm43VFhZdzRDek1ZN3ZWb2gzOUw2dTJXVmtlNWRnUGtaMnN3bUtRQQ?oc=5",
+      "source": "IMDb",
+      "source_id": "imdb",
+      "category": "TV",
+      "published_at": "2026-10-19T21:15:05+00:00",
+      "status": "reported",
+      "tags": [
+        "Spider-Man"
+      ],
+      "related_characters": [
+        "Spider-Man"
+      ],
+      "external_id": "CBMiTkFVX3lxTE1KVEtMNGV0d3JwQ043SXhkOXRFcmQyamF0cmFYVC1ZWm43VFhZdzRDek1ZN3ZWb2gzOUw2dTJXVmtlNWRnUGtaMnN3bUtRQQ"
     },
     {
       "id": "october21snewmarvelcomicsthefulllist",
@@ -1774,30 +1990,6 @@
         "Ant-Man"
       ],
       "external_id": "CBMijgFBVV95cUxNOXR3NnRBNnItcHktWXJoNEFxNk9nYVctU0JVeHh4b0VpemQwbnVTTTJ4ZkFrLWdnYndLOVlJemhJTnZxbll5cGUwTm9rOWpwMk5KVXh2cG5abWNHZENHZUNCLXgzUkUxVVRPcFR0VDlxeUxKSUZXSDZKN1dXWmV2S1FrMGFoZnFSRTNPSlZB"
-    },
-    {
-      "id": "marvelsvisionquestcastguidemeetthe4mcustarsreprisingtheirrolesthe12actorsjoining",
-      "title": "Marvel’s ‘VisionQuest’ Cast Guide: Meet the 4 MCU Stars Reprising Their Roles & the 12 Actors Joining the Cast of the New Series!",
-      "summary": "Marvel’s ‘VisionQuest’ Cast Guide: Meet the 4 MCU Stars Reprising Their Roles & the 12 Actors Joining the Cast of the New Series! IMDb",
-      "coverage_tags": [
-        "Series: VisionQuest",
-        "Ratings & Reviews",
-        "IMDb"
-      ],
-      "image_url": "",
-      "article_url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE5FVmMzd3QzUjhGR2JCMHJQNmRJS1I1MkpocGk0R2F1Q0RQMXh6a3RPajFjSXpLaEpJbHoxX2xXazc5U0lWNzQtX0hReHh5M1hGeHc?oc=5",
-      "source": "IMDb",
-      "source_id": "imdb",
-      "category": "Casting",
-      "published_at": "2026-10-19T06:55:12+00:00",
-      "status": "reported",
-      "tags": [
-        "Vision"
-      ],
-      "related_characters": [
-        "Vision"
-      ],
-      "external_id": "CBMiUkFVX3lxTE5FVmMzd3QzUjhGR2JCMHJQNmRJS1I1MkpocGk0R2F1Q0RQMXh6a3RPajFjSXpLaEpJbHoxX2xXazc5U0lWNzQtX0hReHh5M1hGeHc"
     },
     {
       "id": "chrisevanslastmoviebeforeavengersdoomsdaygetsofficialrottentomatoesaudienceverdi",
@@ -1846,6 +2038,30 @@
       "external_id": "CBMimwFBVV95cUxPaUxrSEM2WFMtRWRDamJRVTlqempVa0JDRlZMRHhMYWFiNllnbXdQV3RNdERpTzdQbnhteXpyTEYxWlJlVWxrVEVsXzA2TGQtY1p5N3BuVXRFeWduUkt3VDNDZ09uSC1ZY2Rva0ptYkxucjQ2R2lMME5CSW1xeE1OQVVpOUgwbzR0M1lhX1Q2Nm1i"
     },
     {
+      "id": "marvelsvisionquestcastguidemeetthe4mcustarsreprisingtheirrolesthe12actorsjoining",
+      "title": "Marvel’s ‘VisionQuest’ Cast Guide: Meet the 4 MCU Stars Reprising Their Roles & the 12 Actors Joining the Cast of the New Series!",
+      "summary": "Marvel’s ‘VisionQuest’ Cast Guide: Meet the 4 MCU Stars Reprising Their Roles & the 12 Actors Joining the Cast of the New Series! IMDb",
+      "coverage_tags": [
+        "Series: VisionQuest",
+        "Ratings & Reviews",
+        "IMDb"
+      ],
+      "image_url": "",
+      "article_url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE1mdmRrenNnQklmSXhpczlOc2NPdUZyOEtsdWEtLWdsM2lHS2dIa2syem00NDhTVS1uckdwTWtBa0ZtLVRYd2pieWVrZnB3alM0UU5zdHFRdE5MTDRIcGYyVm1NbnpZQQ?oc=5",
+      "source": "IMDb",
+      "source_id": "imdb",
+      "category": "Casting",
+      "published_at": "2026-10-17T23:05:57+00:00",
+      "status": "reported",
+      "tags": [
+        "Vision"
+      ],
+      "related_characters": [
+        "Vision"
+      ],
+      "external_id": "CBMiZkFVX3lxTE1mdmRrenNnQklmSXhpczlOc2NPdUZyOEtsdWEtLWdsM2lHS2dIa2syem00NDhTVS1uckdwTWtBa0ZtLVRYd2pieWVrZnB3alM0UU5zdHFRdE5MTDRIcGYyVm1NbnpZQQ"
+    },
+    {
       "id": "tomhiddlestons125minutetruestoryappletvmovieofficiallybeatsavengersinfinitywar",
       "title": "Tom Hiddleston’s 125-Minute True Story Apple TV Movie Officially Beats Avengers: Infinity War",
       "summary": "Tom Hiddleston’s 125-Minute True Story Apple TV Movie Officially Beats Avengers: Infinity War IMDb",
@@ -1869,29 +2085,23 @@
       "external_id": "CBMiZ0FVX3lxTE9wc0ZpcXdma0loSF9Yb3lkc0ZmeEMwRVlhTVFaUmE4b0dhTVFZLUsyZTIyMVdOalNjNmQxXzJHNXdtd3JpODRQajA5eUNXVlNFU3Q1UFpHMGVZTklDUU8wMlZjcUtocmM"
     },
     {
-      "id": "visionquestlabeled1ofthebestthingstocomeoutofthemcuonrottentomatoes",
-      "title": "VisionQuest Labeled '1 of the Best Things to Come Out of the MCU' on Rotten Tomatoes",
-      "summary": "VisionQuest Labeled '1 of the Best Things to Come Out of the MCU' on Rotten Tomatoes IMDb",
+      "id": "marvelannouncesnewzodiactvseriesfordisneyreleaseyearstorydetailsmorerevealed",
+      "title": "Marvel Announces New ‘Zodiac’ TV Series for Disney+ – Release Year, Story Details & More Revealed!",
+      "summary": "Marvel Announces New ‘Zodiac’ TV Series for Disney+ – Release Year, Story Details & More Revealed! IMDb",
       "coverage_tags": [
-        "Series: VisionQuest",
         "Ratings & Reviews",
-        "IMDb",
-        "Rotten Tomatoes"
+        "IMDb"
       ],
       "image_url": "",
-      "article_url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE1TV2lNdEpBaEU4d1ZDZTVrVnJqZGNVMFE5TzZhZGppNjctNDVtTTYwY3FsZmxBZnRxNXZkV09uaXFSdDdnbVU3VUpqNVhHZU9ya1hUTHhIZGVtbHNOTWhoV01NNGRCZkU?oc=5",
+      "article_url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTFBIM3ljalRhaVdKcEpRclhmeG1mWXhSaEdlZEpCbVhiY3d6eFhySnZBZDluLXljejlqOVhjUlMxZFNtRU1OVXNNa2Y3WmxuZw?oc=5",
       "source": "IMDb",
       "source_id": "imdb",
-      "category": "Ratings",
-      "published_at": "2026-10-17T08:58:17+00:00",
+      "category": "TV",
+      "published_at": "2026-10-17T03:06:59+00:00",
       "status": "reported",
-      "tags": [
-        "Vision"
-      ],
-      "related_characters": [
-        "Vision"
-      ],
-      "external_id": "CBMiZ0FVX3lxTE1TV2lNdEpBaEU4d1ZDZTVrVnJqZGNVMFE5TzZhZGppNjctNDVtTTYwY3FsZmxBZnRxNXZkV09uaXFSdDdnbVU3VUpqNVhHZU9ya1hUTHhIZGVtbHNOTWhoV01NNGRCZkU"
+      "tags": [],
+      "related_characters": [],
+      "external_id": "CBMiTkFVX3lxTFBIM3ljalRhaVdKcEpRclhmeG1mWXhSaEdlZEpCbVhiY3d6eFhySnZBZDluLXljejlqOVhjUlMxZFNtRU1OVXNNa2Y3WmxuZw"
     },
     {
       "id": "spidermanbrandnewdayvfxbossjeromechenonhulksredesignfinishing445shotsinaweek",
@@ -1966,6 +2176,7 @@
       "id": "howtowatchthemarvelmoviesinorderreleasedateandchronologicalorder",
       "title": "How to watch the Marvel movies in order (release date and chronological order)",
       "summary": "How to watch the Marvel movies in order (release date and chronological order) GamesRadar+",
+      "coverage_tags": [],
       "image_url": "",
       "article_url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE1FTGJpQUtBbmhlVGxNbWVVZmNMR2plUU15QTR4T05HNUFLb2tXTnVRcDJidHp0dWl1Y25JeEhvV2NrcXlQMDFlN2pYeTJfTnFLV3gtLWJ2THFRalNUUU9TNVdPN3QyZ3Exczg4LUtmbWpTUHBMeEE?oc=5",
       "source": "GamesRadar+",
@@ -2102,6 +2313,22 @@
         "Iron Man"
       ],
       "external_id": "CBMiigFBVV95cUxPNi1MdHdZbVBpaVZoWG55aUVYS2YzOGxMMUtJVm51Xy1ZaXRraVBLVnFIU3Q1eUlhZjhvSkFINzBwdDRyRXFsUWpmTlBzR1AwXy1ZTHN6NFA0QktySDl2dUNNX0l4SWNFZ0pJSnZ5TFRIV01sdnZXU0dQWGtkTXJlUk80RjBvSFZWdkE"
+    },
+    {
+      "id": "allthenewmarvelmoviesandshowscomingoutin2026andbeyond",
+      "title": "All the new Marvel movies and shows coming out in 2026 and beyond",
+      "summary": "All the new Marvel movies and shows coming out in 2026 and beyond GamesRadar+",
+      "coverage_tags": [],
+      "image_url": "",
+      "article_url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE9BbEVtVy1QX1BfclFxSHo3cWVWREhDc3BHcHc4YUxPWTNxdndTRkc3Qk1CdmR4X2VfRkFQMC04UkVCRDU1ZXp2NFYzWnctc1NmOElRRWNyS0xZa3BfNFBBRTA2SVhkRXc?oc=5",
+      "source": "GamesRadar+",
+      "source_id": "gamesradar",
+      "category": "Marvel",
+      "published_at": "2026-10-14T07:00:00+00:00",
+      "status": "reported",
+      "tags": [],
+      "related_characters": [],
+      "external_id": "CBMiZ0FVX3lxTE9BbEVtVy1QX1BfclFxSHo3cWVWREhDc3BHcHc4YUxPWTNxdndTRkc3Qk1CdmR4X2VfRkFQMC04UkVCRDU1ZXp2NFYzWnctc1NmOElRRWNyS0xZa3BfNFBBRTA2SVhkRXc"
     },
     {
       "id": "newavengersdoomsdaycastartbringsthemultiversesbiggestheroestogether",
@@ -2302,6 +2529,26 @@
       "external_id": "CBMicEFVX3lxTFBwejYybUNzNEZCSHpHVGlCemQ1OXdnTlN1NmQ1VjNueGpoby1EOEpzNWlBNW9Db2p3ZWx5Tmt3WVMwcFdtNnI2OGhYVGFvdU1oUTNWcVJnV2NPS3V2WjFOdjEzSWt3Szd1YzBtVHdFNjk"
     },
     {
+      "id": "marvelsnextspidermantvseriesisreportedlytheiranswertodcuslanterns",
+      "title": "Marvel’s Next Spider-Man TV Series Is Reportedly Their Answer To DCU’s Lanterns",
+      "summary": "Marvel’s Next Spider-Man TV Series Is Reportedly Their Answer To DCU’s Lanterns The Direct",
+      "coverage_tags": [],
+      "image_url": "",
+      "article_url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxQcUxxQlJLWTRCSk1fUXgxbkJjRkZyY3Z1a0FjTzM3WEpYX29xby14WTJPdjZuMXlXNEJ3MVhmeEV5MTVEV0M1YUtjUVZXYkpyLWJxOVYyTUJOWHI0NF9kUkNJY0RjdTl6S2JsZUxNX3dWN1VnVmh0em5WTUJ2WkpjNkFqOVI3Zw?oc=5",
+      "source": "The Direct",
+      "source_id": "the_direct",
+      "category": "TV",
+      "published_at": "2026-10-13T07:00:00+00:00",
+      "status": "rumour",
+      "tags": [
+        "Spider-Man"
+      ],
+      "related_characters": [
+        "Spider-Man"
+      ],
+      "external_id": "CBMihgFBVV95cUxQcUxxQlJLWTRCSk1fUXgxbkJjRkZyY3Z1a0FjTzM3WEpYX29xby14WTJPdjZuMXlXNEJ3MVhmeEV5MTVEV0M1YUtjUVZXYkpyLWJxOVYyTUJOWHI0NF9kUkNJY0RjdTl6S2JsZUxNX3dWN1VnVmh0em5WTUJ2WkpjNkFqOVI3Zw"
+    },
+    {
       "id": "spidermantheclonesaga",
       "title": "“Spider-Man: The Clone Saga”",
       "summary": "“Spider-Man: The Clone Saga” IMDb",
@@ -2323,6 +2570,30 @@
         "Spider-Man"
       ],
       "external_id": "CBMiZ0FVX3lxTE5pbmJoSkhhQU83TkVoOW5GUnZxMkdwWUt3SkZteTB3TXFFenpXVGpsbEd3SUI1NzR5ZEp4VnVEYW9felBCUUVGWjU0aUdKSDVvS0pyemd0TU5PRXVES2h1T2d5U2hYT2c"
+    },
+    {
+      "id": "visionquestlabeled1ofthebestthingstocomeoutofthemcuonrottentomatoes",
+      "title": "VisionQuest Labeled '1 of the Best Things to Come Out of the MCU' on Rotten Tomatoes",
+      "summary": "VisionQuest Labeled '1 of the Best Things to Come Out of the MCU' on Rotten Tomatoes Comic Book Resources",
+      "coverage_tags": [
+        "Series: VisionQuest",
+        "Ratings & Reviews",
+        "Rotten Tomatoes"
+      ],
+      "image_url": "",
+      "article_url": "https://news.google.com/rss/articles/CBMib0FVX3lxTFBrRFg5bTVzTEVmYWhCbkdRd0RFRjREUjJPMUNrOTVtOVgxVWl1VGt1RGFza2p4V1JVb25KSERjZWFrMkNaR2syb0RCdHNPRlkzbTRyWGY5VTM3dGF6UGdueHpoLXZWam5nVllfbTNKTQ?oc=5",
+      "source": "CBR",
+      "source_id": "cbr",
+      "category": "Ratings",
+      "published_at": "2026-10-12T07:00:00+00:00",
+      "status": "reported",
+      "tags": [
+        "Vision"
+      ],
+      "related_characters": [
+        "Vision"
+      ],
+      "external_id": "CBMib0FVX3lxTFBrRFg5bTVzTEVmYWhCbkdRd0RFRjREUjJPMUNrOTVtOVgxVWl1VGt1RGFza2p4V1JVb25KSERjZWFrMkNaR2syb0RCdHNPRlkzbTRyWGY5VTM3dGF6UGdueHpoLXZWam5nVllfbTNKTQ"
     },
     {
       "id": "jeremyrennersaysavengersdoomsdaysuperheroeswillprobablylosewithouthawkeyetheydid",
@@ -2427,6 +2698,25 @@
       "tags": [],
       "related_characters": [],
       "external_id": "CBMiZ0FVX3lxTE8yR002OVZ5NlN1NUVBRG1pc0d6alcwTG5YdzNEWXF0U0NJTGtSWEFDY0xRU09zZ1ZydGNkYzNCNmlUclBpcHRmYXp2dHVhcW9waTJOVG5kMUF6bUtMeEphQ0FIaXcyVEk"
+    },
+    {
+      "id": "whatismarvelszodiacaboutherearesomecluesfromthecomics",
+      "title": "What Is Marvel's Zodiac About? Here Are Some Clues From The Comics",
+      "summary": "What Is Marvel's Zodiac About? Here Are Some Clues From The Comics IMDb",
+      "coverage_tags": [
+        "Ratings & Reviews",
+        "IMDb"
+      ],
+      "image_url": "",
+      "article_url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE1FRkZpYjVlcjRvck5ZZEJxQTZmRDQxS2dIajFwXy1CbjR3V2thZDlhb1k2UmxyUzdjQ05DWTdqQ0Z0NlROWnM2ZFRNMkctZw?oc=5",
+      "source": "IMDb",
+      "source_id": "imdb",
+      "category": "Marvel",
+      "published_at": "2026-10-11T18:22:12+00:00",
+      "status": "reported",
+      "tags": [],
+      "related_characters": [],
+      "external_id": "CBMiTkFVX3lxTE1FRkZpYjVlcjRvck5ZZEJxQTZmRDQxS2dIajFwXy1CbjR3V2thZDlhb1k2UmxyUzdjQ05DWTdqQ0Z0NlROWnM2ZFRNMkctZw"
     },
     {
       "id": "thebiggestmarvelnewsfromnewyorkcomiccon2026",
@@ -2605,6 +2895,28 @@
       "tags": [],
       "related_characters": [],
       "external_id": "CBMivgFBVV95cUxNdlNsbDRRNlFmMDU3cVU0NUJ2OGxVaW5Ud19mQi01ajNxMFBSYmpCMkw5RWY5dXBCZk5qQnZCVmVGYng5eFVia2YzRFNXWG5NeWFqNG5zc3psbkx4NzBuOU5NYWxZRTdIR28tMzVLVkF2NWlCZ0sxdThoc0I3c2JTSHJWdTNLeGV2MElTSEpFQUdQ"
+    },
+    {
+      "id": "yourfriendlyneighborhoodspidermanseason2everythingyouneedtoknowaboutthemarvelsho",
+      "title": "Your Friendly Neighborhood Spider-Man season 2: everything you need to know about the Marvel show's upcoming return",
+      "summary": "Your Friendly Neighborhood Spider-Man season 2: everything you need to know about the Marvel show's upcoming return GamesRadar+",
+      "coverage_tags": [
+        "Series: Your Friendly Neighborhood Spider-Man — Season 2"
+      ],
+      "image_url": "",
+      "article_url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxOWkdHcGxVbW9qWU5IMGtWaVAwdG0ybnQzb040SHR4ZVNIcW1GY050dVRyR0tEaG1ScDN6cG9aUFZkTDhSQnUzUE11UGtLR0ZjbE43djB5RFpIdW94OW03MV9JLVJIRU9QMG9QYURlN1IwTnk2LWxvMEI1bF9jZkxtMEVFNUptR0lLMXVmbm0xQmw4VTBLdS1vY19kLVdDMzJqMmtId2RSTWpVamREaFJGbnBNRUlKR1Z4ZU5zajZuQk9CMGNBd1VpYXotNlpHaGk4?oc=5",
+      "source": "GamesRadar+",
+      "source_id": "gamesradar",
+      "category": "TV",
+      "published_at": "2026-10-09T07:00:00+00:00",
+      "status": "reported",
+      "tags": [
+        "Spider-Man"
+      ],
+      "related_characters": [
+        "Spider-Man"
+      ],
+      "external_id": "CBMi0AFBVV95cUxOWkdHcGxVbW9qWU5IMGtWaVAwdG0ybnQzb040SHR4ZVNIcW1GY050dVRyR0tEaG1ScDN6cG9aUFZkTDhSQnUzUE11UGtLR0ZjbE43djB5RFpIdW94OW03MV9JLVJIRU9QMG9QYURlN1IwTnk2LWxvMEI1bF9jZkxtMEVFNUptR0lLMXVmbm0xQmw4"
     },
     {
       "id": "avengersdoomsdaysandrahllerreportedlyjoinscastaslatverianwitchesactressesarereve",
@@ -2831,308 +3143,6 @@
       "tags": [],
       "related_characters": [],
       "external_id": "CBMilgFBVV95cUxNZnJrcjY1ZHhvMzU0ZV9UdldZbWxENFp5M0MxZ1JtTnRnWTZxUFQxUkprOEQ0N3BqLUYxaUlvZkN5TGdTMmVvT2JwWDZ0c0N5Q0J3dHRwWlJHdkp2U3pqU1FSd2R5aXo5WlRhSm1PNFdRRmM0WExMSWhJcWYzWDZIVXRzeW5rcTZ3MEhHY2xMVUFs"
-    },
-    {
-      "id": "marvelsxmen97season3teaserdebutsatnewyorkcomiccon",
-      "title": "Marvel’s ‘X-Men ’97’ Season 3 Teaser Debuts at New York Comic-Con",
-      "summary": "Marvel’s ‘X-Men ’97’ Season 3 Teaser Debuts at New York Comic-Con Variety",
-      "coverage_tags": [],
-      "image_url": "",
-      "article_url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxQVG5QaUFSYXY4d3Jtd0xLelVVWVN5M1VxSThZYW1PUVRKalU1bGRkQ3lTTHZrcWd2OXVLYnJneDU2UDdDaWh3NU9lODFLMDVVQm1GalRNaldVTlVtNzR4blpfTGVnaFFlcGxKalBzQUY4VkkwV0Z3OVphb215UWNvMC1zaw?oc=5",
-      "source": "Variety",
-      "source_id": "variety",
-      "category": "Trailers",
-      "published_at": "2026-10-08T07:00:00+00:00",
-      "status": "reported",
-      "tags": [
-        "X-Men"
-      ],
-      "related_characters": [
-        "X-Men"
-      ],
-      "external_id": "CBMigwFBVV95cUxQVG5QaUFSYXY4d3Jtd0xLelVVWVN5M1VxSThZYW1PUVRKalU1bGRkQ3lTTHZrcWd2OXVLYnJneDU2UDdDaWh3NU9lODFLMDVVQm1GalRNaldVTlVtNzR4blpfTGVnaFFlcGxKalBzQUY4VkkwV0Z3OVphb215UWNvMC1zaw"
-    },
-    {
-      "id": "marvelszodiacsets2028releaseondisneyasnewdetailsrevealed",
-      "title": "Marvel’s ‘Zodiac’ Sets 2028 Release on Disney+ as New Details Revealed",
-      "summary": "Marvel’s ‘Zodiac’ Sets 2028 Release on Disney+ as New Details Revealed Variety",
-      "coverage_tags": [],
-      "image_url": "",
-      "article_url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxPWERhWVgtdURFaVIwRDJGVFFGU0JDSlRhS3hvQjFmUVVERVlkZXJBNGsxWWR5UTFUTWNpeGJBY3RzdENNNVRMeXEyQlRPY05CRnNvNzE5eXZtcVlxdWtRNmZCc080d05PUFFPVFpWalpiOEstaWRuSkJCbUUxenduQW9ucG1MZnA0eEdxemwtV0swbXpocFFz?oc=5",
-      "source": "Variety",
-      "source_id": "variety",
-      "category": "Announcements",
-      "published_at": "2026-10-08T07:00:00+00:00",
-      "status": "reported",
-      "tags": [],
-      "related_characters": [],
-      "external_id": "CBMilwFBVV95cUxPWERhWVgtdURFaVIwRDJGVFFGU0JDSlRhS3hvQjFmUVVERVlkZXJBNGsxWWR5UTFUTWNpeGJBY3RzdENNNVRMeXEyQlRPY05CRnNvNzE5eXZtcVlxdWtRNmZCc080d05PUFFPVFpWalpiOEstaWRuSkJCbUUxenduQW9ucG1MZnA0eEdxemwtV0sw"
-    },
-    {
-      "id": "everythingwesawatthemarveltelevisionandanimationnycc2026panelincludingzodiacandm",
-      "title": "Everything We Saw at the Marvel Television and Animation NYCC 2026 Panel, Including Zodiac and Marvel Zombies",
-      "summary": "Everything We Saw at the Marvel Television and Animation NYCC 2026 Panel, Including Zodiac and Marvel Zombies IGN Africa",
-      "coverage_tags": [],
-      "image_url": "",
-      "article_url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxQODNZUzlKR0g5bW50VnhFSlppc1NDSTVheXdLMHVVbEtnNkxkNVZXN2pwbm1BelZFWlZGRGp1aWUxb1ZZcWhrSmFSMW5xbzROVjNMcmtrZHZKdVdsakM4RUtuVDJLclR0c2JFZUhMSHdtNkl6QnhRZ3daMDVscE01QnB3dVBXOHlmNFl1c0tfTmh0dGYtRkIwZUh1akVhdmhqQVNFX3M4aG1NN1hqVFkwNFRUQUxINnBGbTQwQzBzc0hjc2FTNkxNVXBfbjN5aGZGaV9oSjBB?oc=5",
-      "source": "IGN",
-      "source_id": "ign",
-      "category": "Events",
-      "published_at": "2026-10-08T07:00:00+00:00",
-      "status": "reported",
-      "tags": [
-        "Vision"
-      ],
-      "related_characters": [
-        "Vision"
-      ],
-      "external_id": "CBMi1gFBVV95cUxQODNZUzlKR0g5bW50VnhFSlppc1NDSTVheXdLMHVVbEtnNkxkNVZXN2pwbm1BelZFWlZGRGp1aWUxb1ZZcWhrSmFSMW5xbzROVjNMcmtrZHZKdVdsakM4RUtuVDJLclR0c2JFZUhMSHdtNkl6QnhRZ3daMDVscE01QnB3dVBXOHlmNFl1c0tfTmh0"
-    },
-    {
-      "id": "avengersdoomsdayisprobablyheartbreakingsayssebastianstan",
-      "title": "'Avengers: Doomsday' Is 'Probably Heartbreaking,' Says Sebastian Stan",
-      "summary": "'Avengers: Doomsday' Is 'Probably Heartbreaking,' Says Sebastian Stan Variety",
-      "coverage_tags": [],
-      "image_url": "",
-      "article_url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxQSXBSZkJGd2QyamtleTVJYm1pakwwNnBEVnppTTJ1N2t2eTdRSTNFZ2EtNVBZWWotUWk1Zzhyd1NEbWJYMndHQzZwQ213T2EzMU1lVTVOVlprY1JhdHk5ajREbEpEb0tIYzBYSURfSm16eU5TMXJRQWNxRkxseC12Sk4xVUVxZjJ2VkpiX2hPNzV6bFNMODJHTnJUUDZ5MDBnWGc?oc=5",
-      "source": "Variety",
-      "source_id": "variety",
-      "category": "Marvel",
-      "published_at": "2026-10-07T07:00:00+00:00",
-      "status": "reported",
-      "tags": [
-        "Avengers",
-        "Doom"
-      ],
-      "related_characters": [
-        "Avengers",
-        "Doom"
-      ],
-      "external_id": "CBMiogFBVV95cUxQSXBSZkJGd2QyamtleTVJYm1pakwwNnBEVnppTTJ1N2t2eTdRSTNFZ2EtNVBZWWotUWk1Zzhyd1NEbWJYMndHQzZwQ213T2EzMU1lVTVOVlprY1JhdHk5ajREbEpEb0tIYzBYSURfSm16eU5TMXJRQWNxRkxseC12Sk4xVUVxZjJ2VkpiX2hPNzV6"
-    },
-    {
-      "id": "sebastianstansaysavengersdoomsdayisprobablyheartbreakingwellseewhomakesittothene",
-      "title": "Sebastian Stan Says 'Avengers: Doomsday' Is \"Probably Heartbreaking\": \"We'll See Who Makes It To The Next Level\"",
-      "summary": "Sebastian Stan Says 'Avengers: Doomsday' Is \"Probably Heartbreaking\": \"We'll See Who Makes It To The Next Level\" Deadline",
-      "coverage_tags": [],
-      "image_url": "",
-      "article_url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxNQWJhclgyMVRkeDRQNXlxNEIxaG0wWjlERVZhb3dxYmF1THQ1ckxfMEw1Ymp3TDR2MWRjTW4tTFZBX0NReURtTm9DYjY5TzhCZ0x1SkVnS0lfazhSVXNTVnY5aFRwX3NqbDVHbjQwakVqMng0UXpwTnRwQW9CbnU0V212OUp6TTBUcDFvY2p1VFE?oc=5",
-      "source": "Deadline",
-      "source_id": "deadline",
-      "category": "Marvel",
-      "published_at": "2026-10-07T07:00:00+00:00",
-      "status": "reported",
-      "tags": [
-        "Avengers",
-        "Doom"
-      ],
-      "related_characters": [
-        "Avengers",
-        "Doom"
-      ],
-      "external_id": "CBMikAFBVV95cUxNQWJhclgyMVRkeDRQNXlxNEIxaG0wWjlERVZhb3dxYmF1THQ1ckxfMEw1Ymp3TDR2MWRjTW4tTFZBX0NReURtTm9DYjY5TzhCZ0x1SkVnS0lfazhSVXNTVnY5aFRwX3NqbDVHbjQwakVqMng0UXpwTnRwQW9CbnU0V212OUp6TTBUcDFvY2p1VFE"
-    },
-    {
-      "id": "newxmenstarofficiallyshareshischarlesxavierlikeexperience",
-      "title": "New ‘X-Men’ Star Officially Shares His Charles Xavier-Like Experience",
-      "summary": "New ‘X-Men’ Star Officially Shares His Charles Xavier-Like Experience IMDb",
-      "coverage_tags": [
-        "Ratings & Reviews",
-        "IMDb"
-      ],
-      "image_url": "",
-      "article_url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE1iZHhUXzN3Y01DYW9reDRlbTk5bGtnMVFJcWVYa09zMHhXMjM5dVBVMDZVU051VjBMaHV1YzFDTzNqUjRYU1lQazJZbDY3WE5GWlR6bnhKODEwRXNxRTBTcDNfQ3otY1k?oc=5",
-      "source": "IMDb",
-      "source_id": "imdb",
-      "category": "Marvel",
-      "published_at": "2026-10-06T05:13:08+00:00",
-      "status": "reported",
-      "tags": [
-        "X-Men"
-      ],
-      "related_characters": [
-        "X-Men"
-      ],
-      "external_id": "CBMiZ0FVX3lxTE1iZHhUXzN3Y01DYW9reDRlbTk5bGtnMVFJcWVYa09zMHhXMjM5dVBVMDZVU051VjBMaHV1YzFDTzNqUjRYU1lQazJZbDY3WE5GWlR6bnhKODEwRXNxRTBTcDNfQ3otY1k"
-    },
-    {
-      "id": "countdowntoavengersdoomsdaywithmarvelmoviesandshowsondisney",
-      "title": "Countdown to ‘Avengers: Doomsday’ with Marvel Movies and Shows on Disney+",
-      "summary": "Countdown to ‘Avengers: Doomsday’ with Marvel Movies and Shows on Disney+ Marvel.com",
-      "coverage_tags": [],
-      "image_url": "",
-      "article_url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxNekxWU0Y5THpNbEs3QVY0ZXYxOVNRdmJSNFk2ck1JdjVyUUR0bUQtVFlFTzd4QnZTTmp6Rzh4ZWxoZ3JGc3BCSWNnSXJtYTJuNTdlLUNjM3JoNG53YUtieDBvLTVtaVVhV0phQllGQzZUMXlSVW42Q1lfeFNwMmNzWnRGYk1ZdjJzOE9pdFgzeXQxdUhSMk14VmhMZkhuRFJIVlVB?oc=5",
-      "source": "Marvel",
-      "source_id": "marvel",
-      "category": "Marvel",
-      "published_at": "2026-10-05T07:00:00+00:00",
-      "status": "official",
-      "tags": [
-        "Avengers",
-        "Doom"
-      ],
-      "related_characters": [
-        "Avengers",
-        "Doom"
-      ],
-      "external_id": "CBMiowFBVV95cUxNekxWU0Y5THpNbEs3QVY0ZXYxOVNRdmJSNFk2ck1JdjVyUUR0bUQtVFlFTzd4QnZTTmp6Rzh4ZWxoZ3JGc3BCSWNnSXJtYTJuNTdlLUNjM3JoNG53YUtieDBvLTVtaVVhV0phQllGQzZUMXlSVW42Q1lfeFNwMmNzWnRGYk1ZdjJzOE9pdFgzeXQx"
-    },
-    {
-      "id": "webtoonandmarvelannouncenewmarvelcomicsappatnewyorkcomiccon",
-      "title": "WEBTOON and Marvel Announce New Marvel Comics App at New York Comic Con",
-      "summary": "WEBTOON and Marvel Announce New Marvel Comics App at New York Comic Con Marvel.com",
-      "coverage_tags": [],
-      "image_url": "",
-      "article_url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxOMllaZUMteWtMWU5vVHdORWh6MUxrQkFsTWJ1blB0c0h1WTVhdGY3ZFdUME9iZzZ0eW81SmFpY3EtLXlIekt3WG9EUDNkcU5ES0pSbU5xcFBmVG1kZ2RPTWVISE51TDRzMHZwVHFYbVhmOGpjcTBHbUhDU0xPS0kxYkJBa09Id0tRT1VkYV9ZY1dBR283ZWZv?oc=5",
-      "source": "Marvel",
-      "source_id": "marvel",
-      "category": "Comics",
-      "published_at": "2026-10-05T07:00:00+00:00",
-      "status": "official",
-      "tags": [],
-      "related_characters": [],
-      "external_id": "CBMilwFBVV95cUxOMllaZUMteWtMWU5vVHdORWh6MUxrQkFsTWJ1blB0c0h1WTVhdGY3ZFdUME9iZzZ0eW81SmFpY3EtLXlIekt3WG9EUDNkcU5ES0pSbU5xcFBmVG1kZ2RPTWVISE51TDRzMHZwVHFYbVhmOGpjcTBHbUhDU0xPS0kxYkJBa09Id0tRT1VkYV9ZY1dB"
-    },
-    {
-      "id": "countdowntoavengersdoomsdaywiththeofficialpodcast",
-      "title": "Count Down to ‘Avengers: Doomsday’ with the Official Podcast",
-      "summary": "Count Down to ‘Avengers: Doomsday’ with the Official Podcast Marvel.com",
-      "coverage_tags": [],
-      "image_url": "",
-      "article_url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxPc3VEak1zam9GTHlDcGVyaUpiNlVSd1RmMjB2bC1Ob056andQMTh3NTFpSUpsb2hybHFpZmNrSWxaaDFGWDVZb2lFODJQVlg5Z1J3UWgxUXk1R3FCODVSY2NDZXd2MEJOWDl1eGZOTnNNcXVDMFZvYk14Q05GcmFKNDRSVEJBc3JFNmFDcWU0Z2FRNk1pN25zWExUbw?oc=5",
-      "source": "Marvel",
-      "source_id": "marvel",
-      "category": "Marvel",
-      "published_at": "2026-10-05T07:00:00+00:00",
-      "status": "official",
-      "tags": [
-        "Avengers",
-        "Doom"
-      ],
-      "related_characters": [
-        "Avengers",
-        "Doom"
-      ],
-      "external_id": "CBMimwFBVV95cUxPc3VEak1zam9GTHlDcGVyaUpiNlVSd1RmMjB2bC1Ob056andQMTh3NTFpSUpsb2hybHFpZmNrSWxaaDFGWDVZb2lFODJQVlg5Z1J3UWgxUXk1R3FCODVSY2NDZXd2MEJOWDl1eGZOTnNNcXVDMFZvYk14Q05GcmFKNDRSVEJBc3JFNmFDcWU0Z2FR"
-    },
-    {
-      "id": "marvelquietlyconfirmsvisionsnewsuperpowerthatchangeseverythingaboutthemcu",
-      "title": "Marvel Quietly Confirms Vision's New Superpower That Changes Everything About the MCU",
-      "summary": "Marvel Quietly Confirms Vision's New Superpower That Changes Everything About the MCU Comic Book Resources",
-      "coverage_tags": [],
-      "image_url": "",
-      "article_url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE5PelZZaFJRVU1vM1lxZkN1T2haRnJLUVVDZkhtQXJQNG0zeU8xeUpHakZ5MlhtXzl2eF84MnNoT0xSZVE1SlZWTU1vd3VkbmxMdVVqMmZuWGU4ODhJSHhVZXpSM29zZUJOeWtzODFqNWFFcGs?oc=5",
-      "source": "CBR",
-      "source_id": "cbr",
-      "category": "Marvel",
-      "published_at": "2026-10-05T07:00:00+00:00",
-      "status": "reported",
-      "tags": [
-        "Vision"
-      ],
-      "related_characters": [
-        "Vision"
-      ],
-      "external_id": "CBMic0FVX3lxTE5PelZZaFJRVU1vM1lxZkN1T2haRnJLUVVDZkhtQXJQNG0zeU8xeUpHakZ5MlhtXzl2eF84MnNoT0xSZVE1SlZWTU1vd3VkbmxMdVVqMmZuWGU4ODhJSHhVZXpSM29zZUJOeWtzODFqNWFFcGs"
-    },
-    {
-      "id": "5mcumoviesshowsthatarestillunderratedbymarvelfansincluding1thatmade1billion",
-      "title": "5 MCU Movies & Shows That Are Still Underrated by Marvel Fans, Including 1 That Made $1 Billion",
-      "summary": "5 MCU Movies & Shows That Are Still Underrated by Marvel Fans, Including 1 That Made $1 Billion ComicBook.com",
-      "coverage_tags": [],
-      "image_url": "",
-      "article_url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxNN2Q5dTNmaXF0R0VtbUFRWWw1aEFhYWY1SlR2T0l0UGhnRkZwNnlueDBReFctVjh4M0p5STVPUTRIS1hNSlA0SGVHUEVpWmRBdnpTZlRJSkdZb3JkRHFvUW9FRU1Xc0M1cmVQMjl0OEFJOGYtY0tzcEZzOXlqVlRBTmxnR1pONm8zMmxVNC02emVnX0JjcjM0TG5ZMExGcEtRWHRNX1EydkNHblNHSGtMam44VUk5bHNHVkZzdWdkbFM5SkgyaUR3?oc=5",
-      "source": "ComicBook.com",
-      "source_id": "comicbook_com",
-      "category": "Marvel",
-      "published_at": "2026-10-05T07:00:00+00:00",
-      "status": "reported",
-      "tags": [],
-      "related_characters": [],
-      "external_id": "CBMixwFBVV95cUxNN2Q5dTNmaXF0R0VtbUFRWWw1aEFhYWY1SlR2T0l0UGhnRkZwNnlueDBReFctVjh4M0p5STVPUTRIS1hNSlA0SGVHUEVpWmRBdnpTZlRJSkdZb3JkRHFvUW9FRU1Xc0M1cmVQMjl0OEFJOGYtY0tzcEZzOXlqVlRBTmxnR1pONm8zMmxVNC02emVn"
-    },
-    {
-      "id": "avengersendgameovertakesavataragainashighestgrossingmovieeveratglobalboxoffice",
-      "title": "‘Avengers: Endgame’ Overtakes ‘Avatar’ Again As Highest Grossing Movie Ever At Global Box Office",
-      "summary": "‘Avengers: Endgame’ Overtakes ‘Avatar’ Again As Highest Grossing Movie Ever At Global Box Office Deadline",
-      "coverage_tags": [],
-      "image_url": "",
-      "article_url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxQSHFlVE5uSXZLdXRiQ2plVHhJX0ZYcjJSYXhGNjh1N1E5Z1RJaUZjY3Fpc3hteGxrdzFDQ2pPUTFXUktfaXpsZElXV3FfSzNJUmFVS0w1ZHlhRkc5UnowYmFKQ3NNdlpMOHF5SnBJRDhRa1YtdFlxeUFZRmhadngxVkFYclV6UFAxRFE?oc=5",
-      "source": "Deadline",
-      "source_id": "deadline",
-      "category": "Movies",
-      "published_at": "2026-10-04T07:00:00+00:00",
-      "status": "reported",
-      "tags": [
-        "Avengers"
-      ],
-      "related_characters": [
-        "Avengers"
-      ],
-      "external_id": "CBMiigFBVV95cUxQSHFlVE5uSXZLdXRiQ2plVHhJX0ZYcjJSYXhGNjh1N1E5Z1RJaUZjY3Fpc3hteGxrdzFDQ2pPUTFXUktfaXpsZElXV3FfSzNJUmFVS0w1ZHlhRkc5UnowYmFKQ3NNdlpMOHF5SnBJRDhRa1YtdFlxeUFZRmhadngxVkFYclV6UFAxRFE"
-    },
-    {
-      "id": "avengersendgameovertakesavatarashighestgrossingmovieinhistory",
-      "title": "'Avengers: Endgame' Overtakes 'Avatar' as Highest-Grossing Movie in History",
-      "summary": "'Avengers: Endgame' Overtakes 'Avatar' as Highest-Grossing Movie in History Variety",
-      "coverage_tags": [],
-      "image_url": "",
-      "article_url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxQREhPc1F0bm53YXJQS0tubWdOR1FNNVlUMkR3YWlFZkhMbzZSTDJnWkxmcEZzNEZVRVM1Y0VJQ0dOVHFGWXpNV2dwRGkyTkFJUnRMQkMzR0Q0Mmp3d3ItbmkxYm1kcjB0TmJOZ011YlN1TG42TW9JdHVsbmY4TmlkU3lvMTZOSi00RktGc0M5NERJWjJpVkRSYVRaMVJ2YlExY1hrSWFObw?oc=5",
-      "source": "Variety",
-      "source_id": "variety",
-      "category": "Movies",
-      "published_at": "2026-10-04T07:00:00+00:00",
-      "status": "reported",
-      "tags": [
-        "Avengers"
-      ],
-      "related_characters": [
-        "Avengers"
-      ],
-      "external_id": "CBMipwFBVV95cUxQREhPc1F0bm53YXJQS0tubWdOR1FNNVlUMkR3YWlFZkhMbzZSTDJnWkxmcEZzNEZVRVM1Y0VJQ0dOVHFGWXpNV2dwRGkyTkFJUnRMQkMzR0Q0Mmp3d3ItbmkxYm1kcjB0TmJOZ011YlN1TG42TW9JdHVsbmY4TmlkU3lvMTZOSi00RktGc0M5NERJ"
-    },
-    {
-      "id": "avengersendgamereturnstono1onalltimeglobalboxofficechartsurpassingavatar",
-      "title": "‘Avengers: Endgame’ Returns to No. 1 on All-Time Global Box Office Chart, Surpassing ‘Avatar’",
-      "summary": "‘Avengers: Endgame’ Returns to No. 1 on All-Time Global Box Office Chart, Surpassing ‘Avatar’ The Hollywood Reporter",
-      "coverage_tags": [],
-      "image_url": "",
-      "article_url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxQUWJSaUkwY01UZGVSY2JBRUhiWlc1Xy1GR3NINmlsMjFiRTk0MEY5NkhMbHBhTUktZEVUZnBVaWF4azUxNnM2Y0Z3NDQ5QzR3WEphRjJNajZIR1FFSm4ycS1oa3pzcC00Nm9iaVhqT3dXazlRVXRIWmc2d2pma1RuZVFoSUg4VW40QzdFNy1NQk83b1N4ZW5CZkNoTXEydFBZRm5iTjE5cEd1VkZJR1I4N1E3VGhNYVdWVUh6ZDJn?oc=5",
-      "source": "The Hollywood Reporter",
-      "source_id": "the_hollywood_reporter",
-      "category": "Movies",
-      "published_at": "2026-10-04T07:00:00+00:00",
-      "status": "reported",
-      "tags": [
-        "Avengers"
-      ],
-      "related_characters": [
-        "Avengers"
-      ],
-      "external_id": "CBMivgFBVV95cUxQUWJSaUkwY01UZGVSY2JBRUhiWlc1Xy1GR3NINmlsMjFiRTk0MEY5NkhMbHBhTUktZEVUZnBVaWF4azUxNnM2Y0Z3NDQ5QzR3WEphRjJNajZIR1FFSm4ycS1oa3pzcC00Nm9iaVhqT3dXazlRVXRIWmc2d2pma1RuZVFoSUg4VW40QzdFNy1NQk83"
-    },
-    {
-      "id": "updateavengerssecretwarsfullcastrevealedvariantssurprisereturnsandmoreinpossible",
-      "title": "Update: Avengers: Secret Wars Full Cast Revealed? Variants, Surprise Returns, And More In Possible Leak",
-      "summary": "Update: Avengers: Secret Wars Full Cast Revealed? Variants, Surprise Returns, And More In Possible Leak IMDb",
-      "coverage_tags": [
-        "Ratings & Reviews",
-        "IMDb"
-      ],
-      "image_url": "",
-      "article_url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTFAxdGVZYjZCVlh3aDdXQ2IxZ3VyV09zT3N2RFY0OGotOXdiSUZDcTJDSm1TcTA1SHhMaEJWaUM3aHU3QzdISGZudlFvcnFleDBCZ3RWRk5LRmhmQTRSY2EzdjlORlY?oc=5",
-      "source": "IMDb",
-      "source_id": "imdb",
-      "category": "Casting",
-      "published_at": "2026-10-03T20:01:19+00:00",
-      "status": "reported",
-      "tags": [
-        "Avengers"
-      ],
-      "related_characters": [
-        "Avengers"
-      ],
-      "external_id": "CBMiZEFVX3lxTFAxdGVZYjZCVlh3aDdXQ2IxZ3VyV09zT3N2RFY0OGotOXdiSUZDcTJDSm1TcTA1SHhMaEJWaUM3aHU3QzdISGZudlFvcnFleDBCZ3RWRk5LRmhmQTRSY2EzdjlORlY"
     }
   ]
 }
