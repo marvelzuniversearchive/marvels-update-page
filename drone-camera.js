@@ -1,90 +1,75 @@
 (() => {
-  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const scene = document.getElementById("drone-scene");
   const image = scene?.querySelector("img");
-  if (!scene || !image) {
-    console.error("Drone camera: background scene or PNG image is missing.");
-    return;
-  }
+  if (!scene || !image) { console.error("Drone camera: scene/image missing"); return; }
 
   const style = document.createElement("style");
   style.textContent = `
     .city-fx,#cityCanvas{display:none!important}
     html,body{background:transparent!important}
     body{isolation:isolate}
-    #drone-scene{position:fixed!important;inset:0!important;z-index:0!important;overflow:hidden!important;pointer-events:none!important;perspective:900px;background:#101522}
-    #drone-scene img{position:absolute;inset:-12%;width:124%;height:124%;max-width:none;object-fit:cover;object-position:center 48%;transform-origin:50% 52%;will-change:transform;backface-visibility:hidden;filter:saturate(1.06) contrast(1.035)}
+    #drone-scene{position:fixed!important;inset:0!important;z-index:0!important;overflow:hidden!important;pointer-events:none!important;background:#101522}
+    #drone-scene img{position:absolute;inset:-18%;width:136%;height:136%;max-width:none;object-fit:cover;object-position:center 48%;transform-origin:50% 50%;will-change:transform;backface-visibility:hidden;filter:saturate(1.07) contrast(1.04)}
     #appRoot{position:relative;z-index:1}
     #glitchFx{z-index:9999}
-    @media(max-width:700px){#drone-scene img{inset:-16%;width:132%;height:132%;object-position:center 50%}}
-    @media(prefers-reduced-motion:reduce){#drone-scene img{transform:none!important}}
+    @media(max-width:700px){#drone-scene img{inset:-23%;width:146%;height:146%;object-position:center 50%}}
   `;
   document.head.appendChild(style);
 
-  let targetX=0,targetY=0,lookX=0,lookY=0,travel=0;
-  let lastWheel=0;
-  const isSmall=()=>matchMedia("(max-width:700px)").matches;
   const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+  const small=()=>matchMedia("(max-width:700px)").matches;
+  let steerX=0,steerY=0,lookX=0,lookY=0;
+  let forward=0,side=0,altitude=0,lastTouchY=0;
 
-  // Mouse / touch position steers the virtual camera like a drone gimbal.
   window.addEventListener("pointermove",e=>{
-    targetX=clamp((e.clientX/innerWidth-.5)*2,-1,1);
-    targetY=clamp((e.clientY/innerHeight-.5)*2,-1,1);
+    steerX=clamp((e.clientX/innerWidth-.5)*2,-1,1);
+    steerY=clamp((e.clientY/innerHeight-.5)*2,-1,1);
   },{passive:true});
-  window.addEventListener("pointerleave",()=>{targetX=0;targetY=0;},{passive:true});
+  window.addEventListener("pointerleave",()=>{steerX=0;steerY=0;},{passive:true});
 
-  // Wheel input adds forward flight even when the archive uses an inner scroll area.
   window.addEventListener("wheel",e=>{
-    travel=clamp(travel+e.deltaY/2600,0,1);
-    lastWheel=performance.now();
+    const amount=clamp(e.deltaY/900,-1,1);
+    forward=clamp(forward+amount*.105,0,1);
+    side=clamp(side+e.deltaX/1200,-.65,.65);
+    altitude=clamp(altitude+amount*.035,-.35,.35);
   },{passive:true});
+
   window.addEventListener("scroll",()=>{
     const root=document.scrollingElement;
     if(root && root.scrollHeight>innerHeight+20){
-      const page=clamp(root.scrollTop/(root.scrollHeight-innerHeight),0,1);
-      travel=Math.max(travel,page);
+      const p=clamp(root.scrollTop/(root.scrollHeight-innerHeight),0,1);
+      forward=Math.max(forward,p*.82);
     }
   },{passive:true});
 
-  // Touch swipes steer and gently advance the camera on phones.
-  let touchX=0,touchY=0;
   window.addEventListener("touchstart",e=>{
-    if(e.touches.length){touchX=e.touches[0].clientX;touchY=e.touches[0].clientY;}
+    if(e.touches.length)lastTouchY=e.touches[0].clientY;
   },{passive:true});
   window.addEventListener("touchmove",e=>{
     if(!e.touches.length)return;
     const t=e.touches[0];
-    targetX=clamp((t.clientX/innerWidth-.5)*2,-1,1);
-    targetY=clamp((t.clientY/innerHeight-.5)*2,-1,1);
-    const dy=touchY-t.clientY;
-    if(Math.abs(dy)>2){travel=clamp(travel+dy/innerHeight*.055,0,1);touchY=t.clientY;}
-    touchX=t.clientX;
+    steerX=clamp((t.clientX/innerWidth-.5)*2,-1,1);
+    steerY=clamp((t.clientY/innerHeight-.5)*2,-1,1);
+    const dy=lastTouchY-t.clientY;
+    forward=clamp(forward+dy/innerHeight*.16,0,1);
+    altitude=clamp(altitude+dy/innerHeight*.045,-.35,.35);
+    lastTouchY=t.clientY;
   },{passive:true});
 
   const start=performance.now();
   function animate(now){
     const t=(now-start)/1000;
-    lookX+=(targetX-lookX)*.055;
-    lookY+=(targetY-lookY)*.055;
-
-    // Slow hovering drift plus a forward push controlled by scroll/swipe.
-    const idleX=Math.sin(t*.22)*.16;
-    const idleY=Math.sin(t*.31)*.10;
-    const x=lookX*.72+idleX;
-    const y=lookY*.55+idleY;
-    const zoom=1.10+travel*.48+Math.sin(t*.18)*.012;
-    const px=isSmall()?15:34;
-    const py=isSmall()?12:24;
-    const driftDown=travel*(isSmall()?46:72);
-
-    image.style.transform=
-      `translate3d(${-x*px}px,${-y*py+driftDown}px,0) `+
-      `scale(${zoom}) rotateX(${-y*2.1}deg) rotateY(${x*3.0}deg)`;
-
-    scene.style.setProperty("--camera-travel",travel.toFixed(3));
+    lookX+=(steerX-lookX)*.045;
+    lookY+=(steerY-lookY)*.045;
+    const cruiseX=Math.sin(t*.19)*.42+Math.sin(t*.071)*.16;
+    const cruiseY=Math.sin(t*.13)*.20+Math.sin(t*.047)*.10;
+    const x=clamp(cruiseX+lookX*.58+side,-1.2,1.2);
+    const y=clamp(cruiseY+lookY*.42+altitude,-.8,.8);
+    const depth=1.035+forward*.31+Math.sin(t*.11)*.012;
+    const driftX=-x*(small()?58:112);
+    const driftY=-y*(small()?43:76)+forward*(small()?62:104);
+    image.style.transform=`translate3d(${driftX}px,${driftY}px,0) scale(${depth})`;
     requestAnimationFrame(animate);
   }
-
-  if(!reduceMotion) requestAnimationFrame(animate);
-  else image.style.transform="scale(1.1)";
+  requestAnimationFrame(animate);
 })();
