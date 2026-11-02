@@ -103,10 +103,10 @@ function buildSky(){
   sky=mk(W*Q,H*Q);
   const x=sky.getContext('2d');x.setTransform(Q,0,0,Q,0,0);
   const g=x.createLinearGradient(0,0,0,H);
-  [[0,'#1B5FC0'],[.24,'#3A8CE0'],[.58,'#86C4EE'],[1,'#CDEBFA']].forEach(([p,c])=>g.addColorStop(p,c));
+  [[0,'#70B5E8'],[.22,'#8CC9F0'],[.44,'#B9DDF1'],[.63,'#E6E5D7'],[.82,'#F1C99D'],[1,'#A9C6D6']].forEach(([p,c])=>g.addColorStop(p,c));
   x.fillStyle=g;x.fillRect(0,0,W,H);
-  const sun=x.createRadialGradient(W*.72,H*.3,2,W*.72,H*.3,Math.max(W,H)*.34);
-  sun.addColorStop(0,'rgba(255,255,255,.42)');sun.addColorStop(.34,'rgba(239,248,255,.16)');sun.addColorStop(1,'rgba(255,255,255,0)');
+  const sun=x.createRadialGradient(W*.72,H*.34,2,W*.72,H*.34,Math.max(W,H)*.48);
+  sun.addColorStop(0,'rgba(255,246,211,.78)');sun.addColorStop(.3,'rgba(255,225,173,.26)');sun.addColorStop(1,'rgba(255,255,255,0)');
   x.fillStyle=sun;x.fillRect(0,0,W,H);
   /* Broad illustrated cloud strokes add depth without turning the sky into a flat gradient. */
   for(let i=0;i<22;i++){
@@ -189,12 +189,7 @@ function toonBlock(x,cx,top,w,h,col,o,arch){
  'industrial-loft-building':[[0,.22],[.12,.1],[.28,.1],[.28,.02],[.44,.02],[.44,.14],[.64,.14],[.64,0],[.84,0],[1,.22],[1,1],[0,1]],
  'civic-cultural-complex':[[0,.26],[.16,.26],[.16,.1],[.32,.1],[.32,.2],[.56,.2],[.56,.02],[.84,.02],[.84,.16],[1,.16],[1,1],[0,1]],
  'modern-office-midrise':[[0,.16],[.1,.07],[.24,.07],[.24,0],[.76,0],[.76,.07],[.9,.07],[1,.16],[1,1],[0,1]],
- 'waterfront-warehouse':[[0,.22],[.12,.03],[.3,.03],[.3,.14],[.48,.14],[.48,0],[.74,0],[.9,.04],[1,.22],[1,1],[0,1]],
- 'twisted-glass-tower':[[0,.12],[.24,.05],[.48,0],[.72,.08],[1,.2],[.9,.34],[.68,.3],[.46,.22],[.22,.28],[0,.38],[0,1],[1,1]],
- 'classic-limestone-building':[[0,.14],[.08,.1],[.08,.04],[.2,.04],[.2,0],[.8,0],[.8,.04],[.92,.04],[.92,.1],[1,.14],[1,1],[0,1]],
- 'rooftop-garden-tower':[[0,.22],[.12,.22],[.12,.14],[.3,.14],[.3,.06],[.7,.06],[.7,0],[.88,0],[.88,.14],[1,.14],[1,1],[0,1]],
- 'historic-civic-building':[[0,.26],[.16,.26],[.16,.1],[.32,.1],[.32,.2],[.56,.2],[.56,.02],[.84,.02],[.84,.16],[1,.16],[1,1],[0,1]],
- 'mixed-height-commercial-complex':[[0,.18],[.18,.18],[.18,.08],[.38,.08],[.38,.24],[.58,.24],[.58,0],[.8,0],[.8,.12],[1,.12],[1,1],[0,1]]
+ 'waterfront-warehouse':[[0,.22],[.12,.03],[.3,.03],[.3,.14],[.48,.14],[.48,0],[.74,0],[.9,.04],[1,.22],[1,1],[0,1]]
 };
 const profile=arch&&silhouetteProfiles[arch.id]?silhouetteProfiles[arch.id]:(arch&&arch.profile?arch.profile:[[0,.06],[.08,0],[.92,0],[1,.06],[1,1],[0,1]]);
   const face=x.createLinearGradient(cx,top,cx+front,top+h);
