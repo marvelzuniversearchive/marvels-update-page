@@ -87,6 +87,7 @@
   }
   function setActive(value) {
     active = value;
+    document.body.classList.toggle("marvel-news-night", value);
     const button = document.querySelector("[data-marvel-news]");
     if (button) button.classList.toggle("active", value);
     if (value) {
