@@ -96,23 +96,47 @@ const ptr={x:0,y:0,tx:0,ty:0};
 const scr={y:0,target:0};
 const mk=(w,h)=>{const c=document.createElement('canvas');c.width=Math.max(1,Math.ceil(w));c.height=Math.max(1,Math.ceil(h));return c};
 
-function buildSky(){
-  sky=mk(W*Q,H*Q);
+const CITY_BG_URL='https://images.unsplash.com/photo-1767749580008-9f836a3849a9?auto=format&fit=crop&fm=jpg&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&ixlib=rb-4.1.0&q=80&w=3000';
+let cityBgImage=null,cityBgRequested=false;
+function drawCityBackground(){
+  if(!sky)return;
   const x=sky.getContext('2d');
   x.setTransform(Q,0,0,Q,0,0);
-  const g=x.createLinearGradient(0,0,0,H);
-  [[0,'#435EDB'],[.2,'#A64BD1'],[.34,'#F35A91'],[.46,'#FF7045'],[.54,'#FFB84A'],[.6,'#5a2a52'],[.8,'#26171E'],[1,'#1d0e4f']]
-    .forEach(([o,c])=>g.addColorStop(o,c));
-  x.fillStyle=g;x.fillRect(0,0,W,H);
-  const sg=x.createRadialGradient(W*.8,H*.36,0,W*.8,H*.36,Math.max(W,H)*.5);
-  sg.addColorStop(0,'rgba(255,190,120,.7)');sg.addColorStop(.35,'rgba(255,140,90,.35)');sg.addColorStop(1,'rgba(255,140,90,0)');
-  x.fillStyle=sg;x.fillRect(0,0,W,H);
-  /* baked film grain: static texture, zero per-frame cost */
-  const gs=mk(256,256),gx=gs.getContext('2d'),id=gx.createImageData(256,256),d=id.data;
-  for(let i=0;i<d.length;i+=4){const v=(Math.random()*255)|0;d[i]=d[i+1]=d[i+2]=v;d[i+3]=255}
-  gx.putImageData(id,0,0);
-  x.save();x.globalAlpha=.05;x.globalCompositeOperation='overlay';
-  x.fillStyle=x.createPattern(gs,'repeat');x.fillRect(0,0,W,H);x.restore();
+  x.clearRect(0,0,W,H);
+  if(cityBgImage){
+    const iw=cityBgImage.naturalWidth||cityBgImage.width,ih=cityBgImage.naturalHeight||cityBgImage.height;
+    const scale=Math.max(W/iw,H/ih),dw=iw*scale,dh=ih*scale;
+    const sx=(W-dw)*.5,sy=(H-dh)*.5;
+    x.save();x.filter='brightness(.76) contrast(1.13) saturate(.88)';
+    x.drawImage(cityBgImage,sx,sy,dw,dh);x.restore();
+  }else{
+    const fallback=x.createLinearGradient(0,0,0,H);
+    fallback.addColorStop(0,'#10213c');fallback.addColorStop(.55,'#263d61');fallback.addColorStop(1,'#081426');
+    x.fillStyle=fallback;x.fillRect(0,0,W,H);
+  }
+  /* Cool cinematic grade: retain the real skyline detail while harmonising it with the archive UI. */
+  x.globalCompositeOperation='multiply';x.fillStyle='rgba(11,29,57,.28)';x.fillRect(0,0,W,H);
+  x.globalCompositeOperation='screen';
+  const horizon=x.createLinearGradient(0,H*.18,0,H*.82);
+  horizon.addColorStop(0,'rgba(42,91,145,.04)');
+  horizon.addColorStop(.48,'rgba(55,89,145,.08)');
+  horizon.addColorStop(1,'rgba(7,17,34,.44)');
+  x.fillStyle=horizon;x.fillRect(0,0,W,H);
+  const vignette=x.createRadialGradient(W*.52,H*.42,Math.min(W,H)*.12,W*.52,H*.42,Math.max(W,H)*.72);
+  vignette.addColorStop(0,'rgba(0,0,0,0)');vignette.addColorStop(1,'rgba(2,9,22,.42)');
+  x.globalCompositeOperation='source-over';x.fillStyle=vignette;x.fillRect(0,0,W,H);
+  x.globalAlpha=.045;x.fillStyle=makeHalftone();x.fillRect(0,0,W,H);x.globalAlpha=1;
+}
+function buildSky(){
+  sky=mk(W*Q,H*Q);
+  if(!cityBgImage&&!cityBgRequested){
+    cityBgRequested=true;
+    const img=new Image();img.crossOrigin='anonymous';
+    img.onload=()=>{cityBgImage=img;drawCityBackground();render(0)};
+    img.onerror=()=>{cityBgRequested=false;drawCityBackground();render(0)};
+    img.src=CITY_BG_URL;
+  }
+  drawCityBackground();
 }
 function buildGlows(){
   glows=[C.o1,C.o3,C.o4].map(col=>{
@@ -369,28 +393,8 @@ function drawParts(){
 function render(e){
   ctx.setTransform(dpr,0,0,dpr,0,0);
   ctx.globalAlpha=1;ctx.globalCompositeOperation='source-over';
-  ctx.drawImage(sky,0,0,W,H);
-  drawClouds();
-  drawGlows();
-  drawPerspective(e);
-  /* gentle forward dive + slow downward camera drift */
-  const dive=1+.012*(.5+.5*Math.sin(t*.13))+e*.03;
-  const drift=10+10*Math.sin(t*.07)+e*30;
-  ctx.save();
-  ctx.translate(W*.5,H);ctx.scale(dive,dive);ctx.translate(-W*.5,-H);
-  layers.forEach((L,i)=>{
-    const shift=Math.min(EXTRA-30,scr.y*L.pf+drift*L.depth*.5);
-    const dy=-shift, x0=-L.off+ptr.x*L.depth*16;
-    ctx.globalAlpha=L.alpha;
-    for(let x=x0-L.tw;x<W+L.tw;x+=L.tw)ctx.drawImage(L.c,x,dy,L.tw,L.hh);
-    if(i===0&&!reduced)drawFlicker(L,dy,x0);
-  });
-  ctx.restore();
+  if(sky)ctx.drawImage(sky,0,0,W,H);
   ctx.globalAlpha=1;
-  drawTrails();
-  drawHalftone(e);
-  drawParts();
-  ctx.globalAlpha=1;ctx.globalCompositeOperation='source-over';
 }
 
 function updateClouds(dt){
@@ -444,8 +448,9 @@ function loop(now){
   if(!document.hidden)raf=requestAnimationFrame(loop);
 }
 function start(){
-  if(raf||reduced)return;
-  last=performance.now();raf=requestAnimationFrame(loop);
+  /* The skyline is now a still cinematic backdrop, not a foreground animation. */
+  if(raf)return;
+  render(0);
 }
 
 function build(){
@@ -454,12 +459,10 @@ function build(){
   Q=Math.min(dpr,1.25);
   cv.width=Math.round(W*dpr);cv.height=Math.round(H*dpr);
   ctx.setTransform(dpr,0,0,dpr,0,0);
-  buildSky();buildGlows();buildClouds();halftone=makeHalftone();dotTile=makeDotTile();
-  layers=LAYER_DEFS.map(d=>{const L=d.dense?buildDense(d):buildLayer(d);return Object.assign({off:Math.random()*L.tw},d,L)});
-  const want=isSmall()?28:76;
-  parts=parts.filter(p=>p.life!==Infinity);
-  for(let i=0;i<want;i++)parts.push(ambientPart(true));
-  if(reduced)render(0);else start();
+  buildSky();
+  /* Procedural skyline layers are intentionally disabled: the photo is the background artwork. */
+  layers=[];trails=[];parts=[];clouds=[];glows=[];halftone=null;dotTile=null;
+  render(0);
 }
 
 /* ---- universe-shift transition controller: 1100 ms total, action at 1000 ms ---- */
