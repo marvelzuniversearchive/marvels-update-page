@@ -84,11 +84,11 @@ const EXTRA=300, LEAP_DUR=2.8;
 /* city band = lower 45% of the screen: tallest tops near 50% height */
 const TOON_PAL=['#2EC4B6','#E84A8C','#FF8C42','#7B5EA7','#F7C948','#3D6FD8','#B5523B','#55C26B','#F06292'];
 const LAYER_DEFS=[
- {minH:.26,maxH:.38,fill:'#8a5566',pal:TOON_PAL,haze:.42,lw:1.2,dotA:.12,ink:'#2a1a40',alpha:.85,depth:.5,speed:1.8,boost:.3,pf:.12,lit:.16,litC:[C.gold,C.pink],wMin:36,wMax:82,gap:[4,16],wx:9,wy:13,ws:3},
- {dense:true,pal:TOON_PAL,haze:.22,lw:1.6,dotA:.3,ink:'#1a0c24',depth:1.1,alpha:.92,speed:4,boost:.6,pf:.2,lit:.1,litC:[C.gold,C.peach,'#ffd6a0'],wMin:0,wMax:0,gap:[0,0],wx:0,wy:0,ws:0,minH:0,maxH:0,fill:'',
+ {minH:.26,maxH:.38,fill:'#8a5566',pal:TOON_PAL,haze:.42,lw:1.2,dotA:.12,ink:'#2a1a40',alpha:.85,depth:.5,speed:6,boost:.6,pf:.12,lit:.16,litC:[C.gold,C.pink],wMin:36,wMax:82,gap:[4,16],wx:9,wy:13,ws:3},
+ {dense:true,pal:TOON_PAL,haze:.22,lw:1.6,dotA:.3,ink:'#1a0c24',depth:1.1,alpha:.92,speed:22,boost:1.6,pf:.2,lit:.1,litC:[C.gold,C.peach,'#ffd6a0'],wMin:0,wMax:0,gap:[0,0],wx:0,wy:0,ws:0,minH:0,maxH:0,fill:'',
   /* placeholder fields for signature */},
- {minH:.31,maxH:.44,fill:'#4a2535',pal:TOON_PAL,haze:.18,lw:1.8,dotA:.3,ink:'#1a0c24',alpha:.9,depth:1,speed:3,boost:.5,pf:.22,lit:.2,litC:[C.gold,C.mint,C.pink],wMin:48,wMax:110,gap:[6,24],wx:10,wy:15,ws:3.4},
- {minH:.36,maxH:.5,fill:'#26171E',pal:TOON_PAL,haze:0,lw:2.4,dotA:.4,ink:'#140a1e',alpha:.96,depth:1.6,speed:6,boost:.8,pf:.38,lit:.14,litC:[C.gold,C.o3,C.cyan],wMin:76,wMax:160,gap:[10,38],wx:13,wy:18,ws:4.4}
+ {minH:.31,maxH:.44,fill:'#4a2535',pal:TOON_PAL,haze:.18,lw:1.8,dotA:.3,ink:'#1a0c24',alpha:.9,depth:1,speed:16,boost:1.2,pf:.22,lit:.2,litC:[C.gold,C.mint,C.pink],wMin:48,wMax:110,gap:[6,24],wx:10,wy:15,ws:3.4},
+ {minH:.36,maxH:.5,fill:'#26171E',pal:TOON_PAL,haze:0,lw:2.4,dotA:.4,ink:'#140a1e',alpha:.96,depth:1.6,speed:36,boost:2.4,pf:.38,lit:.14,litC:[C.gold,C.o3,C.cyan],wMin:76,wMax:160,gap:[10,38],wx:13,wy:18,ws:4.4}
 ];
 let dotTile=null,W=1,H=1,dpr=1,Q=1,sky=null,glows=[],halftone=null,grainTile=null,layers=[],trails=[],parts=[],clouds=[];
 let t=0,leapClock=0,nextLeap=6,leapT=-1,spawnAcc=0,raf=0,last=0;
@@ -169,17 +169,28 @@ function shadeOf(h,f){
 }
 /* Perspective-drawn architecture: uneven roofline, front plane, deep side plane and inked edges. */
 /* Restrained, layered city architecture: cinematic depth without exaggerated block animation. */
+/* Cinematic architectural rendering: restrained edges, dimensional facades and perspective. */
 function toonBlock(x,cx,top,w,h,col,o){
-  const base=mixHex(col,o.hazeC,o.haze), dark=mixHex(shadeOf(col,.72),o.hazeC,o.haze);
-  const bevel=Math.max(1.5,Math.min(w*.045,3.5)), roofDip=Math.min(4,h*.012);
-  const side=w*.12, front=w-side;
-  const face=x.createLinearGradient(cx,top,cx,top+h);
-  face.addColorStop(0,base);face.addColorStop(.62,shadeOf(col,.94));face.addColorStop(1,dark);
-  x.fillStyle=face;x.beginPath();x.moveTo(cx,top+roofDip);x.lineTo(cx+front,top);x.lineTo(cx+w,top+bevel);x.lineTo(cx+w,h+top);x.lineTo(cx,h+top);x.closePath();x.fill();
-  x.fillStyle=shadeOf(dark,.92);x.beginPath();x.moveTo(cx+front,top);x.lineTo(cx+w,top+bevel);x.lineTo(cx+w,top+h);x.lineTo(cx+front,top+h);x.closePath();x.fill();
-  x.save();x.globalAlpha=o.dotA;x.fillStyle=o.dots;x.beginPath();x.moveTo(cx+front,top);x.lineTo(cx+w,top+bevel);x.lineTo(cx+w,top+h);x.lineTo(cx+front,top+h);x.closePath();x.fill();x.restore();
-  x.strokeStyle=o.ink;x.lineWidth=o.lw;x.beginPath();x.moveTo(cx,top+roofDip);x.lineTo(cx+front,top);x.lineTo(cx+w,top+bevel);x.lineTo(cx+w,top+h);x.lineTo(cx,h+top);x.closePath();x.stroke();
-  x.strokeStyle='rgba(255,255,255,.2)';x.lineWidth=Math.max(.7,o.lw*.45);x.beginPath();x.moveTo(cx+2,top+roofDip+2);x.lineTo(cx+front-2,top+2);x.stroke();
+  const base=mixHex(col,o.hazeC,o.haze), shadow=mixHex(shadeOf(col,.58),o.hazeC,o.haze);
+  const side=Math.max(8,w*.2), front=w-side, bevel=Math.max(1,Math.min(3,w*.025));
+  const face=x.createLinearGradient(cx,top,cx+front,top+h);
+  face.addColorStop(0,mixHex(base,'#ffffff',.08));
+  face.addColorStop(.52,base);
+  face.addColorStop(1,shadeOf(col,.78));
+  x.fillStyle=face;
+  x.beginPath();x.moveTo(cx,top+2);x.lineTo(cx+front,top);x.lineTo(cx+front,top+h);x.lineTo(cx,top+h);x.closePath();x.fill();
+  const sideFace=x.createLinearGradient(cx+front,top,cx+w,top+h);
+  sideFace.addColorStop(0,shadeOf(base,.66));sideFace.addColorStop(1,shadow);
+  x.fillStyle=sideFace;
+  x.beginPath();x.moveTo(cx+front,top);x.lineTo(cx+w,top+bevel);x.lineTo(cx+w,top+h);x.lineTo(cx+front,top+h);x.closePath();x.fill();
+  x.save();x.globalAlpha=.18;x.fillStyle=o.dots;
+  x.beginPath();x.moveTo(cx+front,top);x.lineTo(cx+w,top+bevel);x.lineTo(cx+w,top+h);x.lineTo(cx+front,top+h);x.closePath();x.fill();x.restore();
+  /* Fine architectural edge work instead of a thick cartoon contour. */
+  x.save();x.globalAlpha=.48;x.strokeStyle=o.ink;x.lineWidth=.65;
+  x.beginPath();x.moveTo(cx,top+2);x.lineTo(cx+front,top);x.lineTo(cx+w,top+bevel);x.lineTo(cx+w,top+h);x.lineTo(cx,top+h);x.closePath();x.stroke();
+  x.restore();
+  x.save();x.globalAlpha=.2;x.strokeStyle='#ffffff';x.lineWidth=.7;
+  x.beginPath();x.moveTo(cx+2,top+4);x.lineTo(cx+front-2,top+2);x.stroke();x.restore();
   return side;
 }
 function toonWindows(x,cx,top,w,sw,h,d,o,wins){
@@ -205,7 +216,7 @@ function toonWindows(x,cx,top,w,sw,h,d,o,wins){
   }
 }
 function toonOpts(d,x){
-  return {ink:d.ink,lw:d.lw*.68,dotA:d.dotA*.32,dots:x.createPattern(dotTile,'repeat'),hazeC:'#7d5fc4',haze:d.haze};
+  return {ink:d.ink,lw:.7,dotA:d.dotA*.22,dots:x.createPattern(dotTile,'repeat'),hazeC:'#7d5fc4',haze:d.haze};
 }
 function buildLayer(d){
   const tw=Math.ceil(Math.max(W*1.15,760)), hh=H+EXTRA;
@@ -256,20 +267,43 @@ function buildDense(d){
   const tw=Math.ceil(Math.max(W*1.15,760)), hh=H+EXTRA;
   const c=mk(tw,hh), x=c.getContext('2d'), wins=[];
   const o=toonOpts(d,x);
-  let cx=0;
+  let cx=-rnd(0,24);
   while(cx<tw){
-    const cw=rnd(16,34), peak=H*rnd(.5,.82);
-    let y=H;
-    while(y>peak){
-      const bh=rnd(12,34), top=Math.max(peak,y-bh);
-      toonBlock(x,cx,top,cw,y-top+1,pick(d.pal),o);
-      if(Math.random()<.14){x.fillStyle='#6b4a3a';x.fillRect(cx+cw*.25,top-7,cw*.5,7);x.strokeStyle=o.ink;x.lineWidth=1;x.strokeRect(cx+cw*.25,top-7,cw*.5,7)}
-      if(Math.random()<d.lit){x.fillStyle=pick(d.litC);x.fillRect(cx+cw*.2,top+(y-top)*.4,Math.max(3,cw*.25),4)}
-      y=top-1;
+    const bw=rnd(42,94), bh=rnd(.42,.82)*H, top=H-bh, col=pick(d.pal);
+    const side=toonBlock(x,cx,top,bw,hh-top,col,o);
+    const facade={...d,ws:rnd(1.5,2.2),wx:rnd(8,12),wy:rnd(10,15),lit:rnd(.07,.15),litC:[C.gold,C.peach,'#d9e7ff']};
+    toonWindows(x,cx,top,bw,side,bh,facade,o,wins);
+    /* Side-facing windows make the depth plane read as a real building. */
+    const sideW=bw-side, swx=cx+bw-sideW+2, winW=Math.max(2,sideW*.25), winH=facade.ws*2.1;
+    for(let wy=top+12;wy<top+bh-winH-8;wy+=facade.wy){
+      for(let colN=0;colN<2;colN++){
+        const wx=swx+colN*(winW+2);
+        if(wx+winW>cx+bw-2)continue;
+        const lit=Math.random()<facade.lit, warm=pick(facade.litC);
+        x.fillStyle='rgba(7,12,27,.8)';x.fillRect(wx-1,wy-1,winW+2,winH+2);
+        x.fillStyle=lit?shadeOf(warm,.82):'rgba(12,19,37,.9)';
+        x.fillRect(wx,wy,winW,winH);
+        if(lit){x.fillStyle='rgba(255,255,255,.22)';x.fillRect(wx+1,wy+1,Math.max(1,winW*.35),winH*.3)}
+      }
     }
-    cx+=cw+rnd(0,2);
+    /* Subtle floor bands, pilasters and recessed mechanical rooftop details. */
+    x.save();x.globalAlpha=.16;x.strokeStyle='#e5e9f5';x.lineWidth=.7;
+    for(let fy=top+facade.wy*2;fy<top+bh;fy+=facade.wy*3){
+      x.beginPath();x.moveTo(cx+3,fy);x.lineTo(cx+bw-side-2,fy);x.stroke();
+    }
+    x.globalAlpha=.22;x.beginPath();x.moveTo(cx+bw-side*.45,top+8);x.lineTo(cx+bw-side*.45,top+bh-4);x.stroke();x.restore();
+    if(Math.random()<.28){
+      const rw=bw*rnd(.2,.46), rh=rnd(5,13), rx=cx+bw*rnd(.12,.58);
+      x.fillStyle=shadeOf(col,.72);x.fillRect(rx,top-rh,rw,rh);
+      x.save();x.globalAlpha=.5;x.strokeStyle=o.ink;x.lineWidth=.7;x.strokeRect(rx,top-rh,rw,rh);x.restore();
+    }
+    if(Math.random()<.1){
+      const ax=cx+bw*rnd(.25,.8), ay=top-rnd(18,42);
+      x.save();x.globalAlpha=.55;x.strokeStyle=o.ink;x.lineWidth=.8;
+      x.beginPath();x.moveTo(ax,top);x.lineTo(ax,ay);x.stroke();x.restore();
+    }
+    cx+=bw+rnd(3,13);
   }
-  for(let i=0;i<6;i++){const tx=rnd(0,tw),tw2=rnd(22,40),ty=H*rnd(.44,.55);toonBlock(x,tx,ty,tw2,hh-ty,pick(d.pal),o)}
   return {c,tw,hh,wins};
 }
 function ambientPart(init){
