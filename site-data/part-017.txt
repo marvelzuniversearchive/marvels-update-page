@@ -175,18 +175,35 @@ function shadeOf(h,f){
 /* Cinematic architectural rendering: restrained edges, dimensional facades and perspective. */
 /* Fine architectural rendering: dimensional faces, restrained ink and camera-led perspective. */
 function toonBlock(x,cx,top,w,h,col,o,arch){
-  const base=mixHex(col,o.hazeC,o.haze), shadow=mixHex(shadeOf(col,.58),o.hazeC,o.haze);
-  const side=w*.13, front=w-side, profile=arch&&arch.profile?arch.profile:[[0,.08],[.12,0],[.88,0],[1,.08],[1,1],[0,1]];
+  /* Contemporary anime environment architecture: sculpted massing, deep reveals,
+     offset tower volumes, angular crowns and a strong near-side perspective plane. */
+  const base=mixHex(col,o.hazeC,o.haze), shadow=mixHex(shadeOf(col,.48),o.hazeC,o.haze);
+  const side=Math.max(w*.19,12), front=w-side, profile=arch&&arch.profile?arch.profile:[[0,.08],[.12,0],[.88,0],[1,.08],[1,1],[0,1]];
+  const depth=Math.min(side,w*.27), chamfer=Math.min(w*.08,10);
   const face=x.createLinearGradient(cx,top,cx+front,top+h);
-  face.addColorStop(0,shadeOf(base,1.12));face.addColorStop(.48,base);face.addColorStop(1,shadeOf(base,.82));
-  x.fillStyle=face;x.beginPath();profile.forEach((p,i)=>{const px=cx+p[0]*front,py=top+p[1]*h;i?x.lineTo(px,py):x.moveTo(px,py)});x.closePath();x.fill();
-  x.fillStyle=shadow;x.beginPath();x.moveTo(cx+front,top+Math.max(3,h*.035));x.lineTo(cx+w,top+Math.max(3,h*.035));x.lineTo(cx+w,top+h);x.lineTo(cx+front,top+h);x.closePath();x.fill();
-  x.fillStyle=shadeOf(base,1.18);x.beginPath();x.moveTo(cx,top+profile[0][1]*h);x.lineTo(cx+front,top+profile[Math.min(2,profile.length-1)][1]*h);x.lineTo(cx+w,top+Math.max(3,h*.035));x.lineTo(cx+w-side*.08,top+Math.max(4,h*.06));x.closePath();x.fill();
-  x.save();x.globalAlpha=o.dotA*.52;x.fillStyle=o.dots;x.fillRect(cx+front,top,w-front,h);x.restore();
-  x.save();x.globalAlpha=.86;x.strokeStyle=o.ink;x.lineWidth=Math.max(.8,o.lw*.55);
+  face.addColorStop(0,shadeOf(base,1.24));face.addColorStop(.28,shadeOf(base,1.08));face.addColorStop(.72,base);face.addColorStop(1,shadeOf(base,.78));
+  x.fillStyle=face;x.beginPath();
+  profile.forEach((p,i)=>{const px=cx+p[0]*front,py=top+p[1]*h;i?x.lineTo(px,py):x.moveTo(px,py)});
+  x.closePath();x.fill();
+  /* Deep right-facing plane gives every tower a visible 3-D volume. */
+  const sideG=x.createLinearGradient(cx+front,top,cx+w,top+h);
+  sideG.addColorStop(0,shadeOf(base,.68));sideG.addColorStop(.55,shadeOf(base,.54));sideG.addColorStop(1,shadeOf(base,.42));
+  x.fillStyle=sideG;x.beginPath();x.moveTo(cx+front,top+Math.max(2,h*.025));x.lineTo(cx+w,top+Math.max(4,h*.055));x.lineTo(cx+w,top+h);x.lineTo(cx+front,top+h);x.closePath();x.fill();
+  /* Roof cap and offset crown planes, like modern hand-painted anime city layouts. */
+  x.fillStyle=shadeOf(base,1.34);x.beginPath();x.moveTo(cx+front*.04,top+profile[0][1]*h);x.lineTo(cx+front*.94,top+profile[Math.min(2,profile.length-1)][1]*h);x.lineTo(cx+w,top+Math.max(4,h*.055));x.lineTo(cx+front+depth*.12,top+Math.max(2,h*.025));x.closePath();x.fill();
+  x.fillStyle=shadeOf(base,.62);x.beginPath();x.moveTo(cx+front,top+Math.max(2,h*.025));x.lineTo(cx+w,top+Math.max(4,h*.055));x.lineTo(cx+w,top+h);x.lineTo(cx+front,top+h);x.closePath();x.fill();
+  /* Vertical fins, slab edges and inset shadow seams add scale and authored detail. */
+  x.save();x.globalAlpha=.42;x.strokeStyle=o.ink;x.lineWidth=Math.max(.8,o.lw*.72);
+  for(let i=1;i<=3;i++){const fx=cx+front*i/4;x.beginPath();x.moveTo(fx,top+h*.12);x.lineTo(fx,top+h);x.stroke()}
+  for(let yy=top+h*.24;yy<top+h;yy+=Math.max(30,h*.19)){x.globalAlpha=.2;x.beginPath();x.moveTo(cx+2,yy);x.lineTo(cx+front-2,yy);x.stroke()}
+  x.restore();
+  x.save();x.globalAlpha=.7;x.strokeStyle=o.ink;x.lineWidth=Math.max(.9,o.lw*.7);
   x.beginPath();profile.forEach((p,i)=>{const px=cx+p[0]*front,py=top+p[1]*h;i?x.lineTo(px,py):x.moveTo(px,py)});x.closePath();x.stroke();
-  x.globalAlpha=.55;x.beginPath();x.moveTo(cx+front,top+3);x.lineTo(cx+front,top+h);x.lineTo(cx+w,top+h);x.stroke();x.restore();
-  x.strokeStyle='rgba(255,255,255,.3)';x.lineWidth=.9;x.beginPath();x.moveTo(cx+4,top+h*.16);x.lineTo(cx+front-4,top+h*.12);x.stroke();
+  x.globalAlpha=.48;x.beginPath();x.moveTo(cx+front,top+3);x.lineTo(cx+front,top+h);x.lineTo(cx+w,top+h);x.stroke();x.restore();
+  /* Bright edge catches and recessed corner glazing. */
+  x.strokeStyle='rgba(255,255,255,.42)';x.lineWidth=1.1;x.beginPath();x.moveTo(cx+4,top+h*.15);x.lineTo(cx+front-4,top+h*.12);x.stroke();
+  x.strokeStyle='rgba(225,242,255,.26)';x.lineWidth=1;x.beginPath();x.moveTo(cx+w-3,top+h*.12);x.lineTo(cx+w-3,top+h*.88);x.stroke();
+  x.save();x.globalAlpha=o.dotA*.42;x.fillStyle=o.dots;x.fillRect(cx+front,top,w-front,h);x.restore();
   return side;
 }
 function chooseCityArchetype(){
