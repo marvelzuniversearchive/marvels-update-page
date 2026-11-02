@@ -71,7 +71,7 @@ document.getElementById('appRoot').innerHTML=shell();render();
 'use strict';
 const cv=document.getElementById('cityCanvas');
 if(!cv||!cv.getContext)return;
-const ctx=cv.getContext('2d',{alpha:false});
+const ctx=cv.getContext('2d',{alpha:true});
 const root=document.documentElement;
 const glFx=document.getElementById('glitchFx');
 const motionQ=window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -145,7 +145,7 @@ function mkCloud(cols){
   x.globalAlpha=1;return s;
 }
 function buildClouds(){
-  const sprites=[mkCloud(['#FFB84A',C.peach]),mkCloud(['#FF7045','#F35A91']),mkCloud(['#A64BD1','#435EDB']),mkCloud(['#F35A91','#FFB84A'])];
+  const sprites=[mkCloud(['rgba(255,255,255,.92)','rgba(244,249,252,.78)']),mkCloud(['rgba(226,239,247,.9)','rgba(255,255,255,.78)']),mkCloud(['rgba(255,247,229,.9)','rgba(255,255,255,.72)']),mkCloud(['rgba(210,229,241,.88)','rgba(255,255,255,.76)'])];
   clouds=[];
   for(let i=0;i<10;i++){
     const w=rnd(420,900);
