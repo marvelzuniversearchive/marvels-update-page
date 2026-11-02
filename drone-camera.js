@@ -4,7 +4,7 @@
   const style = document.createElement("style");
   style.textContent = `
     #cityCanvas{opacity:0!important;pointer-events:none!important}
-    #drone-scene{position:fixed;inset:0;z-index:-2;overflow:hidden;pointer-events:none;perspective:1100px;background:#0a1420}
+    #drone-scene{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none;perspective:1100px;background:#0a1420}
     #drone-scene .drone-image{position:absolute;inset:-7%;background-image:linear-gradient(180deg,rgba(5,12,24,.05),rgba(5,12,24,.28)),url("${IMAGE}");background-size:cover;background-position:center 48%;background-repeat:no-repeat;will-change:transform;transform-origin:50% 48%;filter:saturate(1.06) contrast(1.02)}
     #drone-scene:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,10,20,.03),transparent 45%,rgba(5,10,20,.2));}
     body{background:transparent!important}
