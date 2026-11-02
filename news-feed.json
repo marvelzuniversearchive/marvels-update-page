@@ -590,7 +590,11 @@
         "Vision",
         "Doom"
       ],
-      "external_id": "CBMib0FVX3lxTE45R2EyWkphRlFMa29oNHh4U0RNbE1USm9sdDJGTWozVmJEMFhmdlAwa3U4MWk3UWRtTGlQaXpCaTlaRExwREpDRlBxNGZreFFVTjN4Z1dKQ3ZNUHBZVjd4VjJvOVZXUmFpQjZlbzBYbw"
+      "external_id": "CBMib0FVX3lxTE45R2EyWkphRlFMa29oNHh4U0RNbE1USm9sdDJGTWozVmJEMFhmdlAwa3U4MWk3UWRtTGlQaXpCaTlaRExwREpDRlBxNGZreFFVTjN4Z1dKQ3ZNUHBZVjd4VjJvOVZXUmFpQjZlbzBYbw",
+      "coverage_tags": [
+        "Series: VisionQuest",
+        "Vision Quest"
+      ]
     },
     {
       "id": "october28snewmarvelcomicsthefulllist",
@@ -1092,5 +1096,16 @@
       ],
       "external_id": "CBMirwFBVV95cUxQYk11WmIxOXhGOC1lNWlOTFk3eHhkcG9felFLYmd3LWxEZ1NleG9lOGhlazQ0dVlGWDc4WkVJWFhwWHBNNGtaOFF5T0lES3g3Wnk0NHVoY2Q2N2FfUkpEZEVWNC1SWnpxVDJFQUVXRVVHWndsZGlEWjAzTmpiMm1PZWNkOEFxQWJqYVk4Y0ExLXdE"
     }
-  ]
+  ],
+  "featured_series": {
+    "name": "VisionQuest",
+    "aliases": [
+      "VisionQuest",
+      "Vision Quest"
+    ],
+    "premiere": "2026-10-14",
+    "finale": "2026-11-11",
+    "description": "Vision’s search for identity continues as he confronts the legacy of Ultron.",
+    "status": "airing"
+  }
 }
