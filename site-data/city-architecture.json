@@ -1,22 +1,22 @@
 {
   "city": {
     "name": "New York City",
-    "region": "Manhattan Core and Adjacent Waterfront Districts",
-    "scene_type": "Cinematic afternoon skyline environment",
+    "region": "Manhattan skyline viewed across a broad central urban lake",
+    "scene_type": "Wide, distant anime cityscape with a central lake",
     "viewpoint": {
-      "type": "elevated three-quarter skyline view",
-      "camera_height_meters": 180,
+      "type": "elevated wide landscape view across a lake toward a distant city",
+      "camera_height_meters": 120,
       "focal_length_mm": 35,
-      "horizon_position_percent": 68
+      "horizon_position_percent": 56
     },
     "composition": {
-      "foreground": "Waterfront edge with low warehouses and piers",
-      "midground": "Dense Midtown and Financial District towers",
-      "background": "Distant supertall spires fading into atmospheric haze",
-      "skyline_rhythm": "Alternating tall spires, stepped crowns and low historic blocks"
+      "foreground": "A broad calm lake filling the lower middle of the view, with subtle reflections and a gently curved near shoreline",
+      "midground": "The lake surface separating the viewer from the far shore; low urban buildings and tree-lined edges frame the water at the sides",
+      "background": "A distant layered skyline beyond the lake, with varied Manhattan towers softened by atmospheric perspective",
+      "skyline_rhythm": "Distinct tall spires and stepped crowns rising above smaller buildings, with visible gaps and open sky"
     },
     "time_of_day": "Bright blue afternoon",
-    "weather": "Clear sky with light cumulus at high altitude"
+    "weather": "Clear bright blue afternoon with soft anime-style cumulus clouds"
   },
   "visual_style": {
     "overall_style": "Premium Japanese anime environmental artwork",
@@ -1705,5 +1705,16 @@
       "roof": "water-tank",
       "source_building_id": "NYC-ARCH-11"
     }
-  ]
+  ],
+  "water_feature": {
+    "type": "broad central urban lake",
+    "placement": "middle of the composition, extending across the lower half of the view",
+    "appearance": "calm blue water with a gently curved far shoreline, soft sky reflections, fine horizontal ripples and a few elongated reflected highlights",
+    "must_not_appear": [
+      "river",
+      "narrow water channel",
+      "close-up waterfront piers"
+    ],
+    "visual_role": "creates visible distance between the viewer and the far-shore buildings"
+  }
 }
