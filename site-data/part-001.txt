@@ -238,8 +238,12 @@ body{
 
 
 /* ===== CINEMATIC CITY LAYER ===== */
-.city-fx{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;background:linear-gradient(180deg,#4F56C6 0%,#7a5cc9 20%,#C25CAF 34%,#D358A9 44%,#EF7C4F 50%,#FF9C45 56%,#5a2a52 64%,#26171E 80%,#1d0e4f 100%)}
-#cityCanvas{position:absolute;left:0;top:0;width:100%;height:100%;display:block}
+.city-fx{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;background:linear-gradient(180deg,#76B9E8 0%,#9BCFED 34%,#D6E7E8 58%,#F3D5B1 78%,#D7B89D 100%)}
+.city-fx:before,.city-fx:after{content:"";position:absolute;inset:-12% -35%;pointer-events:none;z-index:0;background-repeat:repeat-x;filter:blur(16px);opacity:.5}
+.city-fx:before{background-image:radial-gradient(ellipse at 12% 35%,rgba(255,255,255,.82) 0 5%,transparent 17%),radial-gradient(ellipse at 42% 48%,rgba(255,255,255,.72) 0 4%,transparent 16%),radial-gradient(ellipse at 72% 32%,rgba(255,255,255,.7) 0 5%,transparent 18%);background-size:980px 300px;animation:dayCloudDrift 115s linear infinite}
+.city-fx:after{background-image:radial-gradient(ellipse at 25% 58%,rgba(223,239,247,.72) 0 4%,transparent 18%),radial-gradient(ellipse at 66% 42%,rgba(255,248,230,.62) 0 4%,transparent 17%);background-size:1280px 360px;animation:dayCloudDrift 165s linear infinite reverse;opacity:.38}
+#cityCanvas{position:absolute;left:0;top:0;width:100%;height:100%;display:block;z-index:1}
+@keyframes dayCloudDrift{from{transform:translateX(-3%)}to{transform:translateX(3%)}}
 #appRoot{position:relative;z-index:1}
 body{text-shadow:0 1px 16px rgba(20,6,30,.45)}
 .sidebar{background:rgba(22,10,36,.46)}
