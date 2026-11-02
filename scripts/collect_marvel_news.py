@@ -42,6 +42,24 @@ QUERIES = [
 UA = "Mozilla/5.0 (compatible; MarvelUniverseArchiveNews/2.0)"
 MAX_ARTICLES = 60
 ENRICH_LIMIT = 18
+# Release windows are based on announced dates. The spotlight switches by date;
+# unknown future dates are deliberately not guessed.
+SERIES_SCHEDULE = [
+    {
+        "name": "VisionQuest",
+        "aliases": ["VisionQuest", "Vision Quest"],
+        "premiere": "2026-10-14",
+        "finale": "2026-11-11",
+        "description": "Vision’s search for identity continues as he confronts the legacy of Ultron."
+    },
+    {
+        "name": "Your Friendly Neighborhood Spider-Man — Season 2",
+        "aliases": ["Your Friendly Neighborhood Spider-Man", "Friendly Neighborhood Spider-Man"],
+        "premiere": "2027-01-13",
+        "finale": None,
+        "description": "Peter Parker returns for a new animated chapter."
+    },
+]
 MARVEL_TERMS = re.compile(r"\b(marvel|mcu|avengers|spider[ -]?man|x[ -]?men|fantastic four|deadpool|daredevil|wolverine|thunderbolts|blade|black panther|captain america|iron man|thor|guardians of the galaxy|vision quest)\b", re.I)
 
 def clean(value):
@@ -70,6 +88,22 @@ def allowed_source(item):
         "entertainment weekly": "Entertainment Weekly", "the indian express": "The Indian Express",
     }
     return aliases.get(title)
+
+def featured_series_for(today=None):
+    today = today or datetime.now(timezone.utc).date()
+    parsed = []
+    for series in SERIES_SCHEDULE:
+        start = datetime.strptime(series["premiere"], "%Y-%m-%d").date()
+        end = datetime.strptime(series["finale"], "%Y-%m-%d").date() if series.get("finale") else None
+        parsed.append((series, start, end))
+    for series, start, end in parsed:
+        if start <= today and (end is None or today <= end):
+            return {**series, "status": "airing"}
+    upcoming = [(series, start) for series, start, end in parsed if start > today]
+    if upcoming:
+        series, _ = min(upcoming, key=lambda item: item[1])
+        return {**series, "status": "upcoming"}
+    return None
 
 def category_for(title):
     text = title.lower()
@@ -178,6 +212,10 @@ def main():
             coverage_tags = []
             low_text = (title + " " + summary + " " + source).lower()
             if "vision quest" in low_text: coverage_tags.append("Vision Quest")
+            for series in SERIES_SCHEDULE:
+                if any(alias.lower() in low_text for alias in series["aliases"]):
+                    tag = "Series: " + series["name"]
+                    if tag not in coverage_tags: coverage_tags.append(tag)
             if any(term in low_text for term in ("imdb", "rotten tomatoes", "tomatometer", "audience score")):
                 coverage_tags.append("Ratings & Reviews")
             if "imdb" in low_text or source == "IMDb": coverage_tags.append("IMDb")
@@ -231,7 +269,8 @@ def main():
     payload = {
         "generated_at": generated_at,
         "source_count": len(ALLOWED),
-        "search_topics": ["Marvel Universe", "Vision Quest", "IMDb", "Rotten Tomatoes", "Movies & TV", "Comics", "Animation", "Games"],
+        "search_topics": ["Marvel Universe", "Marvel Series Spotlight", "Vision Quest", "IMDb", "Rotten Tomatoes", "Movies & TV", "Comics", "Animation", "Games"],
+        "featured_series": featured_series_for(),
         "article_count": len(merged),
         "articles": merged,
     }
