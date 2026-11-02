@@ -7,7 +7,7 @@
     #drone-scene{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none;perspective:1100px;background:#0a1420}
     #drone-scene .drone-image{position:absolute;inset:-7%;background-image:linear-gradient(180deg,rgba(5,12,24,.05),rgba(5,12,24,.28)),url("${IMAGE}");background-size:cover;background-position:center 48%;background-repeat:no-repeat;will-change:transform;transform-origin:50% 48%;filter:saturate(1.06) contrast(1.02)}
     #drone-scene:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,10,20,.03),transparent 45%,rgba(5,10,20,.2));}
-    body{background:transparent!important}
+    html,body{background:transparent!important}body{isolation:isolate}body>.app{position:relative;z-index:1}body>.grain{z-index:2}
     @media(max-width:700px){#drone-scene .drone-image{background-position:center;inset:-10%}}
     @media(prefers-reduced-motion:reduce){#drone-scene .drone-image{transform:none!important}}
   `;
@@ -16,6 +16,10 @@
   scene.id = "drone-scene";
   scene.setAttribute("aria-hidden","true");
   const image = document.createElement("div");
+  const preload = new Image();
+  preload.onload = () => { image.dataset.imageLoaded = "true"; };
+  preload.onerror = () => { console.error("Drone background image failed to load:", IMAGE); };
+  preload.src = IMAGE;
   image.className = "drone-image";
   scene.appendChild(image);
   document.body.prepend(scene);
@@ -25,7 +29,8 @@
     tx=(e.clientX/innerWidth-.5)*2;
     ty=(e.clientY/innerHeight-.5)*2;
   },{passive:true});
-  window.addEventListener("scroll",()=>{scroll=Math.min(1,window.scrollY/1800)},{passive:true});
+  const getScroll=()=>document.scrollingElement?.scrollTop||window.scrollY||0;
+  window.addEventListener("scroll",()=>{scroll=Math.min(1,getScroll()/1800)},{passive:true});
   function frame(){
     raf=0;
     if(!reduced){
