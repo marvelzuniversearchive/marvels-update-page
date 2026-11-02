@@ -229,9 +229,10 @@ function drawArchitecturalDetails(x,cx,top,w,h,d,o,arch){
   x.restore();
 }
 /* Recessed glazing, fine mullions and restrained reflections on every facade. */
-function toonWindows(x,cx,top,w,sw,h,d,o,wins){
-  const ww=Math.max(3,d.ws*2.25), wh=Math.max(4,d.ws*2.85);
-  const stepX=Math.max(7,d.wx), stepY=Math.max(10,d.wy);
+function toonWindows(x,cx,top,w,sw,h,d,o,wins,arch){
+  const facade=arch&&arch.facade;
+  const ww=Math.max(3,d.ws*(facade==='glass-bands'?3.4:facade==='loft-bays'?2.8:2.25)), wh=Math.max(4,d.ws*(facade==='masonry-bands'?3.3:2.85));
+  const stepX=Math.max(7,d.wx*(facade==='glass-bands'?1.65:facade==='vertical-bays'?1.35:1)), stepY=Math.max(10,d.wy*(facade==='masonry-bands'?1.25:1));
   for(let row=0,wy=top+10;wy<top+h-wh-7;row++,wy+=stepY){
     for(let col=0,wx=cx+5;wx<cx+w-sw-ww-5;col++,wx+=stepX){
       const lit=Math.random()<d.lit, warm=pick(d.litC);
@@ -259,13 +260,12 @@ function buildLayer(d){
   const o=toonOpts(d,x);
   let cx=-rnd(0,40);
   while(cx<tw){
-    const arch=chooseCityArchetype(), bw=arch?rnd(arch.width[0],arch.width[1]):rnd(d.wMin,d.wMax), bh=(arch?rnd(arch.height[0],arch.height[1]):rnd(d.minH,d.maxH))*H, top=H-bh;
+    const arch=chooseCityArchetype(), depthScale=Math.min(1.12,Math.max(.72,.62+d.depth*.25)), bw=arch?rnd(arch.width[0],arch.width[1]):rnd(d.wMin,d.wMax), bh=(arch?rnd(arch.height[0],arch.height[1])*depthScale:rnd(d.minH,d.maxH))*H, top=H-bh;
     const sw=toonBlock(x,cx,top,bw,hh-top,pick(d.pal),o,arch);
-    if(arch&&arch.roof==='water-tank')drawArchitecturalDetails(x,cx,top,bw,bh,d,o,arch);
-    else drawArchitecturalDetails(x,cx,top,bw,bh,d,o,arch);
     if(Math.random()<.12){const sbw=bw*rnd(.42,.68);toonBlock(x,cx+(bw-sbw)/2,top-rnd(8,18),sbw,30,pick(d.pal),o,null)}
     if(Math.random()<.07){x.strokeStyle=o.ink;x.lineWidth=d.lw;x.beginPath();x.moveTo(cx+bw/2,top);x.lineTo(cx+bw/2,top-rnd(40,80));x.stroke()}
-    toonWindows(x,cx,top,bw,sw,hh-top,d,o,wins);
+    toonWindows(x,cx,top,bw,sw,hh-top,d,o,wins,arch);
+    drawArchitecturalDetails(x,cx,top,bw,bh,d,o,arch);
     /* Distinctive rooftop silhouettes: water tanks, slanted crowns, antennae and signboards. */
     if(Math.random()<.16){
       const rx=cx+bw*rnd(.12,.62), rw=bw*rnd(.18,.48), rh=rnd(9,22);
@@ -306,10 +306,10 @@ function buildDense(d){
   const o=toonOpts(d,x);
   let cx=-rnd(0,28);
   while(cx<tw){
-    const arch=chooseCityArchetype(), bw=arch?rnd(arch.width[0],arch.width[1]):rnd(d.wMin,d.wMax), bh=(arch?rnd(arch.height[0],arch.height[1]):rnd(d.minH,d.maxH))*H, top=H-bh;
+    const arch=chooseCityArchetype(), depthScale=Math.min(1.12,Math.max(.72,.62+d.depth*.25)), bw=arch?rnd(arch.width[0],arch.width[1]):rnd(d.wMin,d.wMax), bh=(arch?rnd(arch.height[0],arch.height[1])*depthScale:rnd(d.minH,d.maxH))*H, top=H-bh;
     const sw=toonBlock(x,cx,top,bw,hh-top,pick(d.pal),o,arch);
+    toonWindows(x,cx,top,bw,sw,hh-top,d,o,wins,arch);
     drawArchitecturalDetails(x,cx,top,bw,bh,d,o,arch);
-    toonWindows(x,cx,top,bw,sw,hh-top,d,o,wins);
     if(Math.random()<.22){
       const rx=cx+bw*rnd(.18,.62), rw=bw*rnd(.18,.42), rh=rnd(7,15);
       x.fillStyle=shadeOf(pick(d.pal),.92);x.fillRect(rx,top-rh,rw,rh);
