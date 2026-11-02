@@ -67,7 +67,7 @@
     mountainLayer(-57, -.4, 0xa5b8ba, 81, 7);
 
     // Central lake: a wide, animated water surface with subtle moving wave highlights.
-    const waterGeo = new THREE.PlaneGeometry(170, 92, 120, 80);
+    const waterGeo = new THREE.PlaneGeometry(60, 92, 120, 80);
     const waterMat = new THREE.ShaderMaterial({
       uniforms: { uTime:{value:0}, uColor:{value:new THREE.Color(0x347f9c)} },
       vertexShader: `
@@ -96,8 +96,8 @@
     // Shore edges frame the water without blocking the center.
     const shoreMat=mat(0x667e72);
     for (const side of [-1,1]) {
-      const bank=new THREE.Mesh(new THREE.BoxGeometry(22,.45,72),shoreMat);
-      bank.position.set(side*47,-.05,-20); scene.add(bank);
+      const bank=new THREE.Mesh(new THREE.BoxGeometry(18,.45,72),shoreMat);
+      bank.position.set(side*40,-.05,-20); scene.add(bank);
     }
 
     // Distinct buildings: individual masses, roof silhouettes, facade grids and window details.
@@ -130,9 +130,9 @@
 
     // Foreground towers sit on both sides, leaving a clear central lake corridor.
     const foreground=[
-      [-22,5,8,25,7,0],[-32,-1,7,19,6,1],[-40,-7,8,29,7,2],[-27,-13,6,16,5,3],
-      [23,4,8,23,7,4],[33,-2,7,28,6,5],[42,-8,8,18,7,0],[28,-14,6,20,5,2],
-      [-48,3,7,16,7,4],[49,1,7,21,6,1]
+      [-34,5,8,25,7,0],[-43,-1,7,19,6,1],[-53,-7,8,29,7,2],[-37,-13,6,16,5,3],
+      [34,4,8,23,7,4],[43,-2,7,28,6,5],[53,-8,8,18,7,0],[37,-14,6,20,5,2],
+      [-62,3,7,16,7,4],[62,1,7,21,6,1]
     ];
     foreground.forEach(a=>building(...a));
     // A separate, lower skyline across the far shore, with recognizable varied rooflines.
@@ -158,7 +158,7 @@
     // Small shoreline trees add scale and help separate the lake from the skyline.
     const trunkMat=mat(0x594e40), leafMat=mat(0x476d5c);
     for(let side of [-1,1]) for(let i=0;i<18;i++){
-      const x=side*(13+i*2.25), z=-13-(i%4)*3.2;
+      const x=side*(34+i*1.55), z=-13-(i%4)*3.2;
       const trunk=new THREE.Mesh(new THREE.CylinderGeometry(.12,.2,1.7,5),trunkMat);trunk.position.set(x,.85,z);scene.add(trunk);
       const crown=new THREE.Mesh(new THREE.SphereGeometry(.85+(i%3)*.16,8,7),leafMat);crown.position.set(x,2,z);scene.add(crown);
     }
