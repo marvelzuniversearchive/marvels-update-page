@@ -63,8 +63,8 @@
   document.head.appendChild(style);
 
   const FEED_URL = "news-feed.json";
-  const categories = ["all","official","movies","tv","comics","trailers","casting","games","events","announcements"];
-  const labels = {all:"All news",official:"Official",movies:"Movies",tv:"TV",comics:"Comics",trailers:"Trailers",casting:"Casting",games:"Games",events:"Events",announcements:"Announcements"};
+  const categories = ["all","vision_quest","ratings","official","movies","tv","comics","trailers","casting","games","events","announcements"];
+  const labels = {all:"All news",vision_quest:"Vision Quest",ratings:"IMDb & Rotten Tomatoes",official:"Official",movies:"Movies",tv:"TV",comics:"Comics",trailers:"Trailers",casting:"Casting",games:"Games",events:"Events",announcements:"Announcements"};
   let articles = [], filter = "all", query = "", order = "newest", active = false, selected = null, timer = null, lastError = false;
 
   const esc = value => String(value ?? "").replace(/[&<>"']/g, ch => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch]));
@@ -94,9 +94,10 @@
   }
   function filtered() {
     let rows = articles.filter(a => {
-      const hay = [a.title,a.summary,a.source,a.category,...(a.tags || [])].join(" ").toLowerCase();
+      const hay = [a.title,a.summary,a.source,a.category,...(a.tags || []),...(a.coverage_tags || [])].join(" ").toLowerCase();
       const matchesQuery = !query || hay.includes(query.toLowerCase());
-      const matchesFilter = filter === "all" || (filter === "official" ? a.status === "official" : String(a.category || "").toLowerCase() === filter);
+      const coverage = (a.coverage_tags || []).map(tag => String(tag).toLowerCase());
+      const matchesFilter = filter === "all" || (filter === "official" ? a.status === "official" : filter === "vision_quest" ? coverage.includes("vision quest") : filter === "ratings" ? coverage.includes("ratings & reviews") || coverage.includes("imdb") || coverage.includes("rotten tomatoes") : String(a.category || "").toLowerCase() === filter);
       return matchesQuery && matchesFilter;
     });
     rows.sort((a,b) => (new Date(a.published_at)-new Date(b.published_at)) * (order === "oldest" ? 1 : -1));
