@@ -3,6 +3,17 @@
   const style = document.createElement("style");
   style.textContent = `
     [data-marvel-news]{margin-top:4px}
+    body.marvel-news-night{background-color:#050711}
+    body.marvel-news-night #cityCanvas{filter:brightness(.24) saturate(.72) contrast(1.12);transition:filter .55s ease}
+    body:not(.marvel-news-night) #cityCanvas{filter:none;transition:filter .55s ease}
+    body.marvel-news-night #content,body.marvel-news-night .sidebar{position:relative;z-index:1}
+    body.marvel-news-night .mnews-page{color:#d1d5df}
+    body.marvel-news-night .mnews-heading p,body.marvel-news-night .mnews-card p{color:#b7bdca}
+    body.marvel-news-night .mnews-card h2 button{color:#e0e3eb}
+    body.marvel-news-night .mnews-meta,body.marvel-news-night .mnews-count,body.marvel-news-night .mnews-footnote{color:#9da6b7}
+    body.marvel-news-night .mnews-detail{color:#d1d5df;border:1px solid rgba(220,230,255,.2);background:linear-gradient(145deg,rgba(28,35,53,.56),rgba(12,17,29,.44));backdrop-filter:blur(22px) saturate(125%);-webkit-backdrop-filter:blur(22px) saturate(125%)}
+    body.marvel-news-night .mnews-detail h2{color:#e3e6ee}
+    body.marvel-news-night .mnews-detail .summary{color:#c5cad5}
     .mnews-page{padding:24px 0 48px;color:var(--paper,#f4f1ec)}
     .mnews-heading{display:flex;justify-content:space-between;align-items:flex-end;gap:22px;flex-wrap:wrap;margin-bottom:22px}
     .mnews-heading h1{font:900 clamp(34px,5vw,58px)/.95 'Barlow Condensed',sans-serif;margin:9px 0}
