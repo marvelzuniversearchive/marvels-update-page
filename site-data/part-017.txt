@@ -470,8 +470,8 @@ function render(e){
   if(sky)ctx.drawImage(sky,0,0,W,H);
   drawClouds();
   /* Layered illustrated skyline: gentle camera drift and parallax. */
-  const dive=1+.003*(.5+.5*Math.sin(t*.08))+e*.006;
-  const drift=7+8*Math.sin(t*.035)+e*8;
+  const dive=1+.018*(.5+.5*Math.sin(t*.22))+e*.004;
+  const drift=7+8*Math.sin(t*.035)+e*8+ptr.y*5;
   ctx.save();ctx.translate(W*.5,H);ctx.scale(dive,dive);ctx.translate(-W*.5,-H);
   layers.forEach((L,i)=>{
     const shift=Math.min(EXTRA-18,scr.y*L.pf*1.28+drift*L.depth*.72);
@@ -574,8 +574,8 @@ function start(){
 
 function build(){
   W=Math.max(1,window.innerWidth);H=Math.max(1,window.innerHeight);
-  dpr=Math.min(window.devicePixelRatio||1,isSmall()?1:1.25);
-  Q=Math.min(dpr,1.25);
+  dpr=Math.min(window.devicePixelRatio||1,isSmall()?1.15:1.5);
+  Q=Math.min(dpr,1.5);
   cv.width=Math.round(W*dpr);cv.height=Math.round(H*dpr);
   ctx.setTransform(dpr,0,0,dpr,0,0);
   buildSky();buildGlows();buildClouds();halftone=makeHalftone();dotTile=makeDotTile();
