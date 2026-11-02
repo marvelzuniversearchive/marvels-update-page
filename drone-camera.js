@@ -2,6 +2,8 @@
   const scene = document.getElementById("drone-scene");
   const image = scene?.querySelector("img");
   if (!scene || !image) { console.error("Drone camera: scene/image missing"); return; }
+  image.src = "https://yenigellagnandeep-commits.github.io/marvels-update-page/assets/file_0000000065dc821198c0855fcce200a3.png";
+  image.alt = "Anime-inspired city skyline surrounding a central lake";
 
   const style = document.createElement("style");
   style.textContent = `
