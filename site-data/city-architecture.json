@@ -1,582 +1,135 @@
 {
-  "version": "1.0",
-  "artDirection": "Contemporary 2020s Japanese anime city background: ambitious metropolitan architecture with distinctive silhouettes, layered high-rise clusters, sculpted glass towers, stepped megastructures, cantilevered volumes, curved corner facades, dense mid-rise streets and intricate rooftop machinery. Premium hand-painted anime environment art with precise architectural linework, atmospheric perspective, expressive perspective and richly varied facade construction. Not retro, not toy-like, not generic rectangular skyline.",
+  "version": "2.0",
+  "artDirection": "A premium contemporary Japanese animated metropolis, designed as hand-painted feature-animation environment art. Architecture is the hero: expressive silhouettes, layered urban blocks, sculpted glass, curved corners, deep balconies, rooftop gardens, skybridges and complex stepped towers. Avoid generic game-city repetition.",
   "motion": {
     "backgroundDrift": 1.35,
     "scrollParallax": 1.8,
-    "layerSpeed": [
-      0.85,
-      1.45,
-      2.05,
-      2.65
-    ],
+    "layerSpeed": [0.85, 1.45, 2.05, 2.65],
     "pointerParallax": 1.35,
-    "note": "Keep the existing independently scrolling depth layers and camera response; foreground city masses should travel visibly faster than distant skyline."
+    "note": "UNCHANGED: preserve the existing independently scrolling depth layers and camera response. This file redesigns architecture only."
   },
   "rendering": {
-    "outline": "fine-variable-architectural-ink",
-    "halftone": "very-subtle",
-    "hatching": "directional-facade-shadow-facets",
-    "colorRegistration": "subtle",
-    "facadeDepth": "strong-side-planes-and-recessed-glass",
+    "outline": "variable hand-inked architectural contour",
+    "facadeDepth": "deep recesses, overhang shadows, reflected sky planes and layered structural edges",
+    "surfaceLanguage": "painted glass, ceramic, concrete, weathered metal, brick, warm interior glow",
     "avoid": [
-      "photographic-textures",
-      "uniform-rectangles",
-      "toy-like-primary-shapes",
-      "retro-anime-shortcuts",
-      "neon-everywhere",
-      "flat-silhouette-only"
+      "uniform square window grids",
+      "repeated tiny game-button windows",
+      "flat rectangular toy buildings",
+      "identical facade repetition",
+      "photographic texture overlays",
+      "retro arcade palette",
+      "neon everywhere"
     ]
   },
   "palette": {
-    "sky": [
-      "#70B5E8",
-      "#8CC9F0",
-      "#B9DDF1",
-      "#E6E5D7",
-      "#F1C99D"
-    ],
-    "facades": [
-      "#7895A8",
-      "#9BAEAE",
-      "#C3A994",
-      "#718C9E",
-      "#A58D83",
-      "#8D9BA5",
-      "#B8B2A4",
-      "#6D8193"
-    ],
+    "sky": ["#70B5E8", "#8CC9F0", "#B9DDF1", "#E6E5D7", "#F1C99D"],
+    "facades": ["#7895A8", "#9BAEAE", "#C3A994", "#718C9E", "#A58D83", "#8D9BA5", "#B8B2A4", "#6D8193"],
+    "glass": ["#8FC6D8", "#B5D8D8", "#6F9EAF", "#D0D9CE", "#E6C9A5"],
+    "shadow": ["#344B60", "#43586A", "#596B78"],
+    "warmInterior": ["#F5D9A6", "#EFC58D", "#DFAE79"],
     "ink": "#25384B",
     "sun": "#FFF0C9"
   },
+  "facadeArt": {
+    "windowPhilosophy": "Windows must read as architecture, not repeated UI buttons. Use varied widths and heights, grouped ribbon glazing, occasional full-height glass, recessed openings, corner glazing, balcony doors and shadowed interior apertures.",
+    "windowRhythm": ["irregular vertical bays", "offset ribbon bands", "double-height lobby glass", "recessed residential openings", "corner wrap glazing", "deep balcony-door openings"],
+    "windowVariation": {
+      "widthJitter": 0.42,
+      "heightJitter": 0.34,
+      "rowOffset": 0.38,
+      "groupSize": [2, 7],
+      "blankWallChance": 0.18,
+      "litWindowChance": 0.22,
+      "reflectionChance": 0.36,
+      "darkRecessChance": 0.28
+    },
+    "detailLanguage": [
+      "projecting balcony slabs",
+      "vertical sun-shading fins",
+      "horizontal concrete bands",
+      "corner mullions",
+      "recessed terraces",
+      "roof gardens and mechanical penthouses",
+      "external stair towers",
+      "irregular signage and awnings",
+      "glass skybridges",
+      "large podium storefront glazing"
+    ],
+    "lighting": "subtle warm interior pockets against cool reflected sky; no uniform checkerboard illumination"
+  },
   "archetypes": [
     {
-      "id": "art-deco-spire",
-      "weight": 5,
-      "width": [
-        76,
-        142
-      ],
-      "height": [
-        0.42,
-        0.68
-      ],
-      "profile": [
-        [
-          0,
-          0.12
-        ],
-        [
-          0.12,
-          0.12
-        ],
-        [
-          0.12,
-          0.07
-        ],
-        [
-          0.27,
-          0.07
-        ],
-        [
-          0.27,
-          0.03
-        ],
-        [
-          0.43,
-          0.03
-        ],
-        [
-          0.43,
-          0
-        ],
-        [
-          0.57,
-          0
-        ],
-        [
-          0.57,
-          0.03
-        ],
-        [
-          0.73,
-          0.03
-        ],
-        [
-          0.73,
-          0.07
-        ],
-        [
-          0.88,
-          0.07
-        ],
-        [
-          0.88,
-          0.12
-        ],
-        [
-          1,
-          0.12
-        ],
-        [
-          1,
-          1
-        ],
-        [
-          0,
-          1
-        ]
-      ],
-      "facade": "vertical-bays",
-      "roof": "spire"
-    },
-    {
-      "id": "glass-setback-tower",
-      "weight": 20,
-      "width": [
-        88,
-        176
-      ],
-      "height": [
-        0.5,
-        0.88
-      ],
-      "profile": [
-        [
-          0,
-          0.22
-        ],
-        [
-          0.16,
-          0.22
-        ],
-        [
-          0.16,
-          0.13
-        ],
-        [
-          0.31,
-          0.13
-        ],
-        [
-          0.31,
-          0.06
-        ],
-        [
-          0.49,
-          0.06
-        ],
-        [
-          0.49,
-          0
-        ],
-        [
-          0.68,
-          0
-        ],
-        [
-          0.68,
-          0.1
-        ],
-        [
-          0.84,
-          0.1
-        ],
-        [
-          0.84,
-          0.2
-        ],
-        [
-          1,
-          0.2
-        ],
-        [
-          1,
-          1
-        ],
-        [
-          0,
-          1
-        ]
-      ],
+      "id": "sculpted-glass-megatower",
+      "weight": 22,
+      "width": [118, 206],
+      "height": [0.58, 0.98],
+      "profile": [[0,0.2],[0.14,0.2],[0.14,0.13],[0.28,0.13],[0.28,0.07],[0.44,0.07],[0.44,0],[0.69,0],[0.69,0.08],[0.84,0.08],[0.84,0.17],[1,0.17],[1,1],[0,1]],
       "facade": "glass-bands",
       "roof": "crown"
     },
     {
-      "id": "curved-corner-office",
-      "weight": 16,
-      "width": [
-        82,
-        158
-      ],
-      "height": [
-        0.4,
-        0.7
-      ],
-      "profile": [
-        [
-          0,
-          0.16
-        ],
-        [
-          0.12,
-          0.08
-        ],
-        [
-          0.34,
-          0.02
-        ],
-        [
-          0.67,
-          0
-        ],
-        [
-          0.88,
-          0.08
-        ],
-        [
-          1,
-          0.18
-        ],
-        [
-          1,
-          1
-        ],
-        [
-          0,
-          1
-        ]
-      ],
+      "id": "curved-corner-skyline",
+      "weight": 17,
+      "width": [104, 184],
+      "height": [0.48, 0.82],
+      "profile": [[0,0.2],[0.08,0.11],[0.22,0.045],[0.48,0],[0.76,0.025],[0.92,0.1],[1,0.2],[1,1],[0,1]],
       "facade": "curtain-wall",
       "roof": "flat"
     },
     {
-      "id": "brick-loft",
-      "weight": 9,
-      "width": [
-        48,
-        105
-      ],
-      "height": [
-        0.2,
-        0.43
-      ],
-      "profile": [
-        [
-          0,
-          0.08
-        ],
-        [
-          0.08,
-          0.04
-        ],
-        [
-          0.92,
-          0.04
-        ],
-        [
-          1,
-          0.08
-        ],
-        [
-          1,
-          1
-        ],
-        [
-          0,
-          1
-        ]
-      ],
-      "facade": "loft-bays",
-      "roof": "water-tank"
-    },
-    {
-      "id": "limestone-cornice",
-      "weight": 5,
-      "width": [
-        55,
-        112
-      ],
-      "height": [
-        0.24,
-        0.46
-      ],
-      "profile": [
-        [
-          0,
-          0.12
-        ],
-        [
-          0.08,
-          0.12
-        ],
-        [
-          0.08,
-          0.05
-        ],
-        [
-          0.92,
-          0.05
-        ],
-        [
-          0.92,
-          0.12
-        ],
-        [
-          1,
-          0.12
-        ],
-        [
-          1,
-          1
-        ],
-        [
-          0,
-          1
-        ]
-      ],
-      "facade": "masonry-bands",
-      "roof": "cornice"
-    },
-    {
-      "id": "residential-stepped",
-      "weight": 16,
-      "width": [
-        52,
-        112
-      ],
-      "height": [
-        0.22,
-        0.46
-      ],
-      "profile": [
-        [
-          0,
-          0.18
-        ],
-        [
-          0.28,
-          0.18
-        ],
-        [
-          0.28,
-          0.08
-        ],
-        [
-          0.66,
-          0.08
-        ],
-        [
-          0.66,
-          0
-        ],
-        [
-          0.84,
-          0
-        ],
-        [
-          0.84,
-          0.18
-        ],
-        [
-          1,
-          0.18
-        ],
-        [
-          1,
-          1
-        ],
-        [
-          0,
-          1
-        ]
-      ],
+      "id": "terraced-residential-superblock",
+      "weight": 17,
+      "width": [82, 154],
+      "height": [0.3, 0.62],
+      "profile": [[0,0.24],[0.2,0.24],[0.2,0.14],[0.38,0.14],[0.38,0.06],[0.62,0.06],[0.62,0],[0.82,0],[0.82,0.16],[1,0.16],[1,1],[0,1]],
       "facade": "balconies",
       "roof": "water-tank"
     },
     {
-      "id": "campus-atrium",
-      "weight": 10,
-      "width": [
-        100,
-        190
-      ],
-      "height": [
-        0.28,
-        0.52
-      ],
-      "profile": [
-        [
-          0,
-          0.18
-        ],
-        [
-          0.12,
-          0.08
-        ],
-        [
-          0.26,
-          0.08
-        ],
-        [
-          0.26,
-          0.16
-        ],
-        [
-          0.74,
-          0.16
-        ],
-        [
-          0.74,
-          0.08
-        ],
-        [
-          0.88,
-          0.08
-        ],
-        [
-          1,
-          0.18
-        ],
-        [
-          1,
-          1
-        ],
-        [
-          0,
-          1
-        ]
-      ],
+      "id": "cantilevered-civic-complex",
+      "weight": 11,
+      "width": [136, 226],
+      "height": [0.32, 0.61],
+      "profile": [[0,0.2],[0.16,0.2],[0.16,0.08],[0.32,0.08],[0.32,0.16],[0.68,0.16],[0.68,0],[0.88,0],[0.88,0.2],[1,0.2],[1,1],[0,1]],
       "facade": "atrium-grid",
       "roof": "mechanical"
     },
     {
-      "id": "industrial-waterfront",
-      "weight": 7,
-      "width": [
-        64,
-        138
-      ],
-      "height": [
-        0.2,
-        0.38
-      ],
-      "profile": [
-        [
-          0,
-          0.16
-        ],
-        [
-          0.18,
-          0.16
-        ],
-        [
-          0.18,
-          0.04
-        ],
-        [
-          0.34,
-          0.04
-        ],
-        [
-          0.34,
-          0.14
-        ],
-        [
-          0.62,
-          0.14
-        ],
-        [
-          0.62,
-          0
-        ],
-        [
-          0.8,
-          0
-        ],
-        [
-          0.8,
-          0.12
-        ],
-        [
-          1,
-          0.12
-        ],
-        [
-          1,
-          1
-        ],
-        [
-          0,
-          1
-        ]
-      ],
-      "facade": "industrial",
-      "roof": "vents"
+      "id": "dense-japanese-midrise",
+      "weight": 13,
+      "width": [58, 112],
+      "height": [0.22, 0.48],
+      "profile": [[0,0.12],[0.12,0.06],[0.88,0.06],[1,0.12],[1,1],[0,1]],
+      "facade": "loft-bays",
+      "roof": "water-tank"
     },
     {
-      "id": "needle-tower",
-      "weight": 12,
-      "width": [
-        58,
-        118
-      ],
-      "height": [
-        0.62,
-        0.98
-      ],
-      "profile": [
-        [
-          0,
-          0.25
-        ],
-        [
-          0.22,
-          0.25
-        ],
-        [
-          0.22,
-          0.14
-        ],
-        [
-          0.38,
-          0.14
-        ],
-        [
-          0.44,
-          0
-        ],
-        [
-          0.56,
-          0
-        ],
-        [
-          0.62,
-          0.14
-        ],
-        [
-          0.78,
-          0.14
-        ],
-        [
-          0.78,
-          0.25
-        ],
-        [
-          1,
-          0.25
-        ],
-        [
-          1,
-          1
-        ],
-        [
-          0,
-          1
-        ]
-      ],
+      "id": "stepped-office-podium",
+      "weight": 9,
+      "width": [92, 174],
+      "height": [0.3, 0.58],
+      "profile": [[0,0.22],[0.18,0.22],[0.18,0.12],[0.34,0.12],[0.34,0.03],[0.7,0.03],[0.7,0.12],[0.86,0.12],[0.86,0.22],[1,0.22],[1,1],[0,1]],
+      "facade": "masonry-bands",
+      "roof": "cornice"
+    },
+    {
+      "id": "vertical-glass-needle",
+      "weight": 7,
+      "width": [64, 126],
+      "height": [0.68, 1.0],
+      "profile": [[0,0.26],[0.2,0.26],[0.2,0.15],[0.38,0.15],[0.45,0],[0.57,0],[0.64,0.15],[0.82,0.15],[0.82,0.26],[1,0.26],[1,1],[0,1]],
       "facade": "vertical-bays",
       "roof": "antenna"
+    },
+    {
+      "id": "industrial-waterfront",
+      "weight": 4,
+      "width": [72, 146],
+      "height": [0.2, 0.4],
+      "profile": [[0,0.18],[0.18,0.18],[0.18,0.04],[0.34,0.04],[0.34,0.14],[0.62,0.14],[0.62,0],[0.8,0],[0.8,0.12],[1,0.12],[1,1],[0,1]],
+      "facade": "industrial",
+      "roof": "vents"
     }
   ]
 }
