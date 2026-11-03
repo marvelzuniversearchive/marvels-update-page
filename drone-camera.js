@@ -1,77 +1,39 @@
 (() => {
   const scene = document.getElementById("drone-scene");
   const image = scene?.querySelector("img");
-  if (!scene || !image) { console.error("Drone camera: scene/image missing"); return; }
+  if (!scene || !image) {
+    console.error("Background scene: scene/image missing");
+    return;
+  }
+
   image.src = "https://yenigellagnandeep-commits.github.io/marvels-update-page/assets/file_0000000065dc821198c0855fcce200a3.png";
-  image.alt = "Anime-inspired city skyline surrounding a central lake";
+  image.alt = "Anime-inspired distant city skyline surrounding a central lake";
 
   const style = document.createElement("style");
-  style.textContent = `
-    .city-fx,#cityCanvas{display:none!important}
-    html,body{background:transparent!important}
-    body{isolation:isolate}
-    #drone-scene{position:fixed!important;inset:0!important;z-index:0!important;overflow:hidden!important;pointer-events:none!important;background:#101522}
-    #drone-scene img{position:absolute;inset:-18%;width:136%;height:136%;max-width:none;object-fit:cover;object-position:center 48%;transform-origin:50% 50%;will-change:transform;backface-visibility:hidden;filter:saturate(1.07) contrast(1.04)}
-    #appRoot{position:relative;z-index:1}
-    #glitchFx{z-index:9999}
-    @media(max-width:700px){#drone-scene img{inset:-23%;width:146%;height:146%;object-position:center 50%}}
-  `;
+  style.textContent = [
+    ".city-fx,#cityCanvas{display:none!important}",
+    "html,body{background:transparent!important}body{isolation:isolate}",
+    "#drone-scene{position:fixed!important;inset:0!important;z-index:0!important;overflow:hidden!important;pointer-events:none!important;background:#101522;contain:paint}",
+    /* Fixed framing: the artwork never zooms, pans, or follows the pointer. */
+    "#drone-scene img{position:absolute;inset:-18%;width:136%;height:136%;max-width:none;object-fit:cover;object-position:center 48%;transform:none!important;animation:none!important;will-change:auto;backface-visibility:hidden;filter:saturate(1.07) contrast(1.04)}",
+    /* Slow cloud-shadow drift stays within the sky overlay. */
+    "#drone-scene .ambient-sky{position:absolute;z-index:1;inset:-8% -22% 48%;opacity:.20;filter:blur(18px);background:radial-gradient(ellipse 19% 25% at 12% 48%,rgba(255,238,226,.56),transparent 72%),radial-gradient(ellipse 24% 30% at 43% 34%,rgba(255,228,218,.48),transparent 74%),radial-gradient(ellipse 20% 24% at 76% 50%,rgba(255,239,225,.42),transparent 72%),radial-gradient(ellipse 15% 22% at 94% 25%,rgba(255,223,211,.34),transparent 75%);animation:skyCloudDrift 115s linear infinite alternate}",
+    /* Subtle water reflections move only in the lower lake overlay. */
+    "#drone-scene .ambient-water{position:absolute;z-index:2;left:0;right:0;top:58%;bottom:0;opacity:.22;background:repeating-linear-gradient(0deg,transparent 0 9px,rgba(255,232,214,.20) 10px,transparent 11px 17px);-webkit-mask-image:linear-gradient(to bottom,transparent 0%,rgba(0,0,0,.25) 18%,#000 58%,transparent 100%);mask-image:linear-gradient(to bottom,transparent 0%,rgba(0,0,0,.25) 18%,#000 58%,transparent 100%);background-size:100% 46px;animation:lakeSurface 17s ease-in-out infinite alternate}",
+    "#appRoot{position:relative;z-index:3}#glitchFx{z-index:9999}",
+    "@keyframes skyCloudDrift{from{transform:translate3d(-2.5%,0,0)}to{transform:translate3d(2.5%,1.2%,0)}}",
+    "@keyframes lakeSurface{from{background-position:0 0;opacity:.13}to{background-position:0 46px;opacity:.24}}",
+    "@media(max-width:700px){#drone-scene img{inset:-23%;width:146%;height:146%;object-position:center 50%}#drone-scene .ambient-sky{inset:-6% -30% 52%;opacity:.16}#drone-scene .ambient-water{top:60%;opacity:.16}}",
+    "@media(prefers-reduced-motion:reduce){#drone-scene .ambient-sky,#drone-scene .ambient-water{animation:none!important}}"
+  ].join("");
   document.head.appendChild(style);
 
-  const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
-  const small=()=>matchMedia("(max-width:700px)").matches;
-  let steerX=0,steerY=0,lookX=0,lookY=0;
-  let forward=0,side=0,altitude=0,lastTouchY=0;
-
-  window.addEventListener("pointermove",e=>{
-    steerX=clamp((e.clientX/innerWidth-.5)*2,-1,1);
-    steerY=clamp((e.clientY/innerHeight-.5)*2,-1,1);
-  },{passive:true});
-  window.addEventListener("pointerleave",()=>{steerX=0;steerY=0;},{passive:true});
-
-  window.addEventListener("wheel",e=>{
-    const amount=clamp(e.deltaY/900,-1,1);
-    forward=clamp(forward+amount*.105,0,1);
-    side=clamp(side+e.deltaX/1200,-.65,.65);
-    altitude=clamp(altitude+amount*.035,-.35,.35);
-  },{passive:true});
-
-  window.addEventListener("scroll",()=>{
-    const root=document.scrollingElement;
-    if(root && root.scrollHeight>innerHeight+20){
-      const p=clamp(root.scrollTop/(root.scrollHeight-innerHeight),0,1);
-      forward=Math.max(forward,p*.82);
-    }
-  },{passive:true});
-
-  window.addEventListener("touchstart",e=>{
-    if(e.touches.length)lastTouchY=e.touches[0].clientY;
-  },{passive:true});
-  window.addEventListener("touchmove",e=>{
-    if(!e.touches.length)return;
-    const t=e.touches[0];
-    steerX=clamp((t.clientX/innerWidth-.5)*2,-1,1);
-    steerY=clamp((t.clientY/innerHeight-.5)*2,-1,1);
-    const dy=lastTouchY-t.clientY;
-    forward=clamp(forward+dy/innerHeight*.16,0,1);
-    altitude=clamp(altitude+dy/innerHeight*.045,-.35,.35);
-    lastTouchY=t.clientY;
-  },{passive:true});
-
-  const start=performance.now();
-  function animate(now){
-    const t=(now-start)/1000;
-    lookX+=(steerX-lookX)*.045;
-    lookY+=(steerY-lookY)*.045;
-    const cruiseX=Math.sin(t*.19)*.42+Math.sin(t*.071)*.16;
-    const cruiseY=Math.sin(t*.13)*.20+Math.sin(t*.047)*.10;
-    const x=clamp(cruiseX+lookX*.58+side,-1.2,1.2);
-    const y=clamp(cruiseY+lookY*.42+altitude,-.8,.8);
-    const depth=1.035+forward*.31+Math.sin(t*.11)*.012;
-    const driftX=-x*(small()?58:112);
-    const driftY=-y*(small()?43:76)+forward*(small()?62:104);
-    image.style.transform=`translate3d(${driftX}px,${driftY}px,0) scale(${depth})`;
-    requestAnimationFrame(animate);
-  }
-  requestAnimationFrame(animate);
+  // Environmental overlays animate independently; the camera and artwork remain locked.
+  const sky = document.createElement("div");
+  sky.className = "ambient-sky";
+  sky.setAttribute("aria-hidden", "true");
+  const water = document.createElement("div");
+  water.className = "ambient-water";
+  water.setAttribute("aria-hidden", "true");
+  scene.append(sky, water);
 })();
