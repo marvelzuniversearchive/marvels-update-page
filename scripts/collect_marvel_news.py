@@ -2,7 +2,6 @@
 """Collect, validate and enrich Marvel headlines for the static archive."""
 import html
 from html.parser import HTMLParser
-import os
 import json
 import re
 import urllib.parse
@@ -44,8 +43,6 @@ QUERIES = [
 UA = "Mozilla/5.0 (compatible; MarvelUniverseArchiveNews/2.0)"
 MAX_ARTICLES = 60
 ENRICH_LIMIT = 22
-GEMINI_MODEL = os.environ.get('GEMINI_MODEL', 'gemini-2.5-flash')
-GEMINI_API_KEY = os.environ.get('GEMINI_API_KEY', '').strip()
 # Release windows are based on announced dates. The spotlight switches by date;
 # unknown future dates are deliberately not guessed.
 SERIES_SCHEDULE = [
@@ -246,34 +243,121 @@ def extract_article_text(url):
         return ""
 
 def generate_synopsis(title, source, published_at, url, article_text):
-    """Generate a factual, original 3–5 paragraph synopsis from extracted reporting."""
-    if not GEMINI_API_KEY or len(article_text) < 500:
+    """Create a no-key, source-grounded extractive synopsis using TextRank-style ranking."""
+    if len(article_text.strip()) < 450:
         return ""
-    prompt = (
-        "Write a detailed, readable news synopsis for a Marvel news archive. Use ONLY the supplied "
-        "publisher article text. Do not invent facts, dates, quotes, motives or context. Clearly label "
-        "rumours and attribute reported claims. Do not copy sentences verbatim or reproduce the article. "
-        "Write 3 to 5 coherent paragraphs, about 170–240 words, explaining what happened, who or what "
-        "is involved, the important reported details, why it matters, and what is still unknown or next "
-        "when the source actually says so. For ratings/reviews, include the exact score only if supplied. "
-        "Return plain text only, with paragraphs separated by blank lines and no heading.\n\n"
-        f"Headline: {title}\nPublisher: {source}\nPublished: {published_at}\nURL: {url}\n\n"
-        f"Publisher article text:\n{article_text[:13500]}"
-    )
-    payload = {"contents":[{"parts":[{"text":prompt}]}],
-               "generationConfig":{"temperature":0.2,"maxOutputTokens":850}}
-    endpoint = f"https://generativelanguage.googleapis.com/v1beta/models/{GEMINI_MODEL}:generateContent?key={GEMINI_API_KEY}"
-    request = urllib.request.Request(endpoint, data=json.dumps(payload).encode("utf-8"),
-        headers={"Content-Type":"application/json","User-Agent":UA}, method="POST")
-    try:
-        with urllib.request.urlopen(request, timeout=35) as response:
-            result = json.loads(response.read().decode("utf-8"))
-        parts = result.get("candidates", [{}])[0].get("content", {}).get("parts", [])
-        value = "\n".join(part.get("text", "") for part in parts if part.get("text")).strip()
-        return value[:5000] if len(value) >= 450 else ""
-    except Exception as exc:
-        print("Synopsis generation failed:", str(exc)[:180])
+
+    # Split article paragraphs into sentences, retaining source order for readability.
+    raw_sentences = re.split(r'(?<=[.!?])\s+(?=[A-Z0-9“"])', article_text.replace("\n", " "))
+    sentences = []
+    for sentence in raw_sentences:
+        sentence = re.sub(r"\s+", " ", sentence).strip(" \t-–|")
+        if len(sentence) < 55 or len(sentence) > 520:
+            continue
+        if re.search(r"(subscribe|sign up|follow us|advertisement|cookie policy|privacy policy|terms of use|read more)", sentence, re.I):
+            continue
+        if sentence not in sentences:
+            sentences.append(sentence)
+    if len(sentences) < 3:
         return ""
+
+    stop = set("""
+        the a an and or but if then than so because as at by for from in into of on onto out over
+        to up with without within is are was were be been being do does did has have had can could
+        will would should may might must this that these those it its they them their he she his her
+        we our you your i me my who what when where why how which while after before about also
+        says said according reported report reports told tells say said new latest more most very
+        just not no yes one two first second third year years day days time now today yesterday
+    """.split())
+
+    def tokens(sentence):
+        return [w for w in re.findall(r"[a-z0-9']+", sentence.lower())
+                if len(w) > 2 and w not in stop]
+
+    token_rows = [tokens(s) for s in sentences]
+    # Sentence similarity is weighted by shared, relatively rare terms.
+    document_frequency = {}
+    for row in token_rows:
+        for word in set(row):
+            document_frequency[word] = document_frequency.get(word, 0) + 1
+    total = len(sentences)
+
+    def similarity(left, right):
+        a, b = set(left), set(right)
+        if not a or not b:
+            return 0.0
+        common = a & b
+        if not common:
+            return 0.0
+        weighted = sum(1.0 + (total / (1 + document_frequency.get(w, 0))) ** 0.5 for w in common)
+        return weighted / ((len(a) * len(b)) ** 0.5)
+
+    n = len(sentences)
+    scores = [1.0] * n
+    links = [[] for _ in range(n)]
+    for i in range(n):
+        for j in range(i + 1, n):
+            weight = similarity(token_rows[i], token_rows[j])
+            if weight > 0.025:
+                links[i].append((j, weight))
+                links[j].append((i, weight))
+    for _ in range(18):
+        updated = []
+        for i in range(n):
+            rank = 0.15
+            for j, weight in links[i]:
+                total_weight = sum(w for _, w in links[j]) or 1.0
+                rank += 0.85 * scores[j] * weight / total_weight
+            updated.append(rank)
+        scores = updated
+
+    # Reward informative sentences and give the article's opening context modest priority.
+    ranked = []
+    for i, sentence in enumerate(sentences):
+        words = token_rows[i]
+        if len(words) < 8:
+            continue
+        info = min(len(set(words)), 35) / 35
+        position = 1.0 / (1.0 + i * 0.045)
+        score = scores[i] * (0.78 + 0.22 * info) * (0.82 + 0.18 * position)
+        ranked.append((score, i, sentence))
+    if len(ranked) < 3:
+        return ""
+
+    # Choose up to 9 key sentences, avoid near-duplicates, then restore source order.
+    selected = []
+    selected_words = set()
+    target_words = 205
+    current_words = 0
+    for score, index, sentence in sorted(ranked, reverse=True):
+        words = set(token_rows[index])
+        if selected and len(words & selected_words) / max(1, len(words)) > 0.72:
+            continue
+        count = len(sentence.split())
+        if current_words + count > 275 and len(selected) >= 4:
+            continue
+        selected.append((index, sentence))
+        selected_words.update(words)
+        current_words += count
+        if len(selected) >= 9 or current_words >= target_words:
+            break
+    selected.sort(key=lambda item: item[0])
+    if len(selected) < 3:
+        return ""
+
+    # Group the selected source-grounded points into readable paragraphs.
+    chunks = []
+    current = []
+    for _, sentence in selected:
+        current.append(sentence)
+        if len(current) == 2:
+            chunks.append(" ".join(current))
+            current = []
+    if current:
+        chunks.append(" ".join(current))
+    intro = f"This source-based synopsis summarises the reporting published by {source}."
+    return intro + "\n\n" + "\n\n".join(chunks)
+
 
 def related_characters(text):
     known = [
@@ -371,10 +455,8 @@ def main():
             article["synopsis"] = synopsis_text
             article["synopsis_status"] = "ready"
             article["summary"] = re.split(r"(?<=[.!?])\\s+", synopsis_text)[0][:360]
-        elif not GEMINI_API_KEY:
-            article["synopsis_status"] = "needs_api_key" if article_text else "publisher_unavailable"
         elif article_text:
-            article["synopsis_status"] = "generation_failed"
+            article["synopsis_status"] = "article_text_too_short"
         elif description and len(description) > 100:
             article["synopsis_status"] = "publisher_excerpt_only"
         else:
@@ -389,7 +471,7 @@ def main():
         raise RuntimeError("No valid Marvel stories returned; keeping the previous feed unchanged.")
     for story in merged:
         story.setdefault("synopsis", "")
-        story.setdefault("synopsis_status", "needs_api_key" if not GEMINI_API_KEY else "pending")
+        story.setdefault("synopsis_status", "pending")
 
     # Avoid creating a Git commit every 15 minutes when the feed has not changed.
     previous_articles = previous.get("articles", [])
@@ -406,7 +488,7 @@ def main():
         "featured_series": featured_series_for(),
         "article_count": len(merged),
         "articles": merged,
-        "synopsis_engine": "Gemini publisher-text synthesis" if GEMINI_API_KEY else "publisher extraction awaiting GEMINI_API_KEY",
+        "synopsis_engine": "Free local TextRank-style source extraction (no API key)",
     }
     OUTPUT.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print("Updated", len(articles), "new/updated stories; retained", len(merged), "total Marvel stories.")
