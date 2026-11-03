@@ -814,6 +814,47 @@ function drawStreet(){
   }
   ctx.restore();
 }
+/* Comic-book animation language: inked contours, print misregistration and kinetic streaks. */
+function drawComicMotionPass(e){
+  const p=sceneProgress();
+  const cx=W*(.5+ptr.x*.025), cy=H*(.43+ptr.y*.018);
+  ctx.save();
+  /* Offset cyan/magenta contour echoes create a subtle printed-on-paper RGB split. */
+  ctx.globalCompositeOperation='screen';
+  ctx.lineCap='round';
+  const pulse=.5+.5*Math.sin(t*.72);
+  ctx.globalAlpha=.075+.035*pulse;
+  ctx.strokeStyle='#36DFFF';ctx.lineWidth=1.15;
+  ctx.beginPath();ctx.moveTo(W*.015,H*.585);ctx.quadraticCurveTo(W*.5,H*.555,W*.985,H*.585);ctx.stroke();
+  ctx.globalAlpha=.065+.03*(1-pulse);
+  ctx.strokeStyle='#FF4C9A';ctx.lineWidth=1.1;
+  ctx.beginPath();ctx.moveTo(W*.015,H*.592);ctx.quadraticCurveTo(W*.5,H*.562,W*.985,H*.592);ctx.stroke();
+
+  /* Radial speed marks slide past the viewer, strongest near the frame edges. */
+  const count=isSmall()?13:22;
+  for(let i=0;i<count;i++){
+    const a=(i/count)*Math.PI*2+t*.018;
+    const inner=Math.min(W,H)*(.31+.035*Math.sin(t*.8+i*2.1));
+    const outer=Math.max(W,H)*(.64+.08*Math.sin(t*.31+i));
+    const x1=cx+Math.cos(a)*inner,y1=cy+Math.sin(a)*inner*.72;
+    const x2=cx+Math.cos(a)*outer,y2=cy+Math.sin(a)*outer*.72;
+    const alpha=(.018+.025*(.5+.5*Math.sin(t*.9+i*1.8)))*(1-p*.18);
+    ctx.globalAlpha=alpha;
+    ctx.strokeStyle=i%3===0?'#FFB8A1':(i%3===1?'#A7E9FF':'#FFFFFF');
+    ctx.lineWidth=i%5===0?1.8:.8;
+    ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();
+  }
+
+  /* Tiny hand-drawn corner hatches keep the scene from feeling like a smooth game render. */
+  ctx.globalAlpha=.10;
+  ctx.strokeStyle='#F5E9D6';ctx.lineWidth=.75;
+  for(let i=0;i<8;i++){
+    const d=i*7+(t*2.2)%7;
+    ctx.beginPath();ctx.moveTo(0,H*.13+d);ctx.lineTo(W*.045,H*.13+d-13);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(W,H*.77+d);ctx.lineTo(W*.955,H*.77+d-13);ctx.stroke();
+  }
+  ctx.restore();
+}
 function drawCinematicFinish(e){
   /* Warm key light, cool edge falloff and restrained bloom unify every painted layer. */
   ctx.save();
@@ -869,6 +910,7 @@ function render(e){
   drawTrails();
   drawParts();
   drawHalftone(e);
+  drawComicMotionPass(e);
   drawCinematicFinish(e);
   ctx.globalAlpha=1;ctx.globalCompositeOperation='source-over';
 }
