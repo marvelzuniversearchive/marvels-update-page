@@ -876,6 +876,76 @@ function drawCinematicFinish(e){
   ctx.fillStyle=vignette;ctx.fillRect(0,0,W,H);
   ctx.restore();
 }
+/* A recurring cinematic rooftop leap: an original masked-hero silhouette, not a static sticker. */
+function drawHeroLeap(e){
+  if(leapT<0||reduced)return;
+  const p=Math.max(0,Math.min(1,leapT/LEAP_DUR));
+  const travel=p*p*(3-2*p);
+  const x=W*(.16+.66*travel);
+  const y=H*(.48-.34*Math.sin(Math.PI*p)+.20*p);
+  const scale=Math.max(.62,Math.min(1.12,H/760))*(.92+.12*Math.sin(Math.PI*p));
+  const angle=p<.48?-.62+(p/.48)*.18:.18+((p-.48)/.52)*.72;
+  const fade=Math.min(1,p*7,(1-p)*6);
+  ctx.save();
+  ctx.globalAlpha=fade;
+  /* Rooftop edge and launch dust establish a clear take-off point. */
+  if(p<.22){
+    ctx.fillStyle='#18243D';
+    ctx.beginPath();ctx.moveTo(0,H*.505);ctx.lineTo(W*.205,H*.505);ctx.lineTo(W*.235,H*.535);ctx.lineTo(0,H*.535);ctx.closePath();ctx.fill();
+    ctx.strokeStyle='rgba(255,205,173,.72)';ctx.lineWidth=2;
+    ctx.beginPath();ctx.moveTo(0,H*.505);ctx.lineTo(W*.205,H*.505);ctx.stroke();
+  }
+  /* Web tether arcs behind the character and releases as the dive begins. */
+  if(p<.62){
+    ctx.globalAlpha=fade*(1-p/.72)*.82;
+    ctx.strokeStyle='rgba(238,248,255,.9)';ctx.lineWidth=Math.max(1,1.5*scale);
+    ctx.beginPath();ctx.moveTo(x+10*scale,y-30*scale);ctx.quadraticCurveTo(x+W*.13,y-H*.18,x+W*.20,y-H*.42);ctx.stroke();
+    ctx.globalAlpha=fade;
+  }
+  /* Directional comic speed strokes follow the actual flight path. */
+  ctx.save();ctx.globalAlpha=fade*(.22+.35*e);
+  ctx.strokeStyle='#B9EFFF';ctx.lineCap='round';
+  for(let i=0;i<9;i++){
+    const yy=y+((i-4)*13*scale),len=(32+i%3*19)*scale;
+    ctx.lineWidth=i%3===0?2:1;
+    ctx.beginPath();ctx.moveTo(x-len-18*scale,yy-8*scale);ctx.lineTo(x-len*.25,yy-2*scale);ctx.stroke();
+  }
+  ctx.restore();
+  /* Articulated silhouette: limbs swing between tuck, spread and landing poses. */
+  ctx.translate(x,y);ctx.rotate(angle);ctx.scale(scale,scale);
+  ctx.lineCap='round';ctx.lineJoin='round';
+  const limb=(pts,w,col)=>{ctx.strokeStyle=col;ctx.lineWidth=w;ctx.beginPath();ctx.moveTo(pts[0],pts[1]);for(let k=2;k<pts.length;k+=2)ctx.lineTo(pts[k],pts[k+1]);ctx.stroke()};
+  const suit='#11182D',edge='#263D68',accent='#F04D91';
+  /* Legs */
+  limb([-7,34,-25,58,-43,67],12,suit);
+  limb([8,34,24,55,45,53],12,suit);
+  limb([-7,34,-25,58,-43,67],2,edge);
+  limb([8,34,24,55,45,53],2,edge);
+  /* Torso */
+  ctx.fillStyle=suit;ctx.strokeStyle='#79DDF4';ctx.lineWidth=2;
+  ctx.beginPath();ctx.moveTo(-13,-23);ctx.quadraticCurveTo(0,-31,14,-20);ctx.lineTo(12,32);ctx.quadraticCurveTo(0,42,-12,31);ctx.closePath();ctx.fill();ctx.stroke();
+  ctx.strokeStyle=accent;ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(-8,-12);ctx.lineTo(8,13);ctx.lineTo(-5,27);ctx.stroke();
+  /* Arms, asymmetric to make the leap read as an intentional pose. */
+  limb([-10,-17,-30,-29,-48,-48],10,suit);
+  limb([12,-16,31,-2,49,-8],10,suit);
+  limb([-10,-17,-30,-29,-48,-48],2,edge);
+  limb([12,-16,31,-2,49,-8],2,edge);
+  /* Masked head with bright eye lenses. */
+  ctx.fillStyle=suit;ctx.strokeStyle='#79DDF4';ctx.lineWidth=2;
+  ctx.beginPath();ctx.ellipse(0,-43,14,17,-.12,0,Math.PI*2);ctx.fill();ctx.stroke();
+  ctx.fillStyle='#F5FBFF';
+  ctx.beginPath();ctx.ellipse(-6,-45,4.2,2.6,-.35,0,Math.PI*2);ctx.fill();
+  ctx.beginPath();ctx.ellipse(6,-45,4.2,2.6,.35,0,Math.PI*2);ctx.fill();
+  ctx.restore();
+  /* Landing ripple gives the dive a readable destination near the street. */
+  if(p>.78){
+    const q=(p-.78)/.22;
+    ctx.globalAlpha=fade*(1-q)*.48;ctx.strokeStyle='#F6D5C7';ctx.lineWidth=1.4;
+    ctx.beginPath();ctx.ellipse(x,H*.91,W*(.035+q*.035),H*(.009+q*.008),0,0,Math.PI*2);ctx.stroke();
+  }
+  ctx.restore();
+}
+
 function render(e){
   ctx.setTransform(dpr,0,0,dpr,0,0);
   ctx.globalAlpha=1;ctx.globalCompositeOperation='source-over';
@@ -906,6 +976,7 @@ function render(e){
   drawLake();
   drawNearShoreCity();
   drawStreet();
+  drawHeroLeap(e);
   /* Atmospheric particles, light trails and fine comic-print grain add cinematic life. */
   drawTrails();
   drawParts();
