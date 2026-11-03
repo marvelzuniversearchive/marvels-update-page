@@ -170,25 +170,22 @@
       const crown=new THREE.Mesh(new THREE.SphereGeometry(.85+(i%3)*.16,8,7),leafMat);crown.position.set(x,2,z);scene.add(crown);
     }
 
-    let pointerX=0,pointerY=0,aimX=0,aimY=0,travel=0,sideDrift=0;
-    addEventListener("pointermove",e=>{pointerX=(e.clientX/innerWidth-.5)*2;pointerY=(e.clientY/innerHeight-.5)*2;},{passive:true});
-    addEventListener("pointerleave",()=>{pointerX=0;pointerY=0;},{passive:true});
-    addEventListener("wheel",e=>{travel=THREE.MathUtils.clamp(travel+e.deltaY*.001,0,1);sideDrift=THREE.MathUtils.clamp(sideDrift+e.deltaX*.001,-.5,.5);},{passive:true});
-    let touchY=0;
-    addEventListener("touchstart",e=>{if(e.touches[0])touchY=e.touches[0].clientY;},{passive:true});
-    addEventListener("touchmove",e=>{if(!e.touches[0])return;const dy=touchY-e.touches[0].clientY;travel=THREE.MathUtils.clamp(travel+dy/innerHeight*.18,0,1);touchY=e.touches[0].clientY;},{passive:true});
+    // Fixed cinematic viewpoint: the world animates, never the camera.
     const clock=new THREE.Clock();
     function animate(){
       const t=clock.getElapsedTime();
       waterMat.uniforms.uTime.value=t;
-      cloudGroups.forEach(g=>{g.position.x+=g.userData.speed*.012;if(g.position.x>95)g.position.x=-95;});
-      aimX+=(pointerX-aimX)*.025; aimY+=(pointerY-aimY)*.025;
-      const mobile=innerWidth<700;
-      const cruise=Math.sin(t*.075)*2.4+Math.sin(t*.031)*1.2; const target=new THREE.Vector3(aimX*(mobile?5:9)+sideDrift*8+cruise,7.5-aimY*2.2+Math.sin(t*.12)*.28,-24-travel*9);
-      camera.position.x+=(Math.sin(t*.11)*2.5+target.x-camera.position.x)*.018;
-      camera.position.y+=(10+Math.sin(t*.16)*.62-aimY*.9-camera.position.y)*.018;
-      camera.position.z+=(34-travel*5+Math.sin(t*.055)*1.1-camera.position.z)*.014;
-      camera.lookAt(target);
+      cloudGroups.forEach((g,i)=>{
+        g.position.x+=g.userData.speed*.012;
+        if(g.position.x>95) g.position.x=-95;
+        g.position.y += Math.sin(t*.22+i*1.7)*.0008;
+      });
+      // Very gentle daylight variation gives the buildings and lake changing life.
+      sun.position.x = -35 + Math.sin(t*.035)*2.2;
+      sun.position.y = 55 + Math.sin(t*.027)*1.1;
+      sun.intensity = 2.35 + Math.sin(t*.045)*.045;
+      camera.position.set(0,10,34);
+      camera.lookAt(baseTarget);
       renderer.render(scene,camera);
       requestAnimationFrame(animate);
     }
@@ -198,7 +195,7 @@
       camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();
       renderer.setPixelRatio(Math.min(devicePixelRatio||1,1.7));renderer.setSize(innerWidth,innerHeight);
     },{passive:true});
-    root.dataset.world3d="ready"; root.dataset.world3dEngine="three-0.160.1"; const fallback=root.querySelector("img"); if(fallback) fallback.style.display="none";
+    root.dataset.world3d="ready"; root.dataset.world3dEngine="three-0.160.1-fixed-camera"; const fallback=root.querySelector("img"); if(fallback) fallback.style.display="none";
   };
 
   boot().catch(err=>{
