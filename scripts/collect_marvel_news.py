@@ -150,12 +150,29 @@ def fetch_page_metadata(url):
     if not url: return url, "", ""
     try:
         req = urllib.request.Request(url, headers={"User-Agent": UA, "Accept": "text/html"})
-        with urllib.request.urlopen(req, timeout=9) as response:
+        with urllib.request.urlopen(req, timeout=12) as response:
             final_url = safe_http_url(response.geturl())
-            host = (urlparse(final_url).hostname or "").lower()
-            if not any(host == d or host.endswith("." + d) for d in ALLOWED):
+            raw = response.read(900_000).decode("utf-8", "replace")
+        host = (urlparse(final_url).hostname or "").lower()
+        if not any(host == d or host.endswith("." + d) for d in ALLOWED):
+            # Google News RSS links may open a wrapper page. Resolve its first
+            # outbound link to one of the explicitly approved publishers.
+            publisher_url = ""
+            for match in re.finditer(r'''href=["'](https?://[^"'<> ]+)''', raw, re.I):
+                candidate = html.unescape(match.group(1)).replace("&amp;", "&")
+                candidate_host = (urlparse(candidate).hostname or "").lower()
+                if any(candidate_host == d or candidate_host.endswith("." + d) for d in ALLOWED):
+                    publisher_url = safe_http_url(candidate)
+                    break
+            if not publisher_url:
                 return url, "", ""
-            raw = response.read(500_000).decode("utf-8", "replace")
+            req = urllib.request.Request(publisher_url, headers={"User-Agent": UA, "Accept": "text/html"})
+            with urllib.request.urlopen(req, timeout=12) as response:
+                final_url = safe_http_url(response.geturl())
+                publisher_host = (urlparse(final_url).hostname or "").lower()
+                if not any(publisher_host == d or publisher_host.endswith("." + d) for d in ALLOWED):
+                    return url, "", ""
+                raw = response.read(900_000).decode("utf-8", "replace")
         def meta(keys):
             for key in keys:
                 patterns = [
