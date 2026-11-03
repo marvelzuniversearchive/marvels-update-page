@@ -202,11 +202,53 @@ const profile=arch&&silhouetteProfiles[arch.id]?silhouetteProfiles[arch.id]:(arc
   x.fillStyle=sideG;x.beginPath();x.moveTo(cx+front,top+2);x.lineTo(cx+w,top+Math.max(3,h*.035));x.lineTo(cx+w,top+h);x.lineTo(cx+front,top+h);x.closePath();x.fill();
   /* Thin roof fascia and a soft shadow line establish scale without cartoon ink. */
   x.fillStyle=shadeOf(col,1.22);x.beginPath();x.moveTo(cx+front*.04,top+profile[0][1]*h);x.lineTo(cx+front*.96,top+profile[Math.min(2,profile.length-1)][1]*h);x.lineTo(cx+w,top+Math.max(3,h*.035));x.lineTo(cx+front,top+2);x.closePath();x.fill();
-  x.save();x.globalAlpha=.22;x.strokeStyle='#F4F4EA';x.lineWidth=1;
+  /* Inked silhouette with offset color plates. */
+  x.save();
+  x.globalAlpha=.30;x.strokeStyle='#FF4C9A';x.lineWidth=Math.max(1.1,w*.004);
+  x.beginPath();profile.forEach((p,i)=>{const px=cx+p[0]*front-1.8,py=top+p[1]*h+1.1;i?x.lineTo(px,py):x.moveTo(px,py)});x.stroke();
+  x.globalAlpha=.34;x.strokeStyle='#48DDF5';x.lineWidth=Math.max(1,w*.003);
+  x.beginPath();profile.forEach((p,i)=>{const px=cx+p[0]*front+1.2,py=top+p[1]*h-.7;i?x.lineTo(px,py):x.moveTo(px,py)});x.stroke();
+  x.globalAlpha=.82;x.strokeStyle=o.ink;x.lineWidth=Math.max(1.15,w*.0055);
+  x.beginPath();profile.forEach((p,i)=>{const px=cx+p[0]*front,py=top+p[1]*h;i?x.lineTo(px,py):x.moveTo(px,py)});x.stroke();
+  x.globalAlpha=.22;x.strokeStyle='#F4F4EA';x.lineWidth=1;
   x.beginPath();x.moveTo(cx+3,top+h*.12);x.lineTo(cx+front-3,top+h*.12);x.stroke();
   x.globalAlpha=.28;x.strokeStyle=o.ink;x.lineWidth=.8;
   x.beginPath();profile.forEach((p,i)=>{const px=cx+p[0]*front,py=top+p[1]*h;i?x.lineTo(px,py):x.moveTo(px,py)});x.stroke();
   x.beginPath();x.moveTo(cx+front,top+2);x.lineTo(cx+front,top+h);x.lineTo(cx+w,top+h);x.stroke();
+  x.restore();
+
+  /* Facade illustration: perspective seams, painted reflections and Ben-Day shadows. */
+  x.save();
+  x.beginPath();profile.forEach((p,i)=>{const px=cx+p[0]*front,py=top+p[1]*h;i?x.lineTo(px,py):x.moveTo(px,py)});x.closePath();x.clip();
+  const detailAlpha=Math.max(.12,Math.min(.48,.48-(o.haze||0)*.42));
+  x.globalAlpha=detailAlpha;x.strokeStyle=o.ink;x.lineWidth=Math.max(.65,w*.0022);
+  const floors=Math.max(5,Math.min(18,Math.round(h/30)));
+  for(let f=1;f<floors;f++){
+    const yy=top+h*f/floors;
+    x.beginPath();x.moveTo(cx+2,yy);x.lineTo(cx+front-2,yy+Math.sin(f*.7)*1.3);x.stroke();
+  }
+  const bays=Math.max(3,Math.min(9,Math.round(front/24)));
+  for(let k=1;k<bays;k++){
+    const xx=cx+front*k/bays;
+    x.globalAlpha=detailAlpha*.72;
+    x.beginPath();x.moveTo(xx,top+h*.08);x.lineTo(xx,top+h*.98);x.stroke();
+  }
+  x.globalAlpha=.17;x.strokeStyle='#F8E8D8';x.lineWidth=Math.max(1,w*.006);
+  for(let k=0;k<4;k++){
+    const xx=cx+front*(.12+k*.22);
+    x.beginPath();x.moveTo(xx,top+h*.08);x.lineTo(xx+front*.07,top+h*.48);x.stroke();
+  }
+  x.globalAlpha=.16;x.fillStyle=o.ink;
+  const dotStep=Math.max(6,Math.min(11,w*.045));
+  for(let yy=top+h*.58;yy<top+h;yy+=dotStep){
+    for(let xx=cx+front*.58;xx<cx+front;xx+=dotStep){
+      if((Math.floor(xx/dotStep)+Math.floor(yy/dotStep))%3!==0)continue;
+      const fade=(yy-(top+h*.58))/(h*.42);
+      x.beginPath();x.arc(xx,yy,Math.max(.7,dotStep*.10)*(0.55+fade*.7),0,Math.PI*2);x.fill();
+    }
+  }
+  x.globalAlpha=.13;x.fillStyle=o.ink;
+  x.beginPath();x.moveTo(cx+front*.72,top);x.lineTo(cx+front,top);x.lineTo(cx+front,top+h);x.lineTo(cx+front*.84,top+h);x.closePath();x.fill();
   x.restore();
   return side;
 }
@@ -959,7 +1001,8 @@ function render(e){
   layers.forEach((L,i)=>{
     /* Scrolling down moves each building layer DOWN at a different depth rate. */
     const scrollShift=H*.46*sceneProgress()*(.28+L.pf*1.9);
-    const idleDrift=Math.sin(t*.29+i*.82)*(1.6+i*1.1);
+    const inkFrame=Math.floor(t*12)/12;
+    const idleDrift=Math.sin(inkFrame*.29+i*.82)*(1.6+i*1.1);
     const shift=scrollShift+drift*L.depth*.26+idleDrift;
     /* Horizontal pointer parallax: near layers travel farther than distant layers. */
     const sideParallax=ptr.x*L.depth*W*(isSmall()?.026:.042);
