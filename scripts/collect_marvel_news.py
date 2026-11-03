@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Collect, validate and enrich Marvel headlines for the static archive."""
 import html
+from html.parser import HTMLParser
 import os
 import json
 import re
