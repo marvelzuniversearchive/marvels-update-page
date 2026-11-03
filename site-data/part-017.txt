@@ -83,7 +83,7 @@ const C={cyan:'#24D6FF',pink:'#F13D9B',gold:'#FFD45C',mint:'#B8F7EA',ink:'#1d0e4
 const EXTRA=300, LEAP_DUR=2.8;
 /* city band = lower 45% of the screen: tallest tops near 50% height */
 /* Refined Manhattan architecture palette: glass, limestone, steel and warm interior light. */
-const TOON_PAL=['#526F91','#607694','#927C91','#405F7F','#A47F83','#5D7898','#A58D91','#405A79','#7893A9','#6D718D'];
+const TOON_PAL=['#263B68','#344B7B','#4A477F','#55466F','#365D78','#466C83','#73506F','#85536F','#59658F','#8A667A','#3E536D','#A16C70'];
 const LAYER_DEFS=[
  {minH:.24,maxH:.38,fill:'#8CA4B2',pal:TOON_PAL,haze:.48,lw:.65,dotA:.025,ink:'#435766',alpha:.52,depth:.48,speed:8,boost:.35,pf:.10,lit:.13,litC:[C.gold,'#F7E4C5'],wMin:42,wMax:98,gap:[8,22],wx:10,wy:14,ws:2},
  {dense:true,pal:TOON_PAL,haze:.28,lw:.7,dotA:.035,ink:'#344C5D',depth:.82,alpha:.70,speed:15,boost:.55,pf:.16,lit:.16,litC:[C.gold,'#F7E4C5'],wMin:42,wMax:92,gap:[6,18],wx:10,wy:14,ws:2,minH:.28,maxH:.46,fill:''},
@@ -357,6 +357,43 @@ function toonWindows(x,cx,top,w,sw,h,d,o,wins,arch){
 function toonOpts(d,x){
   return {ink:d.ink,lw:.7,dotA:d.dotA*.12,dots:x.createPattern(dotTile,'repeat'),hazeC:'#D7E5EC',haze:d.haze*.42};
 }
+/* Cinematic facade finish: dimensional glass, selective lit rooms and loading-theme accents. */
+function drawCinematicFacadePass(x,cx,top,bw,bh,d,arch){
+  if(bw<24||bh<28)return;
+  const front=bw*.84,bottom=top+bh,seed=Math.abs(Math.floor(cx*13+bw*7+bh*3));
+  x.save();
+  const vignette=x.createLinearGradient(cx,top,cx+front,top);
+  vignette.addColorStop(0,'rgba(8,17,42,.2)');vignette.addColorStop(.2,'rgba(9,22,47,0)');
+  vignette.addColorStop(.8,'rgba(9,18,42,.02)');vignette.addColorStop(1,'rgba(8,13,35,.32)');
+  x.fillStyle=vignette;x.fillRect(cx,top,front,bh);
+  x.globalCompositeOperation='screen';
+  const reflection=x.createLinearGradient(cx+front*.12,top,cx+front*.68,bottom);
+  reflection.addColorStop(0,'rgba(49,216,255,0)');reflection.addColorStop(.23,'rgba(67,190,255,.15)');
+  reflection.addColorStop(.39,'rgba(245,92,181,.12)');reflection.addColorStop(.53,'rgba(255,211,133,.09)');
+  reflection.addColorStop(.72,'rgba(90,140,255,.1)');reflection.addColorStop(1,'rgba(50,216,255,0)');
+  x.fillStyle=reflection;x.beginPath();x.moveTo(cx+front*.12,top);x.lineTo(cx+front*.27,top);
+  x.lineTo(cx+front*.69,bottom);x.lineTo(cx+front*.53,bottom);x.closePath();x.fill();
+  const accent=['#24D6FF','#F13D9B','#FFD45C','#9255D8'][seed%4];
+  x.globalAlpha=.42;x.strokeStyle=accent;x.lineWidth=Math.max(.7,Math.min(1.7,bw*.008));
+  x.beginPath();x.moveTo(cx+front*.965,top+bh*.08);x.lineTo(cx+front*.965,bottom-bh*.06);x.stroke();
+  x.globalAlpha=.23;x.strokeStyle='#A9EFFF';x.lineWidth=.65;
+  for(let k=1;k<5;k++){const yy=top+bh*k/5;x.beginPath();x.moveTo(cx+front*.04,yy);x.lineTo(cx+front*.94,yy);x.stroke()}
+  x.globalAlpha=.76;
+  const rows=Math.max(3,Math.floor(bh/23)),cols=Math.max(2,Math.floor(front/17));
+  for(let row=0;row<rows;row++)for(let col=0;col<cols;col++){
+    const h=(seed+row*17+col*11)%29;
+    if(h===0||h===4||h===13){
+      x.fillStyle=h===13?'rgba(255,204,126,.88)':'rgba(66,211,255,.72)';
+      x.fillRect(cx+5+col*(front-10)/cols,top+7+row*bh/rows,Math.max(1.1,front/cols*.22),Math.max(1.5,bh/150));
+    }
+  }
+  x.globalAlpha=1;x.globalCompositeOperation='source-over';
+  x.strokeStyle='rgba(210,238,255,.48)';x.lineWidth=.8;
+  x.beginPath();x.moveTo(cx+2,top+1);x.lineTo(cx+front-2,top+1);x.lineTo(cx+bw-1,top+Math.max(3,bh*.035));x.stroke();
+  x.strokeStyle='rgba(7,14,35,.62)';x.lineWidth=1.15;
+  x.beginPath();x.moveTo(cx+front,top+2);x.lineTo(cx+front,bottom-1);x.stroke();
+  x.restore();
+}
 function buildLayer(d){
   const tw=Math.ceil(Math.max(W*1.15,760)), hh=H+EXTRA;
   const c=mk(tw,hh), x=c.getContext('2d'), wins=[];
@@ -368,6 +405,7 @@ function buildLayer(d){
     if(Math.random()<.07){x.strokeStyle=o.ink;x.lineWidth=d.lw;x.beginPath();x.moveTo(cx+bw/2,top);x.lineTo(cx+bw/2,top-rnd(40,80));x.stroke()}
     toonWindows(x,cx,top,bw,sw,hh-top,d,o,wins,arch);
     drawArchitecturalDetails(x,cx,top,bw,bh,d,o,arch);
+    drawCinematicFacadePass(x,cx,top,bw,bh,d,arch);
     if(Math.random()<.62)drawAnimeBuildingComposition(x,cx,top,bw,bh,d,o);
     /* Distinctive rooftop silhouettes: water tanks, slanted crowns, antennae and signboards. */
     if(Math.random()<.16){
@@ -404,6 +442,7 @@ function buildDense(d){
     const sw=toonBlock(x,cx,top,bw,hh-top,pick(d.pal),o,arch);
     toonWindows(x,cx,top,bw,sw,hh-top,d,o,wins,arch);
     drawArchitecturalDetails(x,cx,top,bw,bh,d,o,arch);
+    drawCinematicFacadePass(x,cx,top,bw,bh,d,arch);
     if(Math.random()<.62)drawAnimeBuildingComposition(x,cx,top,bw,bh,d,o);
     if(Math.random()<.22){
       const rx=cx+bw*rnd(.18,.62), rw=bw*rnd(.18,.42), rh=rnd(7,15);
