@@ -164,6 +164,15 @@
     return raw;
   }
 
+  function cardSynopsis(item) {
+    const summary = String(item.summary || "").trim();
+    const title = String(item.title || "").trim();
+    const compact = summary.toLowerCase().replace(/[^a-z0-9]/g,"");
+    const titleKey = title.toLowerCase().replace(/[^a-z0-9]/g,"");
+    if (summary && compact !== titleKey && !compact.startsWith(titleKey)) return summary;
+    return synopsis(item).split(/\n{2,}/)[0];
+  }
+
   function card(item, featured) {
     const img = item.image_url ? '<img src="' + safeUrl(item.image_url) + '" alt="" loading="lazy" referrerpolicy="no-referrer">' : comicArt(item);
     return '<article class="mnews-card ' + (featured ? "featured" : "") + '">' +
@@ -171,7 +180,7 @@
       '<span class="mnews-status ' + esc(status(item).toLowerCase()) + '">' + status(item) + '</span></button>' +
       '<div class="mnews-card-body"><div class="mnews-meta"><span>' + esc(item.category || "Marvel") + '</span><span>' + esc(item.source || "Publisher") + '</span></div>' +
       '<h2><button type="button" data-news-open="' + esc(item.id) + '">' + esc(item.title) + '</button></h2>' +
-      '<p>' + esc(synopsis(item)) + '</p>' +
+      '<p>' + esc(cardSynopsis(item)) + '</p>' +
       '<div class="mnews-card-bottom"><time>' + esc(date(item.published_at)) + '</time><button type="button" data-news-open="' + esc(item.id) + '">READ STORY ↗</button></div></div></article>';
   }
   function render() {
