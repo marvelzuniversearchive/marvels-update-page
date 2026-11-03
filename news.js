@@ -28,7 +28,8 @@
     .mnews-filters button,.mnews-back{border:1px solid var(--line);background:rgba(255,255,255,.055);color:#bac4d4;border-radius:99px;padding:8px 12px;font-size:10px;cursor:pointer}
     .mnews-filters button.active{background:linear-gradient(110deg,var(--red,#e63946),#ad284b);border-color:transparent;color:white}
     .mnews-count,.mnews-footnote{font-size:10px;color:#96a2b6}
-    .mnews-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}\n    .mnews-card{min-width:0;overflow:hidden;border:1px solid rgba(230,238,255,.2);border-radius:18px;background:linear-gradient(145deg,rgba(205,220,245,.14),rgba(105,130,170,.065));backdrop-filter:blur(18px) saturate(145%);-webkit-backdrop-filter:blur(18px) saturate(145%)}
+    .mnews-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+    .mnews-more-wrap{display:flex;justify-content:center;padding:22px 0 4px}.mnews-more{border:1px solid rgba(230,238,255,.25);border-radius:999px;padding:11px 20px;background:linear-gradient(110deg,rgba(230,57,70,.22),rgba(108,77,255,.16));color:#f4f1ec;font-size:10px;font-weight:800;letter-spacing:1px;cursor:pointer}.mnews-more:hover{background:linear-gradient(110deg,rgba(230,57,70,.38),rgba(108,77,255,.28))}\n    .mnews-card{min-width:0;overflow:hidden;border:1px solid rgba(230,238,255,.2);border-radius:18px;background:linear-gradient(145deg,rgba(205,220,245,.14),rgba(105,130,170,.065));backdrop-filter:blur(18px) saturate(145%);-webkit-backdrop-filter:blur(18px) saturate(145%)}
     .mnews-card.featured{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);margin-bottom:15px}
     .mnews-image{height:170px;display:grid;place-items:center;position:relative;overflow:hidden;background:radial-gradient(circle at 75% 25%,rgba(230,57,70,.38),transparent 35%),linear-gradient(135deg,#171d34,#351c39 60%,#151d2b);text-decoration:none}
     .featured .mnews-image{height:100%;min-height:270px}
@@ -81,7 +82,7 @@
   const FEED_URL = "news-feed.json";
   const categories = ["all","series_spotlight","ratings","official","movies","tv","comics","trailers","casting","games","events","announcements"];
   const labels = {all:"All news",series_spotlight:"Series Spotlight",ratings:"IMDb & Rotten Tomatoes",official:"Official",movies:"Movies",tv:"TV",comics:"Comics",trailers:"Trailers",casting:"Casting",games:"Games",events:"Events",announcements:"Announcements"};
-  let articles = [], filter = "all", query = "", order = "newest", active = false, selected = null, timer = null, lastError = false, featuredSeries = null;
+  let articles = [], filter = "all", query = "", order = "newest", active = false, selected = null, timer = null, lastError = false, featuredSeries = null, visibleCount = 6;
 
   const esc = value => String(value ?? "").replace(/[&<>"']/g, ch => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch]));
   const safeUrl = value => { try { const u = new URL(value, location.href); return /^https?:$/.test(u.protocol) ? esc(u.href) : "#"; } catch { return "#"; } };
@@ -212,7 +213,7 @@
       '<div class="mnews-heading"><div><div class="eyebrow">MARVEL UNIVERSE · NEWSROOM</div><h1>Marvel <span>News</span></h1><p>Marvel headlines, official announcements and coverage from established publishers — collected, organised and refreshed automatically.</p></div>' +
       '<div class="mnews-live"><i></i><span>LIVE NEWS SYSTEM</span><small id="mnewsUpdated">' + esc(updated) + '</small></div></div>' + banner + controls + filters +
       (featuredSeries ? '<section class="mnews-series-spotlight"><div><div class="eyebrow">' + (featuredSeries.status === "airing" ? "CURRENTLY AIRING · SERIES SPOTLIGHT" : "UP NEXT · SERIES SPOTLIGHT") + '</div><h2>' + esc(featuredSeries.name) + '</h2><p>' + esc(featuredSeries.description || "Latest news, episode coverage and updates for this Marvel series.") + (featuredSeries.status === "airing" ? " · Finale: " + esc(featuredSeries.finale || "Date to be announced") : " · Premiere: " + esc(featuredSeries.premiere)) + '</p></div><button type="button" data-news-filter="series_spotlight">EXPLORE SERIES COVERAGE ↗</button></section>' : '') +
-      (rows.length ? card(rows[0], true) + '<div class="mnews-grid">' + rows.slice(1).map(a => card(a,false)).join("") + '</div>' :
+      (rows.length ? card(rows[0], true) + '<div class="mnews-grid">' + rows.slice(1, visibleCount).map(a => card(a,false)).join("") + '</div>' + (rows.length > visibleCount ? '<div class="mnews-more-wrap"><button type="button" class="mnews-more" data-news-more>LOAD 6 MORE STORIES · ' + (rows.length - visibleCount) + ' LEFT</button></div>' : '') :
       '<div class="mnews-empty"><strong>' + (articles.length ? "No stories match those filters." : "No Marvel stories are available yet.") + '</strong><p>Try another category or check again shortly.</p></div>') +
       '<div class="mnews-footnote">The free source-based synopsis engine checks sources every 15 minutes. This page also refreshes its displayed feed while open. Official announcements, reported coverage and rumours are labelled separately.</div></section>';
   }
@@ -243,7 +244,8 @@
     if (!active) return;
     if (event.target.closest("[data-marvel-news-content]")) event.stopImmediatePropagation();
     const filterButton = event.target.closest("[data-news-filter]");
-    if (filterButton) { filter = filterButton.dataset.newsFilter; render(); return; }
+    if (filterButton) { filter = filterButton.dataset.newsFilter; visibleCount = 6; render(); return; }
+    if (event.target.closest("[data-news-more]")) { visibleCount += 6; render(); return; }
     const open = event.target.closest("[data-news-open]");
     if (open) { selected = open.dataset.newsOpen; render(); return; }
     if (event.target.closest("[data-news-back]")) { selected = null; render(); }
@@ -252,13 +254,14 @@
     if (event.target && event.target.id === "mnewsSearch" && active) {
       const pos = event.target.selectionStart;
       query = event.target.value;
+      visibleCount = 6;
       render();
       const next = document.getElementById("mnewsSearch");
       if (next) { next.focus(); next.setSelectionRange(pos,pos); }
     }
   });
   document.addEventListener("change", event => {
-    if (event.target && event.target.id === "mnewsSort" && active) { order = event.target.value; render(); }
+    if (event.target && event.target.id === "mnewsSort" && active) { order = event.target.value; visibleCount = 6; render(); }
   });
   document.addEventListener("visibilitychange", () => { if (!document.hidden && active) loadFeed(); });
   new MutationObserver(addNavigation).observe(document.documentElement,{childList:true,subtree:true});
