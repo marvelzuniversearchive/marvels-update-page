@@ -83,7 +83,7 @@ const C={cyan:'#24D6FF',pink:'#F13D9B',gold:'#FFD45C',mint:'#B8F7EA',ink:'#1d0e4
 const EXTRA=300, LEAP_DUR=2.8;
 /* city band = lower 45% of the screen: tallest tops near 50% height */
 /* Refined Manhattan architecture palette: glass, limestone, steel and warm interior light. */
-const TOON_PAL=['#7894A5','#91A5AD','#B7AA98','#687F91','#A99B8B','#8299A8','#C0B5A4','#647C8D','#9CAEB2','#8A8E8D'];
+const TOON_PAL=['#526F91','#607694','#927C91','#405F7F','#A47F83','#5D7898','#A58D91','#405A79','#7893A9','#6D718D'];
 const LAYER_DEFS=[
  {minH:.24,maxH:.38,fill:'#8CA4B2',pal:TOON_PAL,haze:.48,lw:.65,dotA:.025,ink:'#435766',alpha:.52,depth:.48,speed:8,boost:.35,pf:.10,lit:.13,litC:[C.gold,'#F7E4C5'],wMin:42,wMax:98,gap:[8,22],wx:10,wy:14,ws:2},
  {dense:true,pal:TOON_PAL,haze:.28,lw:.7,dotA:.035,ink:'#344C5D',depth:.82,alpha:.70,speed:15,boost:.55,pf:.16,lit:.16,litC:[C.gold,'#F7E4C5'],wMin:42,wMax:92,gap:[6,18],wx:10,wy:14,ws:2,minH:.28,maxH:.46,fill:''},
@@ -103,10 +103,10 @@ function buildSky(){
   sky=mk(W*Q,H*Q);
   const x=sky.getContext('2d');x.setTransform(Q,0,0,Q,0,0);
   const g=x.createLinearGradient(0,0,0,H);
-  [[0,'#4C9FE8'],[.28,'#78BCEB'],[.58,'#B6DDF2'],[1,'#E4F1F5']].forEach(([p,c])=>g.addColorStop(p,c));
+  [[0,'#1A2854'],[.22,'#344B7B'],[.43,'#8B648C'],[.61,'#E28D82'],[.76,'#F2B18A'],[1,'#526B88']].forEach(([p,c])=>g.addColorStop(p,c));
   x.fillStyle=g;x.fillRect(0,0,W,H);
-  const sun=x.createRadialGradient(W*.76,H*.25,2,W*.76,H*.25,Math.max(W,H)*.42);
-  sun.addColorStop(0,'rgba(255,250,225,.48)');sun.addColorStop(.32,'rgba(255,246,220,.16)');sun.addColorStop(1,'rgba(255,255,255,0)');
+  const sun=x.createRadialGradient(W*.69,H*.43,2,W*.69,H*.43,Math.max(W,H)*.46);
+  sun.addColorStop(0,'rgba(255,224,191,.62)');sun.addColorStop(.28,'rgba(255,173,151,.24)');sun.addColorStop(1,'rgba(255,255,255,0)');
   x.fillStyle=sun;x.fillRect(0,0,W,H);
   /* Broad illustrated cloud strokes add depth without turning the sky into a flat gradient. */
   for(let i=0;i<22;i++){
@@ -145,7 +145,7 @@ function mkCloud(cols){
   x.globalAlpha=1;return s;
 }
 function buildClouds(){
-  const sprites=[mkCloud(['rgba(255,255,255,.92)','rgba(244,249,252,.78)']),mkCloud(['rgba(226,239,247,.9)','rgba(255,255,255,.78)']),mkCloud(['rgba(255,247,229,.9)','rgba(255,255,255,.72)']),mkCloud(['rgba(210,229,241,.88)','rgba(255,255,255,.76)'])];
+  const sprites=[mkCloud(['rgba(255,202,190,.92)','rgba(245,211,220,.78)']),mkCloud(['rgba(135,157,207,.9)','rgba(255,193,176,.78)']),mkCloud(['rgba(255,220,190,.9)','rgba(229,161,173,.72)']),mkCloud(['rgba(137,153,196,.88)','rgba(255,208,192,.76)'])];
   clouds=[];
   for(let i=0;i<10;i++){
     const w=rnd(420,900);
@@ -455,10 +455,10 @@ function drawLake(){
   ctx.quadraticCurveTo(W*.5,shore-H*.025,W,shore+H*.018);
   ctx.lineTo(W,H);ctx.lineTo(0,H);ctx.closePath();ctx.clip();
   const water=ctx.createLinearGradient(0,shore,0,H);
-  water.addColorStop(0,'#86C4E4');
-  water.addColorStop(.22,'#69ACD2');
-  water.addColorStop(.62,'#4E91BD');
-  water.addColorStop(1,'#376F9D');
+  water.addColorStop(0,'#A47F9D');
+  water.addColorStop(.22,'#637FA8');
+  water.addColorStop(.62,'#405D89');
+  water.addColorStop(1,'#263D67');
   ctx.fillStyle=water;ctx.fillRect(0,shore,W,H-shore);
   /* Distant shoreline glow and a soft anime-painted reflection field. */
   const glow=ctx.createLinearGradient(0,shore,0,shore+H*.16);
