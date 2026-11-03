@@ -962,6 +962,6 @@ function playIntroGlitch(){
   },1250);
 }
 
-fetch('site-data/city-architecture.json').then(r=>{if(!r.ok)throw Error('city config unavailable');return r.json()}).then(data=>{if(data&&Array.isArray(data.archetypes))CITY_ARCH_CONFIG=data}).catch(err=>console.warn('Using built-in city architecture fallback',err)).finally(()=>{build();playIntroGlitch()});
+fetch('site-data/city-architecture.json').then(r=>{if(!r.ok)throw Error('city config unavailable');return r.json()}).then(data=>{if(data&&(Array.isArray(data.archetypes)||Array.isArray(data.building_archetypes))){CITY_ARCH_CONFIG=data;const m=data.materials||{};CITY_ARCH_CONFIG.palette={glass:(m.glass&&m.glass.tint_options)||['#6FA8C7','#8FB8C9','#A7C7D6','#B8D3D4'],warmInterior:['#F4D8A4','#EBC28A','#D8A77A','#E8DCC8']}}}).catch(err=>console.warn('Using built-in city architecture fallback',err)).finally(()=>{build();playIntroGlitch()});
 })();
 </script></body></html>
