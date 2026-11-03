@@ -32,7 +32,10 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Collect and enrich Marvel headlines
+      - name: Collect, extract and write detailed Marvel synopses
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_MODEL: gemini-2.5-flash
         shell: bash
         run: |
           set -euo pipefail
