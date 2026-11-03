@@ -493,7 +493,7 @@ function drawGlows(){
   ctx.restore();
 }
 function drawPerspective(e){
-  const vx=W*.5+ptr.x*36, vy=H*.42+ptr.y*18-e*22;
+  const vx=W*.5, vy=H*.42-e*22;
   ctx.save();ctx.lineWidth=1;ctx.strokeStyle='#ffffff';
   const N=18;
   for(let i=0;i<N;i++){
@@ -550,9 +550,7 @@ function drawNearShoreCity(){
      The open centre is deliberately reserved for the lake. */
   if(layers.length<3)return;
   const L=layers[2], S=layers[3]||L;
-  const scroll=Math.min(H*.44,scr.y*.30);
-  const idle=Math.sin(t*.21)*2.4;
-  const y=H*.39+scroll+idle;
+  const y=H*.39;
   const h=H*.43;
   ctx.save();
   ctx.globalAlpha=.72;
@@ -570,18 +568,15 @@ function render(e){
   if(sky)ctx.drawImage(sky,0,0,W,H);
   drawClouds();
   /* Far-side Manhattan skyline is smaller and softened by distance. */
-  const dive=1+.009*(.5+.5*Math.sin(t*.22))+e*.002;
-  const drift=2.5+3*Math.sin(t*.035)+e*3+ptr.y*2;
+  const dive=1;
+  const drift=0;
   const cityScale=(H*.52)/(H+EXTRA);
   ctx.save();ctx.translate(W*.5,H*.60);ctx.scale(dive,dive);ctx.translate(-W*.5,-H*.60);
   layers.forEach((L,i)=>{
     /* Scrolling down moves each building layer DOWN at a different depth rate. */
-    const scrollShift=Math.min(H*.42,scr.y*L.pf*1.05);
-    const idleDrift=Math.sin(t*.29+i*.82)*(1.6+i*1.1);
-    const shift=scrollShift+drift*L.depth*.26+idleDrift;
+    const shift=0;
     /* Horizontal pointer parallax: near layers travel farther than distant layers. */
-    const sideParallax=ptr.x*L.depth*W*(isSmall()?.026:.042);
-    const dy=H*.075+shift,x0=-L.off+sideParallax;
+    const dy=H*.075+shift,x0=-L.off;
     ctx.globalAlpha=L.alpha*.92;
     for(let xx=x0-L.tw;xx<W+L.tw;xx+=L.tw)ctx.drawImage(L.c,xx,dy,L.tw,L.hh*cityScale);
     if(i===0&&!reduced)drawFlicker(L,dy,x0,cityScale);
@@ -649,9 +644,6 @@ function step(dt){
   let e=0;
   if(!reduced){
     t+=dt;
-    ptr.x+=(ptr.tx-ptr.x)*Math.min(1,dt*4);
-    ptr.y+=(ptr.ty-ptr.y)*Math.min(1,dt*4);
-    scr.y+=(scr.target-scr.y)*Math.min(1,dt*6);
     leapClock+=dt;
     if(leapT<0&&leapClock>=nextLeap){
       leapT=0;nextLeap=leapClock+(isSmall()?22:16)*rnd(.9,1.15);
@@ -746,14 +738,6 @@ document.addEventListener('click',e=>{
   glStart(tg,el);
 },true);
 
-window.addEventListener('pointermove',e=>{
-  ptr.tx=e.clientX/W*2-1;ptr.ty=e.clientY/H*2-1;
-  root.style.setProperty('--px',ptr.tx.toFixed(3));root.style.setProperty('--py',ptr.ty.toFixed(3));
-},{passive:true});
-root.addEventListener('pointerleave',()=>{
-  ptr.tx=0;ptr.ty=0;root.style.setProperty('--px','0');root.style.setProperty('--py','0');
-});
-window.addEventListener('scroll',()=>{scr.target=reduced?0:Math.max(0,window.scrollY)},{passive:true});
 let rT=0;
 window.addEventListener('resize',()=>{clearTimeout(rT);rT=setTimeout(build,180)});
 document.addEventListener('visibilitychange',()=>{if(!document.hidden)start()});
