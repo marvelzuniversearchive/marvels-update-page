@@ -386,9 +386,11 @@ def main():
     merged = sorted(old.values(), key=lambda a: a.get("published_at", ""), reverse=True)[:150]
     if not merged:
         raise RuntimeError("No valid Marvel stories returned; keeping the previous feed unchanged.")
+    for story in merged:
+        story.setdefault("synopsis", "")
+        story.setdefault("synopsis_status", "needs_api_key" if not GEMINI_API_KEY else "pending")
 
-    # Keep the feed file unchanged between successful checks when no story data
-    # changed. This avoids creating a needless Git commit every 15 minutes.
+    # Avoid creating a Git commit every 15 minutes when the feed has not changed.
     previous_articles = previous.get("articles", [])
     content_changed = merged != previous_articles
     generated_at = (
