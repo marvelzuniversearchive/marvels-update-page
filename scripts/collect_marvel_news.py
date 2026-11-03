@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Collect, validate and enrich Marvel headlines for the static archive."""
 import html
+import os
 import json
 import re
 import urllib.parse
@@ -41,7 +42,9 @@ QUERIES = [
 ]
 UA = "Mozilla/5.0 (compatible; MarvelUniverseArchiveNews/2.0)"
 MAX_ARTICLES = 60
-ENRICH_LIMIT = 18
+ENRICH_LIMIT = 22
+GEMINI_MODEL = os.environ.get('GEMINI_MODEL', 'gemini-2.5-flash')
+GEMINI_API_KEY = os.environ.get('GEMINI_API_KEY', '').strip()
 # Release windows are based on announced dates. The spotlight switches by date;
 # unknown future dates are deliberately not guessed.
 SERIES_SCHEDULE = [
@@ -170,6 +173,90 @@ def fetch_page_metadata(url):
     except Exception:
         return url, "", ""
 
+class ArticleParagraphParser(HTMLParser):
+    def __init__(self):
+        super().__init__(convert_charrefs=True)
+        self.skip = 0
+        self.in_paragraph = False
+        self.current = []
+        self.paragraphs = []
+    def handle_starttag(self, tag, attrs):
+        if tag in ("script", "style", "nav", "header", "footer", "aside", "form", "noscript"):
+            self.skip += 1
+        if tag == "p" and not self.skip:
+            self.in_paragraph = True
+            self.current = []
+    def handle_endtag(self, tag):
+        if tag == "p" and self.in_paragraph:
+            value = clean(" ".join(self.current))
+            if len(value) > 55:
+                self.paragraphs.append(value)
+            self.in_paragraph = False
+            self.current = []
+        if tag in ("script", "style", "nav", "header", "footer", "aside", "form", "noscript") and self.skip:
+            self.skip -= 1
+    def handle_data(self, data):
+        if self.in_paragraph and not self.skip:
+            self.current.append(data)
+
+def extract_article_text(url):
+    """Read publisher article paragraphs; never store or republish the full article."""
+    if not url:
+        return ""
+    try:
+        req = urllib.request.Request(url, headers={"User-Agent": UA, "Accept": "text/html"})
+        with urllib.request.urlopen(req, timeout=14) as response:
+            final_url = safe_http_url(response.geturl())
+            host = (urlparse(final_url).hostname or "").lower()
+            if not any(host == d or host.endswith("." + d) for d in ALLOWED):
+                return ""
+            raw = response.read(1200000).decode("utf-8", "replace")
+        for match in re.finditer(r'"articleBody"\s*:\s*"((?:\\.|[^"\\])*)"', raw, re.I):
+            try:
+                body = clean(json.loads('"' + match.group(1) + '"'))
+                if len(body) > 500:
+                    return body[:16000]
+            except Exception:
+                pass
+        parser = ArticleParagraphParser()
+        parser.feed(raw)
+        paragraphs = [p for p in parser.paragraphs if not re.search(
+            r"(subscribe|sign up for|follow us|read more|advertisement|cookie policy|privacy policy|terms of use)", p, re.I)]
+        return "\n\n".join(paragraphs[:45])[:16000]
+    except Exception as exc:
+        print("Article text extraction failed:", str(exc)[:160])
+        return ""
+
+def generate_synopsis(title, source, published_at, url, article_text):
+    """Generate a factual, original 3–5 paragraph synopsis from extracted reporting."""
+    if not GEMINI_API_KEY or len(article_text) < 500:
+        return ""
+    prompt = (
+        "Write a detailed, readable news synopsis for a Marvel news archive. Use ONLY the supplied "
+        "publisher article text. Do not invent facts, dates, quotes, motives or context. Clearly label "
+        "rumours and attribute reported claims. Do not copy sentences verbatim or reproduce the article. "
+        "Write 3 to 5 coherent paragraphs, about 170–240 words, explaining what happened, who or what "
+        "is involved, the important reported details, why it matters, and what is still unknown or next "
+        "when the source actually says so. For ratings/reviews, include the exact score only if supplied. "
+        "Return plain text only, with paragraphs separated by blank lines and no heading.\n\n"
+        f"Headline: {title}\nPublisher: {source}\nPublished: {published_at}\nURL: {url}\n\n"
+        f"Publisher article text:\n{article_text[:13500]}"
+    )
+    payload = {"contents":[{"parts":[{"text":prompt}]}],
+               "generationConfig":{"temperature":0.2,"maxOutputTokens":850}}
+    endpoint = f"https://generativelanguage.googleapis.com/v1beta/models/{GEMINI_MODEL}:generateContent?key={GEMINI_API_KEY}"
+    request = urllib.request.Request(endpoint, data=json.dumps(payload).encode("utf-8"),
+        headers={"Content-Type":"application/json","User-Agent":UA}, method="POST")
+    try:
+        with urllib.request.urlopen(request, timeout=35) as response:
+            result = json.loads(response.read().decode("utf-8"))
+        parts = result.get("candidates", [{}])[0].get("content", {}).get("parts", [])
+        value = "\n".join(part.get("text", "") for part in parts if part.get("text")).strip()
+        return value[:5000] if len(value) >= 450 else ""
+    except Exception as exc:
+        print("Synopsis generation failed:", str(exc)[:180])
+        return ""
+
 def related_characters(text):
     known = [
         "Spider-Man","Iron Man","Captain America","Thor","Hulk","Black Panther",
@@ -232,16 +319,7 @@ def main():
             })
     
     articles.sort(key=lambda a: a["published_at"], reverse=True)
-    # Enrich a small newest-first batch with publisher metadata; feed collection
-    # still succeeds when an individual publisher blocks automated requests.
-    for article in articles[:ENRICH_LIMIT]:
-        final_url, description, image = fetch_page_metadata(article["article_url"])
-        article["article_url"] = final_url
-        if description: article["summary"] = description
-        if image: article["image_url"] = image
-
-    # Never replace a healthy feed with an empty response. Preserve existing
-    # headlines when the upstream RSS provider returns no usable entries.
+    # Keep completed synopses and enrich the newest stories with publisher article text.
     old = {}
     previous = {}
     if OUTPUT.exists():
@@ -249,8 +327,43 @@ def main():
             previous = json.loads(OUTPUT.read_text(encoding="utf-8"))
             old = {a.get("id"): a for a in previous.get("articles", []) if a.get("id")}
         except Exception:
-            previous = {}
-            old = {}
+            previous, old = {}, {}
+    for article in articles:
+        prior = old.get(article["id"], {})
+        if prior.get("synopsis"):
+            article["synopsis"] = prior["synopsis"]
+            article["synopsis_status"] = "ready"
+            if len(prior.get("summary", "")) > len(article.get("summary", "")):
+                article["summary"] = prior["summary"]
+        else:
+            article["synopsis"] = ""
+            article["synopsis_status"] = "pending"
+
+    for article in [a for a in articles if not a.get("synopsis")][:ENRICH_LIMIT]:
+        final_url, description, image = fetch_page_metadata(article["article_url"])
+        article["article_url"] = final_url or article["article_url"]
+        if description and len(description) > 80:
+            article["summary"] = description
+        if image:
+            article["image_url"] = image
+        article_text = extract_article_text(article["article_url"])
+        synopsis_text = generate_synopsis(article["title"], article["source"], article["published_at"],
+                                           article["article_url"], article_text)
+        if synopsis_text:
+            article["synopsis"] = synopsis_text
+            article["synopsis_status"] = "ready"
+            article["summary"] = re.split(r"(?<=[.!?])\\s+", synopsis_text)[0][:360]
+        elif not GEMINI_API_KEY:
+            article["synopsis_status"] = "needs_api_key" if article_text else "publisher_unavailable"
+        elif article_text:
+            article["synopsis_status"] = "generation_failed"
+        elif description and len(description) > 100:
+            article["synopsis_status"] = "publisher_excerpt_only"
+        else:
+            article["synopsis_status"] = "publisher_unavailable"
+
+    # Never replace a healthy feed with an empty response. Preserve existing
+    # headlines when the upstream RSS provider returns no usable entries.
     for article in articles:
         old[article["id"]] = article
     merged = sorted(old.values(), key=lambda a: a.get("published_at", ""), reverse=True)[:150]
@@ -273,6 +386,7 @@ def main():
         "featured_series": featured_series_for(),
         "article_count": len(merged),
         "articles": merged,
+        "synopsis_engine": "Gemini publisher-text synthesis" if GEMINI_API_KEY else "publisher extraction awaiting GEMINI_API_KEY",
     }
     OUTPUT.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print("Updated", len(articles), "new/updated stories; retained", len(merged), "total Marvel stories.")
