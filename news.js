@@ -54,7 +54,7 @@
     .mnews-footnote{margin-top:22px;line-height:1.6}
     .mnews-detail{color:#f5f7ff;border:1px solid #35415b;border-radius:18px;padding:clamp(18px,3vw,32px);background:radial-gradient(circle at 92% 0%,rgba(55,91,234,.13),transparent 34%),linear-gradient(145deg,#0b1220,#080d17 72%);box-shadow:0 24px 70px rgba(0,0,0,.28)}
     .mnews-detail h2{color:#fff;font:800 clamp(28px,4vw,46px)/1.05 'Barlow Condensed',sans-serif;margin:15px 0}
-    .mnews-detail .summary{font-size:14px;line-height:1.9;color:#e1e8f5;max-width:850px}
+    .mnews-detail .summary{font-size:14px;line-height:1.9;color:#e1e8f5;max-width:850px}.mnews-detail .summary p{margin:0 0 14px}.mnews-detail .summary p:last-child{margin-bottom:0}
     .mnews-detail .eyebrow{color:#ff9ca4}
     .mnews-detail .mnews-meta{color:#b8c4d8}
     .mnews-detail img,.mnews-detail .mnews-comic-poster{width:100%;max-height:430px;object-fit:cover;border-radius:12px;margin:18px 0;overflow:hidden}
@@ -150,12 +150,16 @@
       '<span class="mnews-art-caption">COMIC-BOOK ART · EDITORIAL ILLUSTRATION</span></div>';
   }
   function synopsis(item) {
+    const full = String(item.synopsis || "").trim();
+    if (full) return full;
     const raw = String(item.summary || "").trim();
     const title = String(item.title || "").trim();
     const compact = raw.toLowerCase().replace(/[^a-z0-9]/g,"");
     const titleKey = title.toLowerCase().replace(/[^a-z0-9]/g,"");
     if (!raw || compact === titleKey || compact.startsWith(titleKey)) {
-      return "The headline reports: " + title + ". The feed does not yet contain enough publisher-provided detail to write a reliable fuller synopsis. Open the credited source for the complete context.";
+      if (item.synopsis_status === "needs_api_key") return "The publisher article was found, but the detailed synopsis service has not been configured yet. The newsroom will retry automatically after its API key is added.";
+      if (item.synopsis_status === "publisher_unavailable") return "The publisher is temporarily blocking automated article access. This story will be retried during a later newsroom refresh.";
+      return "The newsroom has collected this headline and is still processing the publisher's article. A detailed synopsis will appear when the source provides enough readable reporting.";
     }
     return raw;
   }
@@ -187,8 +191,8 @@
           '<div class="mnews-detail"><div class="eyebrow">' + esc(item.category || "MARVEL") + ' · ' + esc(status(item)) + '</div>' +
           '<h2>' + esc(item.title) + '</h2><div class="mnews-meta"><span>' + esc(item.source || "Publisher") + '</span><time>' + esc(date(item.published_at)) + '</time></div>' +
           (item.image_url ? '<img src="' + safeUrl(item.image_url) + '" alt="" referrerpolicy="no-referrer">' : comicArt(item)) +
-          '<div class="eyebrow" style="margin-top:18px">STORY SYNOPSIS</div>' +
-          '<p class="summary">' + esc(synopsis(item)) + '</p>' +
+          '<div class="eyebrow" style="margin-top:18px">FULL STORY SYNOPSIS</div>' +
+          '<div class="summary">' + synopsis(item).split(/\n{2,}/).map(p => '<p>' + esc(p) + '</p>').join('') + '</div>' +
           (Array.isArray(item.related_characters) && item.related_characters.length ? '<div class="mnews-meta" style="justify-content:flex-start;flex-wrap:wrap;margin-top:12px"><strong>RELATED:</strong> ' + item.related_characters.map(esc).join(' · ') + '</div>' : '') +
           '<div class="mnews-detail-actions"><a href="' + safeUrl(item.article_url) + '" target="_blank" rel="noopener noreferrer">OPEN ORIGINAL STORY ↗</a><button type="button" data-news-back>BACK TO NEWS</button></div>' +
           '<p class="mnews-footnote">This archive displays a short factual preview and links to the original publisher. The publisher retains ownership of its reporting and media.</p></div></section>';
