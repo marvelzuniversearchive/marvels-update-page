@@ -291,24 +291,96 @@ function chooseCityArchetype(){
 }
 function drawArchitecturalDetails(x,cx,top,w,h,d,o,arch){
   if(!arch)return;
-  const front=w*.84, roof=arch.roof||'flat';
-  x.save();x.lineWidth=.8;x.strokeStyle='rgba(31,53,68,.52)';x.fillStyle='rgba(34,57,72,.55)';
+  const front=w*.84, roof=arch.roof||'flat', facade=arch.facade||'masonry-bands';
+  const id=arch.id||'', edge='rgba(35,48,56,.58)',light='rgba(248,235,210,.58)';
+  x.save();x.lineWidth=.85;x.strokeStyle=edge;x.fillStyle='rgba(34,57,72,.55)';
+  /* Architecture-specific silhouettes and structural details. */
+  if(id==='art-deco-setback-tower'){
+    for(let n=0;n<4;n++){
+      const yy=top+h*(.12+n*.105), inset=w*(.035+n*.018);
+      x.fillStyle='rgba(239,218,184,.17)';x.fillRect(cx+inset,yy,front-inset*2,Math.max(2,h*.012));
+      x.strokeStyle=light;x.lineWidth=1.1;x.beginPath();x.moveTo(cx+inset,yy);x.lineTo(cx+front-inset,yy);x.stroke();
+    }
+    x.beginPath();x.moveTo(cx+front*.5,top);x.lineTo(cx+front*.5,top-h*.1);x.lineTo(cx+front*.39,top-h*.035);x.moveTo(cx+front*.5,top-h*.1);x.lineTo(cx+front*.61,top-h*.035);x.stroke();
+  }
+  if(id==='prewar-limestone-apartment'||id==='civic-cultural-complex'){
+    const count=id==='civic-cultural-complex'?7:5;
+    for(let n=0;n<count;n++){
+      const px=cx+front*(.08+n*.84/(count-1));
+      x.strokeStyle='rgba(246,232,207,.62)';x.lineWidth=Math.max(1,w*.012);
+      x.beginPath();x.moveTo(px,top+h*.13);x.lineTo(px,top+h*.78);x.stroke();
+      x.strokeStyle=edge;x.lineWidth=.75;x.beginPath();x.moveTo(px+2,top+h*.13);x.lineTo(px+2,top+h*.78);x.stroke();
+    }
+    for(let n=0;n<3;n++){const yy=top+h*(.12+n*.22);x.fillStyle='rgba(246,232,207,.28)';x.fillRect(cx,yy,front,Math.max(2,h*.012))}
+    if(id==='civic-cultural-complex'){
+      const dx=cx+front*.5,dy=top+h*.12,rx=front*.14,ry=h*.12;
+      x.fillStyle='rgba(224,211,184,.28)';x.beginPath();x.ellipse(dx,dy,rx,ry,0,Math.PI,Math.PI*2);x.fill();
+      x.strokeStyle=light;x.lineWidth=1.5;x.beginPath();x.ellipse(dx,dy,rx,ry,0,Math.PI,Math.PI*2);x.stroke();
+    }
+  }
+  if(id==='brownstone-residential-block'||id==='prewar-residential-building'){
+    const levels=Math.max(3,Math.floor(h/36));
+    for(let n=1;n<levels;n++){
+      const yy=top+n*h/levels;
+      x.fillStyle='rgba(24,39,48,.5)';x.fillRect(cx+front*.07,yy,front*.86,Math.max(2,h*.012));
+      for(let q=0;q<3;q++){
+        const bx=cx+front*(.13+q*.29),bw=front*.19;
+        x.fillStyle='rgba(222,205,177,.25)';x.fillRect(bx,yy-h*.035,bw,h*.025);
+        x.strokeStyle=light;x.lineWidth=.7;x.beginPath();x.moveTo(bx,yy-h*.035);x.lineTo(bx+bw,yy-h*.035);x.stroke();
+      }
+    }
+  }
+  if(id==='terraced-residential-highrise'){
+    for(let n=0;n<4;n++){
+      const yy=top+h*(.22+n*.17), inset=front*(.05+n*.045);
+      x.fillStyle='rgba(228,231,215,.18)';x.fillRect(cx+inset,yy,front-inset*2,Math.max(2,h*.018));
+      x.fillStyle='rgba(43,68,62,.55)';x.fillRect(cx+inset,yy+2,front-inset*2,Math.max(1,h*.012));
+    }
+  }
+  if(id==='waterfront-warehouse'||id==='industrial-loft-building'){
+    const bayCount=Math.max(3,Math.floor(front/30));
+    for(let n=0;n<bayCount;n++){
+      const bx=cx+n*front/bayCount,bw=front/bayCount;
+      x.strokeStyle='rgba(228,213,188,.42)';x.lineWidth=1;
+      x.strokeRect(bx+3,top+h*.2,bw-6,h*.57);
+      if(id==='waterfront-warehouse'){
+        x.beginPath();x.moveTo(bx+4,top+h*.2);x.lineTo(bx+bw*.5,top+h*.11);x.lineTo(bx+bw-4,top+h*.2);x.stroke();
+      }
+    }
+    if(id==='waterfront-warehouse'){
+      x.fillStyle='rgba(22,35,42,.52)';x.fillRect(cx+front*.12,top+h*.62,front*.22,h*.2);
+      x.fillRect(cx+front*.58,top+h*.62,front*.22,h*.2);
+    }
+  }
+  if(id==='rooftop-garden-tower'){
+    for(let n=0;n<4;n++){
+      const px=cx+front*(.08+n*.22),yy=top+h*(.2+n%2*.19);
+      x.fillStyle='rgba(58,99,68,.68)';x.fillRect(px,yy,front*.16,Math.max(3,h*.018));
+      x.strokeStyle='rgba(225,234,205,.62)';x.beginPath();x.moveTo(px,yy);x.lineTo(px+front*.16,yy);x.stroke();
+    }
+  }
+  if(['glass-bands','vertical-bays'].includes(facade)){
+    const fins=Math.max(3,Math.min(8,Math.floor(front/25)));
+    for(let n=0;n<=fins;n++){
+      const px=cx+n*front/fins;
+      x.strokeStyle=n%2?'rgba(238,247,244,.27)':'rgba(20,45,59,.4)';
+      x.lineWidth=n%2?1:1.7;x.beginPath();x.moveTo(px,top+3);x.lineTo(px,top+h*.96);x.stroke();
+    }
+  }
+  /* Roof silhouettes remain tied to each building's own architecture. */
   if(['water-tank','mechanical','vents','garden'].includes(roof)){
     const rw=Math.max(12,w*.18),rx=cx+front*.62,ry=top-Math.max(7,h*.025);
-    x.fillStyle='rgba(56,77,88,.72)';x.fillRect(rx,ry,rw,Math.max(6,h*.022));
-    x.strokeRect(rx,ry,rw,Math.max(6,h*.022));
+    x.fillStyle='rgba(56,77,88,.72)';x.fillRect(rx,ry,rw,Math.max(6,h*.022));x.strokeRect(rx,ry,rw,Math.max(6,h*.022));
     if(roof==='vents'||roof==='mechanical')for(let i=0;i<3;i++){x.beginPath();x.moveTo(rx+rw*(.2+i*.25),ry);x.lineTo(rx+rw*(.2+i*.25),ry-5-i%2*3);x.stroke()}
     if(roof==='garden'){x.fillStyle='rgba(74,112,91,.8)';x.fillRect(rx,ry-4,rw,4)}
   }
   if(['spire','antenna','crown'].includes(roof)){
-    const ax=cx+front*.5;
-    x.lineWidth=1.1;x.beginPath();x.moveTo(ax,top+2);x.lineTo(ax,top-Math.max(18,h*.12));x.stroke();
+    const ax=cx+front*.5;x.lineWidth=1.1;x.beginPath();x.moveTo(ax,top+2);x.lineTo(ax,top-Math.max(18,h*.12));x.stroke();
     if(roof==='crown'){x.lineWidth=1.5;x.beginPath();x.moveTo(ax-w*.1,top+2);x.lineTo(ax,top-Math.max(9,h*.055));x.lineTo(ax+w*.1,top+2);x.stroke()}
     x.fillStyle='rgba(255,239,196,.8)';x.beginPath();x.arc(ax,top-Math.max(18,h*.12),1.8,0,Math.PI*2);x.fill();
   }
-  if(roof==='cornice'){x.lineWidth=2;x.beginPath();x.moveTo(cx,top+h*.08);x.lineTo(cx+front,top+h*.08);x.stroke()}
-  if(['balconies','terrace','garden'].includes(roof)){
-    for(let i=0;i<2;i++){const yy=top+h*(.2+i*.11);x.fillStyle='rgba(238,237,220,.45)';x.fillRect(cx+front*.08,yy,front*.52,1.6)}
+  if(roof==='cornice'||id==='art-deco-setback-tower'){
+    x.lineWidth=2;x.strokeStyle=light;x.beginPath();x.moveTo(cx,top+h*.08);x.lineTo(cx+front,top+h*.08);x.stroke();
   }
   x.restore();
 }
