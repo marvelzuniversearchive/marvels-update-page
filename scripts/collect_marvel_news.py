@@ -42,7 +42,7 @@ QUERIES = [
 ]
 UA = "Mozilla/5.0 (compatible; MarvelUniverseArchiveNews/2.0)"
 MAX_ARTICLES = 60
-ENRICH_LIMIT = 22
+ENRICH_LIMIT = 10
 # Release windows are based on announced dates. The spotlight switches by date;
 # unknown future dates are deliberately not guessed.
 SERIES_SCHEDULE = [
