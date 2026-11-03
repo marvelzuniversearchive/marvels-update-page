@@ -157,8 +157,7 @@
     const compact = raw.toLowerCase().replace(/[^a-z0-9]/g,"");
     const titleKey = title.toLowerCase().replace(/[^a-z0-9]/g,"");
     if (!raw || compact === titleKey || compact.startsWith(titleKey)) {
-      if (item.synopsis_status === "needs_api_key") return "The publisher article was found, but the detailed synopsis service has not been configured yet. The newsroom will retry automatically after its API key is added.";
-      if (item.synopsis_status === "publisher_unavailable") return "The publisher is temporarily blocking automated article access. This story will be retried during a later newsroom refresh.";
+      if (item.synopsis_status === "publisher_unavailable") return "The publisher is temporarily blocking automated article access, so a detailed synopsis cannot be prepared from this source yet. The newsroom will retry during a later refresh.";
       return "The newsroom has collected this headline and is still processing the publisher's article. A detailed synopsis will appear when the source provides enough readable reporting.";
     }
     return raw;
@@ -204,7 +203,7 @@
           '<div class="summary">' + synopsis(item).split(/\n{2,}/).map(p => '<p>' + esc(p) + '</p>').join('') + '</div>' +
           (Array.isArray(item.related_characters) && item.related_characters.length ? '<div class="mnews-meta" style="justify-content:flex-start;flex-wrap:wrap;margin-top:12px"><strong>RELATED:</strong> ' + item.related_characters.map(esc).join(' · ') + '</div>' : '') +
           '<div class="mnews-detail-actions"><a href="' + safeUrl(item.article_url) + '" target="_blank" rel="noopener noreferrer">OPEN ORIGINAL STORY ↗</a><button type="button" data-news-back>BACK TO NEWS</button></div>' +
-          '<p class="mnews-footnote">This archive displays a short factual preview and links to the original publisher. The publisher retains ownership of its reporting and media.</p></div></section>';
+          '<p class="mnews-footnote">This is an automated source-based synopsis, not the publisher’s full article. It is prepared from publicly accessible reporting and links to the original publisher. The publisher retains ownership of its reporting and media.</p></div></section>';
         return;
       }
       selected = null;
@@ -215,7 +214,7 @@
       (featuredSeries ? '<section class="mnews-series-spotlight"><div><div class="eyebrow">' + (featuredSeries.status === "airing" ? "CURRENTLY AIRING · SERIES SPOTLIGHT" : "UP NEXT · SERIES SPOTLIGHT") + '</div><h2>' + esc(featuredSeries.name) + '</h2><p>' + esc(featuredSeries.description || "Latest news, episode coverage and updates for this Marvel series.") + (featuredSeries.status === "airing" ? " · Finale: " + esc(featuredSeries.finale || "Date to be announced") : " · Premiere: " + esc(featuredSeries.premiere)) + '</p></div><button type="button" data-news-filter="series_spotlight">EXPLORE SERIES COVERAGE ↗</button></section>' : '') +
       (rows.length ? card(rows[0], true) + '<div class="mnews-grid">' + rows.slice(1).map(a => card(a,false)).join("") + '</div>' :
       '<div class="mnews-empty"><strong>' + (articles.length ? "No stories match those filters." : "No Marvel stories are available yet.") + '</strong><p>Try another category or check again shortly.</p></div>') +
-      '<div class="mnews-footnote">The feed checks sources every 15 minutes. This page also refreshes its displayed feed while open. Official announcements, reported coverage and rumours are labelled separately.</div></section>';
+      '<div class="mnews-footnote">The free source-based synopsis engine checks sources every 15 minutes. This page also refreshes its displayed feed while open. Official announcements, reported coverage and rumours are labelled separately.</div></section>';
   }
   async function loadFeed() {
     try {
