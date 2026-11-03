@@ -235,10 +235,59 @@ function drawAnimeBuildingComposition(x,cx,top,w,h,d,o){
   x.restore();
 }
 function chooseCityArchetype(){
-  const list=CITY_ARCH_CONFIG&&CITY_ARCH_CONFIG.archetypes;
-  if(!list||!list.length)return null;
-  const total=list.reduce((n,a)=>n+(a.weight||1),0);let r=Math.random()*total;
-  for(const a of list){r-=a.weight||1;if(r<=0)return a}return list[list.length-1];
+  const source=CITY_ARCH_CONFIG&&(CITY_ARCH_CONFIG.archetypes||CITY_ARCH_CONFIG.building_archetypes);
+  if(!source||!source.length)return null;
+  const idMap={
+    'NYC-ARCH-01':'manhattan-glass-super-tower',
+    'NYC-ARCH-02':'slender-tapered-skyscraper',
+    'NYC-ARCH-03':'art-deco-setback-tower',
+    'NYC-ARCH-04':'curved-corner-curtain-wall',
+    'NYC-ARCH-05':'twisted-architectural-tower',
+    'NYC-ARCH-06':'terraced-residential-highrise',
+    'NYC-ARCH-07':'prewar-limestone-apartment',
+    'NYC-ARCH-08':'prewar-residential-building',
+    'NYC-ARCH-09':'brownstone-residential-block',
+    'NYC-ARCH-10':'industrial-loft-building',
+    'NYC-ARCH-11':'waterfront-warehouse',
+    'NYC-ARCH-12':'modern-office-midrise',
+    'NYC-ARCH-13':'rooftop-garden-tower',
+    'NYC-ARCH-14':'civic-cultural-complex',
+    'NYC-ARCH-15':'mixed-use-commercial-complex'
+  };
+  const facadeMap={
+    'NYC-ARCH-01':'glass-bands','NYC-ARCH-02':'vertical-bays',
+    'NYC-ARCH-03':'masonry-bands','NYC-ARCH-04':'glass-bands',
+    'NYC-ARCH-05':'glass-bands','NYC-ARCH-06':'masonry-bands',
+    'NYC-ARCH-07':'masonry-bands','NYC-ARCH-08':'masonry-bands',
+    'NYC-ARCH-09':'balconies','NYC-ARCH-10':'loft-bays',
+    'NYC-ARCH-11':'industrial','NYC-ARCH-12':'glass-bands',
+    'NYC-ARCH-13':'balconies','NYC-ARCH-14':'masonry-bands',
+    'NYC-ARCH-15':'masonry-bands'
+  };
+  const roofMap={
+    'NYC-ARCH-01':'spire','NYC-ARCH-02':'antenna','NYC-ARCH-03':'crown',
+    'NYC-ARCH-04':'cornice','NYC-ARCH-05':'crown','NYC-ARCH-06':'garden',
+    'NYC-ARCH-07':'cornice','NYC-ARCH-08':'water-tank','NYC-ARCH-09':'cornice',
+    'NYC-ARCH-10':'mechanical','NYC-ARCH-11':'mechanical','NYC-ARCH-12':'mechanical',
+    'NYC-ARCH-13':'garden','NYC-ARCH-14':'crown','NYC-ARCH-15':'mechanical'
+  };
+  const normalized=source.map(a=>{
+    if(a.width&&a.height)return a;
+    const hm=a.height_m||[100,240],wm=a.width_m||[24,48];
+    const clamp=(v,lo,hi)=>Math.max(lo,Math.min(hi,v));
+    return Object.assign({},a,{
+      id:idMap[a.id]||a.id,
+      width:[Math.max(28,wm[0]*1.12),Math.max(44,wm[1]*1.42)],
+      height:[clamp(hm[0]/700,.17,.48),clamp(hm[1]/700,.22,.58)],
+      facade:facadeMap[a.id]||'masonry-bands',
+      roof:roofMap[a.id]||'cornice',
+      colors:Array.isArray(a.palette)?a.palette:null,
+      weight:a.weight||1
+    });
+  });
+  const total=normalized.reduce((n,a)=>n+(a.weight||1),0);let r=Math.random()*total;
+  for(const a of normalized){r-=a.weight||1;if(r<=0)return a}
+  return normalized[normalized.length-1];
 }
 function drawArchitecturalDetails(x,cx,top,w,h,d,o,arch){
   if(!arch)return;
@@ -413,7 +462,7 @@ function buildLayer(d){
   let cx=-rnd(0,40);
   while(cx<tw){
     const arch=chooseCityArchetype(), depthScale=Math.min(1.12,Math.max(.72,.62+d.depth*.25)), bw=arch?rnd(arch.width[0],arch.width[1]):rnd(d.wMin,d.wMax), bh=(arch?rnd(arch.height[0],arch.height[1])*depthScale:rnd(d.minH,d.maxH))*H, top=H-bh;
-    const sw=toonBlock(x,cx,top,bw,hh-top,pick(d.pal),o,arch);
+    const sw=toonBlock(x,cx,top,bw,hh-top,arch&&arch.colors&&arch.colors.length?pick(arch.colors):pick(d.pal),o,arch);
     if(Math.random()<.07){x.strokeStyle=o.ink;x.lineWidth=d.lw;x.beginPath();x.moveTo(cx+bw/2,top);x.lineTo(cx+bw/2,top-rnd(40,80));x.stroke()}
     toonWindows(x,cx,top,bw,sw,hh-top,d,o,wins,arch);
     drawArchitecturalDetails(x,cx,top,bw,bh,d,o,arch);
@@ -451,7 +500,7 @@ function buildDense(d){
   let cx=-rnd(0,28);
   while(cx<tw){
     const arch=chooseCityArchetype(), depthScale=Math.min(1.12,Math.max(.72,.62+d.depth*.25)), bw=arch?rnd(arch.width[0],arch.width[1]):rnd(d.wMin,d.wMax), bh=(arch?rnd(arch.height[0],arch.height[1])*depthScale:rnd(d.minH,d.maxH))*H, top=H-bh;
-    const sw=toonBlock(x,cx,top,bw,hh-top,pick(d.pal),o,arch);
+    const sw=toonBlock(x,cx,top,bw,hh-top,arch&&arch.colors&&arch.colors.length?pick(arch.colors):pick(d.pal),o,arch);
     toonWindows(x,cx,top,bw,sw,hh-top,d,o,wins,arch);
     drawArchitecturalDetails(x,cx,top,bw,bh,d,o,arch);
     drawNaturalFacadeFinish(x,cx,top,bw,bh,d,arch);
