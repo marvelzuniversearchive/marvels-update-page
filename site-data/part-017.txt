@@ -68,7 +68,64 @@ window.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.targe
 document.getElementById('appRoot').innerHTML=shell();render();
 })();</script><script>
 (()=>{
+
 'use strict';
+/* Independent click transition: this must run even when the optional cityCanvas is absent. */
+(()=>{
+  if(window.__muaOriginalGlitchClickInstalled)return;
+  const root=document.documentElement;
+  const fx=document.getElementById('glitchFx');
+  const badge=document.getElementById('glBadge');
+  const label=document.getElementById('glText');
+  if(!fx||!badge||!label){console.error('Marvel Archive glitch: required overlay elements missing');return;}
+  window.__muaOriginalGlitchClickInstalled=true;
+  const words=['SHIFTING UNIVERSE...','DIMENSIONAL TRANSFER...','RECONSTRUCTING REALITY...','ENTERING NEW WORLD...'];
+  let busy=false,replaying=false,actionTimer=0,finishTimer=0,target=null;
+  function finish(){
+    clearTimeout(actionTimer);clearTimeout(finishTimer);
+    fx.classList.remove('gl-run','gl-fade');
+    root.classList.remove('glitching');
+    if(target)target.classList.remove('gl-busy');
+    target=null;
+    badge.classList.remove('on');
+    badge.removeAttribute('style');
+    fx.removeAttribute('style');
+    busy=false;
+  }
+  function begin(el){
+    busy=true;target=el;
+    el.classList.add('gl-busy');
+    label.textContent=words[Math.floor(Math.random()*words.length)];
+    badge.classList.add('on');
+    badge.style.cssText='display:flex!important;visibility:visible!important;opacity:1!important;z-index:2147483647!important;position:fixed!important;left:50%!important;bottom:9vh!important;transform:translateX(-50%)!important;background:rgba(8,10,24,.96)!important;border:1px solid #00e5ff!important;box-shadow:0 0 18px #00e5ff,0 0 38px #ff315f!important;padding:14px 22px!important;color:#fff!important;font:800 12px/1.2 sans-serif!important;letter-spacing:.16em!important;border-radius:999px!important;pointer-events:none!important;gap:12px!important';
+    fx.style.cssText='display:block!important;visibility:visible!important;opacity:1!important;z-index:2147483646!important;position:fixed!important;inset:0!important;pointer-events:none!important';
+    fx.classList.remove('gl-run','gl-fade');
+    void fx.offsetWidth;
+    fx.classList.add('gl-run');
+    root.classList.add('glitching');
+    finishTimer=setTimeout(finish,2400);
+    actionTimer=setTimeout(()=>{
+      replaying=true;
+      try{if(el.isConnected)el.click();}
+      catch(err){console.error('Marvel Archive action replay failed:',err);}
+      finally{replaying=false;}
+      actionTimer=0;
+      finishTimer=setTimeout(finish,130);
+    },1000);
+  }
+  document.addEventListener('click',e=>{
+    if(replaying||busy)return;
+    const node=e.target;
+    if(!node||!node.closest||node.closest('input,textarea,select,[contenteditable="true"]'))return;
+    const el=node.closest('button,a,[role="button"],[data-action],[data-view],.entity-card,.spot-mini,.fav');
+    if(!el||el.closest('[data-marvel-news],[data-marvel-news-content]'))return;
+    if(el.matches('[disabled],[aria-disabled="true"]'))return;
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    begin(el);
+  },true);
+})();
+
 const cv=document.getElementById('cityCanvas');
 if(!cv||!cv.getContext)return;
 const ctx=cv.getContext('2d',{alpha:true});
@@ -932,59 +989,7 @@ function build(){
   if(reduced)render(0);else start();
 }
 
-/* ---- universe-shift transition controller: 1100 ms total, action at 1000 ms ---- */
-const GL_TOTAL=1100, GL_MIN=1000, GL_COOL=250;
-const GL_WORDS=['SHIFTING UNIVERSE...','DIMENSIONAL TRANSFER...','RECONSTRUCTING REALITY...','ENTERING NEW WORLD...'];
-const glBadge=document.getElementById('glBadge'), glText=document.getElementById('glText');
-let glBusy=false, glEnd=0, glReplaying=false, glSafety=0, glTimer=0, glTarget=null;
-function burstFx(){
-  for(let i=0;i<8;i++)parts.push(burstPart());
-  for(let i=0;i<4;i++)spawnTrail(true);
-}
-function glSetBusy(on,el){
-  if(on){
-    glTarget=el;if(glTarget)glTarget.classList.add('gl-busy');
-    glText.textContent=pick(GL_WORDS);glBadge.classList.add('on');
-    glBadge.style.cssText='display:flex!important;visibility:visible!important;opacity:1!important;z-index:2147483647!important;position:fixed!important;left:50%!important;bottom:9vh!important;transform:translateX(-50%)!important;background:rgba(8,10,24,.96)!important;border:1px solid #00e5ff!important;box-shadow:0 0 18px #00e5ff,0 0 38px #ff315f!important;padding:14px 22px!important;color:#fff!important;font:800 12px/1.2 sans-serif!important;letter-spacing:.16em!important;border-radius:999px!important;pointer-events:none!important;gap:12px!important;animation:glBadge .35s ease both!important';
-    glFx.style.cssText='display:block!important;visibility:visible!important;opacity:1!important;z-index:2147483646!important';
-  }else{
-    if(glTarget)glTarget.classList.remove('gl-busy');
-    glTarget=null;glBadge.classList.remove('on');glBadge.removeAttribute('style');glFx.removeAttribute('style');
-  }
-}
-function glFinish(){
-  clearTimeout(glSafety);clearTimeout(glTimer);
-  glFx.classList.remove('gl-run','gl-fade');
-  root.classList.remove('glitching');
-  glSetBusy(false,null);
-  glBusy=false;glEnd=performance.now();
-}
-function glStart(tg,el){
-  glBusy=true;glSetBusy(true,el);
-  glFx.classList.remove('gl-run','gl-fade');void glFx.offsetWidth;
-  glFx.classList.add('gl-run');
-  root.classList.add('glitching');burstFx();
-  glSafety=setTimeout(glFinish,GL_TOTAL+3000);   /* never leave the screen locked */
-  glTimer=setTimeout(()=>{
-    glReplaying=true;
-    try{if(tg.isConnected)tg.click();}
-    catch(err){console.error('Universe shift: action failed',err);}
-    finally{glReplaying=false;}
-    glTimer=setTimeout(glFinish,GL_TOTAL-GL_MIN);   /* reveal after the last stage */
-  },GL_MIN);
-}
-/* Original layered glitch transition: briefly hold the action, show the full glitch FX, then continue it. */
-document.addEventListener('click',e=>{
-  if(glReplaying||glBusy)return;
-  const target=e.target;
-  if(!target||!target.closest||target.closest('input,textarea,select,[contenteditable="true"]'))return;
-  const el=target.closest('button,a,[role="button"],[data-action],[data-view],.entity-card,.spot-mini,.fav');
-  if(!el||el.closest('[data-marvel-news],[data-marvel-news-content]'))return;
-  if(el.matches('[disabled],[aria-disabled="true"]'))return;
-  e.preventDefault();
-  e.stopImmediatePropagation();
-  glStart(el,el);
-},true);
+/* Click glitch is installed before the optional cityCanvas subsystem. */;
 
 window.addEventListener('pointermove',e=>{
   ptr.tx=e.clientX/W*2-1;ptr.ty=e.clientY/H*2-1;
