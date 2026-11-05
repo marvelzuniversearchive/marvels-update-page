@@ -1012,22 +1012,21 @@ fetch('site-data/city-architecture.json').then(r=>{if(!r.ok)throw Error('city co
 })();
 </script>
 <script>
-/* Independent click-triggered universe loader. Kept outside the city-canvas controller
-   so a city animation error or reduced-motion preference cannot disable navigation. */
+/* Visible click feedback only: never intercept, cancel, or replay the user's action. */
 (()=>{
   if(window.__muaClickLoaderInstalled)return;
   window.__muaClickLoaderInstalled=true;
-  let busy=false,replay=false,last=0;
+  let hideTimer=0;
   const style=document.createElement('style');
   style.textContent=`
-    #muaClickShift{position:fixed!important;inset:0!important;z-index:2147483646!important;pointer-events:none!important;display:none!important;overflow:hidden!important;background:rgba(4,7,20,.24)!important}
+    #muaClickShift{position:fixed!important;inset:0!important;z-index:2147483646!important;pointer-events:none!important;display:none!important;overflow:hidden!important;background:rgba(4,7,20,.22)!important}
     #muaClickShift.active{display:block!important}
-    #muaClickShift .mua-bar{position:absolute;left:-8%;width:116%;height:5vh;background:linear-gradient(90deg,transparent,#ff315f,rgba(255,255,255,.9),#22e6ff,transparent);opacity:.82;mix-blend-mode:screen}
-    #muaClickShift .mua-bar:nth-child(1){top:13%}#muaClickShift .mua-bar:nth-child(2){top:29%;transform:translateX(5%)}
-    #muaClickShift .mua-bar:nth-child(3){top:47%;height:9vh;transform:translateX(-4%)}
-    #muaClickShift .mua-bar:nth-child(4){top:68%;transform:translateX(3%)}
-    #muaClickShift .mua-bar:nth-child(5){top:86%;height:2vh}
-    #muaClickShiftBadge{position:fixed!important;z-index:2147483647!important;left:50%!important;bottom:9vh!important;transform:translateX(-50%)!important;display:none!important;padding:14px 22px!important;border:1px solid #28eaff!important;border-radius:999px!important;background:rgba(5,8,22,.97)!important;color:#fff!important;font:800 12px/1.2 Arial,sans-serif!important;letter-spacing:.16em!important;box-shadow:0 0 18px #28eaff,0 0 36px #ff315f!important;white-space:nowrap!important}
+    #muaClickShift .mua-bar{position:absolute;left:-8%;width:116%;height:5vh;background:linear-gradient(90deg,transparent,#ff315f,rgba(255,255,255,.95),#22e6ff,transparent);opacity:.9;mix-blend-mode:screen;animation:muaGlitch .22s steps(2,end) infinite}
+    #muaClickShift .mua-bar:nth-child(1){top:13%}#muaClickShift .mua-bar:nth-child(2){top:29%;animation-delay:-.08s}
+    #muaClickShift .mua-bar:nth-child(3){top:47%;height:9vh;animation-delay:-.15s}
+    #muaClickShift .mua-bar:nth-child(4){top:68%;animation-delay:-.04s}#muaClickShift .mua-bar:nth-child(5){top:86%;height:2vh}
+    @keyframes muaGlitch{0%{transform:translateX(-2%);opacity:.3}50%{transform:translateX(2%);opacity:1}100%{transform:translateX(-1%);opacity:.55}}
+    #muaClickShiftBadge{position:fixed!important;z-index:2147483647!important;left:50%!important;bottom:9vh!important;transform:translateX(-50%)!important;display:none!important;padding:14px 22px!important;border:1px solid #28eaff!important;border-radius:999px!important;background:rgba(5,8,22,.98)!important;color:#fff!important;font:800 12px/1.2 Arial,sans-serif!important;letter-spacing:.16em!important;box-shadow:0 0 18px #28eaff,0 0 36px #ff315f!important;white-space:nowrap!important}
     #muaClickShiftBadge.active{display:block!important}
   `;
   document.head.appendChild(style);
@@ -1037,23 +1036,15 @@ fetch('site-data/city-architecture.json').then(r=>{if(!r.ok)throw Error('city co
   const badge=document.createElement('div');
   badge.id='muaClickShiftBadge';badge.setAttribute('role','status');
   badge.textContent='⚡ SHIFTING UNIVERSE...';
-  document.body.append(overlay,badge);
+  (document.body||document.documentElement).append(overlay,badge);
   document.addEventListener('click',e=>{
-    if(replay||busy)return;
     const target=e.target;
     if(!target||!target.closest||target.closest('input,textarea,select,[contenteditable="true"]'))return;
     const control=target.closest('button,a,[role="button"],[data-action],[data-view],.entity-card,.spot-mini,.fav');
     if(!control||control.closest('[data-marvel-news],[data-marvel-news-content]'))return;
-    e.preventDefault();e.stopImmediatePropagation();
-    const now=Date.now();if(now-last<250)return;
-    busy=true;last=now;
     overlay.classList.add('active');badge.classList.add('active');
-    const timer=setTimeout(()=>{
-      replay=true;
-      try{if(control.isConnected)control.click();}
-      finally{replay=false;overlay.classList.remove('active');badge.classList.remove('active');busy=false;}
-    },950);
-    setTimeout(()=>{if(busy){clearTimeout(timer);overlay.classList.remove('active');badge.classList.remove('active');busy=false;}},3500);
+    clearTimeout(hideTimer);
+    hideTimer=setTimeout(()=>{overlay.classList.remove('active');badge.classList.remove('active')},1150);
   },true);
 })();
 </script></body></html>
