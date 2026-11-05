@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-04T22:53:32.971086+00:00",
+  "generated_at": "2026-11-05T02:59:22.265867+00:00",
   "source_count": 15,
   "search_topics": [
     "Marvel Universe",
@@ -25,6 +25,127 @@
   },
   "article_count": 150,
   "articles": [
+    {
+      "id": "avengersendgame",
+      "title": "Avengers: Endgame",
+      "summary": "Avengers: Endgame Rotten Tomatoes",
+      "coverage_tags": [
+        "Ratings & Reviews",
+        "Rotten Tomatoes"
+      ],
+      "image_url": "",
+      "article_url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTFBvcUt3d2hCcFhGVExISXZuWEJRY0Y4MEZWUkd5WHBja3NuejVBcVQ3cXdjU2loZ2JkeVcxRHpQbVRXMmlZTWM1VXZSalNJTGd4WHlKaTlEV3hmazZwQ0E?oc=5",
+      "source": "Rotten Tomatoes",
+      "source_id": "rotten_tomatoes",
+      "category": "Marvel",
+      "published_at": "2026-11-05T02:04:51+00:00",
+      "status": "reported",
+      "tags": [
+        "Avengers"
+      ],
+      "related_characters": [
+        "Avengers"
+      ],
+      "external_id": "CBMiXkFVX3lxTFBvcUt3d2hCcFhGVExISXZuWEJRY0Y4MEZWUkd5WHBja3NuejVBcVQ3cXdjU2loZ2JkeVcxRHpQbVRXMmlZTWM1VXZSalNJTGd4WHlKaTlEV3hmazZwQ0E",
+      "synopsis": "",
+      "synopsis_status": "publisher_unavailable"
+    },
+    {
+      "id": "10marvelcharacterswhoshouldjoinryangoslingsghostriderinthemcu",
+      "title": "10 Marvel Characters Who Should Join Ryan Gosling's Ghost Rider in the MCU",
+      "summary": "10 Marvel Characters Who Should Join Ryan Gosling's Ghost Rider in the MCU Comic Book Resources",
+      "coverage_tags": [],
+      "image_url": "",
+      "article_url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxQaHc2N2dHZDduMHUxb0puSDRtdTQ4M0RncjNpcWZFUURXbTgybldUTDVFNG1MVVU4SVl4T3dHdkNCT0t5ckZzajl1aWsyblZoUUc1UGxtblRGQWhlaXp1dFVIY3NkMUIxTHJIZ1ZoaXNCRDJUMkdaUjk0YTJKVG0zLTJFZmttZHR3clJr?oc=5",
+      "source": "CBR",
+      "source_id": "cbr",
+      "category": "Marvel",
+      "published_at": "2026-11-05T00:00:12+00:00",
+      "status": "reported",
+      "tags": [
+        "Ghost Rider"
+      ],
+      "related_characters": [
+        "Ghost Rider"
+      ],
+      "external_id": "CBMiiwFBVV95cUxQaHc2N2dHZDduMHUxb0puSDRtdTQ4M0RncjNpcWZFUURXbTgybldUTDVFNG1MVVU4SVl4T3dHdkNCT0t5ckZzajl1aWsyblZoUUc1UGxtblRGQWhlaXp1dFVIY3NkMUIxTHJIZ1ZoaXNCRDJUMkdaUjk0YTJKVG0zLTJFZmttZHR3clJr",
+      "synopsis": "",
+      "synopsis_status": "publisher_unavailable"
+    },
+    {
+      "id": "avengersassembleshadowofatlantispartonetvepisode2018parentsguide",
+      "title": "\"Avengers Assemble\" Shadow of Atlantis: Part One (TV Episode 2018) - Parents guide",
+      "summary": "\"Avengers Assemble\" Shadow of Atlantis: Part One (TV Episode 2018) - Parents guide IMDb",
+      "coverage_tags": [
+        "Ratings & Reviews",
+        "IMDb"
+      ],
+      "image_url": "",
+      "article_url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE5ETV9Xcy1DOFRqY25NWFRRUnlzbjFIX0tUcVJQMWRkcGNrWFVQOW5CbEhTRGdCRVEwcUF3VHJnazdXeG1WTWJ6M0hWZU9oaVpfNjRlR1JWUDc1QnhkVkxWM1RXOVNfSU0wY0NYTENYWUhEQW8?oc=5",
+      "source": "IMDb",
+      "source_id": "imdb",
+      "category": "TV",
+      "published_at": "2026-11-04T23:54:42+00:00",
+      "status": "reported",
+      "tags": [
+        "Avengers"
+      ],
+      "related_characters": [
+        "Avengers"
+      ],
+      "external_id": "CBMic0FVX3lxTE5ETV9Xcy1DOFRqY25NWFRRUnlzbjFIX0tUcVJQMWRkcGNrWFVQOW5CbEhTRGdCRVEwcUF3VHJnazdXeG1WTWJ6M0hWZU9oaVpfNjRlR1JWUDc1QnhkVkxWM1RXOVNfSU0wY0NYTENYWUhEQW8",
+      "synopsis": "",
+      "synopsis_status": "publisher_unavailable"
+    },
+    {
+      "id": "amctheatressetsalltimerecordforquarterlyrevenuethankstospidermanbrandnewdayandth",
+      "title": "AMC Theatres Sets All-Time Record for Quarterly Revenue, Thanks to ‘Spider-Man: Brand New Day’ and ‘The Odyssey’",
+      "summary": "AMC Theatres Sets All-Time Record for Quarterly Revenue, Thanks to ‘Spider-Man: Brand New Day’ and ‘The Odyssey’ IMDb",
+      "coverage_tags": [
+        "Ratings & Reviews",
+        "IMDb"
+      ],
+      "image_url": "",
+      "article_url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE1UREJxLWEzWmhFLTdHVlNBdzdFSVVhcnJ1Uld2Q1FkQk14UmZyRU5Pd1JMM0pFdXRDcFEzaF83QmtSNTY3Y1E3cW9LNjNNT1RxendHMVVjTWtScnRWU2lZaFZiYWdLUjdYclE?oc=5",
+      "source": "IMDb",
+      "source_id": "imdb",
+      "category": "Marvel",
+      "published_at": "2026-11-04T23:28:24+00:00",
+      "status": "reported",
+      "tags": [
+        "Spider-Man"
+      ],
+      "related_characters": [
+        "Spider-Man"
+      ],
+      "external_id": "CBMiakFVX3lxTE1UREJxLWEzWmhFLTdHVlNBdzdFSVVhcnJ1Uld2Q1FkQk14UmZyRU5Pd1JMM0pFdXRDcFEzaF83QmtSNTY3Y1E3cW9LNjNNT1RxendHMVVjTWtScnRWU2lZaFZiYWdLUjdYclE",
+      "synopsis": "",
+      "synopsis_status": "publisher_unavailable"
+    },
+    {
+      "id": "avengersdoomsdayofficialmunchkinsincursiondunkincommercial",
+      "title": "Avengers: Doomsday - Official Munchkins Incursion Dunkin' Commercial",
+      "summary": "Avengers: Doomsday - Official Munchkins Incursion Dunkin' Commercial IGN India",
+      "coverage_tags": [],
+      "image_url": "",
+      "article_url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxQNVM2M1pGZ1BvRkk5UVRPUU1nS0JzdDNGUnM3WmJfbUFCc0RyeXJGZTRaem9MZjkxb1JROG55MUJTTTJKLU1Ub01DU1dRaEV6dFNXMFZaZ2twZUxVX2FMdVBvV3VxdVh2WmpiclRDT2d0NzdVaWY1WXVTb0Jtc29FVU9fWUhBcUp2cl8tQVpTY3NsdnFBb05zX3plWEc?oc=5",
+      "source": "IGN",
+      "source_id": "ign",
+      "category": "Marvel",
+      "published_at": "2026-11-04T22:48:53+00:00",
+      "status": "reported",
+      "tags": [
+        "Avengers",
+        "Doom"
+      ],
+      "related_characters": [
+        "Avengers",
+        "Doom"
+      ],
+      "external_id": "CBMinAFBVV95cUxQNVM2M1pGZ1BvRkk5UVRPUU1nS0JzdDNGUnM3WmJfbUFCc0RyeXJGZTRaem9MZjkxb1JROG55MUJTTTJKLU1Ub01DU1dRaEV6dFNXMFZaZ2twZUxVX2FMdVBvV3VxdVh2WmpiclRDT2d0NzdVaWY1WXVTb0Jtc29FVU9fWUhBcUp2cl8tQVpTY3Ns",
+      "synopsis": "",
+      "synopsis_status": "publisher_unavailable"
+    },
     {
       "id": "newdunkindonutscommercialexplainsthebiggestthreattheavengersfaceindoomsday",
       "title": "New Dunkin' Donuts Commercial Explains The Biggest Threat The Avengers Face In Doomsday",
@@ -169,7 +290,7 @@
       "related_characters": [],
       "external_id": "CBMiZ0FVX3lxTE5qX2UtdU1aRU1uSm9TQ2lCeElNZGs4UVg2UVhNVDdWRFJ5VFJKOHo1SXdCb1l3N0hvZkt0ZlBpNVN0bXQ0N3I5MndVcm8tZ0lVQWNuZFNRcEVHS2ZHbjJDOHdxYjB3UVk",
       "synopsis": "",
-      "synopsis_status": "publisher_unavailable"
+      "synopsis_status": "pending"
     },
     {
       "id": "backroomsstarrenatereinsvereportedlymetmarvelformajorxmenmovierole",
@@ -194,7 +315,7 @@
       ],
       "external_id": "CBMibkFVX3lxTFBSWUd3NnhFekZVNjRwS1JfaFhFLXBmOUk3UjVETzlWVHU3akJZOTk3V1U1Rm9KN2EyUFhrYUhELVRpcHdmaFJfcU9DZzFKYlk4VE9uNklDU0VTRldKSHFFa0ZzZXV6cDVYN0JhX2pB",
       "synopsis": "",
-      "synopsis_status": "publisher_unavailable"
+      "synopsis_status": "pending"
     },
     {
       "id": "kfcsavengersdoomsdayadhidesmajormarveleastereggsfromavengerstowertoasentinel",
@@ -221,7 +342,7 @@
       ],
       "external_id": "CBMiZ0FVX3lxTE1HLVZidG1wS3ViTV9lX1lXR3oyM1p1Z3hobFZqQkVXVzlRMlk4d1pWT3ZzWXh4Rmhwc3hfR0VRdVJBNmNNcTVuT0VKNU5MaHFMTXNpZjZXM0x1dHNnSzVCU1NxTHlqZWM",
       "synopsis": "",
-      "synopsis_status": "publisher_unavailable"
+      "synopsis_status": "pending"
     },
     {
       "id": "marveltvhitspauseafterdaredevilbornagainaszodiacwaitstolaunchanewera",
@@ -246,7 +367,7 @@
       ],
       "external_id": "CBMiZ0FVX3lxTE5XX3FiRW91N21QQjlXekhORXczcVBZWU41dVlCbjVXWEI5YnZPUktBelY4R2FwZWFqQS1TUW9ucExyalU2djRnTTlWZ245eGZEc2djbXZXUnZKeFBCOEp2Nm1Rb3g4YjA",
       "synopsis": "",
-      "synopsis_status": "publisher_unavailable"
+      "synopsis_status": "pending"
     },
     {
       "id": "kfcsavengersdoomsdayadquietlyteasesthenewavengerstowerafantasticfourshipandasent",
@@ -275,7 +396,7 @@
       ],
       "external_id": "CBMiZ0FVX3lxTE1LQVFXSXJ4cXdZSUYycmJ4Rm52ZWlvclhGUWN1S3cxS3gxcDRFQ19mS001Y2ZfM1dKZVk5VDhZRFRNYlRaNndzTHNPSXY4TkFNWlhKd1FUQml2WXFmakVISS1sRTlVUEE",
       "synopsis": "",
-      "synopsis_status": "publisher_unavailable"
+      "synopsis_status": "pending"
     },
     {
       "id": "howvisionquestreimaginesjimhammondmarvelsoriginalsyntheticman",
@@ -461,6 +582,31 @@
       "synopsis_status": "pending"
     },
     {
+      "id": "jeremyallenwhiteaswolverinerumourofficiallysolvesmajorcastingissueiftrue",
+      "title": "Jeremy Allen White as Wolverine Rumour Officially Solves Major Casting Issue If True",
+      "summary": "Jeremy Allen White as Wolverine Rumour Officially Solves Major Casting Issue If True IMDb",
+      "coverage_tags": [
+        "Ratings & Reviews",
+        "IMDb"
+      ],
+      "image_url": "",
+      "article_url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFB1aDQwUkpIS0c5bEFjOEJMSm1HTnE4NGl6SGhZcHo5UThyUUxnOTJWRzh4NzhwbUNqa01HRjRIYWw1a0IzUS1PVTVUczVIRDZCSTZFRlI3b1NLNDdKRXNZYzJyME9NcGM?oc=5",
+      "source": "IMDb",
+      "source_id": "imdb",
+      "category": "Casting",
+      "published_at": "2026-11-04T15:56:38+00:00",
+      "status": "rumour",
+      "tags": [
+        "Wolverine"
+      ],
+      "related_characters": [
+        "Wolverine"
+      ],
+      "external_id": "CBMiZ0FVX3lxTFB1aDQwUkpIS0c5bEFjOEJMSm1HTnE4NGl6SGhZcHo5UThyUUxnOTJWRzh4NzhwbUNqa01HRjRIYWw1a0IzUS1PVTVUczVIRDZCSTZFRlI3b1NLNDdKRXNZYzJyME9NcGM",
+      "synopsis": "",
+      "synopsis_status": "pending"
+    },
+    {
       "id": "couldavengersdoomsdaytakeinspirationfromthemarveltheorythatmadedoctordoomironman",
       "title": "Could ‘Avengers: Doomsday’ Take Inspiration From the Marvel Theory That Made Doctor Doom Iron Man?",
       "summary": "Could ‘Avengers: Doomsday’ Take Inspiration From the Marvel Theory That Made Doctor Doom Iron Man? IMDb",
@@ -488,31 +634,6 @@
       "external_id": "CBMiZ0FVX3lxTE9WcFdnZm5WWExnVTk2Y2dVdHNYREtfaFZvY0JxMVZaMmYxbnU1ZTlIMXB0OWRYMl9EMXhEUFlLYU93Ml85X1h4cndqTkdtLWxoRXJoRUdPMjZ4WlFOSTVjdl9lMkxpaTA",
       "synopsis": "",
       "synopsis_status": "publisher_unavailable"
-    },
-    {
-      "id": "avengersendgame",
-      "title": "Avengers: Endgame",
-      "summary": "Avengers: Endgame Rotten Tomatoes",
-      "coverage_tags": [
-        "Ratings & Reviews",
-        "Rotten Tomatoes"
-      ],
-      "image_url": "",
-      "article_url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTFBvcUt3d2hCcFhGVExISXZuWEJRY0Y4MEZWUkd5WHBja3NuejVBcVQ3cXdjU2loZ2JkeVcxRHpQbVRXMmlZTWM1VXZSalNJTGd4WHlKaTlEV3hmazZwQ0E?oc=5",
-      "source": "Rotten Tomatoes",
-      "source_id": "rotten_tomatoes",
-      "category": "Marvel",
-      "published_at": "2026-11-04T07:31:41+00:00",
-      "status": "reported",
-      "tags": [
-        "Avengers"
-      ],
-      "related_characters": [
-        "Avengers"
-      ],
-      "external_id": "CBMiXkFVX3lxTFBvcUt3d2hCcFhGVExISXZuWEJRY0Y4MEZWUkd5WHBja3NuejVBcVQ3cXdjU2loZ2JkeVcxRHpQbVRXMmlZTWM1VXZSalNJTGd4WHlKaTlEV3hmazZwQ0E",
-      "synopsis": "",
-      "synopsis_status": "pending"
     },
     {
       "id": "newavengersdoomsdayposterputsdoctordoomsmysteriousalliesinthespotlight",
@@ -607,7 +728,7 @@
       "source": "GamesRadar+",
       "source_id": "gamesradar",
       "category": "TV",
-      "published_at": "2026-11-04T03:01:34+00:00",
+      "published_at": "2026-11-04T03:00:00+00:00",
       "status": "reported",
       "tags": [
         "Vision"
@@ -656,7 +777,7 @@
       "source": "Rotten Tomatoes",
       "source_id": "rotten_tomatoes",
       "category": "Marvel",
-      "published_at": "2026-11-04T00:39:24+00:00",
+      "published_at": "2026-11-04T00:25:39+00:00",
       "status": "reported",
       "tags": [
         "X-Men"
@@ -689,6 +810,31 @@
         "Doom"
       ],
       "external_id": "CBMijAFBVV95cUxPN3hJbFppM1ZOLUFHZXo0TUVRbmFjSGU1eUVTc1VWYW5BbVNhYzBXbjNLd19TUllhZllWTkxReWJOQ3I4b0o2Vm43VG4tbHBGMEJsVFJ0VDB3MC04NVc5UjNtTFRTQ0JlcDVBYXZmSlJqSGt2MWJMWFJVcU9ZLV9CYUFEeVBkc015OHd3Mw",
+      "synopsis": "",
+      "synopsis_status": "pending"
+    },
+    {
+      "id": "spidermanbrandnewday",
+      "title": "Spider-Man: Brand New Day",
+      "summary": "Spider-Man: Brand New Day Rotten Tomatoes",
+      "coverage_tags": [
+        "Ratings & Reviews",
+        "Rotten Tomatoes"
+      ],
+      "image_url": "",
+      "article_url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE9QckV3U2xCWE12QTcxNXM4U1dKaEtiY2w4OGM4RHYxc0xDOHVnRDkzSl9DT2ZVQlA3Q1lhRHJBSVVmbHRXcU5zS190WVE3cjFxU2dmTlFMTk5hb3pjNGxINDhKMFJpUnRQ?oc=5",
+      "source": "Rotten Tomatoes",
+      "source_id": "rotten_tomatoes",
+      "category": "Marvel",
+      "published_at": "2026-11-03T23:59:04+00:00",
+      "status": "reported",
+      "tags": [
+        "Spider-Man"
+      ],
+      "related_characters": [
+        "Spider-Man"
+      ],
+      "external_id": "CBMiaEFVX3lxTE9QckV3U2xCWE12QTcxNXM4U1dKaEtiY2w4OGM4RHYxc0xDOHVnRDkzSl9DT2ZVQlA3Q1lhRHJBSVVmbHRXcU5zS190WVE3cjFxU2dmTlFMTk5hb3pjNGxINDhKMFJpUnRQ",
       "synopsis": "",
       "synopsis_status": "pending"
     },
@@ -760,31 +906,6 @@
         "Doom"
       ],
       "external_id": "CBMiYkFVX3lxTE01U01Jcnp5enRYdWRNS3NQSFpNQnFULV9lT280enNkcFlUVExlbU9sU0F4WnV2Q1E4d20weWQwLVZZbHJCNWo0eEJHYXp5QzhFcVluZUxtR1Nsam1ZMElQWWJB",
-      "synopsis": "",
-      "synopsis_status": "pending"
-    },
-    {
-      "id": "spidermanbrandnewday",
-      "title": "Spider-Man: Brand New Day",
-      "summary": "Spider-Man: Brand New Day Rotten Tomatoes",
-      "coverage_tags": [
-        "Ratings & Reviews",
-        "Rotten Tomatoes"
-      ],
-      "image_url": "",
-      "article_url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE9QckV3U2xCWE12QTcxNXM4U1dKaEtiY2w4OGM4RHYxc0xDOHVnRDkzSl9DT2ZVQlA3Q1lhRHJBSVVmbHRXcU5zS190WVE3cjFxU2dmTlFMTk5hb3pjNGxINDhKMFJpUnRQ?oc=5",
-      "source": "Rotten Tomatoes",
-      "source_id": "rotten_tomatoes",
-      "category": "Marvel",
-      "published_at": "2026-11-03T20:58:38+00:00",
-      "status": "reported",
-      "tags": [
-        "Spider-Man"
-      ],
-      "related_characters": [
-        "Spider-Man"
-      ],
-      "external_id": "CBMiaEFVX3lxTE9QckV3U2xCWE12QTcxNXM4U1dKaEtiY2w4OGM4RHYxc0xDOHVnRDkzSl9DT2ZVQlA3Q1lhRHJBSVVmbHRXcU5zS190WVE3cjFxU2dmTlFMTk5hb3pjNGxINDhKMFJpUnRQ",
       "synopsis": "",
       "synopsis_status": "pending"
     },
@@ -1520,6 +1641,31 @@
       "synopsis_status": "pending"
     },
     {
+      "id": "xmen",
+      "title": "X-Men",
+      "summary": "X-Men Rotten Tomatoes",
+      "coverage_tags": [
+        "Ratings & Reviews",
+        "Rotten Tomatoes"
+      ],
+      "image_url": "",
+      "article_url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE1BUFU2Q3UwQWpLY3Fiem5lcm5DaEhka1VET0ZCWmhKTXJ4cGpGTFJTX2ZBdXBwcHlXVFBZR2gyM0wwcGpKa1hxUGt6Mm9MQQ?oc=5",
+      "source": "Rotten Tomatoes",
+      "source_id": "rotten_tomatoes",
+      "category": "Marvel",
+      "published_at": "2026-11-02T23:24:35+00:00",
+      "status": "reported",
+      "tags": [
+        "X-Men"
+      ],
+      "related_characters": [
+        "X-Men"
+      ],
+      "external_id": "CBMiTkFVX3lxTE1BUFU2Q3UwQWpLY3Fiem5lcm5DaEhka1VET0ZCWmhKTXJ4cGpGTFJTX2ZBdXBwcHlXVFBZR2gyM0wwcGpKa1hxUGt6Mm9MQQ",
+      "synopsis": "",
+      "synopsis_status": "pending"
+    },
+    {
       "id": "thismarvelandaliencrossoverfeaturesthemostdangerousxenomorphsyet",
       "title": "This Marvel And Alien Crossover Features The Most Dangerous Xenomorphs Yet",
       "summary": "This Marvel And Alien Crossover Features The Most Dangerous Xenomorphs Yet IMDb",
@@ -2013,31 +2159,6 @@
         "Doom"
       ],
       "external_id": "CBMiakFVX3lxTE14cWYwS01UUnY1czRfR0RKZHRTQkhIV2Z0T0tHX0lDQXAxWDgwa1MtcFRzaVIzZG9BclNDaFlVVzZzN1l5ZDhDb0hrTzNvZmR6MUpxRWU0QS11ZFBONlg3d1h1RGlvaVpaNUE",
-      "synopsis": "",
-      "synopsis_status": "pending"
-    },
-    {
-      "id": "xmen",
-      "title": "X-Men",
-      "summary": "X-Men Rotten Tomatoes",
-      "coverage_tags": [
-        "Ratings & Reviews",
-        "Rotten Tomatoes"
-      ],
-      "image_url": "",
-      "article_url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE1BUFU2Q3UwQWpLY3Fiem5lcm5DaEhka1VET0ZCWmhKTXJ4cGpGTFJTX2ZBdXBwcHlXVFBZR2gyM0wwcGpKa1hxUGt6Mm9MQQ?oc=5",
-      "source": "Rotten Tomatoes",
-      "source_id": "rotten_tomatoes",
-      "category": "Marvel",
-      "published_at": "2026-11-02T16:55:18+00:00",
-      "status": "reported",
-      "tags": [
-        "X-Men"
-      ],
-      "related_characters": [
-        "X-Men"
-      ],
-      "external_id": "CBMiTkFVX3lxTE1BUFU2Q3UwQWpLY3Fiem5lcm5DaEhka1VET0ZCWmhKTXJ4cGpGTFJTX2ZBdXBwcHlXVFBZR2gyM0wwcGpKa1hxUGt6Mm9MQQ",
       "synopsis": "",
       "synopsis_status": "pending"
     },
@@ -3537,117 +3658,6 @@
         "Ghost Rider"
       ],
       "external_id": "CBMiYkFVX3lxTE1VZFJzZ0c4RlZiU0xvdXkwS2dpNWo3ZnE2YkhsYWNqaVE0TVhWV0R2cXFiZzRmRGxYeGpIcGNPWVloaEhmVEdwVVh0VzJuREVPOE81cmd2WG9keFdGNHBocW5R",
-      "synopsis": "",
-      "synopsis_status": "pending"
-    },
-    {
-      "id": "visionquestepisodes5and6eastereggsallthemarvelreferencesexplained",
-      "title": "VisionQuest episodes 5 and 6 Easter eggs: All the Marvel references explained",
-      "summary": "VisionQuest episodes 5 and 6 Easter eggs: All the Marvel references explained GamesRadar+",
-      "coverage_tags": [
-        "Series: VisionQuest"
-      ],
-      "image_url": "",
-      "article_url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxOYWV1SVZhLTJZd1VBZ3kzeFB1ekczUVlnaVg0eTg3Rm4yQk1vZHVHay1zcUp2Qi1WVmx4a3NfWXJZNy02TnMyRFgzOTdHeXg3dVdzal9zM29hSWhfaEdZUmI0VVRCSVp3T0VQb0szeTVLck9UNUxWZmhmejc4aE9hdjB1S2YtVGsyUXY1WFNwV2ZVc3pkeEVuVzV3d28tUFU?oc=5",
-      "source": "GamesRadar+",
-      "source_id": "gamesradar",
-      "category": "Marvel",
-      "published_at": "2026-10-28T03:01:20+00:00",
-      "status": "reported",
-      "tags": [
-        "Vision"
-      ],
-      "related_characters": [
-        "Vision"
-      ],
-      "external_id": "CBMinwFBVV95cUxOYWV1SVZhLTJZd1VBZ3kzeFB1ekczUVlnaVg0eTg3Rm4yQk1vZHVHay1zcUp2Qi1WVmx4a3NfWXJZNy02TnMyRFgzOTdHeXg3dVdzal9zM29hSWhfaEdZUmI0VVRCSVp3T0VQb0szeTVLck9UNUxWZmhmejc4aE9hdjB1S2YtVGsyUXY1WFNwV2ZV",
-      "synopsis": "",
-      "synopsis_status": "pending"
-    },
-    {
-      "id": "marvelstudiosunveilsphase7sfirst8moviesdisneyshowsforthemutantsaga",
-      "title": "Marvel Studios Unveils Phase 7's First 8 Movies & Disney+ Shows for the Mutant Saga",
-      "summary": "Marvel Studios Unveils Phase 7's First 8 Movies & Disney+ Shows for the Mutant Saga The Direct",
-      "coverage_tags": [],
-      "image_url": "",
-      "article_url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxOWXVjWXFnZ2RBY1VPaUZ1MS1kQ2RPNDEzblN4dGdFek95MFdxZ3NmSkhqNUVSS3dWbWR6M19XMlkxSGNpNUVmVnc5Ny1qZFhfUV9FWTVIWUVDdy1OZDNNaE5BZDdTZF9ySnFQTkwzY29VOGNjNDdldF9OWlpSY3ZPWnhMOGdJMHNsT05BOWdwcHFaNmpH?oc=5",
-      "source": "The Direct",
-      "source_id": "the_direct",
-      "category": "Movies",
-      "published_at": "2026-10-28T00:14:25+00:00",
-      "status": "reported",
-      "tags": [],
-      "related_characters": [],
-      "external_id": "CBMilAFBVV95cUxOWXVjWXFnZ2RBY1VPaUZ1MS1kQ2RPNDEzblN4dGdFek95MFdxZ3NmSkhqNUVSS3dWbWR6M19XMlkxSGNpNUVmVnc5Ny1qZFhfUV9FWTVIWUVDdy1OZDNNaE5BZDdTZF9ySnFQTkwzY29VOGNjNDdldF9OWlpSY3ZPWnhMOGdJMHNsT05BOWdwcHFa",
-      "synopsis": "",
-      "synopsis_status": "needs_api_key"
-    },
-    {
-      "id": "connorstorrieintalkstoplayvillainoppositeryangoslinginmarvelsghostrider",
-      "title": "Connor Storrie in Talks to Play Villain Opposite Ryan Gosling in Marvel’s ‘Ghost Rider’",
-      "summary": "Connor Storrie in Talks to Play Villain Opposite Ryan Gosling in Marvel’s ‘Ghost Rider’ Variety",
-      "coverage_tags": [],
-      "image_url": "",
-      "article_url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxPbjdiQm5yN1R0YXE2RlJVWGtLSWpMdkFqMUVDNGpXMTRsbVJ4cGgxeFZUREhxZkd6cU5yZjJ0bzBidWI0RVE1Y3NxU0JaSHFTNHBWcE54VTNmUVFqSm9nNGRtaGh6RjBGTWtzdmJDZWt6cEhKSzdIRVdwdVptVnBqaUswVEdMckdJZ1JfQlZ2RHRlVnA3TlUtZg?oc=5",
-      "source": "Variety",
-      "source_id": "variety",
-      "category": "Casting",
-      "published_at": "2026-10-27T22:15:00+00:00",
-      "status": "reported",
-      "tags": [
-        "Ghost Rider"
-      ],
-      "related_characters": [
-        "Ghost Rider"
-      ],
-      "external_id": "CBMimAFBVV95cUxPbjdiQm5yN1R0YXE2RlJVWGtLSWpMdkFqMUVDNGpXMTRsbVJ4cGgxeFZUREhxZkd6cU5yZjJ0bzBidWI0RVE1Y3NxU0JaSHFTNHBWcE54VTNmUVFqSm9nNGRtaGh6RjBGTWtzdmJDZWt6cEhKSzdIRVdwdVptVnBqaUswVEdMckdJZ1JfQlZ2RHRl",
-      "synopsis": "",
-      "synopsis_status": "pending"
-    },
-    {
-      "id": "ghostriderrebootcastsitsvillainasdunepartthreecinematographerjoinsmcumovie",
-      "title": "Ghost Rider Reboot Casts Its Villain As Dune: Part Three Cinematographer Joins MCU Movie",
-      "summary": "Ghost Rider Reboot Casts Its Villain As Dune: Part Three Cinematographer Joins MCU Movie IMDb",
-      "coverage_tags": [
-        "Ratings & Reviews",
-        "IMDb"
-      ],
-      "image_url": "",
-      "article_url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFBjLWhxOERUQ0l1WmZqMzFUemdfTnltRGRGQzZtVEFzT1ZObmhaSEg0ZExDakJDTFlvQTM5U1FCb1lZaWhjZWlHbmdnNVhxbDRMNnBTRTlIeEdjRDdYU3hCWUdQdm1hWnc?oc=5",
-      "source": "IMDb",
-      "source_id": "imdb",
-      "category": "Casting",
-      "published_at": "2026-10-27T21:47:28+00:00",
-      "status": "reported",
-      "tags": [
-        "Ghost Rider"
-      ],
-      "related_characters": [
-        "Ghost Rider"
-      ],
-      "external_id": "CBMiZ0FVX3lxTFBjLWhxOERUQ0l1WmZqMzFUemdfTnltRGRGQzZtVEFzT1ZObmhaSEg0ZExDakJDTFlvQTM5U1FCb1lZaWhjZWlHbmdnNVhxbDRMNnBTRTlIeEdjRDdYU3hCWUdQdm1hWnc",
-      "synopsis": "",
-      "synopsis_status": "pending"
-    },
-    {
-      "id": "connorstorriecirclingroleinmarvelsghostrideroppositeryangosling",
-      "title": "Connor Storrie Circling Role In Marvel’s ‘Ghost Rider’ Opposite Ryan Gosling",
-      "summary": "Connor Storrie Circling Role In Marvel’s ‘Ghost Rider’ Opposite Ryan Gosling Deadline",
-      "coverage_tags": [],
-      "image_url": "",
-      "article_url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxNd1NvWE9XVUUweldVVXdQWE0taTVyQ2ZlRkZXRGVnRHdJdm9lSkRWTkNzdDcwNnpwTXRvdVkyUklsc1VIRnI5RDhZdGtIOXlVbFctR1VDTV9FV084cWZPVkV6YlAxUHJuQndhek44VnlNc1o4b0RLdUlESGhuN0lqSnhRODFrUW5aakVaVWVzc01LdEE?oc=5",
-      "source": "Deadline",
-      "source_id": "deadline",
-      "category": "Marvel",
-      "published_at": "2026-10-27T21:14:00+00:00",
-      "status": "reported",
-      "tags": [
-        "Ghost Rider"
-      ],
-      "related_characters": [
-        "Ghost Rider"
-      ],
-      "external_id": "CBMikwFBVV95cUxNd1NvWE9XVUUweldVVXdQWE0taTVyQ2ZlRkZXRGVnRHdJdm9lSkRWTkNzdDcwNnpwTXRvdVkyUklsc1VIRnI5RDhZdGtIOXlVbFctR1VDTV9FV084cWZPVkV6YlAxUHJuQndhek44VnlNc1o4b0RLdUlESGhuN0lqSnhRODFrUW5aakVaVWVzc01L",
       "synopsis": "",
       "synopsis_status": "pending"
     }
