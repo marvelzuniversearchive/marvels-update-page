@@ -943,11 +943,13 @@ function burstFx(){
 }
 function glSetBusy(on,el){
   if(on){
-    glTarget=el;el.classList.add('gl-busy');
+    glTarget=el;if(glTarget)glTarget.classList.add('gl-busy');
     glText.textContent=pick(GL_WORDS);glBadge.classList.add('on');
+    glBadge.style.cssText='display:flex!important;visibility:visible!important;opacity:1!important;z-index:2147483647!important;position:fixed!important;left:50%!important;bottom:9vh!important;transform:translateX(-50%)!important;background:rgba(8,10,24,.96)!important;border:1px solid #00e5ff!important;box-shadow:0 0 18px #00e5ff,0 0 38px #ff315f!important;padding:14px 22px!important;color:#fff!important;font:800 12px/1.2 sans-serif!important;letter-spacing:.16em!important;border-radius:999px!important;pointer-events:none!important;gap:12px!important;animation:glBadge .35s ease both!important';
+    glFx.style.cssText='display:block!important;visibility:visible!important;opacity:1!important;z-index:2147483646!important';
   }else{
     if(glTarget)glTarget.classList.remove('gl-busy');
-    glTarget=null;glBadge.classList.remove('on');
+    glTarget=null;glBadge.classList.remove('on');glBadge.removeAttribute('style');glFx.removeAttribute('style');
   }
 }
 function glFinish(){
