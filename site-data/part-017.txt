@@ -961,8 +961,7 @@ function glStart(tg,el){
   glBusy=true;glSetBusy(true,el);
   glFx.classList.remove('gl-run','gl-fade');void glFx.offsetWidth;
   glFx.classList.add('gl-run');
-  if(reduced)glFx.classList.add('gl-fade');
-  else{root.classList.add('glitching');burstFx();}
+  root.classList.add('glitching');burstFx();
   glSafety=setTimeout(glFinish,GL_TOTAL+3000);   /* never leave the screen locked */
   glTimer=setTimeout(()=>{
     glReplaying=true;
@@ -1007,11 +1006,6 @@ function playIntroGlitch(){
   glFx.classList.add('gl-run');
   glText.textContent='INITIALIZING MARVEL ARCHIVE...';
   glBadge.classList.add('on');
-  if(reduced){
-    glFx.classList.add('gl-fade');
-    setTimeout(()=>{glFx.classList.remove('gl-run','gl-fade');glBadge.classList.remove('on')},1150);
-    return;
-  }
   root.classList.add('glitching');
   burstFx();
   setTimeout(()=>{
