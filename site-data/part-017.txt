@@ -973,7 +973,18 @@ function glStart(tg,el){
     glTimer=setTimeout(glFinish,GL_TOTAL-GL_MIN);   /* reveal after the last stage */
   },GL_MIN);
 }
-/* Click transition is handled by the independent fallback controller at the end of this file. */
+/* Original layered glitch transition: briefly hold the action, show the full glitch FX, then continue it. */
+document.addEventListener('click',e=>{
+  if(glReplaying||glBusy)return;
+  const target=e.target;
+  if(!target||!target.closest||target.closest('input,textarea,select,[contenteditable="true"]'))return;
+  const el=target.closest('button,a,[role="button"],[data-action],[data-view],.entity-card,.spot-mini,.fav');
+  if(!el||el.closest('[data-marvel-news],[data-marvel-news-content]'))return;
+  if(el.matches('[disabled],[aria-disabled="true"]'))return;
+  e.preventDefault();
+  e.stopImmediatePropagation();
+  glStart(el,el);
+},true);
 
 window.addEventListener('pointermove',e=>{
   ptr.tx=e.clientX/W*2-1;ptr.ty=e.clientY/H*2-1;
@@ -1009,42 +1020,5 @@ function playIntroGlitch(){
 }
 
 fetch('site-data/city-architecture.json').then(r=>{if(!r.ok)throw Error('city config unavailable');return r.json()}).then(data=>{if(data&&(Array.isArray(data.archetypes)||Array.isArray(data.building_archetypes))){CITY_ARCH_CONFIG=data;const m=data.materials||{};CITY_ARCH_CONFIG.palette={glass:(m.glass&&m.glass.tint_options)||['#6FA8C7','#8FB8C9','#A7C7D6','#B8D3D4'],warmInterior:['#F4D8A4','#EBC28A','#D8A77A','#E8DCC8']}}}).catch(err=>console.warn('Using built-in city architecture fallback',err)).finally(()=>{build();playIntroGlitch()});
-})();
-</script>
-<script>
-/* Visible click feedback only: never intercept, cancel, or replay the user's action. */
-(()=>{
-  if(window.__muaClickLoaderInstalled)return;
-  window.__muaClickLoaderInstalled=true;
-  let hideTimer=0;
-  const style=document.createElement('style');
-  style.textContent=`
-    #muaClickShift{position:fixed!important;inset:0!important;z-index:2147483646!important;pointer-events:none!important;display:none!important;overflow:hidden!important;background:rgba(4,7,20,.22)!important}
-    #muaClickShift.active{display:block!important}
-    #muaClickShift .mua-bar{position:absolute;left:-8%;width:116%;height:5vh;background:linear-gradient(90deg,transparent,#ff315f,rgba(255,255,255,.95),#22e6ff,transparent);opacity:.9;mix-blend-mode:screen;animation:muaGlitch .22s steps(2,end) infinite}
-    #muaClickShift .mua-bar:nth-child(1){top:13%}#muaClickShift .mua-bar:nth-child(2){top:29%;animation-delay:-.08s}
-    #muaClickShift .mua-bar:nth-child(3){top:47%;height:9vh;animation-delay:-.15s}
-    #muaClickShift .mua-bar:nth-child(4){top:68%;animation-delay:-.04s}#muaClickShift .mua-bar:nth-child(5){top:86%;height:2vh}
-    @keyframes muaGlitch{0%{transform:translateX(-2%);opacity:.3}50%{transform:translateX(2%);opacity:1}100%{transform:translateX(-1%);opacity:.55}}
-    #muaClickShiftBadge{position:fixed!important;z-index:2147483647!important;left:50%!important;bottom:9vh!important;transform:translateX(-50%)!important;display:none!important;padding:14px 22px!important;border:1px solid #28eaff!important;border-radius:999px!important;background:rgba(5,8,22,.98)!important;color:#fff!important;font:800 12px/1.2 Arial,sans-serif!important;letter-spacing:.16em!important;box-shadow:0 0 18px #28eaff,0 0 36px #ff315f!important;white-space:nowrap!important}
-    #muaClickShiftBadge.active{display:block!important}
-  `;
-  document.head.appendChild(style);
-  const overlay=document.createElement('div');
-  overlay.id='muaClickShift';
-  overlay.innerHTML='<i class="mua-bar"></i><i class="mua-bar"></i><i class="mua-bar"></i><i class="mua-bar"></i><i class="mua-bar"></i>';
-  const badge=document.createElement('div');
-  badge.id='muaClickShiftBadge';badge.setAttribute('role','status');
-  badge.textContent='⚡ SHIFTING UNIVERSE...';
-  (document.body||document.documentElement).append(overlay,badge);
-  document.addEventListener('click',e=>{
-    const target=e.target;
-    if(!target||!target.closest||target.closest('input,textarea,select,[contenteditable="true"]'))return;
-    const control=target.closest('button,a,[role="button"],[data-action],[data-view],.entity-card,.spot-mini,.fav');
-    if(!control||control.closest('[data-marvel-news],[data-marvel-news-content]'))return;
-    overlay.classList.add('active');badge.classList.add('active');
-    clearTimeout(hideTimer);
-    hideTimer=setTimeout(()=>{overlay.classList.remove('active');badge.classList.remove('active')},1150);
-  },true);
 })();
 </script></body></html>
