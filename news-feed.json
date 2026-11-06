@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-05T23:38:46.174768+00:00",
+  "generated_at": "2026-11-06T03:39:41.124551+00:00",
   "source_count": 15,
   "search_topics": [
     "Marvel Universe",
@@ -25,6 +25,28 @@
   },
   "article_count": 150,
   "articles": [
+    {
+      "id": "sonyannouncesofficialmarvelswolverinesalesfigureforthefirsttimeraisesplaystation",
+      "title": "Sony Announces Official Marvel's Wolverine Sales Figure for the First Time, Raises PlayStation Sales Forecast With GTA 6 Imminent",
+      "summary": "Sony Announces Official Marvel's Wolverine Sales Figure for the First Time, Raises PlayStation Sales Forecast With GTA 6 Imminent IGN",
+      "coverage_tags": [],
+      "image_url": "",
+      "article_url": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxNOFNFY2xhYnVpREhObUhpaUFOdlpVMkpUVGZCcFdncVBXMmR4ODN4bmRYRFdDU3NMWFBJUDdQN3paWmpCTUNXRFhTeXNGVEthcnZRVTdiNEJucXhfMnZNakt6M0RYci11MVd4MTBFRlV3RThrMWVTWUNhYWJRZV9WWnAwTncyNlJlMWlodWFkUnhyZENmSnk0N0lrX2NJZXZVY2FGSUd3bFBTSHFoaWJaeWN6MFF6dDQwWlZwMF92bjdOTDU4TnBUbXRrNXFGUVc5V0JNV0NvS3ViRlEwMjlkaGRlLUV1SEEtTWhvbQ?oc=5",
+      "source": "IGN",
+      "source_id": "ign",
+      "category": "Games",
+      "published_at": "2026-11-06T01:22:00+00:00",
+      "status": "reported",
+      "tags": [
+        "Wolverine"
+      ],
+      "related_characters": [
+        "Wolverine"
+      ],
+      "external_id": "CBMi7AFBVV95cUxNOFNFY2xhYnVpREhObUhpaUFOdlpVMkpUVGZCcFdncVBXMmR4ODN4bmRYRFdDU3NMWFBJUDdQN3paWmpCTUNXRFhTeXNGVEthcnZRVTdiNEJucXhfMnZNakt6M0RYci11MVd4MTBFRlV3RThrMWVTWUNhYWJRZV9WWnAwTncyNlJlMWlodWFkUnhy",
+      "synopsis": "",
+      "synopsis_status": "publisher_unavailable"
+    },
     {
       "id": "avengersdoomsdaysfinalwritingcreditsconfirmedwithtwomarvelactorsreportedlyinvolv",
       "title": "Avengers: Doomsday's Final Writing Credits Confirmed, With Two Marvel Actors Reportedly Involved",
@@ -73,6 +95,51 @@
         "Doom"
       ],
       "external_id": "CBMigAFBVV95cUxOMTNNaXFkMzFaRnBYRFZDWGF5UGQtMmMyd0hKNTlXOWxxOHotQ1paZkJSNUJCV3EtTFIzVDcwdXVLWWl0UWRHYmhybTUzOXdQR2J6NDhQV1lLaWFiX25FdW5mRk5fdjRfT1F0RzN5b2N3U1lWM2daSDUwMFF3QktRNQ",
+      "synopsis": "",
+      "synopsis_status": "publisher_unavailable"
+    },
+    {
+      "id": "jeremyrennertradesmarvelforjohnwickstyleactioninnewcrimethriller",
+      "title": "Jeremy Renner Trades Marvel for John Wick-Style Action in New Crime Thriller",
+      "summary": "Jeremy Renner Trades Marvel for John Wick-Style Action in New Crime Thriller Comic Book Resources",
+      "coverage_tags": [],
+      "image_url": "",
+      "article_url": "https://news.google.com/rss/articles/CBMif0FVX3lxTFA1V0pSM0RNUEhvbzNKeG0xN0dVRXlEX283UzFtMm5xQkllamhxWUp1Z25sMjh1UkdtVE16eGlOeFhMandYYzVPcVIxVG56ZjlRVWZsZ0xySHpQLXZrdW1KeGdRYXJCcVI0TXVlcTB4c0toU2xxeVhxMFRfY2thYTA?oc=5",
+      "source": "CBR",
+      "source_id": "cbr",
+      "category": "Marvel",
+      "published_at": "2026-11-05T22:49:02+00:00",
+      "status": "reported",
+      "tags": [],
+      "related_characters": [],
+      "external_id": "CBMif0FVX3lxTFA1V0pSM0RNUEhvbzNKeG0xN0dVRXlEX283UzFtMm5xQkllamhxWUp1Z25sMjh1UkdtVE16eGlOeFhMandYYzVPcVIxVG56ZjlRVWZsZ0xySHpQLXZrdW1KeGdRYXJCcVI0TXVlcTB4c0toU2xxeVhxMFRfY2thYTA",
+      "synopsis": "",
+      "synopsis_status": "publisher_unavailable"
+    },
+    {
+      "id": "avengersdoomsdaycastheadsoutonaglobalworldtouraslocationsarerevealed",
+      "title": "‘Avengers: Doomsday’ Cast Heads Out on a Global World Tour as Locations are Revealed",
+      "summary": "‘Avengers: Doomsday’ Cast Heads Out on a Global World Tour as Locations are Revealed IMDb",
+      "coverage_tags": [
+        "Ratings & Reviews",
+        "IMDb"
+      ],
+      "image_url": "",
+      "article_url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTFB6Z0lKa1lnbW9HY0dsVXdfNldidjVGTjhCenBCTVg1dnl5QUNEaWg1YU15QTRBSzl1M0NPUVBaZjc1dDBKZEU5ZlM0ZW9EZE5pVXdNMnM0ekdIVm5GM25NRmdua2g?oc=5",
+      "source": "IMDb",
+      "source_id": "imdb",
+      "category": "Casting",
+      "published_at": "2026-11-05T22:44:01+00:00",
+      "status": "reported",
+      "tags": [
+        "Avengers",
+        "Doom"
+      ],
+      "related_characters": [
+        "Avengers",
+        "Doom"
+      ],
+      "external_id": "CBMiZEFVX3lxTFB6Z0lKa1lnbW9HY0dsVXdfNldidjVGTjhCenBCTVg1dnl5QUNEaWg1YU15QTRBSzl1M0NPUVBaZjc1dDBKZEU5ZlM0ZW9EZE5pVXdNMnM0ekdIVm5GM25NRmdua2g",
       "synopsis": "",
       "synopsis_status": "publisher_unavailable"
     },
@@ -148,6 +215,55 @@
       "synopsis_status": "publisher_unavailable"
     },
     {
+      "id": "youbendthekneedrdoomistakingoverdavebustersinmassiveavengersdoomsdaycampaign",
+      "title": "'You Bend the Knee' — Dr. Doom Is Taking Over Dave & Buster's in Massive Avengers: Doomsday Campaign",
+      "summary": "'You Bend the Knee' — Dr. Doom Is Taking Over Dave & Buster's in Massive Avengers: Doomsday Campaign IGN",
+      "coverage_tags": [],
+      "image_url": "",
+      "article_url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxQZjRkUkxndXo5ZHJIdUdZcEpjWFl1TDJOa1E3Z2s1UTRmemJpeFRGempoNTBfUFhINlZHalFONkROMU9wMS00N21YakZyNnNTZXJjYjF6VnZFSlVtZUdDLTl6VC1HYl9nQ1pnUFVjeHIwU2xyZE1PMUhwVG9lMkw0V2tzUHVQZmRFcERrUWp6dDJGeXF5SnFMWU9qVQ?oc=5",
+      "source": "IGN",
+      "source_id": "ign",
+      "category": "Marvel",
+      "published_at": "2026-11-05T21:44:03+00:00",
+      "status": "reported",
+      "tags": [
+        "Avengers",
+        "Doom"
+      ],
+      "related_characters": [
+        "Avengers",
+        "Doom"
+      ],
+      "external_id": "CBMimwFBVV95cUxQZjRkUkxndXo5ZHJIdUdZcEpjWFl1TDJOa1E3Z2s1UTRmemJpeFRGempoNTBfUFhINlZHalFONkROMU9wMS00N21YakZyNnNTZXJjYjF6VnZFSlVtZUdDLTl6VC1HYl9nQ1pnUFVjeHIwU2xyZE1PMUhwVG9lMkw0V2tzUHVQZmRFcERrUWp6dDJG",
+      "synopsis": "",
+      "synopsis_status": "publisher_unavailable"
+    },
+    {
+      "id": "xmenmarvelrumoredtobeeyeingthisqueerouterbanksactortoplayanewtakeongambit",
+      "title": "X-Men: Marvel Rumored To Be Eyeing This Queer & Outer Banks Actor To Play A New Take On Gambit",
+      "summary": "X-Men: Marvel Rumored To Be Eyeing This Queer & Outer Banks Actor To Play A New Take On Gambit IMDb",
+      "coverage_tags": [
+        "Ratings & Reviews",
+        "IMDb"
+      ],
+      "image_url": "",
+      "article_url": "https://news.google.com/rss/articles/CBMia0FVX3lxTFA2VkxGMTc1R0dreHRGWkJGTUlfWm1lS0lwcEVRaEthUks5SVlvTllDLWFCaFF0Zm9TV2ZRZjRwbUJPRVpwbzZyMUVrTjcxd3ljQXVGbEVzbDhlcWpLM2xudHBLZVVfOUxzWHVR?oc=5",
+      "source": "IMDb",
+      "source_id": "imdb",
+      "category": "Casting",
+      "published_at": "2026-11-05T21:17:14+00:00",
+      "status": "reported",
+      "tags": [
+        "X-Men"
+      ],
+      "related_characters": [
+        "X-Men"
+      ],
+      "external_id": "CBMia0FVX3lxTFA2VkxGMTc1R0dreHRGWkJGTUlfWm1lS0lwcEVRaEthUks5SVlvTllDLWFCaFF0Zm9TV2ZRZjRwbUJPRVpwbzZyMUVrTjcxd3ljQXVGbEVzbDhlcWpLM2xudHBLZVVfOUxzWHVR",
+      "synopsis": "",
+      "synopsis_status": "publisher_unavailable"
+    },
+    {
       "id": "marvelsxmenrebooteyesjackiechansbeststudenttostarasiceman",
       "title": "Marvel's 'X-Men' Reboot Eyes Jackie Chan's Best Student To Star as Iceman",
       "summary": "Marvel's 'X-Men' Reboot Eyes Jackie Chan's Best Student To Star as Iceman IMDb",
@@ -170,7 +286,7 @@
       ],
       "external_id": "CBMiZ0FVX3lxTE9FQXBIUHBiQlQtWjlaTkJHMVBxcTQxd2phUzNmb1g0d1F5SEVHZ1BINE84aHprLWNnVTdnOFRQVkptVVBVQTFnTVNVTzlfbTgyRXkzTW1aYVAzSERJVWpXemljdmFZN1k",
       "synopsis": "",
-      "synopsis_status": "publisher_unavailable"
+      "synopsis_status": "pending"
     },
     {
       "id": "xmeneyeshungergamesstarforicemaninmcureboot",
@@ -195,7 +311,7 @@
       ],
       "external_id": "CBMiZ0FVX3lxTE9tREwtZzNvSVpuTm5qWTMxYW5wSHhjUElZbjliN0ZzRjk5V1V6eklybzJjZlJ4T1VTb2F0MHR4YkUzdHhRWEtSZHl4cjNiNzdDdkk4NHc3M2ZGSWJiX3I5S1l3aktVejg",
       "synopsis": "",
-      "synopsis_status": "publisher_unavailable"
+      "synopsis_status": "pending"
     },
     {
       "id": "doctorstrangestarofficiallyrevealsdreammcucrossoverbeforeavengersdoomsday",
@@ -224,7 +340,7 @@
       ],
       "external_id": "CBMiZ0FVX3lxTE5HbUtieGw5eC1Ec2tqbjlpUjEtcnBnVjRCY3lIb1VBaGcyeTBjNzB5ajkwbDdsR2ZVNTJDa2lGemNvdnI4N19veUtUOUNxLW1OcWhnai1Qa1JmX19GWFBXRjV6RVNFQ2c",
       "synopsis": "",
-      "synopsis_status": "publisher_unavailable"
+      "synopsis_status": "pending"
     },
     {
       "id": "spidermanjoltssonypicturesearningsby527",
@@ -249,7 +365,7 @@
       ],
       "external_id": "CBMiZkFVX3lxTFBXNTFXNm55dHNYc3JldTZMd2xVYkhiYkxHMWpiZ3RSeHUxTnhDZFFGc2UwTmhzQ29SQlI0cGZFVWpubVpMWllXMVBIR1V6RGtYSTM0Z0Y2RThzOG94a2dBZTdYUFNoUQ",
       "synopsis": "",
-      "synopsis_status": "publisher_unavailable"
+      "synopsis_status": "pending"
     },
     {
       "id": "avengerssecretwarsisheadingtoimaxgivingmarvelsfinalethepremiumscreensdoomsdaymis",
@@ -276,7 +392,7 @@
       ],
       "external_id": "CBMiZ0FVX3lxTE1NeDY5MTZhRW5CZC1NNTBxeXF3Ry1uR0l1QmF5UDQ4OUhmS0gwZDhYR1UwbmJzOGlDOGUyY3J6bk5UeWtWSEhwUzdsanFrMzI2djJCN1FXdlNMa3JvRHJlNkxMZlk1Q2s",
       "synopsis": "",
-      "synopsis_status": "publisher_unavailable"
+      "synopsis_status": "pending"
     },
     {
       "id": "avengersdoomsdaysdoomsdayclockcountdownjustupdatedanditsexcitingnewsforfansevery",
@@ -351,24 +467,6 @@
         "X-Men"
       ],
       "external_id": "CBMiZ0FVX3lxTE1YeTFVQXdWc2FhOV9ocEpQZVlpZlpYUTE1UTFrdzREdmU0dEFrTXBxWHV3R1N1Z01jeHhWV0hMYmlJcC05dDUwR1NHXzRPSUlTNkIzT2IxNlBzbUcyWUJfZ3JnRktSb1U",
-      "synopsis": "",
-      "synopsis_status": "pending"
-    },
-    {
-      "id": "jeremyrennertradesmarvelforjohnwickstyleactioninnewcrimethriller",
-      "title": "Jeremy Renner Trades Marvel for John Wick-Style Action in New Crime Thriller",
-      "summary": "Jeremy Renner Trades Marvel for John Wick-Style Action in New Crime Thriller Comic Book Resources",
-      "coverage_tags": [],
-      "image_url": "",
-      "article_url": "https://news.google.com/rss/articles/CBMif0FVX3lxTFA1V0pSM0RNUEhvbzNKeG0xN0dVRXlEX283UzFtMm5xQkllamhxWUp1Z25sMjh1UkdtVE16eGlOeFhMandYYzVPcVIxVG56ZjlRVWZsZ0xySHpQLXZrdW1KeGdRYXJCcVI0TXVlcTB4c0toU2xxeVhxMFRfY2thYTA?oc=5",
-      "source": "CBR",
-      "source_id": "cbr",
-      "category": "Marvel",
-      "published_at": "2026-11-05T17:53:00+00:00",
-      "status": "reported",
-      "tags": [],
-      "related_characters": [],
-      "external_id": "CBMif0FVX3lxTFA1V0pSM0RNUEhvbzNKeG0xN0dVRXlEX283UzFtMm5xQkllamhxWUp1Z25sMjh1UkdtVE16eGlOeFhMandYYzVPcVIxVG56ZjlRVWZsZ0xySHpQLXZrdW1KeGdRYXJCcVI0TXVlcTB4c0toU2xxeVhxMFRfY2thYTA",
       "synopsis": "",
       "synopsis_status": "pending"
     },
@@ -615,28 +713,6 @@
         "Doom"
       ],
       "external_id": "CBMi4gFBVV95cUxNYlROX0t0VkJ4ajJrWFBPLXNrR3NmZDdSTU50d2pkOHF2c0puTmdZMUpFT0VJdmpBU2tpNWs0TGpVb2dfV0paSnU5V0k2TjRiNmF1S3RxMEVrejFYdUFucFREa08zYkdpN1RvRWIyQ1M5Nkc2dVBVZFhlTThyX25lSGdXMDROSUw0dlFuVlp6VlJC",
-      "synopsis": "",
-      "synopsis_status": "pending"
-    },
-    {
-      "id": "sonyannouncesofficialmarvelswolverinesalesfigureforthefirsttimeraisesplaystation",
-      "title": "Sony Announces Official Marvel's Wolverine Sales Figure for the First Time, Raises PlayStation Sales Forecast With GTA 6 Imminent",
-      "summary": "Sony Announces Official Marvel's Wolverine Sales Figure for the First Time, Raises PlayStation Sales Forecast With GTA 6 Imminent IGN",
-      "coverage_tags": [],
-      "image_url": "",
-      "article_url": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxNOFNFY2xhYnVpREhObUhpaUFOdlpVMkpUVGZCcFdncVBXMmR4ODN4bmRYRFdDU3NMWFBJUDdQN3paWmpCTUNXRFhTeXNGVEthcnZRVTdiNEJucXhfMnZNakt6M0RYci11MVd4MTBFRlV3RThrMWVTWUNhYWJRZV9WWnAwTncyNlJlMWlodWFkUnhyZENmSnk0N0lrX2NJZXZVY2FGSUd3bFBTSHFoaWJaeWN6MFF6dDQwWlZwMF92bjdOTDU4TnBUbXRrNXFGUVc5V0JNV0NvS3ViRlEwMjlkaGRlLUV1SEEtTWhvbQ?oc=5",
-      "source": "IGN",
-      "source_id": "ign",
-      "category": "Games",
-      "published_at": "2026-11-05T11:17:07+00:00",
-      "status": "reported",
-      "tags": [
-        "Wolverine"
-      ],
-      "related_characters": [
-        "Wolverine"
-      ],
-      "external_id": "CBMi7AFBVV95cUxNOFNFY2xhYnVpREhObUhpaUFOdlpVMkpUVGZCcFdncVBXMmR4ODN4bmRYRFdDU3NMWFBJUDdQN3paWmpCTUNXRFhTeXNGVEthcnZRVTdiNEJucXhfMnZNakt6M0RYci11MVd4MTBFRlV3RThrMWVTWUNhYWJRZV9WWnAwTncyNlJlMWlodWFkUnhy",
       "synopsis": "",
       "synopsis_status": "pending"
     },
@@ -3646,74 +3722,6 @@
       "external_id": "CBMiZ0FVX3lxTE9ZMXBQRm9SWU41THU5VWlNUC04ZjBhUWNBSFdhbnZGSnJGM3cyQmxFNlpSaW1sbW9CTnI4LW5Rci1xSHEySVEtY2p6dndOWGN0VlNzaGdIcWI3bTZGWHlSNFBfX0ZuV1k",
       "synopsis": "",
       "synopsis_status": "needs_api_key"
-    },
-    {
-      "id": "marvelstudiosfinallyconfirmsdeadpoolsreturnrightasryanreynoldsavengersdoomsdayap",
-      "title": "Marvel Studios Finally Confirms Deadpool's Return, Right As Ryan Reynolds' 'Avengers Doomsday' Appearance Speculation Hits A New High",
-      "summary": "Marvel Studios Finally Confirms Deadpool's Return, Right As Ryan Reynolds' 'Avengers Doomsday' Appearance Speculation Hits A New High The Direct",
-      "coverage_tags": [],
-      "image_url": "",
-      "article_url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxPUzBEX3pKRUY5NFAtWUZhdEc2VDhNdFFudmFtdnFFeTUxaEVuMGNCSS1SVUxyT0JKZmVsUEJxTnp3YmUwakZtWmJ4TTBwUlFYQ0hqeHBuREM2c3ZsclczcmZSSjQ4N0RlQk54Tm0wS2ZZb3dxMHlLNVJpdGVrRDR0Q0R1QQ?oc=5",
-      "source": "The Direct",
-      "source_id": "the_direct",
-      "category": "Movies",
-      "published_at": "2026-11-01T07:58:01+00:00",
-      "status": "rumour",
-      "tags": [
-        "Deadpool",
-        "Avengers",
-        "Doom"
-      ],
-      "related_characters": [
-        "Deadpool",
-        "Avengers",
-        "Doom"
-      ],
-      "external_id": "CBMigwFBVV95cUxPUzBEX3pKRUY5NFAtWUZhdEc2VDhNdFFudmFtdnFFeTUxaEVuMGNCSS1SVUxyT0JKZmVsUEJxTnp3YmUwakZtWmJ4TTBwUlFYQ0hqeHBuREM2c3ZsclczcmZSSjQ4N0RlQk54Tm0wS2ZZb3dxMHlLNVJpdGVrRDR0Q0R1QQ",
-      "synopsis": "",
-      "synopsis_status": "pending"
-    },
-    {
-      "id": "avengersdoomsdaystarsrobertdowneyjrandpedropascalswitchrolesforhalloweengotricko",
-      "title": "'Avengers: Doomsday' stars Robert Downey Jr and Pedro Pascal switch roles for Halloween; go trick-or-trea",
-      "summary": "'Avengers: Doomsday' stars Robert Downey Jr and Pedro Pascal switch roles for Halloween; go trick-or-trea The Times of India",
-      "coverage_tags": [],
-      "image_url": "",
-      "article_url": "https://news.google.com/rss/articles/CBMiwgJBVV95cUxNdFRpYlNNODd0T3NIbThIdWktRmJoWUhzbVdIbUZnWjRFMjhyXzhNaFlvLXJEeWxtSVIzOWRNLS1uUFRWcU5fOUlPOE1KYlRGNE03aTdFRG1aY25CN3VUSFplX1Zld2tsUWVSU05tNEJsWHF4dnhOT20wSDZpX0tFWTFvZXhxSmQzanFYUGQxTXJmVnlUX0tNVmp5cGxUZXczeXI4dnotYkVfY0p5Y0VKSkF2UTFGWXJOT2Z3Wl93ak8zVFJuT0hXOUVSZHZzeWI4a1dWRTM4bFQxbElZcXFJd2h5S3l1UWlZdll6ZWFpZENyc3ZUSC1ESzRfaVE3NTZQN2h1VnNERGRwdHZHM0hhTHMwUmFxWldweHM0cmxqLTFzUGJBWjNMMjEzMTFheENwV1BHMTkxOTM2Wm0wMzZpMExR0gHHAkFVX3lxTE9YMm9ocHZvTG96TnNvM3ROSFdjbnktZjM4dlBVbEs4RDBSaFh3eFF1SUh0MjZ1cmtzMkkyeWNPLTcweWVCTGtYc2tvT0pURU1kUG9Vdk1JVS1Da3g2bkdmZjVReE1FdHhvMlZsSm04V0lwcmNxbEpYNUdvMVNsQ1plNUhLUUFHMm9sZ0pqUXV2eThfLWJzWGcyZ0FYZnE2RmdjYXZSb3JGQmpnYnRTQURhWDJFT2I5MzRYRmIzbUxDVmF6YnVWNnpwb1BCcmpLMkRzZ09sSUwwMFFvOUg1TUhrN2YySlNOTmRIR2ZVYXNGQkFFdGVrelFILTJaZTVoYkQ2d1Nib1VfMldXekgyUlVzVkZ5WHg0N2Z6eVhQSUFta3VSclQ2YkxXQXpzMlZIVWJnNWRXVGdrdXhxR3lXcVY2b0VlV3h0bw?oc=5",
-      "source": "Times of India",
-      "source_id": "times_of_india",
-      "category": "Marvel",
-      "published_at": "2026-11-01T05:48:00+00:00",
-      "status": "reported",
-      "tags": [
-        "Avengers",
-        "Doom"
-      ],
-      "related_characters": [
-        "Avengers",
-        "Doom"
-      ],
-      "external_id": "CBMiwgJBVV95cUxNdFRpYlNNODd0T3NIbThIdWktRmJoWUhzbVdIbUZnWjRFMjhyXzhNaFlvLXJEeWxtSVIzOWRNLS1uUFRWcU5fOUlPOE1KYlRGNE03aTdFRG1aY25CN3VUSFplX1Zld2tsUWVSU05tNEJsWHF4dnhOT20wSDZpX0tFWTFvZXhxSmQzanFYUGQxTXJm",
-      "synopsis": "",
-      "synopsis_status": "pending"
-    },
-    {
-      "id": "robertdowneyjrpedropascalservemcurolereversalforhalloweencostumeswap",
-      "title": "Robert Downey Jr. & Pedro Pascal Serve MCU Role Reversal For Halloween: “Costume Swap!”",
-      "summary": "Robert Downey Jr. & Pedro Pascal Serve MCU Role Reversal For Halloween: “Costume Swap!” Deadline",
-      "coverage_tags": [],
-      "image_url": "",
-      "article_url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxNOExXTU9MaTlpUGI0MHIxUnpnX0UwbFdFOTRhMDAyZ0R1ZjQ5SkRveXZNQ2pabGw5WmZwUWREVUh0MnI3bkx6cDFmTUZRU2R6ZFFKRl9BRUNSbVNDS2Q1azVDQUgxUmZTa29jdnBEdFdGblhGd3BFYzF4alFpWFo1cFR0bmREb2NRSDdYcnZxV1Z4YUh5U1ZUeWQxd2M4c1U?oc=5",
-      "source": "Deadline",
-      "source_id": "deadline",
-      "category": "Marvel",
-      "published_at": "2026-11-01T05:35:00+00:00",
-      "status": "reported",
-      "tags": [],
-      "related_characters": [],
-      "external_id": "CBMinwFBVV95cUxNOExXTU9MaTlpUGI0MHIxUnpnX0UwbFdFOTRhMDAyZ0R1ZjQ5SkRveXZNQ2pabGw5WmZwUWREVUh0MnI3bkx6cDFmTUZRU2R6ZFFKRl9BRUNSbVNDS2Q1azVDQUgxUmZTa29jdnBEdFdGblhGd3BFYzF4alFpWFo1cFR0bmREb2NRSDdYcnZxV1Z4",
-      "synopsis": "",
-      "synopsis_status": "pending"
     }
   ],
   "synopsis_engine": "Free local TextRank-style source extraction (no API key)"
